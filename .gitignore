@@ -83,6 +83,7 @@ fastlane/test_output
 ## Other
 
 ### Xcode Patch ###
+groov.xcodeproj/
 *.xcodeproj/*
 !*.xcodeproj/project.pbxproj
 !*.xcodeproj/xcshareddata/
