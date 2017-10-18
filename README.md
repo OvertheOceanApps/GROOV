@@ -15,8 +15,7 @@ GROOV. 사용법
 Designed by @jinhwa.lee
 Developed by @pilgwon.kim
 
-CONTACT
-facebook.com/AppGROOV
+CONTACT: facebook.com/AppGROOV
 
 
 [1.1.0]
@@ -25,5 +24,3 @@ facebook.com/AppGROOV
 
 
 
-# groov-legacy
-# groov-legacy
