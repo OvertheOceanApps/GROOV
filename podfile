@@ -1,0 +1,19 @@
+platform :ios, '10.0'
+
+target 'groov' do
+  use_frameworks!
+
+  # Pods for groov
+
+  pod 'RealmSwift'
+  pod 'Kingfisher', '~> 4.0'
+  pod 'Alamofire', '~> 4.4'
+  pod 'CWStatusBarNotification', '~> 2.3.5'
+  pod 'KDCircularProgress'
+  pod 'AssistantKit'
+  pod 'SWXMLHash', '~> 4.0.0'
+  pod 'Firebase/Core'
+
+
+end
+

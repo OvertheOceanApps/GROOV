@@ -1,0 +1,815 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1F21B9431D2D61A2001F1722 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F21B9421D2D61A2001F1722 /* Extensions.swift */; };
+		1F2A92951D2E96CE00EDB7B1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2A92941D2E96CE00EDB7B1 /* SettingsViewController.swift */; };
+		1FBAFB781D47CB3600078A31 /* ChoosePlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBAFB771D47CB3600078A31 /* ChoosePlaylistViewController.swift */; };
+		1FDCE34D1D32A46600142D8B /* YTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FDCE34C1D32A46600142D8B /* YTPlayerView.m */; };
+		1FDCE34F1D32A71000142D8B /* Assets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1FDCE34E1D32A71000142D8B /* Assets.bundle */; };
+		31251DBFEDF78548A1A2A767 /* Pods_groov.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABDD6A5EDEFF369926A285F5 /* Pods_groov.framework */; };
+		C607650C1D3783870085DB35 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C607650B1D3783870085DB35 /* Playlist.swift */; };
+		C618B5031D375B7D0079C9FD /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = C618B5021D375B7D0079C9FD /* Video.swift */; };
+		C61B73DB1E9C69D4003AE091 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C61B73DA1E9C69D4003AE091 /* Assets.xcassets */; };
+		C61C0BC81D38C2C90067D389 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61C0BC71D38C2C90067D389 /* Constants.swift */; };
+		C61C0BCC1D38C37C0067D389 /* VideoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61C0BCB1D38C37C0067D389 /* VideoListViewController.swift */; };
+		C61C0BD01D38C4B30067D389 /* VideoListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61C0BCF1D38C4B30067D389 /* VideoListTableViewCell.swift */; };
+		C61C0BD41D38C6110067D389 /* SearchVideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61C0BD31D38C6110067D389 /* SearchVideoTableViewCell.swift */; };
+		C62533AA1D46F4A5006E43F8 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C62533A91D46F4A5006E43F8 /* MessageUI.framework */; };
+		C62CF4C11E9B1DF0007BDE5E /* GRAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62CF4C01E9B1DF0007BDE5E /* GRAlertView.swift */; };
+		C62CF4C31E9B1E00007BDE5E /* GRAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C62CF4C21E9B1E00007BDE5E /* GRAlertView.xib */; };
+		C667BB8C1E7BDA5000DFFC0F /* SearchSuggestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C667BB8B1E7BDA5000DFFC0F /* SearchSuggestTableViewCell.swift */; };
+		C66ED4C81D2CA73E0055F441 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66ED4C71D2CA73E0055F441 /* AppDelegate.swift */; };
+		C66ED4CD1D2CA73E0055F441 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C66ED4CB1D2CA73E0055F441 /* Main.storyboard */; };
+		C66ED4D21D2CA73E0055F441 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C66ED4D01D2CA73E0055F441 /* LaunchScreen.storyboard */; };
+		C66ED4DD1D2CA73E0055F441 /* groovTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66ED4DC1D2CA73E0055F441 /* groovTests.swift */; };
+		C66ED4E81D2CA73E0055F441 /* groovUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66ED4E71D2CA73E0055F441 /* groovUITests.swift */; };
+		C66ED50C1D2CD0C20055F441 /* PlaylistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66ED50B1D2CD0C20055F441 /* PlaylistTableViewCell.swift */; };
+		C66ED5681D2E43430055F441 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66ED5671D2E43430055F441 /* ContainerViewController.swift */; };
+		C66ED56A1D2E43AD0055F441 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66ED5691D2E43AD0055F441 /* MenuViewController.swift */; };
+		C66ED56C1D2E43C20055F441 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66ED56B1D2E43C20055F441 /* MainNavigationController.swift */; };
+		C67090DE1D2E52D40094C6B2 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67090DD1D2E52D40094C6B2 /* MenuTableViewCell.swift */; };
+		C67E14831D3F27A000D5D9FA /* PlaylistListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67E14821D3F27A000D5D9FA /* PlaylistListViewController.swift */; };
+		C683238E1E89120E00B0F623 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C683238D1E89120E00B0F623 /* GoogleService-Info.plist */; };
+		C6962DC31E784509007E9D6E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6962DC21E784509007E9D6E /* SearchViewController.swift */; };
+		C6C1A3E21D362CE400D98663 /* GRSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C1A3E11D362CE400D98663 /* GRSearchController.swift */; };
+		C6C1A3E41D362CEF00D98663 /* GRSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C1A3E31D362CEF00D98663 /* GRSearchBar.swift */; };
+		C6DB02B11EB083FF006680B0 /* SearchHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DB02B01EB083FF006680B0 /* SearchHistory.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C66ED4D91D2CA73E0055F441 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C66ED4BC1D2CA73E0055F441 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C66ED4C31D2CA73E0055F441;
+			remoteInfo = groov;
+		};
+		C66ED4E41D2CA73E0055F441 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C66ED4BC1D2CA73E0055F441 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C66ED4C31D2CA73E0055F441;
+			remoteInfo = groov;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1F21B9421D2D61A2001F1722 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		1F2A92941D2E96CE00EDB7B1 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		1F6C43301D32A05A00F53FA9 /* groov-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "groov-Bridging-Header.h"; sourceTree = "<group>"; };
+		1FBAFB771D47CB3600078A31 /* ChoosePlaylistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoosePlaylistViewController.swift; sourceTree = "<group>"; };
+		1FDCE34B1D32A46600142D8B /* YTPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTPlayerView.h; sourceTree = "<group>"; };
+		1FDCE34C1D32A46600142D8B /* YTPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTPlayerView.m; sourceTree = "<group>"; };
+		1FDCE34E1D32A71000142D8B /* Assets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Assets.bundle; sourceTree = "<group>"; };
+		4C40722D096E3B0085A2B780 /* Pods-groov.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-groov.debug.xcconfig"; path = "Pods/Target Support Files/Pods-groov/Pods-groov.debug.xcconfig"; sourceTree = "<group>"; };
+		97596A9D467582EEF5030BE1 /* Pods-groov.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-groov.release.xcconfig"; path = "Pods/Target Support Files/Pods-groov/Pods-groov.release.xcconfig"; sourceTree = "<group>"; };
+		A82A0158A517718A8183ABD2 /* Pods_groovTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_groovTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ABDD6A5EDEFF369926A285F5 /* Pods_groov.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_groov.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C607650B1D3783870085DB35 /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
+		C618B5021D375B7D0079C9FD /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		C61B73DA1E9C69D4003AE091 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C61C0BC71D38C2C90067D389 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C61C0BCB1D38C37C0067D389 /* VideoListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoListViewController.swift; sourceTree = "<group>"; };
+		C61C0BCF1D38C4B30067D389 /* VideoListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoListTableViewCell.swift; sourceTree = "<group>"; };
+		C61C0BD31D38C6110067D389 /* SearchVideoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVideoTableViewCell.swift; sourceTree = "<group>"; };
+		C62533A91D46F4A5006E43F8 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		C62CF4C01E9B1DF0007BDE5E /* GRAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRAlertView.swift; sourceTree = "<group>"; };
+		C62CF4C21E9B1E00007BDE5E /* GRAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GRAlertView.xib; sourceTree = "<group>"; };
+		C667BB8B1E7BDA5000DFFC0F /* SearchSuggestTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchSuggestTableViewCell.swift; sourceTree = "<group>"; };
+		C66ED4C41D2CA73E0055F441 /* groov.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = groov.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C66ED4C71D2CA73E0055F441 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C66ED4CC1D2CA73E0055F441 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C66ED4D11D2CA73E0055F441 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C66ED4D31D2CA73E0055F441 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C66ED4D81D2CA73E0055F441 /* groovTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = groovTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C66ED4DC1D2CA73E0055F441 /* groovTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = groovTests.swift; sourceTree = "<group>"; };
+		C66ED4DE1D2CA73E0055F441 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C66ED4E31D2CA73E0055F441 /* groovUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = groovUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C66ED4E71D2CA73E0055F441 /* groovUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = groovUITests.swift; sourceTree = "<group>"; };
+		C66ED4E91D2CA73E0055F441 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C66ED50B1D2CD0C20055F441 /* PlaylistTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistTableViewCell.swift; sourceTree = "<group>"; };
+		C66ED5671D2E43430055F441 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
+		C66ED5691D2E43AD0055F441 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		C66ED56B1D2E43C20055F441 /* MainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
+		C67090DD1D2E52D40094C6B2 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
+		C67E14821D3F27A000D5D9FA /* PlaylistListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistListViewController.swift; sourceTree = "<group>"; };
+		C683238D1E89120E00B0F623 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C6962DC21E784509007E9D6E /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		C6C1A3E11D362CE400D98663 /* GRSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRSearchController.swift; sourceTree = "<group>"; };
+		C6C1A3E31D362CEF00D98663 /* GRSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRSearchBar.swift; sourceTree = "<group>"; };
+		C6DB02B01EB083FF006680B0 /* SearchHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchHistory.swift; sourceTree = "<group>"; };
+		C8ABA509D130F72F0EBCBA43 /* Pods_groovUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_groovUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C66ED4C11D2CA73E0055F441 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C62533AA1D46F4A5006E43F8 /* MessageUI.framework in Frameworks */,
+				31251DBFEDF78548A1A2A767 /* Pods_groov.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C66ED4D51D2CA73E0055F441 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C66ED4E01D2CA73E0055F441 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1FDCE3431D32A42E00142D8B /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				1FDCE34A1D32A46600142D8B /* YTPlayerView */,
+			);
+			path = Libraries;
+			sourceTree = "<group>";
+		};
+		1FDCE34A1D32A46600142D8B /* YTPlayerView */ = {
+			isa = PBXGroup;
+			children = (
+				1FDCE34E1D32A71000142D8B /* Assets.bundle */,
+				1FDCE34B1D32A46600142D8B /* YTPlayerView.h */,
+				1FDCE34C1D32A46600142D8B /* YTPlayerView.m */,
+			);
+			path = YTPlayerView;
+			sourceTree = "<group>";
+		};
+		8163F3A8224503FE11C038C0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C62533A91D46F4A5006E43F8 /* MessageUI.framework */,
+				ABDD6A5EDEFF369926A285F5 /* Pods_groov.framework */,
+				A82A0158A517718A8183ABD2 /* Pods_groovTests.framework */,
+				C8ABA509D130F72F0EBCBA43 /* Pods_groovUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8E6D4F9944C0632238763D07 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4C40722D096E3B0085A2B780 /* Pods-groov.debug.xcconfig */,
+				97596A9D467582EEF5030BE1 /* Pods-groov.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		C618B4FF1D375A920079C9FD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C607650B1D3783870085DB35 /* Playlist.swift */,
+				C618B5021D375B7D0079C9FD /* Video.swift */,
+				C6DB02B01EB083FF006680B0 /* SearchHistory.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		C66ED4BB1D2CA73E0055F441 = {
+			isa = PBXGroup;
+			children = (
+				C66ED4C61D2CA73E0055F441 /* groov */,
+				C66ED4DB1D2CA73E0055F441 /* groovTests */,
+				C66ED4E61D2CA73E0055F441 /* groovUITests */,
+				C66ED4C51D2CA73E0055F441 /* Products */,
+				8E6D4F9944C0632238763D07 /* Pods */,
+				8163F3A8224503FE11C038C0 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		C66ED4C51D2CA73E0055F441 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C66ED4C41D2CA73E0055F441 /* groov.app */,
+				C66ED4D81D2CA73E0055F441 /* groovTests.xctest */,
+				C66ED4E31D2CA73E0055F441 /* groovUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C66ED4C61D2CA73E0055F441 /* groov */ = {
+			isa = PBXGroup;
+			children = (
+				1FDCE3431D32A42E00142D8B /* Libraries */,
+				1F6C43301D32A05A00F53FA9 /* groov-Bridging-Header.h */,
+				1F21B9421D2D61A2001F1722 /* Extensions.swift */,
+				C61C0BC71D38C2C90067D389 /* Constants.swift */,
+				C66ED4C71D2CA73E0055F441 /* AppDelegate.swift */,
+				C618B4FF1D375A920079C9FD /* Models */,
+				C66ED5091D2CD04D0055F441 /* Controllers */,
+				C66ED50A1D2CD0540055F441 /* Views */,
+				C66ED4CB1D2CA73E0055F441 /* Main.storyboard */,
+				C61B73DA1E9C69D4003AE091 /* Assets.xcassets */,
+				C66ED4D01D2CA73E0055F441 /* LaunchScreen.storyboard */,
+				C683238D1E89120E00B0F623 /* GoogleService-Info.plist */,
+				C66ED4D31D2CA73E0055F441 /* Info.plist */,
+			);
+			path = groov;
+			sourceTree = "<group>";
+		};
+		C66ED4DB1D2CA73E0055F441 /* groovTests */ = {
+			isa = PBXGroup;
+			children = (
+				C66ED4DC1D2CA73E0055F441 /* groovTests.swift */,
+				C66ED4DE1D2CA73E0055F441 /* Info.plist */,
+			);
+			path = groovTests;
+			sourceTree = "<group>";
+		};
+		C66ED4E61D2CA73E0055F441 /* groovUITests */ = {
+			isa = PBXGroup;
+			children = (
+				C66ED4E71D2CA73E0055F441 /* groovUITests.swift */,
+				C66ED4E91D2CA73E0055F441 /* Info.plist */,
+			);
+			path = groovUITests;
+			sourceTree = "<group>";
+		};
+		C66ED5091D2CD04D0055F441 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C66ED56D1D2E4C450055F441 /* SideMenu */,
+				C67E14821D3F27A000D5D9FA /* PlaylistListViewController.swift */,
+				C61C0BCB1D38C37C0067D389 /* VideoListViewController.swift */,
+				C6962DC21E784509007E9D6E /* SearchViewController.swift */,
+				1FBAFB771D47CB3600078A31 /* ChoosePlaylistViewController.swift */,
+				1F2A92941D2E96CE00EDB7B1 /* SettingsViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		C66ED50A1D2CD0540055F441 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C66ED50B1D2CD0C20055F441 /* PlaylistTableViewCell.swift */,
+				C61C0BCF1D38C4B30067D389 /* VideoListTableViewCell.swift */,
+				C667BB8B1E7BDA5000DFFC0F /* SearchSuggestTableViewCell.swift */,
+				C61C0BD31D38C6110067D389 /* SearchVideoTableViewCell.swift */,
+				C67090DD1D2E52D40094C6B2 /* MenuTableViewCell.swift */,
+				C6C1A3E11D362CE400D98663 /* GRSearchController.swift */,
+				C6C1A3E31D362CEF00D98663 /* GRSearchBar.swift */,
+				C62CF4C01E9B1DF0007BDE5E /* GRAlertView.swift */,
+				C62CF4C21E9B1E00007BDE5E /* GRAlertView.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		C66ED56D1D2E4C450055F441 /* SideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				C66ED5671D2E43430055F441 /* ContainerViewController.swift */,
+				C66ED5691D2E43AD0055F441 /* MenuViewController.swift */,
+				C66ED56B1D2E43C20055F441 /* MainNavigationController.swift */,
+			);
+			name = SideMenu;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C66ED4C31D2CA73E0055F441 /* groov */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C66ED4EC1D2CA73E0055F441 /* Build configuration list for PBXNativeTarget "groov" */;
+			buildPhases = (
+				4BC8F7AD5ECE40600C7FF82F /* [CP] Check Pods Manifest.lock */,
+				C66ED4C01D2CA73E0055F441 /* Sources */,
+				C66ED4C11D2CA73E0055F441 /* Frameworks */,
+				C66ED4C21D2CA73E0055F441 /* Resources */,
+				14D25137692F0D91D9E70B75 /* [CP] Embed Pods Frameworks */,
+				D7D9B582A6891A43BFD297E3 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = groov;
+			productName = groov;
+			productReference = C66ED4C41D2CA73E0055F441 /* groov.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C66ED4D71D2CA73E0055F441 /* groovTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C66ED4EF1D2CA73E0055F441 /* Build configuration list for PBXNativeTarget "groovTests" */;
+			buildPhases = (
+				C66ED4D41D2CA73E0055F441 /* Sources */,
+				C66ED4D51D2CA73E0055F441 /* Frameworks */,
+				C66ED4D61D2CA73E0055F441 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C66ED4DA1D2CA73E0055F441 /* PBXTargetDependency */,
+			);
+			name = groovTests;
+			productName = groovTests;
+			productReference = C66ED4D81D2CA73E0055F441 /* groovTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C66ED4E21D2CA73E0055F441 /* groovUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C66ED4F21D2CA73E0055F441 /* Build configuration list for PBXNativeTarget "groovUITests" */;
+			buildPhases = (
+				C66ED4DF1D2CA73E0055F441 /* Sources */,
+				C66ED4E01D2CA73E0055F441 /* Frameworks */,
+				C66ED4E11D2CA73E0055F441 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C66ED4E51D2CA73E0055F441 /* PBXTargetDependency */,
+			);
+			name = groovUITests;
+			productName = groovUITests;
+			productReference = C66ED4E31D2CA73E0055F441 /* groovUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C66ED4BC1D2CA73E0055F441 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = PilGwonKim;
+				TargetAttributes = {
+					C66ED4C31D2CA73E0055F441 = {
+						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 68L248M44U;
+						LastSwiftMigration = 0900;
+					};
+					C66ED4D71D2CA73E0055F441 = {
+						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0900;
+						TestTargetID = C66ED4C31D2CA73E0055F441;
+					};
+					C66ED4E21D2CA73E0055F441 = {
+						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0900;
+						TestTargetID = C66ED4C31D2CA73E0055F441;
+					};
+				};
+			};
+			buildConfigurationList = C66ED4BF1D2CA73E0055F441 /* Build configuration list for PBXProject "groov" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C66ED4BB1D2CA73E0055F441;
+			productRefGroup = C66ED4C51D2CA73E0055F441 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C66ED4C31D2CA73E0055F441 /* groov */,
+				C66ED4D71D2CA73E0055F441 /* groovTests */,
+				C66ED4E21D2CA73E0055F441 /* groovUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C66ED4C21D2CA73E0055F441 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C66ED4D21D2CA73E0055F441 /* LaunchScreen.storyboard in Resources */,
+				C66ED4CD1D2CA73E0055F441 /* Main.storyboard in Resources */,
+				1FDCE34F1D32A71000142D8B /* Assets.bundle in Resources */,
+				C62CF4C31E9B1E00007BDE5E /* GRAlertView.xib in Resources */,
+				C61B73DB1E9C69D4003AE091 /* Assets.xcassets in Resources */,
+				C683238E1E89120E00B0F623 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C66ED4D61D2CA73E0055F441 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C66ED4E11D2CA73E0055F441 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		14D25137692F0D91D9E70B75 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-groov/Pods-groov-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AssistantKit/AssistantKit.framework",
+				"${BUILT_PRODUCTS_DIR}/CWStatusBarNotification/CWStatusBarNotification.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/KDCircularProgress/KDCircularProgress.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SWXMLHash/SWXMLHash.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AssistantKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CWStatusBarNotification.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KDCircularProgress.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SWXMLHash.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-groov/Pods-groov-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4BC8F7AD5ECE40600C7FF82F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-groov-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D7D9B582A6891A43BFD297E3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-groov/Pods-groov-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C66ED4C01D2CA73E0055F441 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C61C0BC81D38C2C90067D389 /* Constants.swift in Sources */,
+				C66ED56C1D2E43C20055F441 /* MainNavigationController.swift in Sources */,
+				C667BB8C1E7BDA5000DFFC0F /* SearchSuggestTableViewCell.swift in Sources */,
+				C66ED4C81D2CA73E0055F441 /* AppDelegate.swift in Sources */,
+				1FDCE34D1D32A46600142D8B /* YTPlayerView.m in Sources */,
+				C61C0BD01D38C4B30067D389 /* VideoListTableViewCell.swift in Sources */,
+				C6DB02B11EB083FF006680B0 /* SearchHistory.swift in Sources */,
+				C66ED5681D2E43430055F441 /* ContainerViewController.swift in Sources */,
+				C607650C1D3783870085DB35 /* Playlist.swift in Sources */,
+				C61C0BCC1D38C37C0067D389 /* VideoListViewController.swift in Sources */,
+				1FBAFB781D47CB3600078A31 /* ChoosePlaylistViewController.swift in Sources */,
+				C6C1A3E21D362CE400D98663 /* GRSearchController.swift in Sources */,
+				C618B5031D375B7D0079C9FD /* Video.swift in Sources */,
+				C6962DC31E784509007E9D6E /* SearchViewController.swift in Sources */,
+				C6C1A3E41D362CEF00D98663 /* GRSearchBar.swift in Sources */,
+				C62CF4C11E9B1DF0007BDE5E /* GRAlertView.swift in Sources */,
+				C66ED56A1D2E43AD0055F441 /* MenuViewController.swift in Sources */,
+				1F2A92951D2E96CE00EDB7B1 /* SettingsViewController.swift in Sources */,
+				C67E14831D3F27A000D5D9FA /* PlaylistListViewController.swift in Sources */,
+				C61C0BD41D38C6110067D389 /* SearchVideoTableViewCell.swift in Sources */,
+				C66ED50C1D2CD0C20055F441 /* PlaylistTableViewCell.swift in Sources */,
+				1F21B9431D2D61A2001F1722 /* Extensions.swift in Sources */,
+				C67090DE1D2E52D40094C6B2 /* MenuTableViewCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C66ED4D41D2CA73E0055F441 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C66ED4DD1D2CA73E0055F441 /* groovTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C66ED4DF1D2CA73E0055F441 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C66ED4E81D2CA73E0055F441 /* groovUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C66ED4DA1D2CA73E0055F441 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C66ED4C31D2CA73E0055F441 /* groov */;
+			targetProxy = C66ED4D91D2CA73E0055F441 /* PBXContainerItemProxy */;
+		};
+		C66ED4E51D2CA73E0055F441 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C66ED4C31D2CA73E0055F441 /* groov */;
+			targetProxy = C66ED4E41D2CA73E0055F441 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C66ED4CB1D2CA73E0055F441 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C66ED4CC1D2CA73E0055F441 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C66ED4D01D2CA73E0055F441 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C66ED4D11D2CA73E0055F441 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C66ED4EA1D2CA73E0055F441 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C66ED4EB1D2CA73E0055F441 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C66ED4ED1D2CA73E0055F441 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4C40722D096E3B0085A2B780 /* Pods-groov.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = groov._ICON;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 68L248M44U;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = groov/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				PODS_PODFILE_DIR_PATH = "${SRCROOT}/.";
+				PRODUCT_BUNDLE_IDENTIFIER = com.feelg.groov;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "groov/groov-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		C66ED4EE1D2CA73E0055F441 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 97596A9D467582EEF5030BE1 /* Pods-groov.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = groov._ICON;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 68L248M44U;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = groov/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				PODS_PODFILE_DIR_PATH = "${SRCROOT}/.";
+				PRODUCT_BUNDLE_IDENTIFIER = com.feelg.groov;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "groov/groov-Bridging-Header.h";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		C66ED4F01D2CA73E0055F441 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = groovTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.feelg.groovTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/groov.app/groov";
+			};
+			name = Debug;
+		};
+		C66ED4F11D2CA73E0055F441 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = groovTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.feelg.groovTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/groov.app/groov";
+			};
+			name = Release;
+		};
+		C66ED4F31D2CA73E0055F441 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = groovUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.feelg.groovUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+				TEST_TARGET_NAME = groov;
+			};
+			name = Debug;
+		};
+		C66ED4F41D2CA73E0055F441 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = groovUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.feelg.groovUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+				TEST_TARGET_NAME = groov;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C66ED4BF1D2CA73E0055F441 /* Build configuration list for PBXProject "groov" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C66ED4EA1D2CA73E0055F441 /* Debug */,
+				C66ED4EB1D2CA73E0055F441 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C66ED4EC1D2CA73E0055F441 /* Build configuration list for PBXNativeTarget "groov" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C66ED4ED1D2CA73E0055F441 /* Debug */,
+				C66ED4EE1D2CA73E0055F441 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C66ED4EF1D2CA73E0055F441 /* Build configuration list for PBXNativeTarget "groovTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C66ED4F01D2CA73E0055F441 /* Debug */,
+				C66ED4F11D2CA73E0055F441 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C66ED4F21D2CA73E0055F441 /* Build configuration list for PBXNativeTarget "groovUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C66ED4F31D2CA73E0055F441 /* Debug */,
+				C66ED4F41D2CA73E0055F441 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C66ED4BC1D2CA73E0055F441 /* Project object */;
+}
