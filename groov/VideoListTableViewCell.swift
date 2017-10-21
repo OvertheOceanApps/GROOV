@@ -86,7 +86,7 @@ class VideoListTableViewCell: UITableViewCell {
     @objc func circulateProgress() {
         UIView.animate(withDuration: 0.5) {
 //            yourButton.transform = CGAffineTransformMakeRotation(45.0*M_PI/180.0);
-            self.progressRingView.transform = self.progressRingView.transform.rotated(by: CGFloat(M_PI_4))
+            self.progressRingView.transform = self.progressRingView.transform.rotated(by: CGFloat(Double.pi/4))
         }
     }
 }

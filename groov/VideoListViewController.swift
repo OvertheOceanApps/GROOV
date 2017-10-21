@@ -123,6 +123,10 @@ class VideoListViewController: UIViewController, UITableViewDelegate, UITableVie
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = UIColor.clear
+        
+        self.navigationController?.navigationBar.backgroundColor = UIColor.clear
+        
+        
     }
     
     @objc func dismissVC() {
