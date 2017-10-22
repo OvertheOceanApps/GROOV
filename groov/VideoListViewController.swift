@@ -12,6 +12,7 @@ import RealmSwift
 import AssistantKit
 //import SwiftMessages
 import CWStatusBarNotification
+import StoreKit
 
 protocol VideoListViewControllerDelegate {
     func recentVideoChanged(_ playlist: Playlist)
@@ -41,6 +42,9 @@ class VideoListViewController: UIViewController, UITableViewDelegate, UITableVie
     var currentSelectedCell: VideoListTableViewCell!
     var durationTimer: Timer! = nil
     var notification: CWStatusBarNotification!
+    
+    var totalPlayTime: Float = 0 // for review. review time > 10s -> review request
+    var reviewAsked: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,11 +90,34 @@ class VideoListViewController: UIViewController, UITableViewDelegate, UITableVie
             runningTimeLabel.text = "\(currentTimeString) / \(totalDurationString)"
             
             let progress: CGFloat = CGFloat(currentTime) / CGFloat(totalDuration)
-            print("Progress: \(currentTime) / \(totalDuration)")
             UIView.animate(withDuration: 0.5, animations: {
-                print("Width: \(self.durationWrapperView.width * progress)")
                 self.progressBackgroundView.setWidth(self.durationWrapperView.width * progress)
             })
+            
+            totalPlayTime += 0.5
+            if totalPlayTime >= 10 {
+                if #available(iOS 10.3, *) {
+                    self.askReview()
+                }
+            }
+        }
+    }
+    
+    @available(iOS 10.3, *)
+    func askReview() {
+        if reviewAsked == false {
+            reviewAsked = true
+            
+            let ver = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
+            print("Ver: \(ver), UD: \(UserDefaults.standard.object(forKey: ver) ?? "none")")
+            if UserDefaults.standard.object(forKey: ver) != nil {
+                return
+            }
+        
+            SKStoreReviewController.requestReview()
+            
+            UserDefaults.standard.set("Y", forKey: ver)
+            print("Ver: \(ver), UD: \(UserDefaults.standard.object(forKey: ver) ?? "none")")
         }
     }
     
@@ -126,7 +153,7 @@ class VideoListViewController: UIViewController, UITableViewDelegate, UITableVie
         
         // design change under iOS 11
         if UIDevice().userInterfaceIdiom == .phone
-        && Device.osVersion <= Device.os11 { // iOS 10
+        && Device.osVersion < Device.os11 { // iOS 10
             videoPlayerViewTopConstraint.constant = -64
             self.view.layoutIfNeeded()
         }
