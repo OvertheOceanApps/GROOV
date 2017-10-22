@@ -9,8 +9,9 @@
 import UIKit
 import Kingfisher
 import RealmSwift
-import CWStatusBarNotification
 import AssistantKit
+//import SwiftMessages
+import CWStatusBarNotification
 
 protocol VideoListViewControllerDelegate {
     func recentVideoChanged(_ playlist: Playlist)
@@ -335,6 +336,19 @@ class VideoListViewController: UIViewController, UITableViewDelegate, UITableVie
             playlist.recentVideo = video.title
             
             self.notification.display(withMessage: "비디오 추가됨", forDuration: 1.5)
+            
+            
+//            let warning = MessageView.viewFromNib(layout: .cardView)
+//            warning.configureTheme(.warning)
+//            warning.configureDropShadow()
+//            
+//            let iconText = ["💃", "🕺", "👯", "👯‍♂️"].sm_random()!
+//            warning.configureContent(title: "추가 완료", body: "비디오 추가가 완료됐습니다", iconText: iconText)
+//            warning.button?.isHidden = true
+//            var warningConfig = SwiftMessages.defaultConfig
+//            warningConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
+//            
+//            SwiftMessages.show(config: warningConfig, view: warning)
         }
         
         self.videoArray.append(video)
@@ -358,12 +372,10 @@ class VideoListViewController: UIViewController, UITableViewDelegate, UITableVie
         if self.controlView.alpha == 1 {
             UIView.animate(withDuration: 0.4, animations: {
                 self.controlView.alpha = 0
-//                self.navigationController?.setNavigationBarHidden(true, animated: false)
             })
         } else {
             UIView.animate(withDuration: 0.4, animations: {
                 self.controlView.alpha = 1
-//                self.navigationController?.setNavigationBarHidden(false, animated: false)
             })
         }
     }

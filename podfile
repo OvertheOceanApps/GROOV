@@ -8,12 +8,12 @@ target 'groov' do
   pod 'RealmSwift'
   pod 'Kingfisher', '~> 4.0'
   pod 'Alamofire', '~> 4.4'
-  pod 'CWStatusBarNotification', '~> 2.3.5'
   pod 'KDCircularProgress'
   pod 'AssistantKit'
   pod 'SWXMLHash', '~> 4.0.0'
   pod 'Firebase/Core'
-
+  pod 'SwiftMessages'
+  pod 'CWStatusBarNotification'
 
 end
 
