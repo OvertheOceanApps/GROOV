@@ -10,6 +10,7 @@ import UIKit
 import Kingfisher
 import RealmSwift
 import CWStatusBarNotification
+import AssistantKit
 
 protocol VideoListViewControllerDelegate {
     func recentVideoChanged(_ playlist: Playlist)
@@ -28,6 +29,7 @@ class VideoListViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet var playPauseButton: UIButton!
     @IBOutlet var progressImageView: UIImageView!
     @IBOutlet var progressBackgroundView: UIView!
+    @IBOutlet var videoPlayerViewTopConstraint: NSLayoutConstraint!
     
     var delegate: VideoListViewControllerDelegate!
     var playlist: Playlist! = nil
@@ -88,10 +90,6 @@ class VideoListViewController: UIViewController, UITableViewDelegate, UITableVie
                 print("Width: \(self.durationWrapperView.width * progress)")
                 self.progressBackgroundView.setWidth(self.durationWrapperView.width * progress)
             })
-            
-//            if self.currentSelectedCell != nil {
-//                self.currentSelectedCell.progressChanged(p: Float(progress))
-//            }
         }
     }
     
@@ -112,21 +110,25 @@ class VideoListViewController: UIViewController, UITableViewDelegate, UITableVie
             NSAttributedStringKey.font: UIFont.systemFont(ofSize: 15),
             NSAttributedStringKey.foregroundColor: UIColor.white
         ]
-        
+
         // set navigation back button
         let backBarButton = UIBarButtonItem(image: #imageLiteral(resourceName: "navigation_back"), style: .plain, target: self, action: #selector(dismissVC))
         self.navigationItem.leftBarButtonItem = backBarButton
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
-    
+
         // set navigation clear
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = UIColor.clear
+        self.navigationController?.navigationBar.barTintColor = UIColor.clear
         
-        self.navigationController?.navigationBar.backgroundColor = UIColor.clear
-        
-        
+        // design change under iOS 11
+        if UIDevice().userInterfaceIdiom == .phone
+        && Device.osVersion <= Device.os11 { // iOS 10
+            videoPlayerViewTopConstraint.constant = -64
+            self.view.layoutIfNeeded()
+        }
     }
     
     @objc func dismissVC() {
