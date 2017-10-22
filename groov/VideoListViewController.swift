@@ -109,15 +109,12 @@ class VideoListViewController: UIViewController, UITableViewDelegate, UITableVie
             reviewAsked = true
             
             let ver = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
-            print("Ver: \(ver), UD: \(UserDefaults.standard.object(forKey: ver) ?? "none")")
             if UserDefaults.standard.object(forKey: ver) != nil {
                 return
             }
         
             SKStoreReviewController.requestReview()
-            
             UserDefaults.standard.set("Y", forKey: ver)
-            print("Ver: \(ver), UD: \(UserDefaults.standard.object(forKey: ver) ?? "none")")
         }
     }
     
@@ -364,17 +361,17 @@ class VideoListViewController: UIViewController, UITableViewDelegate, UITableVie
             
             self.notification.display(withMessage: "비디오 추가됨", forDuration: 1.5)
             
-            
 //            let warning = MessageView.viewFromNib(layout: .cardView)
-//            warning.configureTheme(.warning)
+//            warning.configureTheme(.success)
 //            warning.configureDropShadow()
-//            
+//
 //            let iconText = ["💃", "🕺", "👯", "👯‍♂️"].sm_random()!
-//            warning.configureContent(title: "추가 완료", body: "비디오 추가가 완료됐습니다", iconText: iconText)
+//            warning.configureContent(title: "비디오 추가 완료", body: "\(video.title)", iconText: iconText)
 //            warning.button?.isHidden = true
 //            var warningConfig = SwiftMessages.defaultConfig
 //            warningConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
-//            
+//            warningConfig.duration = .seconds(seconds: 0.2)
+//
 //            SwiftMessages.show(config: warningConfig, view: warning)
         }
         
