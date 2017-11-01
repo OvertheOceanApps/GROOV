@@ -194,11 +194,6 @@ class PlaylistListViewController: UIViewController, UITableViewDelegate, UITable
         self.present(navController, animated: true, completion: nil)
     }
     
-    @IBAction func showSideMenu() {
-        let center = NotificationCenter.default
-        center.post(Notification(name: Notification.Name(rawValue: ContainerViewController.Notifications.toggleMenu), object: self))
-    }
-    
     func recentVideoChanged(_ playlist: Playlist) {
         if let index = self.playlistArray.find({$0 == playlist}) {
             self.playlistArray[index] = playlist

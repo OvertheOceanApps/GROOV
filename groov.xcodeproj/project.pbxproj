@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1F21B9431D2D61A2001F1722 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F21B9421D2D61A2001F1722 /* Extensions.swift */; };
 		1F2A92951D2E96CE00EDB7B1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2A92941D2E96CE00EDB7B1 /* SettingsViewController.swift */; };
+		1F6F2E651FA5293300607A72 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6F2E641FA5293300607A72 /* LibraryViewController.swift */; };
+		1FAE89861FAA551000CF900D /* license.html in Resources */ = {isa = PBXBuildFile; fileRef = 1FAE89841FAA551000CF900D /* license.html */; };
 		1FDCE34D1D32A46600142D8B /* YTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FDCE34C1D32A46600142D8B /* YTPlayerView.m */; };
 		1FDCE34F1D32A71000142D8B /* Assets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1FDCE34E1D32A71000142D8B /* Assets.bundle */; };
 		31251DBFEDF78548A1A2A767 /* Pods_groov.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABDD6A5EDEFF369926A285F5 /* Pods_groov.framework */; };
@@ -29,9 +31,6 @@
 		C66ED4DD1D2CA73E0055F441 /* groovTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66ED4DC1D2CA73E0055F441 /* groovTests.swift */; };
 		C66ED4E81D2CA73E0055F441 /* groovUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66ED4E71D2CA73E0055F441 /* groovUITests.swift */; };
 		C66ED50C1D2CD0C20055F441 /* PlaylistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66ED50B1D2CD0C20055F441 /* PlaylistTableViewCell.swift */; };
-		C66ED5681D2E43430055F441 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66ED5671D2E43430055F441 /* ContainerViewController.swift */; };
-		C66ED56A1D2E43AD0055F441 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66ED5691D2E43AD0055F441 /* MenuViewController.swift */; };
-		C66ED56C1D2E43C20055F441 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66ED56B1D2E43C20055F441 /* MainNavigationController.swift */; };
 		C67090DE1D2E52D40094C6B2 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67090DD1D2E52D40094C6B2 /* MenuTableViewCell.swift */; };
 		C67E14831D3F27A000D5D9FA /* PlaylistListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67E14821D3F27A000D5D9FA /* PlaylistListViewController.swift */; };
 		C683238E1E89120E00B0F623 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C683238D1E89120E00B0F623 /* GoogleService-Info.plist */; };
@@ -62,6 +61,8 @@
 		1F21B9421D2D61A2001F1722 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		1F2A92941D2E96CE00EDB7B1 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		1F6C43301D32A05A00F53FA9 /* groov-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "groov-Bridging-Header.h"; sourceTree = "<group>"; };
+		1F6F2E641FA5293300607A72 /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
+		1FAE89841FAA551000CF900D /* license.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = license.html; sourceTree = SOURCE_ROOT; };
 		1FDCE34B1D32A46600142D8B /* YTPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTPlayerView.h; sourceTree = "<group>"; };
 		1FDCE34C1D32A46600142D8B /* YTPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTPlayerView.m; sourceTree = "<group>"; };
 		1FDCE34E1D32A71000142D8B /* Assets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Assets.bundle; sourceTree = "<group>"; };
@@ -92,9 +93,6 @@
 		C66ED4E71D2CA73E0055F441 /* groovUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = groovUITests.swift; sourceTree = "<group>"; };
 		C66ED4E91D2CA73E0055F441 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C66ED50B1D2CD0C20055F441 /* PlaylistTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistTableViewCell.swift; sourceTree = "<group>"; };
-		C66ED5671D2E43430055F441 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
-		C66ED5691D2E43AD0055F441 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
-		C66ED56B1D2E43C20055F441 /* MainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		C67090DD1D2E52D40094C6B2 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		C67E14821D3F27A000D5D9FA /* PlaylistListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistListViewController.swift; sourceTree = "<group>"; };
 		C683238D1E89120E00B0F623 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -218,6 +216,7 @@
 				C66ED4D01D2CA73E0055F441 /* LaunchScreen.storyboard */,
 				C683238D1E89120E00B0F623 /* GoogleService-Info.plist */,
 				C66ED4D31D2CA73E0055F441 /* Info.plist */,
+				1FAE89841FAA551000CF900D /* license.html */,
 			);
 			path = groov;
 			sourceTree = "<group>";
@@ -243,11 +242,11 @@
 		C66ED5091D2CD04D0055F441 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C66ED56D1D2E4C450055F441 /* SideMenu */,
 				C67E14821D3F27A000D5D9FA /* PlaylistListViewController.swift */,
 				C61C0BCB1D38C37C0067D389 /* VideoListViewController.swift */,
 				C6962DC21E784509007E9D6E /* SearchViewController.swift */,
 				1F2A92941D2E96CE00EDB7B1 /* SettingsViewController.swift */,
+				1F6F2E641FA5293300607A72 /* LibraryViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -266,16 +265,6 @@
 				C62CF4C21E9B1E00007BDE5E /* GRAlertView.xib */,
 			);
 			name = Views;
-			sourceTree = "<group>";
-		};
-		C66ED56D1D2E4C450055F441 /* SideMenu */ = {
-			isa = PBXGroup;
-			children = (
-				C66ED5671D2E43430055F441 /* ContainerViewController.swift */,
-				C66ED5691D2E43AD0055F441 /* MenuViewController.swift */,
-				C66ED56B1D2E43C20055F441 /* MainNavigationController.swift */,
-			);
-			name = SideMenu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -391,6 +380,7 @@
 			files = (
 				C66ED4D21D2CA73E0055F441 /* LaunchScreen.storyboard in Resources */,
 				C66ED4CD1D2CA73E0055F441 /* Main.storyboard in Resources */,
+				1FAE89861FAA551000CF900D /* license.html in Resources */,
 				1FDCE34F1D32A71000142D8B /* Assets.bundle in Resources */,
 				C62CF4C31E9B1E00007BDE5E /* GRAlertView.xib in Resources */,
 				C61B73DB1E9C69D4003AE091 /* Assets.xcassets in Resources */,
@@ -493,14 +483,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F6F2E651FA5293300607A72 /* LibraryViewController.swift in Sources */,
 				C61C0BC81D38C2C90067D389 /* Constants.swift in Sources */,
-				C66ED56C1D2E43C20055F441 /* MainNavigationController.swift in Sources */,
 				C667BB8C1E7BDA5000DFFC0F /* SearchSuggestTableViewCell.swift in Sources */,
 				C66ED4C81D2CA73E0055F441 /* AppDelegate.swift in Sources */,
 				1FDCE34D1D32A46600142D8B /* YTPlayerView.m in Sources */,
 				C61C0BD01D38C4B30067D389 /* VideoListTableViewCell.swift in Sources */,
 				C6DB02B11EB083FF006680B0 /* SearchHistory.swift in Sources */,
-				C66ED5681D2E43430055F441 /* ContainerViewController.swift in Sources */,
 				C607650C1D3783870085DB35 /* Playlist.swift in Sources */,
 				C61C0BCC1D38C37C0067D389 /* VideoListViewController.swift in Sources */,
 				C6C1A3E21D362CE400D98663 /* GRSearchController.swift in Sources */,
@@ -508,7 +497,6 @@
 				C6962DC31E784509007E9D6E /* SearchViewController.swift in Sources */,
 				C6C1A3E41D362CEF00D98663 /* GRSearchBar.swift in Sources */,
 				C62CF4C11E9B1DF0007BDE5E /* GRAlertView.swift in Sources */,
-				C66ED56A1D2E43AD0055F441 /* MenuViewController.swift in Sources */,
 				1F2A92951D2E96CE00EDB7B1 /* SettingsViewController.swift in Sources */,
 				C67E14831D3F27A000D5D9FA /* PlaylistListViewController.swift in Sources */,
 				C61C0BD41D38C6110067D389 /* SearchVideoTableViewCell.swift in Sources */,
