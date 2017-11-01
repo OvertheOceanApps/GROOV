@@ -21,8 +21,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         struct Data {
             static let RemoveCache = "kDataRemoveCache"
             static let RemoveRealm = "kDataRemoveRealm"
-            static let SaveToiCloud = "kDataSaveToiCloud"
-            static let LoadFromiCloud = "kDataLoadFromiCloud"
         }
         struct Info {
             static let Version = "kInfoVersion"
@@ -70,7 +68,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 0 ? 2 : 3
+        return section == 0 ? 2 : 4
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -108,14 +106,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             switch indexPath.row {
             case 0: // Sections.Data.RemoveCache
                 cell.textLabel?.text = "이미지 캐시 지우기"
-            case 1: // Sections.Data.RemoveRealm
+            default: // Sections.Data.RemoveRealm
                 cell.textLabel?.text = "폴더/비디오 지우기"
-            case 2: // Sections.Data.RemoveSearchHistory
-                cell.textLabel?.text = "검색 내역 지우기"
-            case 3: // Sections.Data.SaveToiCloud
-                cell.textLabel?.text = "Save Data to iCloud"
-            default: // Sections.Data.LoadFromiCloud
-                cell.textLabel?.text = "Load Data from iCloud"
             }
         default: // Sections.Info
             cell.accessoryType = .disclosureIndicator
@@ -126,8 +118,11 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             case 1: // Sections.Info.SendMail
                 cell.textLabel?.text = "문의 메일 보내기"
                 cell.accessoryType = .disclosureIndicator
-            default: // Sections.Info.Facebook
+            case 2: // Sections.Info.Facebook
                 cell.textLabel?.text = "페이스북 바로가기"
+                cell.accessoryType = .disclosureIndicator
+            default:
+                cell.textLabel?.text = "오픈 소스 라이브러리"
                 cell.accessoryType = .disclosureIndicator
             }
         }
@@ -143,23 +138,19 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             switch indexPath.row {
             case 0: // Sections.Data.RemoveCache
                 self.clearCache()
-            case 1: // Sections.Data.RemoveRealm
+            default: // Sections.Data.RemoveRealm
                 self.clearRealm()
-            case 2: // Sections.Data.RemoveSearchHistory
-                self.clearSearchHistory()
-            case 3: // Sections.Data.SaveToiCloud
-                self.saveToiCloud()
-            default: // Sections.Data.LoadFromiCloud
-                self.loadFromiCloud()
             }
         default: // Sections.Info
             switch indexPath.row {
             case 0: // Sections.Info.Version
-                self.goAppStore()
+                break
             case 1: // Sections.Info.SendMail
                 self.sendMail()
-            default: // Sections.Info.Facebook
+            case 2: // Sections.Info.Facebook
                 self.goFacebookPage()
+            default:
+                self.goLibrariesVC()
             }
         }
     }
@@ -181,19 +172,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    func clearSearchHistory() {
-    }
-    
-    func saveToiCloud() {
-    }
-    
-    func loadFromiCloud() {
-    }
-    
-    func goAppStore() {
-    }
-    
     func goLibrariesVC() {
+        let libraryVC = self.storyboard?.instantiateViewController(withIdentifier: "LibraryViewController") as! LibraryViewController
+        self.navigationController?.pushViewController(libraryVC, animated: true)
     }
     
     func sendMail() {
@@ -217,11 +198,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     func goFacebookPage() {
         UIApplication.shared.openURL(URL(string: "https://www.facebook.com/AppGroov")!)
-    }
-    
-    @IBAction func showSideMenu() {
-        let center = NotificationCenter.default
-        center.post(Notification(name: Notification.Name(rawValue: ContainerViewController.Notifications.toggleMenu), object: self))
     }
     
     @IBAction func dismissVC() {
