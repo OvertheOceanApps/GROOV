@@ -13,7 +13,6 @@ target 'groov' do
   pod 'SWXMLHash', '~> 4.0.0'
   pod 'Firebase/Core'
   pod 'SwiftMessages'
-  pod 'CWStatusBarNotification'
 
 end
 

@@ -7,11 +7,9 @@
 //
 
 import UIKit
-import Kingfisher
 import RealmSwift
 import AssistantKit
-//import SwiftMessages
-import CWStatusBarNotification
+import SwiftMessages
 import StoreKit
 
 protocol VideoListViewControllerDelegate {
@@ -41,7 +39,6 @@ class VideoListViewController: UIViewController, UITableViewDelegate, UITableVie
     var currentPlayState: String! = PlayState.Pause
     var currentSelectedCell: VideoListTableViewCell!
     var durationTimer: Timer! = nil
-    var notification: CWStatusBarNotification!
     
     var totalPlayTime: Float = 0 // for review. review time > 10s -> review request
     var reviewAsked: Bool = false
@@ -49,16 +46,9 @@ class VideoListViewController: UIViewController, UITableViewDelegate, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Video List"
-        self.setUpNotification()
         self.setNavigationBar()
         self.loadVideos()
         self.setUpComponents()
-    }
-    
-    func setUpNotification() {
-        self.notification = CWStatusBarNotification()
-        self.notification.notificationLabelBackgroundColor = UIColor.white
-        self.notification.notificationLabelTextColor = UIColor.black
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -359,20 +349,20 @@ class VideoListViewController: UIViewController, UITableViewDelegate, UITableVie
             realm.add(video)
             playlist.recentVideo = video.title
             
-            self.notification.display(withMessage: "비디오 추가됨", forDuration: 1.5)
             
-//            let warning = MessageView.viewFromNib(layout: .cardView)
-//            warning.configureTheme(.success)
-//            warning.configureDropShadow()
-//
-//            let iconText = ["💃", "🕺", "👯", "👯‍♂️"].sm_random()!
-//            warning.configureContent(title: "비디오 추가 완료", body: "\(video.title)", iconText: iconText)
-//            warning.button?.isHidden = true
-//            var warningConfig = SwiftMessages.defaultConfig
-//            warningConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
-//            warningConfig.duration = .seconds(seconds: 0.2)
-//
-//            SwiftMessages.show(config: warningConfig, view: warning)
+            let warning = MessageView.viewFromNib(layout: .cardView)
+            warning.configureTheme(.success)
+            warning.configureDropShadow()
+
+            warning.configureTheme(backgroundColor: UIColor.init(netHex: 0x292b30), foregroundColor: UIColor.white)
+            warning.configureContent(title: "비디오 추가 완료", body: "\(video.title)")
+            warning.button?.isHidden = true
+            
+            var warningConfig = SwiftMessages.defaultConfig
+            warningConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
+            warningConfig.duration = .seconds(seconds: 0.2)
+
+            SwiftMessages.show(config: warningConfig, view: warning)
         }
         
         self.videoArray.append(video)
