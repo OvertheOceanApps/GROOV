@@ -30,8 +30,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
     var delegate: SearchViewControllerDelegate!
     var keyboardHeight: CGFloat = 0
     
-    let kAPIKeyYoutube: String = "AIzaSyCerap6sBRWheVMwPdzae-tcz9DWMEY-Gw"
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setNavigationBar()
@@ -189,6 +187,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
     }
     
     func getVideoResult(_ searchText: String) {
+        let kAPIKeyYoutube: String = Bundle.main.object(forInfoDictionaryKey: "YoutubeAPIKey") as! String
         let urlString = "https://www.googleapis.com/youtube/v3/search"
         let param: Dictionary<String, Any> = ["q": searchText, "part": "id", "type": "video", "maxResults": 10, "key": kAPIKeyYoutube]
         
@@ -206,7 +205,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
                 
                 let urlString = "https://www.googleapis.com/youtube/v3/videos"
                 let idString = ids.joined(separator: ",")
-                let param: Dictionary<String, Any> = ["part": "snippet,contentDetails", "id": idString, "type": "video", "maxResults": 10, "key": self.kAPIKeyYoutube]
+                let param: Dictionary<String, Any> = ["part": "snippet,contentDetails", "id": idString, "type": "video", "maxResults": 10, "key": kAPIKeyYoutube]
                 Alamofire.request(urlString, method: .get, parameters: param).responseJSON { (response2) in
                     if let json2 = response2.result.value as? [String: Any] {
                         self.videoResults.removeAll()
