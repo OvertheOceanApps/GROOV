@@ -21,7 +21,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>2017110901</string>
+	<string>2017110902</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -55,9 +55,9 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
-	<key>YoutubeAPIKey</key>
-	<string>AIzaSyCerap6sBRWheVMwPdzae-tcz9DWMEY-Gw</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>YoutubeAPIKey</key>
+	<string>AIzaSyCerap6sBRWheVMwPdzae-tcz9DWMEY-Gw</string>
 </dict>
 </plist>
