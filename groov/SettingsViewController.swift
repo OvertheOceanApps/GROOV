@@ -10,12 +10,11 @@ import UIKit
 import MessageUI
 import Kingfisher
 import RealmSwift
-import CWStatusBarNotification
+import SwiftMessages
 
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate {
     @IBOutlet var dismissBarButton: UIBarButtonItem!
     @IBOutlet var mainTableView: UITableView!
-    var notification: CWStatusBarNotification!
     
     struct Sections {
         struct Data {
@@ -33,15 +32,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Settings"
-        self.setUpNotification()
         self.setNavigationBar()
         self.initComponents()
-    }
-    
-    func setUpNotification() {
-        self.notification = CWStatusBarNotification()
-        self.notification.notificationLabelBackgroundColor = UIColor.white
-        self.notification.notificationLabelTextColor = UIColor.black
     }
     
     func setNavigationBar() {
@@ -159,7 +151,19 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         let cache = KingfisherManager.shared.cache
         cache.clearMemoryCache()
         cache.clearDiskCache {
-            self.notification.display(withMessage: "이미지 캐시 삭제됨", forDuration: 1.5)
+            let warning = MessageView.viewFromNib(layout: .cardView)
+            warning.configureTheme(.success)
+            warning.configureDropShadow()
+            
+            warning.configureTheme(backgroundColor: UIColor.init(netHex: 0x292b30), foregroundColor: UIColor.white)
+            warning.configureContent(body: "이미지 캐시 삭제됨")
+            warning.button?.isHidden = true
+            
+            var warningConfig = SwiftMessages.defaultConfig
+            warningConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
+            warningConfig.duration = .seconds(seconds: 0.5)
+            
+            SwiftMessages.show(config: warningConfig, view: warning)
         }
     }
     
@@ -167,8 +171,21 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         let realm = try! Realm()
         try! realm.write {
             realm.deleteAll()
-            self.notification.display(withMessage: "폴더/비디오 삭제됨", forDuration: 1.5)
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "clear_realm"), object: nil)
+            
+            let warning = MessageView.viewFromNib(layout: .cardView)
+            warning.configureTheme(.success)
+            warning.configureDropShadow()
+            
+            warning.configureTheme(backgroundColor: UIColor.init(netHex: 0x292b30), foregroundColor: UIColor.white)
+            warning.configureContent(body: "폴더/비디오 삭제됨")
+            warning.button?.isHidden = true
+            
+            var warningConfig = SwiftMessages.defaultConfig
+            warningConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
+            warningConfig.duration = .seconds(seconds: 0.5)
+            
+            SwiftMessages.show(config: warningConfig, view: warning)
         }
     }
     
