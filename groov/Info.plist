@@ -55,6 +55,8 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>YoutubeAPIKey</key>
+	<string>AIzaSyCerap6sBRWheVMwPdzae-tcz9DWMEY-Gw</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 </dict>
