@@ -6,11 +6,11 @@ target 'groov' do
   # Pods for groov
 
   pod 'RealmSwift'
-  pod 'Kingfisher', '~> 4.0'
-  pod 'Alamofire', '~> 4.4'
+  pod 'Kingfisher', 	'~> 4.0'
+  pod 'Alamofire', 	'~> 4.4'
   pod 'KDCircularProgress'
   pod 'AssistantKit'
-  pod 'SWXMLHash', '~> 4.0.0'
+  pod 'SWXMLHash',	'~> 4.0.0'
   pod 'Firebase/Core'
   pod 'SwiftMessages'
 
