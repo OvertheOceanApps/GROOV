@@ -193,7 +193,7 @@ extension Int {
     }
 }
 
-extension UITextField{
+extension UITextField {
     @IBInspectable var placeHolderColor: UIColor? {
         get {
             return self.placeHolderColor
@@ -203,3 +203,36 @@ extension UITextField{
         }
     }
 }
+
+extension UIViewController {
+    func presentWithFade(targetVC: UIViewController) {
+        DispatchQueue.main.async {
+            let transition = CATransition.init()
+            transition.duration = 0.3
+            transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            transition.type = kCATransitionFade
+            self.view.window?.layer.add(transition, forKey: nil)
+            targetVC.modalPresentationStyle = .overCurrentContext
+            self.present(targetVC, animated: false, completion: nil)
+        }
+    }
+    
+    func dismissWithFade() {
+        let transition = CATransition.init()
+        transition.duration = 0.3
+        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transition.type = kCATransitionFade
+        self.view.window?.layer.add(transition, forKey: nil)
+        self.dismiss(animated: false, completion: nil)
+    }
+}
+
+
+
+
+
+
+
+
+
+

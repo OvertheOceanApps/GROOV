@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1F21B9431D2D61A2001F1722 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F21B9421D2D61A2001F1722 /* Extensions.swift */; };
 		1F2783BC205EA8C00001DFEB /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2783BB205EA8C00001DFEB /* BaseViewController.swift */; };
+		1F2783BE205EB3160001DFEB /* GRAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2783BD205EB3160001DFEB /* GRAlertViewController.swift */; };
 		1F2A92951D2E96CE00EDB7B1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2A92941D2E96CE00EDB7B1 /* SettingsViewController.swift */; };
 		1F6F2E651FA5293300607A72 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6F2E641FA5293300607A72 /* LibraryViewController.swift */; };
 		1FAE89861FAA551000CF900D /* license.html in Resources */ = {isa = PBXBuildFile; fileRef = 1FAE89841FAA551000CF900D /* license.html */; };
@@ -23,8 +24,6 @@
 		C61C0BD01D38C4B30067D389 /* VideoListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61C0BCF1D38C4B30067D389 /* VideoListTableViewCell.swift */; };
 		C61C0BD41D38C6110067D389 /* SearchVideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61C0BD31D38C6110067D389 /* SearchVideoTableViewCell.swift */; };
 		C62533AA1D46F4A5006E43F8 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C62533A91D46F4A5006E43F8 /* MessageUI.framework */; };
-		C62CF4C11E9B1DF0007BDE5E /* GRAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62CF4C01E9B1DF0007BDE5E /* GRAlertView.swift */; };
-		C62CF4C31E9B1E00007BDE5E /* GRAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C62CF4C21E9B1E00007BDE5E /* GRAlertView.xib */; };
 		C667BB8C1E7BDA5000DFFC0F /* SearchSuggestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C667BB8B1E7BDA5000DFFC0F /* SearchSuggestTableViewCell.swift */; };
 		C66ED4C81D2CA73E0055F441 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66ED4C71D2CA73E0055F441 /* AppDelegate.swift */; };
 		C66ED4CD1D2CA73E0055F441 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C66ED4CB1D2CA73E0055F441 /* Main.storyboard */; };
@@ -61,6 +60,7 @@
 /* Begin PBXFileReference section */
 		1F21B9421D2D61A2001F1722 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		1F2783BB205EA8C00001DFEB /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		1F2783BD205EB3160001DFEB /* GRAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GRAlertViewController.swift; sourceTree = "<group>"; };
 		1F2A92941D2E96CE00EDB7B1 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		1F6C43301D32A05A00F53FA9 /* groov-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "groov-Bridging-Header.h"; sourceTree = "<group>"; };
 		1F6F2E641FA5293300607A72 /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
@@ -80,8 +80,6 @@
 		C61C0BCF1D38C4B30067D389 /* VideoListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoListTableViewCell.swift; sourceTree = "<group>"; };
 		C61C0BD31D38C6110067D389 /* SearchVideoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVideoTableViewCell.swift; sourceTree = "<group>"; };
 		C62533A91D46F4A5006E43F8 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		C62CF4C01E9B1DF0007BDE5E /* GRAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRAlertView.swift; sourceTree = "<group>"; };
-		C62CF4C21E9B1E00007BDE5E /* GRAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GRAlertView.xib; sourceTree = "<group>"; };
 		C667BB8B1E7BDA5000DFFC0F /* SearchSuggestTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchSuggestTableViewCell.swift; sourceTree = "<group>"; };
 		C66ED4C41D2CA73E0055F441 /* groov.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = groov.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C66ED4C71D2CA73E0055F441 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -262,6 +260,7 @@
 			isa = PBXGroup;
 			children = (
 				C67E14821D3F27A000D5D9FA /* PlaylistListViewController.swift */,
+				1F2783BD205EB3160001DFEB /* GRAlertViewController.swift */,
 				C61C0BCB1D38C37C0067D389 /* VideoListViewController.swift */,
 				C6962DC21E784509007E9D6E /* SearchViewController.swift */,
 				1F2A92941D2E96CE00EDB7B1 /* SettingsViewController.swift */,
@@ -280,8 +279,6 @@
 				C67090DD1D2E52D40094C6B2 /* MenuTableViewCell.swift */,
 				C6C1A3E11D362CE400D98663 /* GRSearchController.swift */,
 				C6C1A3E31D362CEF00D98663 /* GRSearchBar.swift */,
-				C62CF4C01E9B1DF0007BDE5E /* GRAlertView.swift */,
-				C62CF4C21E9B1E00007BDE5E /* GRAlertView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -401,7 +398,6 @@
 				C66ED4CD1D2CA73E0055F441 /* Main.storyboard in Resources */,
 				1FAE89861FAA551000CF900D /* license.html in Resources */,
 				1FDCE34F1D32A71000142D8B /* Assets.bundle in Resources */,
-				C62CF4C31E9B1E00007BDE5E /* GRAlertView.xib in Resources */,
 				C61B73DB1E9C69D4003AE091 /* Assets.xcassets in Resources */,
 				C683238E1E89120E00B0F623 /* GoogleService-Info.plist in Resources */,
 			);
@@ -504,6 +500,7 @@
 				C61C0BC81D38C2C90067D389 /* Constants.swift in Sources */,
 				C667BB8C1E7BDA5000DFFC0F /* SearchSuggestTableViewCell.swift in Sources */,
 				C66ED4C81D2CA73E0055F441 /* AppDelegate.swift in Sources */,
+				1F2783BE205EB3160001DFEB /* GRAlertViewController.swift in Sources */,
 				1FDCE34D1D32A46600142D8B /* YTPlayerView.m in Sources */,
 				1F2783BC205EA8C00001DFEB /* BaseViewController.swift in Sources */,
 				C61C0BD01D38C4B30067D389 /* VideoListTableViewCell.swift in Sources */,
@@ -514,7 +511,6 @@
 				C618B5031D375B7D0079C9FD /* Video.swift in Sources */,
 				C6962DC31E784509007E9D6E /* SearchViewController.swift in Sources */,
 				C6C1A3E41D362CEF00D98663 /* GRSearchBar.swift in Sources */,
-				C62CF4C11E9B1DF0007BDE5E /* GRAlertView.swift in Sources */,
 				1F2A92951D2E96CE00EDB7B1 /* SettingsViewController.swift in Sources */,
 				C67E14831D3F27A000D5D9FA /* PlaylistListViewController.swift in Sources */,
 				C61C0BD41D38C6110067D389 /* SearchVideoTableViewCell.swift in Sources */,

@@ -9,14 +9,12 @@
 import UIKit
 import RealmSwift
 
-class PlaylistListViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource, VideoListViewControllerDelegate, GRAlertViewDelegate {
+class PlaylistListViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource, VideoListViewControllerDelegate, GRAlertViewControllerDelegate {
+    
     var playlistArray: Array<Playlist> = []
     @IBOutlet var playlistTableView: UITableView!
     @IBOutlet var blankView: UIView!
     @IBOutlet var footerView: UIView!
-    
-    var addFolderAlertView: GRAlertView!
-    var addFolderBackgroundView: UIControl!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -26,42 +24,32 @@ class PlaylistListViewController: BaseViewController, UITableViewDelegate, UITab
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.automaticallyAdjustsScrollViewInsets = false
         self.navigationItem.title = "Folder List"
-        self.playlistTableView.backgroundColor = GRVColor.backgroundColor
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame), name: .UIKeyboardWillChangeFrame, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(loadPlaylists), name: NSNotification.Name(rawValue: "clear_realm"), object: nil)
-        
         self.initComponents()
         self.loadPlaylists()
     }
     
-    @objc func keyboardWillChangeFrame(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            self.addFolderAlertView.center = CGPoint(x: self.addFolderAlertView.center.x, y: keyboardSize.origin.y / 2)
-        }
-    }
-    
     func initComponents() {
+        // init Table View
+        self.playlistTableView.backgroundColor = GRVColor.backgroundColor
+        
+        // notification
+        NotificationCenter.default.addObserver(self, selector: #selector(loadPlaylists), name: NSNotification.Name(rawValue: "clear_realm"), object: nil)
+        
         // init footer view
         footerView.backgroundColor = GRVColor.backgroundColor
-        
-        // init Alert View
-        if let subviewArray = Bundle.main.loadNibNamed("GRAlertView", owner: self, options: nil) {
-            addFolderAlertView = subviewArray[0] as! GRAlertView
-            addFolderAlertView.center = self.view.center
-            addFolderAlertView.delegate = self
-            addFolderAlertView.initViews()
-        }
     }
+}
+
+// MARK: GR Alert View Controller Delegate
+extension PlaylistListViewController {
     
-    func alertViewAddButtonClicked(title: String) {
+    func alertViewAddButtonTouched(title: String) {
         self.addPlaylist(title)
     }
 }
 
-// MARK: Playlist
+// MARK: Load Playlist
 extension PlaylistListViewController {
     
     @objc func loadPlaylists() {
@@ -110,7 +98,9 @@ extension PlaylistListViewController {
 extension PlaylistListViewController {
     
     @IBAction func addButtonClicked() {
-        addFolderAlertView.show()
+        let alertVC = self.storyboard?.instantiateViewController(withIdentifier: "GRAlertViewController") as! GRAlertViewController
+        alertVC.delegate = self
+        self.presentWithFade(targetVC: alertVC)
     }
     
     @IBAction func showSettingsVC() {
