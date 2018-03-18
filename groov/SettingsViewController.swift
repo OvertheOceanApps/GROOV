@@ -214,7 +214,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func goFacebookPage() {
-        UIApplication.shared.openURL(URL(string: "https://www.facebook.com/AppGroov")!)
+        let facebookURL = URL(string: "https://www.facebook.com/AppGroov")!
+        UIApplication.shared.open(facebookURL, options: [:], completionHandler: nil)
     }
     
     @IBAction func dismissVC() {
