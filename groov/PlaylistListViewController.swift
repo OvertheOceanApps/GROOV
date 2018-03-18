@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class PlaylistListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, VideoListViewControllerDelegate, GRAlertViewDelegate {
+class PlaylistListViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource, VideoListViewControllerDelegate, GRAlertViewDelegate {
     var playlistArray: Array<Playlist> = []
     @IBOutlet var playlistTableView: UITableView!
     @IBOutlet var blankView: UIView!
@@ -18,18 +18,10 @@ class PlaylistListViewController: UIViewController, UITableViewDelegate, UITable
     var addFolderAlertView: GRAlertView!
     var addFolderBackgroundView: UIControl!
     
-    var realmClear: Bool = false
-    fileprivate var clearRealmObserver: NSObjectProtocol?
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.setNavigationBar()
-        
-        if self.realmClear == true {
-            self.realmClear = false
-            self.loadPlaylists()
-        }
     }
     
     override func viewDidLoad() {
@@ -39,41 +31,23 @@ class PlaylistListViewController: UIViewController, UITableViewDelegate, UITable
         self.playlistTableView.backgroundColor = GRVColor.backgroundColor
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame), name: .UIKeyboardWillChangeFrame, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(loadPlaylists), name: NSNotification.Name(rawValue: "clear_realm"), object: nil)
         
-        self.addObserver()
         self.initComponents()
         self.loadPlaylists()
     }
     
-    func setNavigationBar() {
-        // set navigation title text font
-        self.navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedStringKey.font: UIFont.systemFont(ofSize: 15),
-            NSAttributedStringKey.foregroundColor: UIColor.white
-        ]
-        
-        // set navigation clear
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.barTintColor = GRVColor.backgroundColor
-        self.navigationController?.navigationBar.isTranslucent = false
-        
-        footerView.backgroundColor = GRVColor.backgroundColor
-    }
-    
-    func addObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(realmCleared), name: NSNotification.Name(rawValue: "clear_realm"), object: nil)
-    }
-    
-    @objc func realmCleared() {
-        self.realmClear = true
+    @objc func keyboardWillChangeFrame(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            self.addFolderAlertView.center = CGPoint(x: self.addFolderAlertView.center.x, y: keyboardSize.origin.y / 2)
+        }
     }
     
     func initComponents() {
-        self.initAlertView()
-    }
-    
-    func initAlertView() {
+        // init footer view
+        footerView.backgroundColor = GRVColor.backgroundColor
+        
+        // init Alert View
         if let subviewArray = Bundle.main.loadNibNamed("GRAlertView", owner: self, options: nil) {
             addFolderAlertView = subviewArray[0] as! GRAlertView
             addFolderAlertView.center = self.view.center
@@ -85,8 +59,12 @@ class PlaylistListViewController: UIViewController, UITableViewDelegate, UITable
     func alertViewAddButtonClicked(title: String) {
         self.addPlaylist(title)
     }
+}
+
+// MARK: Playlist
+extension PlaylistListViewController {
     
-    func loadPlaylists() {
+    @objc func loadPlaylists() {
         let realm = try! Realm()
         self.playlistArray = Array(realm.objects(Playlist.self).sorted(byKeyPath: "order"))
         self.setBlankViewHidden()
@@ -116,6 +94,34 @@ class PlaylistListViewController: UIViewController, UITableViewDelegate, UITable
         self.playlistTableView.insertRows(at: [indexPath], with: .automatic)
         self.playlistTableView.endUpdates()
     }
+    
+    func recentVideoChanged(_ playlist: Playlist) {
+        if let index = self.playlistArray.find({$0 == playlist}) {
+            self.playlistArray[index] = playlist
+            self.playlistTableView.beginUpdates()
+            let indexPath = IndexPath(row: index, section: 0)
+            self.playlistTableView.reloadRows(at: [indexPath], with: .automatic)
+            self.playlistTableView.endUpdates()
+        }
+    }
+}
+
+// MARK: IBActions
+extension PlaylistListViewController {
+    
+    @IBAction func addButtonClicked() {
+        addFolderAlertView.show()
+    }
+    
+    @IBAction func showSettingsVC() {
+        let settingsVC = self.storyboard?.instantiateViewController(withIdentifier: "SettingsViewController") as! SettingsViewController
+        let navController = UINavigationController.init(rootViewController: settingsVC)
+        self.present(navController, animated: true, completion: nil)
+    }
+}
+
+// MARK: Table View Datasource, Delegate
+extension PlaylistListViewController {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -183,31 +189,4 @@ class PlaylistListViewController: UIViewController, UITableViewDelegate, UITable
             self.setBlankViewHidden()
         }
     }
-    
-    @IBAction func addButtonClicked() {
-        addFolderAlertView.show()
-    }
-    
-    @IBAction func showSettingsVC() {
-        let settingsVC = self.storyboard?.instantiateViewController(withIdentifier: "SettingsViewController") as! SettingsViewController
-        let navController = UINavigationController.init(rootViewController: settingsVC)
-        self.present(navController, animated: true, completion: nil)
-    }
-    
-    func recentVideoChanged(_ playlist: Playlist) {
-        if let index = self.playlistArray.find({$0 == playlist}) {
-            self.playlistArray[index] = playlist
-            self.playlistTableView.beginUpdates()
-            let indexPath = IndexPath(row: index, section: 0)
-            self.playlistTableView.reloadRows(at: [indexPath], with: .automatic)
-            self.playlistTableView.endUpdates()
-        }
-    }
-    
-    @objc func keyboardWillChangeFrame(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            self.addFolderAlertView.center = CGPoint(x: self.addFolderAlertView.center.x, y: keyboardSize.origin.y / 2)
-        }
-    }
-    
 }
