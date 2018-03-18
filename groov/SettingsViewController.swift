@@ -190,7 +190,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func goLibrariesVC() {
-        let libraryVC = self.storyboard?.instantiateViewController(withIdentifier: "LibraryViewController") as! LibraryViewController
+        let libraryVC = self.storyboard?.instantiateViewController(withIdentifier: StoryboardId.Library) as! LibraryViewController
         self.navigationController?.pushViewController(libraryVC, animated: true)
     }
     

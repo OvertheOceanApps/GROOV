@@ -31,7 +31,7 @@
         <!--Settings View Controller-->
         <scene sceneID="knD-cn-3Sx">
             <objects>
-                <viewController storyboardIdentifier="SettingsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fia-JJ-Eab" customClass="SettingsViewController" customModule="groov" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SBIdSettings" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fia-JJ-Eab" customClass="SettingsViewController" customModule="groov" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="w9A-mU-caq"/>
                         <viewControllerLayoutGuide type="bottom" id="PJ4-Xi-49w"/>
@@ -107,7 +107,7 @@
         <!--Library View Controller-->
         <scene sceneID="HMC-3S-Sfj">
             <objects>
-                <viewController storyboardIdentifier="LibraryViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oVS-8W-hlq" customClass="LibraryViewController" customModule="groov" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SBIdLibrary" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oVS-8W-hlq" customClass="LibraryViewController" customModule="groov" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qdh-Uu-in4"/>
                         <viewControllerLayoutGuide type="bottom" id="hxs-Ze-RVa"/>
@@ -141,7 +141,7 @@
         <!--Alert View Controller-->
         <scene sceneID="fJZ-XU-FpA">
             <objects>
-                <viewController storyboardIdentifier="GRAlertViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bug-co-eK7" customClass="GRAlertViewController" customModule="groov" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SBIdGRAlert" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bug-co-eK7" customClass="GRAlertViewController" customModule="groov" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2OU-Ew-tJ7"/>
                         <viewControllerLayoutGuide type="bottom" id="Wqr-FP-QCC"/>
@@ -310,7 +310,7 @@
         <!--Playlist List View Controller-->
         <scene sceneID="qlM-KW-AO6">
             <objects>
-                <viewController storyboardIdentifier="PlaylistListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Qf9-3t-XiX" customClass="PlaylistListViewController" customModule="groov" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SBIdPlaylistList" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Qf9-3t-XiX" customClass="PlaylistListViewController" customModule="groov" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="t14-es-Nfb"/>
                         <viewControllerLayoutGuide type="bottom" id="rU5-Ny-hUa"/>
@@ -522,7 +522,7 @@
         <!--Video List View Controller-->
         <scene sceneID="wlU-9y-8dG">
             <objects>
-                <viewController storyboardIdentifier="VideoListViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="d6F-Va-joS" customClass="VideoListViewController" customModule="groov" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SBIdVideoList" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="d6F-Va-joS" customClass="VideoListViewController" customModule="groov" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="X6O-tv-Qj8"/>
                         <viewControllerLayoutGuide type="bottom" id="SV8-yg-DwX"/>
@@ -957,7 +957,7 @@
         <!--Search View Controller-->
         <scene sceneID="UaB-PL-Qxk">
             <objects>
-                <viewController storyboardIdentifier="SearchViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Aqn-tB-DsG" customClass="SearchViewController" customModule="groov" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SBIdSearch" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Aqn-tB-DsG" customClass="SearchViewController" customModule="groov" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="C5r-9a-H1A"/>
                         <viewControllerLayoutGuide type="bottom" id="4cI-WQ-taa"/>
