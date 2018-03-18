@@ -34,3 +34,12 @@ struct GRVColor {
     static let gradationFourthColor = UIColor.init(netHex: 0x00FF98)
 }
 
+struct StoryboardId {
+    static let PlaylistList = "SBIdPlaylistList"
+    static let GRAlert = "SBIdGRAlert"
+    static let VideoList = "SBIdVideoList"
+    static let Search = "SBIdSearch"
+    static let Settings = "SBIdSettings"
+    static let Library = "SBIdLibrary"
+}
+

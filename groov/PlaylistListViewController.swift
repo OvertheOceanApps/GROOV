@@ -98,13 +98,13 @@ extension PlaylistListViewController {
 extension PlaylistListViewController {
     
     @IBAction func addButtonClicked() {
-        let alertVC = self.storyboard?.instantiateViewController(withIdentifier: "GRAlertViewController") as! GRAlertViewController
+        let alertVC = self.storyboard?.instantiateViewController(withIdentifier: StoryboardId.GRAlert) as! GRAlertViewController
         alertVC.delegate = self
         self.presentWithFade(targetVC: alertVC)
     }
     
     @IBAction func showSettingsVC() {
-        let settingsVC = self.storyboard?.instantiateViewController(withIdentifier: "SettingsViewController") as! SettingsViewController
+        let settingsVC = self.storyboard?.instantiateViewController(withIdentifier: StoryboardId.Settings) as! SettingsViewController
         let navController = UINavigationController.init(rootViewController: settingsVC)
         self.present(navController, animated: true, completion: nil)
     }
@@ -130,7 +130,7 @@ extension PlaylistListViewController {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let videoListVC = self.storyboard?.instantiateViewController(withIdentifier: "VideoListViewController") as! VideoListViewController
+        let videoListVC = self.storyboard?.instantiateViewController(withIdentifier: StoryboardId.VideoList) as! VideoListViewController
         videoListVC.playlist = playlistArray[indexPath.row]
         videoListVC.delegate = self
         self.navigationController?.pushViewController(videoListVC, animated: true)
