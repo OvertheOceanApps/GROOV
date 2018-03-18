@@ -334,7 +334,7 @@ class VideoListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     @IBAction func searchVideoButtonClicked() {
-        let searchVC = self.storyboard?.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
+        let searchVC = self.storyboard?.instantiateViewController(withIdentifier: StoryboardId.Search) as! SearchViewController
         searchVC.delegate = self
         let navController = UINavigationController(rootViewController: searchVC)
         self.present(navController, animated: true, completion: nil)
