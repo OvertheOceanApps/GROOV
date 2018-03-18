@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1F21B9431D2D61A2001F1722 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F21B9421D2D61A2001F1722 /* Extensions.swift */; };
+		1F2783BC205EA8C00001DFEB /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2783BB205EA8C00001DFEB /* BaseViewController.swift */; };
 		1F2A92951D2E96CE00EDB7B1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2A92941D2E96CE00EDB7B1 /* SettingsViewController.swift */; };
 		1F6F2E651FA5293300607A72 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6F2E641FA5293300607A72 /* LibraryViewController.swift */; };
 		1FAE89861FAA551000CF900D /* license.html in Resources */ = {isa = PBXBuildFile; fileRef = 1FAE89841FAA551000CF900D /* license.html */; };
@@ -59,6 +60,7 @@
 
 /* Begin PBXFileReference section */
 		1F21B9421D2D61A2001F1722 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		1F2783BB205EA8C00001DFEB /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		1F2A92941D2E96CE00EDB7B1 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		1F6C43301D32A05A00F53FA9 /* groov-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "groov-Bridging-Header.h"; sourceTree = "<group>"; };
 		1F6F2E641FA5293300607A72 /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
@@ -130,6 +132,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F2783B9205EA8C00001DFEB /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				1F2783BA205EA8C00001DFEB /* View */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		1F2783BA205EA8C00001DFEB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1F2783BB205EA8C00001DFEB /* BaseViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		1FDCE3431D32A42E00142D8B /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +221,7 @@
 		C66ED4C61D2CA73E0055F441 /* groov */ = {
 			isa = PBXGroup;
 			children = (
+				1F2783B9205EA8C00001DFEB /* Common */,
 				1FDCE3431D32A42E00142D8B /* Libraries */,
 				1F6C43301D32A05A00F53FA9 /* groov-Bridging-Header.h */,
 				1F21B9421D2D61A2001F1722 /* Extensions.swift */,
@@ -486,6 +505,7 @@
 				C667BB8C1E7BDA5000DFFC0F /* SearchSuggestTableViewCell.swift in Sources */,
 				C66ED4C81D2CA73E0055F441 /* AppDelegate.swift in Sources */,
 				1FDCE34D1D32A46600142D8B /* YTPlayerView.m in Sources */,
+				1F2783BC205EA8C00001DFEB /* BaseViewController.swift in Sources */,
 				C61C0BD01D38C4B30067D389 /* VideoListTableViewCell.swift in Sources */,
 				C6DB02B11EB083FF006680B0 /* SearchHistory.swift in Sources */,
 				C607650C1D3783870085DB35 /* Playlist.swift in Sources */,
