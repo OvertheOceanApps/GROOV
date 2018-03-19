@@ -12,48 +12,113 @@ import Kingfisher
 import RealmSwift
 import SwiftMessages
 
-class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate {
+struct Sections {
+    struct Data {
+        static let RemoveCache = "kDataRemoveCache"
+        static let RemoveRealm = "kDataRemoveRealm"
+    }
+    struct Info {
+        static let Version = "kInfoVersion"
+        static let License = "kInfoLicense"
+        static let SendMail = "kInfoSendMail"
+        static let Facebook = "kInfoFacebook"
+    }
+}
+
+class SettingsViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate {
     @IBOutlet var dismissBarButton: UIBarButtonItem!
     @IBOutlet var mainTableView: UITableView!
-    
-    struct Sections {
-        struct Data {
-            static let RemoveCache = "kDataRemoveCache"
-            static let RemoveRealm = "kDataRemoveRealm"
-        }
-        struct Info {
-            static let Version = "kInfoVersion"
-            static let License = "kInfoLicense"
-            static let SendMail = "kInfoSendMail"
-            static let Facebook = "kInfoFacebook"
-        }
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Settings"
-        self.setNavigationBar()
+        self.setNavigationBarBackgroundColor()
         self.initComponents()
-    }
-    
-    func setNavigationBar() {
-        // set navigation title text font
-        self.navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedStringKey.font: UIFont.systemFont(ofSize: 15),
-            NSAttributedStringKey.foregroundColor: UIColor.white
-        ]
-        
-        // set navigation clear
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.barTintColor = GRVColor.backgroundColor
-        self.navigationController?.navigationBar.isTranslucent = false
     }
     
     func initComponents() {
         self.mainTableView.backgroundColor = GRVColor.backgroundColor
         self.dismissBarButton.setTitleTextAttributes([NSAttributedStringKey.foregroundColor : GRVColor.mainTextColor, NSAttributedStringKey.font : UIFont.systemFont(ofSize: 15)], for: .normal)
     }
+}
+
+// MARK: Functions
+extension SettingsViewController {
+    
+    func clearCache() {
+        let cache = KingfisherManager.shared.cache
+        cache.clearMemoryCache()
+        cache.clearDiskCache {
+            let warning = MessageView.viewFromNib(layout: .cardView)
+            warning.configureTheme(.success)
+            warning.configureDropShadow()
+            
+            warning.configureTheme(backgroundColor: UIColor.init(netHex: 0x292b30), foregroundColor: UIColor.white)
+            warning.configureContent(body: "이미지 캐시 삭제됨")
+            warning.button?.isHidden = true
+            
+            var warningConfig = SwiftMessages.defaultConfig
+            warningConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
+            warningConfig.duration = .seconds(seconds: 0.5)
+            
+            SwiftMessages.show(config: warningConfig, view: warning)
+        }
+    }
+    
+    func clearRealm() {
+        let realm = try! Realm()
+        try! realm.write {
+            realm.deleteAll()
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "clear_realm"), object: nil)
+            
+            let warning = MessageView.viewFromNib(layout: .cardView)
+            warning.configureTheme(.success)
+            warning.configureDropShadow()
+            
+            warning.configureTheme(backgroundColor: UIColor.init(netHex: 0x292b30), foregroundColor: UIColor.white)
+            warning.configureContent(body: "폴더/비디오 삭제됨")
+            warning.button?.isHidden = true
+            
+            var warningConfig = SwiftMessages.defaultConfig
+            warningConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
+            warningConfig.duration = .seconds(seconds: 0.5)
+            
+            SwiftMessages.show(config: warningConfig, view: warning)
+        }
+    }
+    
+    func goLibrariesVC() {
+        let libraryVC = self.storyboard?.instantiateViewController(withIdentifier: StoryboardId.Library) as! LibraryViewController
+        self.navigationController?.pushViewController(libraryVC, animated: true)
+    }
+    
+    func sendMail() {
+        let mailVC = MFMailComposeViewController()
+        mailVC.mailComposeDelegate = self
+        mailVC.setToRecipients(["rlavlfrnjs12@gmail.com"])
+        mailVC.setSubject("Service feedback for groov")
+        
+        if MFMailComposeViewController.canSendMail() {
+            self.present(mailVC, animated: true, completion: nil)
+        } else {
+            let alertController = UIAlertController(title: "Error Occurred", message: "Cannot send mail", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
+    func goFacebookPage() {
+        let facebookURL = URL(string: "https://www.facebook.com/AppGroov")!
+        UIApplication.shared.open(facebookURL, options: [:], completionHandler: nil)
+    }
+}
+
+// MARK: Table View Datasource, Delegate
+extension SettingsViewController {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
@@ -146,80 +211,16 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
     }
-    
-    func clearCache() {
-        let cache = KingfisherManager.shared.cache
-        cache.clearMemoryCache()
-        cache.clearDiskCache {
-            let warning = MessageView.viewFromNib(layout: .cardView)
-            warning.configureTheme(.success)
-            warning.configureDropShadow()
-            
-            warning.configureTheme(backgroundColor: UIColor.init(netHex: 0x292b30), foregroundColor: UIColor.white)
-            warning.configureContent(body: "이미지 캐시 삭제됨")
-            warning.button?.isHidden = true
-            
-            var warningConfig = SwiftMessages.defaultConfig
-            warningConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
-            warningConfig.duration = .seconds(seconds: 0.5)
-            
-            SwiftMessages.show(config: warningConfig, view: warning)
-        }
-    }
-    
-    func clearRealm() {
-        let realm = try! Realm()
-        try! realm.write {
-            realm.deleteAll()
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "clear_realm"), object: nil)
-            
-            let warning = MessageView.viewFromNib(layout: .cardView)
-            warning.configureTheme(.success)
-            warning.configureDropShadow()
-            
-            warning.configureTheme(backgroundColor: UIColor.init(netHex: 0x292b30), foregroundColor: UIColor.white)
-            warning.configureContent(body: "폴더/비디오 삭제됨")
-            warning.button?.isHidden = true
-            
-            var warningConfig = SwiftMessages.defaultConfig
-            warningConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
-            warningConfig.duration = .seconds(seconds: 0.5)
-            
-            SwiftMessages.show(config: warningConfig, view: warning)
-        }
-    }
-    
-    func goLibrariesVC() {
-        let libraryVC = self.storyboard?.instantiateViewController(withIdentifier: StoryboardId.Library) as! LibraryViewController
-        self.navigationController?.pushViewController(libraryVC, animated: true)
-    }
-    
-    func sendMail() {
-        let mailVC = MFMailComposeViewController()
-        mailVC.mailComposeDelegate = self
-        mailVC.setToRecipients(["rlavlfrnjs12@gmail.com"])
-        mailVC.setSubject("Service feedback for groov")
-        
-        if MFMailComposeViewController.canSendMail() {
-            self.present(mailVC, animated: true, completion: nil)
-        } else {
-            let alertController = UIAlertController(title: "Error Occurred", message: "Cannot send mail", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alertController, animated: true, completion: nil)
-        }
-    }
-    
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        controller.dismiss(animated: true, completion: nil)
-    }
-    
-    func goFacebookPage() {
-        let facebookURL = URL(string: "https://www.facebook.com/AppGroov")!
-        UIApplication.shared.open(facebookURL, options: [:], completionHandler: nil)
-    }
+}
+
+// MARK: IBActions
+extension SettingsViewController {
     
     @IBAction func dismissVC() {
         self.dismiss(animated: true, completion: nil)
     }
-
 }
+
+
+
+

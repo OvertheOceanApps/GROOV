@@ -17,6 +17,10 @@ class GRSearchController: UISearchController, UISearchBarDelegate {
     var aSearchBar: GRSearchBar!
     var aDelegate: GRSearchControllerDelegate!
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
     init(searchResultsController: UIViewController!, frame: CGRect, font: UIFont, textColor: UIColor, tintColor: UIColor) {
         super.init(searchResultsController: searchResultsController)
         self.configureSearchBar(frame, font: font, textColor: textColor, bgColor: tintColor)
@@ -28,6 +32,10 @@ class GRSearchController: UISearchController, UISearchBarDelegate {
         self.aSearchBar.tintColor = UIColor.white
         self.aSearchBar.delegate = self
     }
+}
+
+// MARK: Search Bar Delegate
+extension GRSearchController {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.aSearchBar.resignFirstResponder()
@@ -37,12 +45,5 @@ class GRSearchController: UISearchController, UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         self.aSearchBar.resignFirstResponder()
         self.aDelegate.didTapOnCancelButton()
-    }
-    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
     }
 }

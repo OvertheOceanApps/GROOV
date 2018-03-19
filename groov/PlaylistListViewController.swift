@@ -19,7 +19,7 @@ class PlaylistListViewController: BaseViewController, UITableViewDelegate, UITab
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: false)
-        self.setNavigationBar()
+        self.setNavigationBarBackgroundColor()
     }
     
     override func viewDidLoad() {

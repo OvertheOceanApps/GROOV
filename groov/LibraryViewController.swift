@@ -8,37 +8,25 @@
 
 import UIKit
 
-class LibraryViewController: UIViewController {
+class LibraryViewController: BaseViewController {
     
     @IBOutlet weak var webView: UIWebView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "GROOV."
-        self.setNavigation()
-    }
-    
-    func setNavigation() {
-        // set navigation title text font
-        self.navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedStringKey.font: UIFont.systemFont(ofSize: 15),
-            NSAttributedStringKey.foregroundColor: UIColor.white
-        ]
-        
-        // set navigation back button
-        let backBarButton = UIBarButtonItem(image: #imageLiteral(resourceName: "navigation_back"), style: .plain, target: self, action: #selector(dismissVC))
-        self.navigationItem.leftBarButtonItem = backBarButton
-        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
-    }
-    
-    @objc func dismissVC() {
-        _ = self.navigationController?.popViewController(animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.setNavigationBarBackgroundColor()
+        self.setNavigationBackButton()
         self.initWebView()
     }
+}
+
+// MARK: WebView
+extension LibraryViewController {
     
     func initWebView() {
         let htmlFile = Bundle.main.path(forResource: "license", ofType: "html")
@@ -46,5 +34,4 @@ class LibraryViewController: UIViewController {
         webView.loadHTMLString(html!, baseURL: nil)
         webView.scrollView.bounces = false
     }
-
 }
