@@ -12,6 +12,10 @@ class GRSearchBar: UISearchBar {
     var preferredFont: UIFont!
     var preferredTextColor: UIColor!
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
     init(frame: CGRect, font: UIFont, textColor: UIColor) {
         super.init(frame: frame)
         self.frame = frame
@@ -44,9 +48,5 @@ class GRSearchBar: UISearchBar {
             searchField.autocorrectionType = .no
             searchField.autocapitalizationType = .none
         }
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
     }
 }

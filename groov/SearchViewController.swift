@@ -16,7 +16,7 @@ protocol SearchViewControllerDelegate {
     func videoAdded(_ video: Video)
 }
 
-class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
+class SearchViewController: BaseViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet var resultTableView: UITableView!
     
@@ -32,7 +32,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setNavigationBar()
+        self.setNavigationBarBackgroundColor()
         self.initComponents()
         self.getRecentAddedVideos()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
@@ -44,20 +44,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         }
     }
     
-    func setNavigationBar() {
-        // set navigation title text font
-        self.navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedStringKey.font: UIFont.systemFont(ofSize: 15),
-            NSAttributedStringKey.foregroundColor: UIColor.white
-        ]
-        
-        // set navigation clear
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.barTintColor = GRVColor.backgroundColor
-        self.navigationController?.navigationBar.isTranslucent = false
-    }
-    
     func initComponents() {
         self.initSearchBar()
         self.initSearchBarTextField()
@@ -65,100 +51,14 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         self.view.backgroundColor = GRVColor.backgroundColor
         self.resultTableView.backgroundColor = GRVColor.backgroundColor
     }
-    
-    func initSearchBar() {
-        self.searchBar.delegate = self
-        self.searchBar.placeholder = "비디오 검색"
-        self.searchBar.showsCancelButton = true
-        self.searchBar.setImage(#imageLiteral(resourceName: "search_favicon"), for: .search, state: .normal)
-        self.searchBar.setImage(#imageLiteral(resourceName: "search_close"), for: .clear, state: .normal)
-        self.searchBar.searchBarStyle = .default
-        self.searchBar.barTintColor = .white
-        self.searchBar.sizeToFit()
-        self.navigationItem.titleView = self.searchBar
-        self.searchBar.becomeFirstResponder()
-        
-        var cancelButton: UIButton
-        let topView: UIView = self.searchBar.subviews[0] as UIView
-        for subView in topView.subviews {
-            if subView.isKind(of: NSClassFromString("UINavigationButton")!) {
-                cancelButton = subView as! UIButton
-                cancelButton.setTitle("닫기", for: .normal)
-                cancelButton.titleLabel?.font = UIFont.systemFont(ofSize: 15) 
-                cancelButton.setTitleColor(GRVColor.mainTextColor, for: .normal)
-            }
-        }
-        
-        var width = self.view.width
-        switch Device.screen {
-        case .inches_4_0:
-            width = self.view.width - 98
-        case .inches_4_7:
-            width = self.view.width - 98
-        case .inches_5_5:
-            width = self.view.width - 108
-        default:
-            break
-        }
-        
-        underLineView = UIImageView(frame: CGRect(x: 28, y: self.searchBar.height-10, width: width, height: 1))
-        underLineView.image = #imageLiteral(resourceName: "search_under_line")
-        underLineView.clipsToBounds = true
-        underLineView.contentMode = .scaleToFill
-        self.searchBar.addSubview(underLineView)
-    }
-    
-    func indexOfSearchFieldInSubviews() -> Int! {
-        var index: Int!
-        let searchBarView = self.searchBar.subviews[0] as UIView
-        for i in 0..<searchBarView.subviews.count {
-            if searchBarView.subviews[i].isKind(of: UITextField.self) {
-                index = i
-                break
-            }
-        }
-        return index
-    }
-    
-    func initSearchBarTextField() {
-        if let index = self.indexOfSearchFieldInSubviews() {
-            let searchField: UITextField = self.searchBar.subviews[0].subviews[index] as! UITextField
-//            searchField.font = UIFont.boldSystemFont(ofSize: 15)
-            searchField.textColor = .white
-            searchField.tintColor = .white
-            searchField.backgroundColor = .clear
-            searchField.clearButtonMode = .whileEditing
-            searchField.autocorrectionType = .no
-            searchField.autocapitalizationType = .none
-        }
-    }
+}
+
+// MARK: Search Result, Recent Result, Auto Complete
+extension SearchViewController {
     
     func getRecentAddedVideos() {
         let realm = try! Realm()
         self.recentVideos = Array(realm.objects(Video.self).sorted(byKeyPath: "createdAt", ascending: false))
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-//    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-//        self.isSearching = true
-//    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        self.getVideoResult(searchBar.text!)
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText.replacingOccurrences(of: " ", with: "") == "" {
-            self.shouldShowRecentVideo = true
-            self.isSearching = false
-            self.getRecentAddedVideos()
-            self.resultTableView.reloadData()
-            return
-        }
-        self.getSuggestResult(keyword: searchText)
     }
     
     func getSuggestResult(keyword: String) {
@@ -220,6 +120,103 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
             }
         }
     }
+}
+
+// MARK: Init Search Bar
+extension SearchViewController {
+    
+    func initSearchBar() {
+        self.searchBar.delegate = self
+        self.searchBar.placeholder = "비디오 검색"
+        self.searchBar.showsCancelButton = true
+        self.searchBar.setImage(#imageLiteral(resourceName: "search_favicon"), for: .search, state: .normal)
+        self.searchBar.setImage(#imageLiteral(resourceName: "search_close"), for: .clear, state: .normal)
+        self.searchBar.searchBarStyle = .default
+        self.searchBar.barTintColor = .white
+        self.searchBar.sizeToFit()
+        self.navigationItem.titleView = self.searchBar
+        self.searchBar.becomeFirstResponder()
+        
+        var cancelButton: UIButton
+        let topView: UIView = self.searchBar.subviews[0] as UIView
+        for subView in topView.subviews {
+            if subView.isKind(of: NSClassFromString("UINavigationButton")!) {
+                cancelButton = subView as! UIButton
+                cancelButton.setTitle("닫기", for: .normal)
+                cancelButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+                cancelButton.setTitleColor(GRVColor.mainTextColor, for: .normal)
+            }
+        }
+        
+        var width = self.view.width
+        switch Device.screen {
+        case .inches_4_0:
+            width = self.view.width - 98
+        case .inches_4_7:
+            width = self.view.width - 98
+        case .inches_5_5:
+            width = self.view.width - 108
+        default:
+            break
+        }
+        
+        underLineView = UIImageView(frame: CGRect(x: 28, y: self.searchBar.height-10, width: width, height: 1))
+        underLineView.image = #imageLiteral(resourceName: "search_under_line")
+        underLineView.clipsToBounds = true
+        underLineView.contentMode = .scaleToFill
+        self.searchBar.addSubview(underLineView)
+    }
+    
+    func indexOfSearchFieldInSubviews() -> Int! {
+        var index: Int!
+        let searchBarView = self.searchBar.subviews[0] as UIView
+        for i in 0..<searchBarView.subviews.count {
+            if searchBarView.subviews[i].isKind(of: UITextField.self) {
+                index = i
+                break
+            }
+        }
+        return index
+    }
+    
+    func initSearchBarTextField() {
+        if let index = self.indexOfSearchFieldInSubviews() {
+            let searchField: UITextField = self.searchBar.subviews[0].subviews[index] as! UITextField
+            searchField.textColor = .white
+            searchField.tintColor = .white
+            searchField.backgroundColor = .clear
+            searchField.clearButtonMode = .whileEditing
+            searchField.autocorrectionType = .no
+            searchField.autocapitalizationType = .none
+        }
+    }
+}
+
+// MARK: Search Bar Delegate
+extension SearchViewController {
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.getVideoResult(searchBar.text!)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.replacingOccurrences(of: " ", with: "") == "" {
+            self.shouldShowRecentVideo = true
+            self.isSearching = false
+            self.getRecentAddedVideos()
+            self.resultTableView.reloadData()
+            return
+        }
+        self.getSuggestResult(keyword: searchText)
+    }
+}
+
+// MARK: Table View Datasource, Delegate
+extension SearchViewController {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.isSearching == false {
@@ -286,5 +283,18 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
             delegate.videoAdded(targetVideo)
         }
     }
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

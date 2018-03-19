@@ -37,7 +37,6 @@
 		C6962DC31E784509007E9D6E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6962DC21E784509007E9D6E /* SearchViewController.swift */; };
 		C6C1A3E21D362CE400D98663 /* GRSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C1A3E11D362CE400D98663 /* GRSearchController.swift */; };
 		C6C1A3E41D362CEF00D98663 /* GRSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C1A3E31D362CEF00D98663 /* GRSearchBar.swift */; };
-		C6DB02B11EB083FF006680B0 /* SearchHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DB02B01EB083FF006680B0 /* SearchHistory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,7 +98,6 @@
 		C6962DC21E784509007E9D6E /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		C6C1A3E11D362CE400D98663 /* GRSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRSearchController.swift; sourceTree = "<group>"; };
 		C6C1A3E31D362CEF00D98663 /* GRSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRSearchBar.swift; sourceTree = "<group>"; };
-		C6DB02B01EB083FF006680B0 /* SearchHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchHistory.swift; sourceTree = "<group>"; };
 		C8ABA509D130F72F0EBCBA43 /* Pods_groovUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_groovUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -189,7 +187,6 @@
 			children = (
 				C607650B1D3783870085DB35 /* Playlist.swift */,
 				C618B5021D375B7D0079C9FD /* Video.swift */,
-				C6DB02B01EB083FF006680B0 /* SearchHistory.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -504,7 +501,6 @@
 				1FDCE34D1D32A46600142D8B /* YTPlayerView.m in Sources */,
 				1F2783BC205EA8C00001DFEB /* BaseViewController.swift in Sources */,
 				C61C0BD01D38C4B30067D389 /* VideoListTableViewCell.swift in Sources */,
-				C6DB02B11EB083FF006680B0 /* SearchHistory.swift in Sources */,
 				C607650C1D3783870085DB35 /* Playlist.swift in Sources */,
 				C61C0BCC1D38C37C0067D389 /* VideoListViewController.swift in Sources */,
 				C6C1A3E21D362CE400D98663 /* GRSearchController.swift in Sources */,
