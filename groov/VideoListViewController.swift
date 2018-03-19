@@ -16,7 +16,7 @@ protocol VideoListViewControllerDelegate {
     func recentVideoChanged(_ playlist: Playlist)
 }
 
-class VideoListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, YTPlayerViewDelegate, SearchViewControllerDelegate {
+class VideoListViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource, YTPlayerViewDelegate, SearchViewControllerDelegate {
     @IBOutlet var videoPlayerView: YTPlayerView!
     @IBOutlet var videoTableView: UITableView!
     @IBOutlet var blankView: UIView!
@@ -39,23 +39,57 @@ class VideoListViewController: UIViewController, UITableViewDelegate, UITableVie
     var currentPlayState: String! = PlayState.Pause
     var currentSelectedCell: VideoListTableViewCell!
     var durationTimer: Timer! = nil
-    
     var totalPlayTime: Float = 0 // for review. review time > 10s -> review request
     var reviewAsked: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Video List"
-        self.setNavigationBar()
         self.loadVideos()
-        self.setUpComponents()
+        self.initComponents()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.setNavigationBar()
+        self.setNavigationBarClear()
+        self.setNavigationBackButton()
         self.startTimer()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.stopTimer()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.videoPlayerView.pauseVideo()
+        self.videoPaused()
+    }
+    
+    func initComponents() {
+        self.videoPlayerView.delegate = self
+        self.progressImageView.setWidth(self.view.width)
+        
+        // design change under iOS 11
+        if UIDevice().userInterfaceIdiom == .phone
+            && Device.osVersion < Device.os11 { // iOS 10
+            videoPlayerViewTopConstraint.constant = -64
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    func initProgress() {
+        let totalDuration: Int = Int(self.videoPlayerView.duration())
+        let totalDurationString: String = String.init(hms: totalDuration.secToHMS())
+        runningTimeLabel.text = "0:00:00 / \(totalDurationString)"
+        
+        self.progressBackgroundView.setWidth(0)
+    }
+}
+
+// MARK: Timer Control
+extension VideoListViewController {
     
     func startTimer() {
         guard self.durationTimer == nil else { return }
@@ -70,96 +104,15 @@ class VideoListViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
-    @objc func checkVideoCurrentTime() {
-        if self.videoPlayerView.playerState() == .playing {
-            let currentTime: Int = Int(self.videoPlayerView.currentTime())
-            let totalDuration: Int = Int(self.videoPlayerView.duration())
-            
-            let currentTimeString: String = String.init(hms: currentTime.secToHMS())
-            let totalDurationString: String = String.init(hms: totalDuration.secToHMS())
-            runningTimeLabel.text = "\(currentTimeString) / \(totalDurationString)"
-            
-            let progress: CGFloat = CGFloat(currentTime) / CGFloat(totalDuration)
-            UIView.animate(withDuration: 0.5, animations: {
-                self.progressBackgroundView.setWidth(self.durationWrapperView.width * progress)
-            })
-            
-            totalPlayTime += 0.5
-            if totalPlayTime >= 10 {
-                if #available(iOS 10.3, *) {
-                    self.askReview()
-                }
-            }
-        }
-    }
-    
-    @available(iOS 10.3, *)
-    func askReview() {
-        if reviewAsked == false {
-            reviewAsked = true
-            
-            let ver = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
-            if UserDefaults.standard.object(forKey: ver) != nil {
-                return
-            }
-        
-            SKStoreReviewController.requestReview()
-            UserDefaults.standard.set("Y", forKey: ver)
-        }
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.stopTimer()
-    }
-    
     func stopTimer() {
         guard self.durationTimer != nil else { return }
         self.durationTimer.invalidate()
         self.durationTimer = nil
     }
-    
-    func setNavigationBar() {
-        // set navigation title text font
-        self.navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedStringKey.font: UIFont.systemFont(ofSize: 15),
-            NSAttributedStringKey.foregroundColor: UIColor.white
-        ]
+}
 
-        // set navigation back button
-        let backBarButton = UIBarButtonItem(image: #imageLiteral(resourceName: "navigation_back"), style: .plain, target: self, action: #selector(dismissVC))
-        self.navigationItem.leftBarButtonItem = backBarButton
-        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
-
-        // set navigation clear
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.view.backgroundColor = UIColor.clear
-        self.navigationController?.navigationBar.barTintColor = UIColor.clear
-        
-        // design change under iOS 11
-        if UIDevice().userInterfaceIdiom == .phone
-        && Device.osVersion < Device.os11 { // iOS 10
-            videoPlayerViewTopConstraint.constant = -64
-            self.view.layoutIfNeeded()
-        }
-    }
-    
-    @objc func dismissVC() {
-        _ = self.navigationController?.popViewController(animated: true)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        self.videoPlayerView.pauseVideo()
-        self.videoPaused()
-    }
-    
-    func setUpComponents() {
-        self.videoPlayerView.delegate = self
-        self.progressImageView.setWidth(self.view.width)
-    }
+// MARK: Video List Data
+extension VideoListViewController {
     
     func loadVideos() {
         let realm = try! Realm()
@@ -169,18 +122,6 @@ class VideoListViewController: UIViewController, UITableViewDelegate, UITableVie
             self.videoSelected(0, play: false)
         }
         self.setBlankViewHidden()
-    }
-    
-    func setBlankViewHidden() {
-        var hidden: Bool = true
-        if self.videoArray.count == 0 {
-            hidden = false
-        }
-        self.blankView.isHidden = hidden
-        self.durationWrapperView.isHidden = !hidden
-        self.videoControlView.isHidden = !hidden
-        self.videoPlayerView.isHidden = !hidden
-        self.videoTableView.isHidden = !hidden
     }
     
     func videoSelected(_ index: Int, play: Bool) {
@@ -212,10 +153,126 @@ class VideoListViewController: UIViewController, UITableViewDelegate, UITableVie
         self.navigationItem.title = video.title
     }
     
+    func videoAdded(_ video: Video) {
+        let realm = try! Realm()
+        try! realm.write {
+            video.createdAt = NSDate() as Date
+            video.playlistId = playlist.id
+            video.order = self.videoArray.count
+            realm.add(video)
+            playlist.recentVideo = video.title
+            
+            let warning = MessageView.viewFromNib(layout: .cardView)
+            warning.configureTheme(.success)
+            warning.configureDropShadow()
+            
+            warning.configureTheme(backgroundColor: UIColor.init(netHex: 0x292b30), foregroundColor: UIColor.white)
+            warning.configureContent(title: "비디오 추가 완료", body: "\(video.title)")
+            warning.button?.isHidden = true
+            
+            var warningConfig = SwiftMessages.defaultConfig
+            warningConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
+            warningConfig.duration = .seconds(seconds: 0.2)
+            
+            SwiftMessages.show(config: warningConfig, view: warning)
+        }
+        
+        self.videoArray.append(video)
+        self.setBlankViewHidden()
+        self.videoTableView.beginUpdates()
+        let indexPath = IndexPath(row: self.videoArray.count-1, section: 0)
+        self.videoTableView.insertRows(at: [indexPath], with: .automatic)
+        self.videoTableView.endUpdates()
+        
+        if let selectedCell = self.videoTableView.cellForRow(at: indexPath) as? VideoListTableViewCell {
+            if self.currentSelectedCell == nil && self.videoArray.count > 0 {
+                self.currentSelectedCell = selectedCell
+                self.videoSelected(indexPath.row, play: false)
+            }
+        }
+        
+        delegate.recentVideoChanged(playlist)
+    }
+    
+    func setBlankViewHidden() {
+        var hidden: Bool = true
+        if self.videoArray.count == 0 {
+            hidden = false
+        }
+        self.blankView.isHidden = hidden
+        self.durationWrapperView.isHidden = !hidden
+        self.videoControlView.isHidden = !hidden
+        self.videoPlayerView.isHidden = !hidden
+        self.videoTableView.isHidden = !hidden
+    }
+}
+
+// MARK: Player Methods
+extension VideoListViewController {
+    
     func loadVideoById(_ vId: String) {
         let vars = ["playsinline": 1, "controls": 0, "showinfo": 0, "modestbranding": 1, "rel": 0, "fs": 0]
         self.videoPlayerView.load(withVideoId: vId, playerVars: vars)
     }
+    
+    func getNextVideoIndex() -> Int {
+        if let currentIndex = self.videoArray.find({$0 == self.currentVideo}) {
+            return currentIndex + 1 >= self.videoArray.count ? 0 : currentIndex + 1
+        }
+        return 0
+    }
+    
+    func getPreviousVideoIndex() -> Int {
+        if let currentIndex = self.videoArray.find({$0 == self.currentVideo}) {
+            return currentIndex - 1 < 0 ? self.videoArray.count - 1 : currentIndex - 1
+        }
+        return 0
+    }
+    
+    func videoPlayed() {
+        self.currentPlayState = PlayState.Play
+        self.playPauseButton.setImage(#imageLiteral(resourceName: "video_control_pause"), for: .normal)
+        if self.currentSelectedCell != nil {
+            self.currentSelectedCell.videoPlayed()
+        }
+    }
+    
+    func videoPaused() {
+        self.currentPlayState = PlayState.Pause
+        self.playPauseButton.setImage(#imageLiteral(resourceName: "video_control_play"), for: .normal)
+        if self.currentSelectedCell != nil {
+            self.currentSelectedCell.videoPaused()
+        }
+    }
+}
+
+// MARK: YT Player View Delegate
+extension VideoListViewController {
+    
+    func playerViewDidBecomeReady(_ playerView: YTPlayerView) {
+        if autoPlay {
+            self.videoPlayerView.playVideo()
+            self.videoPlayed()
+        }
+        self.initProgress()
+    }
+    
+    func playerView(_ playerView: YTPlayerView, didChangeTo state: YTPlayerState) {
+        switch(state) {
+        case YTPlayerState.playing:
+            print("Video playing")
+        case YTPlayerState.paused:
+            print("Video paused")
+        case YTPlayerState.ended:
+            self.videoSelected(self.getNextVideoIndex(), play: true)
+        default:
+            print("other")
+        }
+    }
+}
+
+// MARK: Table View Datasource, Delegate
+extension VideoListViewController {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -285,101 +342,16 @@ class VideoListViewController: UIViewController, UITableViewDelegate, UITableVie
             self.setBlankViewHidden()
         }
     }
-    
-    func playerViewDidBecomeReady(_ playerView: YTPlayerView) {
-        if autoPlay {
-            self.videoPlayerView.playVideo()
-            self.videoPlayed()
-        }
-        self.initProgress()
-    }
-    
-    func initProgress() {
-        let totalDuration: Int = Int(self.videoPlayerView.duration())
-        let totalDurationString: String = String.init(hms: totalDuration.secToHMS())
-        runningTimeLabel.text = "0:00:00 / \(totalDurationString)"
-        
-        self.progressBackgroundView.setWidth(0)
-        
-//        if self.currentSelectedCell != nil {
-//            self.currentSelectedCell.progressChanged(p: 0)
-//        }
-    }
-    
-    func playerView(_ playerView: YTPlayerView, didChangeTo state: YTPlayerState) {
-        switch(state) {
-        case YTPlayerState.playing:
-            print("Video playing")
-        case YTPlayerState.paused:
-            print("Video paused")
-        case YTPlayerState.ended:
-            self.videoSelected(self.getNextVideoIndex(), play: true)
-        default:
-            print("other")
-        }
-    }
-    
-    func getNextVideoIndex() -> Int {
-        if let currentIndex = self.videoArray.find({$0 == self.currentVideo}) {
-            return currentIndex + 1 >= self.videoArray.count ? 0 : currentIndex + 1
-        }
-        return 0
-    }
-    
-    func getPreviousVideoIndex() -> Int {
-        if let currentIndex = self.videoArray.find({$0 == self.currentVideo}) {
-            return currentIndex - 1 < 0 ? self.videoArray.count - 1 : currentIndex - 1
-        }
-        return 0
-    }
+}
+
+// MARK: IBActions
+extension VideoListViewController {
     
     @IBAction func searchVideoButtonClicked() {
         let searchVC = self.storyboard?.instantiateViewController(withIdentifier: StoryboardId.Search) as! SearchViewController
         searchVC.delegate = self
         let navController = UINavigationController(rootViewController: searchVC)
         self.present(navController, animated: true, completion: nil)
-    }
-    
-    func videoAdded(_ video: Video) {
-        let realm = try! Realm()
-        try! realm.write {
-            video.createdAt = NSDate() as Date
-            video.playlistId = playlist.id
-            video.order = self.videoArray.count
-            realm.add(video)
-            playlist.recentVideo = video.title
-            
-            
-            let warning = MessageView.viewFromNib(layout: .cardView)
-            warning.configureTheme(.success)
-            warning.configureDropShadow()
-
-            warning.configureTheme(backgroundColor: UIColor.init(netHex: 0x292b30), foregroundColor: UIColor.white)
-            warning.configureContent(title: "비디오 추가 완료", body: "\(video.title)")
-            warning.button?.isHidden = true
-            
-            var warningConfig = SwiftMessages.defaultConfig
-            warningConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
-            warningConfig.duration = .seconds(seconds: 0.2)
-
-            SwiftMessages.show(config: warningConfig, view: warning)
-        }
-        
-        self.videoArray.append(video)
-        self.setBlankViewHidden()
-        self.videoTableView.beginUpdates()
-        let indexPath = IndexPath(row: self.videoArray.count-1, section: 0)
-        self.videoTableView.insertRows(at: [indexPath], with: .automatic)
-        self.videoTableView.endUpdates()
-        
-        if let selectedCell = self.videoTableView.cellForRow(at: indexPath) as? VideoListTableViewCell {
-            if self.currentSelectedCell == nil && self.videoArray.count > 0 {
-                self.currentSelectedCell = selectedCell
-                self.videoSelected(indexPath.row, play: false)
-            }
-        }
-        
-        delegate.recentVideoChanged(playlist)
     }
     
     @IBAction func toggleControlView() {
@@ -413,20 +385,47 @@ class VideoListViewController: UIViewController, UITableViewDelegate, UITableVie
             self.videoPaused()
         }
     }
+}
+
+// MARK: Ask App Store Review and Star Rate
+extension VideoListViewController {
     
-    func videoPlayed() {
-        self.currentPlayState = PlayState.Play
-        self.playPauseButton.setImage(#imageLiteral(resourceName: "video_control_pause"), for: .normal)
-        if self.currentSelectedCell != nil {
-            self.currentSelectedCell.videoPlayed()
+    @objc func checkVideoCurrentTime() {
+        if self.videoPlayerView.playerState() == .playing {
+            let currentTime: Int = Int(self.videoPlayerView.currentTime())
+            let totalDuration: Int = Int(self.videoPlayerView.duration())
+            
+            let currentTimeString: String = String.init(hms: currentTime.secToHMS())
+            let totalDurationString: String = String.init(hms: totalDuration.secToHMS())
+            runningTimeLabel.text = "\(currentTimeString) / \(totalDurationString)"
+            
+            let progress: CGFloat = CGFloat(currentTime) / CGFloat(totalDuration)
+            UIView.animate(withDuration: 0.5, animations: {
+                self.progressBackgroundView.setWidth(self.durationWrapperView.width * progress)
+            })
+            
+            totalPlayTime += 0.5
+            if totalPlayTime >= 10 {
+                if #available(iOS 10.3, *) {
+                    self.askReview()
+                }
+            }
         }
     }
     
-    func videoPaused() {
-        self.currentPlayState = PlayState.Pause
-        self.playPauseButton.setImage(#imageLiteral(resourceName: "video_control_play"), for: .normal)
-        if self.currentSelectedCell != nil {
-            self.currentSelectedCell.videoPaused()
+    @available(iOS 10.3, *)
+    func askReview() {
+        if reviewAsked == false {
+            reviewAsked = true
+            
+            let ver = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
+            if UserDefaults.standard.object(forKey: ver) != nil {
+                return
+            }
+            
+            SKStoreReviewController.requestReview()
+            UserDefaults.standard.set("Y", forKey: ver)
         }
     }
 }
+

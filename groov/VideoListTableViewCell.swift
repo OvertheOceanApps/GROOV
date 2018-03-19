@@ -37,6 +37,10 @@ class VideoListTableViewCell: UITableViewCell {
         self.hideProgress()
         self.progressRingView.set(colors: GRVColor.gradationFirstColor, GRVColor.gradationSecondColor, GRVColor.gradationThirdColor, GRVColor.gradationFourthColor)
     }
+}
+
+// MARK: Video Methods
+extension VideoListTableViewCell {
     
     func videoPlayed() {
         self.startTimer()
@@ -47,6 +51,10 @@ class VideoListTableViewCell: UITableViewCell {
         self.stopTimer()
         self.playPauseButton.setImage(#imageLiteral(resourceName: "video_list_cell_play"), for: .normal)
     }
+}
+
+// MARK: Progress Methods
+extension VideoListTableViewCell {
     
     func progressChanged(p: Float) {
         self.showProgress()
@@ -63,6 +71,16 @@ class VideoListTableViewCell: UITableViewCell {
     func hideProgress() {
         self.progressRingView.isHidden = true
     }
+    
+    @objc func circulateProgress() {
+        UIView.animate(withDuration: 0.5) {
+            self.progressRingView.transform = self.progressRingView.transform.rotated(by: CGFloat(Double.pi/4))
+        }
+    }
+}
+
+// MARK: Timer Methods
+extension VideoListTableViewCell {
     
     func startTimer() {
         guard self.circleTimer == nil else { return }
@@ -81,12 +99,5 @@ class VideoListTableViewCell: UITableViewCell {
         guard self.circleTimer != nil else { return }
         self.circleTimer.invalidate()
         self.circleTimer = nil
-    }
-    
-    @objc func circulateProgress() {
-        UIView.animate(withDuration: 0.5) {
-//            yourButton.transform = CGAffineTransformMakeRotation(45.0*M_PI/180.0);
-            self.progressRingView.transform = self.progressRingView.transform.rotated(by: CGFloat(Double.pi/4))
-        }
     }
 }
