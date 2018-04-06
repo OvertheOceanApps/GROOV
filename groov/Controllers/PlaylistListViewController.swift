@@ -15,6 +15,7 @@ class PlaylistListViewController: BaseViewController, UITableViewDelegate, UITab
     @IBOutlet var playlistTableView: UITableView!
     @IBOutlet var blankView: UIView!
     @IBOutlet var footerView: UIView!
+    @IBOutlet var addFolderButton: UIButton!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -38,6 +39,9 @@ class PlaylistListViewController: BaseViewController, UITableViewDelegate, UITab
         
         // init footer view
         footerView.backgroundColor = GRVColor.backgroundColor
+        
+        // init button for localization
+        addFolderButton.setImage(UIImage(named: NSLocalizedString("ImgAddFolder", comment: "")), for: .normal)
     }
 }
 

@@ -30,6 +30,7 @@ class VideoListViewController: BaseViewController, UITableViewDelegate, UITableV
     @IBOutlet var progressImageView: UIImageView!
     @IBOutlet var progressBackgroundView: UIView!
     @IBOutlet var videoPlayerViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet var searchVideoButton: UIButton!
     
     var delegate: VideoListViewControllerDelegate!
     var playlist: Playlist! = nil
@@ -70,6 +71,7 @@ class VideoListViewController: BaseViewController, UITableViewDelegate, UITableV
     func initComponents() {
         self.videoPlayerView.delegate = self
         self.progressImageView.setWidth(self.view.width)
+        self.searchVideoButton.setImage(UIImage(named: NSLocalizedString("ImgSearchVideo", comment: "")), for: .normal)
         
         // design change under iOS 11
         if UIDevice().userInterfaceIdiom == .phone
