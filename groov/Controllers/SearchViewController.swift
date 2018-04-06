@@ -127,7 +127,7 @@ extension SearchViewController {
     
     func initSearchBar() {
         self.searchBar.delegate = self
-        self.searchBar.placeholder = "비디오 검색"
+        self.searchBar.placeholder = NSLocalizedString("SearchVideo", comment: "")
         self.searchBar.showsCancelButton = true
         self.searchBar.setImage(#imageLiteral(resourceName: "search_favicon"), for: .search, state: .normal)
         self.searchBar.setImage(#imageLiteral(resourceName: "search_close"), for: .clear, state: .normal)
@@ -142,7 +142,7 @@ extension SearchViewController {
         for subView in topView.subviews {
             if subView.isKind(of: NSClassFromString("UINavigationButton")!) {
                 cancelButton = subView as! UIButton
-                cancelButton.setTitle("닫기", for: .normal)
+                cancelButton.setTitle(NSLocalizedString("Close", comment: ""), for: .normal)
                 cancelButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
                 cancelButton.setTitleColor(GRVColor.mainTextColor, for: .normal)
             }

@@ -1,0 +1,34 @@
+/* 
+  Localizable.strings
+  groov
+
+  Created by PilGwonKim on 2018. 4. 7..
+  Copyright © 2018년 PilGwonKim. All rights reserved.
+*/
+
+"SearchVideo" = "查詢視頻";
+"Close" = "關閉";
+"ImageCacheRemoved" = "已刪除圖片緩存";
+"FolderVideoRemoved" = "已刪除文件夾/視頻";
+"Data" = "數據";
+"AppInfo" = "軟件信息";
+"RemoveImageCache" = "刪除圖片緩存";
+"RemoveFolderVideo" = "刪除文件夾/視頻";
+"CurrentVersion" = "當前版本";
+"SendMail" = "發送反饋郵件";
+"VisitFacebook" = "進入Facebook";
+"OpenSourceLibrary" = "開放庫";
+"MsgAddNewFolder" = "添加新的文件夾吧。";
+"AddFolder" = "添加文件夾";
+"AddPlaylist" = "添加播放列表文件夾";
+"Add" = "添加";
+"Cancel" = "取消";
+"VideoAddComplete" = "已添加完視頻";
+"MsgAddNewVideo" = "試試查詢/添加新視頻吧";
+"GoSearchVideo" = "去查詢視頻";
+"AppDescription" = "軟件說明";
+"AppTitleDescription" = "收藏妳喜歡的音樂來聽吧！";
+"Delete" = "刪除";
+"Settings" = "設置";
+"VideoList" = "視頻播放列表";
+"FolderList" = "文件夾列表";

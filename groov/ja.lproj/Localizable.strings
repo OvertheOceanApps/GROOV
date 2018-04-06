@@ -1,0 +1,34 @@
+/* 
+  Localizable.strings
+  groov
+
+  Created by PilGwonKim on 2018. 4. 7..
+  Copyright © 2018년 PilGwonKim. All rights reserved.
+*/
+
+"SearchVideo" = "動画検索";
+"Close" = "閉じる";
+"ImageCacheRemoved" = "画像キャッシュが削除されました。";
+"FolderVideoRemoved" = "フォルダ/動画が削除されました。";
+"Data" = "データ";
+"AppInfo" = "アプリ情報";
+"RemoveImageCache" = "画像キャッシュ削除 ";
+"RemoveFolderVideo" = "フォルダ/動画削除";
+"CurrentVersion" = "現在バージョン";
+"SendMail" = "お問い合わせのメールを送る";
+"VisitFacebook" = "フェイスブックのショートカット";
+"OpenSourceLibrary" = "オープンソースのライブラリ";
+"MsgAddNewFolder" = "新しいフォルダを追加してみてください。";
+"AddFolder" = "フォルダ追加 ";
+"AddPlaylist" = "プレイリストフォルダの追加";
+"Add" = "追加";
+"Cancel" = "キャンセル";
+"VideoAddComplete" = "動画追加完了";
+"MsgAddNewVideo" = "新しい動画を検索/追加してみてください。";
+"GoSearchVideo" = "動画を検索してみる ";
+"AppDescription" = "アプリ説明";
+"AppTitleDescription" = "お好きな音楽を集めてお聴きください!";
+"Delete" = "削除";
+"Settings" = "設定";
+"VideoList" = "動画リスト";
+"FolderList" = "フォルダリスト";

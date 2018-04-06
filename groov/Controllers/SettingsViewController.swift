@@ -31,7 +31,7 @@ class SettingsViewController: BaseViewController, UITableViewDelegate, UITableVi
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Settings"
+        self.title = NSLocalizedString("Settings", comment: "")
         self.setNavigationBarBackgroundColor()
         self.initComponents()
     }
@@ -54,7 +54,7 @@ extension SettingsViewController {
             warning.configureDropShadow()
             
             warning.configureTheme(backgroundColor: UIColor.init(netHex: 0x292b30), foregroundColor: UIColor.white)
-            warning.configureContent(body: "이미지 캐시 삭제됨")
+            warning.configureContent(body: NSLocalizedString("ImageCacheRemoved", comment: ""))
             warning.button?.isHidden = true
             
             var warningConfig = SwiftMessages.defaultConfig
@@ -76,7 +76,7 @@ extension SettingsViewController {
             warning.configureDropShadow()
             
             warning.configureTheme(backgroundColor: UIColor.init(netHex: 0x292b30), foregroundColor: UIColor.white)
-            warning.configureContent(body: "폴더/비디오 삭제됨")
+            warning.configureContent(body: NSLocalizedString("FolderVideoRemoved", comment: ""))
             warning.button?.isHidden = true
             
             var warningConfig = SwiftMessages.defaultConfig
@@ -139,9 +139,9 @@ extension SettingsViewController {
         let titleLabel = UILabel(frame: CGRect(x: 20, y: 30, width: tableView.width-40, height: 15))
         switch section {
         case 0:
-            titleLabel.text = "데이터"
+            titleLabel.text = NSLocalizedString("Data", comment: "")
         default:
-            titleLabel.text = "앱 정보"
+            titleLabel.text = NSLocalizedString("AppInfo", comment: "")
         }
         titleLabel.font = UIFont.systemFont(ofSize: 12)
         titleLabel.textColor = GRVColor.mainTextColor
@@ -162,24 +162,24 @@ extension SettingsViewController {
             cell.accessoryType = .none
             switch indexPath.row {
             case 0: // Sections.Data.RemoveCache
-                cell.textLabel?.text = "이미지 캐시 지우기"
+                cell.textLabel?.text = NSLocalizedString("RemoveImageCache", comment: "")
             default: // Sections.Data.RemoveRealm
-                cell.textLabel?.text = "폴더/비디오 지우기"
+                cell.textLabel?.text = NSLocalizedString("RemoveFolderVideo", comment: "")
             }
         default: // Sections.Info
             cell.accessoryType = .disclosureIndicator
             switch indexPath.row {
             case 0: // Sections.Info.Version
-                cell.textLabel?.text = "현재 버전 \(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String)"
+                cell.textLabel?.text = "\(NSLocalizedString("CurrentVersion", comment: "")) \(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String)"
                 cell.accessoryType = .none
             case 1: // Sections.Info.SendMail
-                cell.textLabel?.text = "문의 메일 보내기"
+                cell.textLabel?.text = NSLocalizedString("SendMail", comment: "")
                 cell.accessoryType = .disclosureIndicator
             case 2: // Sections.Info.Facebook
-                cell.textLabel?.text = "페이스북 바로가기"
+                cell.textLabel?.text = NSLocalizedString("VisitFacebook", comment: "")
                 cell.accessoryType = .disclosureIndicator
             default:
-                cell.textLabel?.text = "오픈 소스 라이브러리"
+                cell.textLabel?.text = NSLocalizedString("OpenSourceLibrary", comment: "")
                 cell.accessoryType = .disclosureIndicator
             }
         }

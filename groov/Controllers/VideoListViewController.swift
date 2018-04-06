@@ -44,7 +44,7 @@ class VideoListViewController: BaseViewController, UITableViewDelegate, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Video List"
+        self.navigationItem.title = NSLocalizedString("VideoList", comment: "")
         self.loadVideos()
         self.initComponents()
     }
@@ -167,7 +167,7 @@ extension VideoListViewController {
             warning.configureDropShadow()
             
             warning.configureTheme(backgroundColor: UIColor.init(netHex: 0x292b30), foregroundColor: UIColor.white)
-            warning.configureContent(title: "비디오 추가 완료", body: "\(video.title)")
+            warning.configureContent(title: NSLocalizedString("VideoAddComplete", comment: ""), body: "\(video.title)")
             warning.button?.isHidden = true
             
             var warningConfig = SwiftMessages.defaultConfig
@@ -309,7 +309,7 @@ extension VideoListViewController {
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let deleteAction: UITableViewRowAction = UITableViewRowAction.init(style: .normal, title: "삭제하기") { (action, indexPath) in
+        let deleteAction: UITableViewRowAction = UITableViewRowAction.init(style: .normal, title: NSLocalizedString("Delete", comment: "")) { (action, indexPath) in
             self.tableView(self.videoTableView, commit: .delete, forRowAt: indexPath)
         }
         deleteAction.backgroundColor = GRVColor.tableviewRowDeleteColor

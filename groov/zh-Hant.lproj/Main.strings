@@ -1,0 +1,57 @@
+
+/* Class = "UILabel"; text = "TroyeSivanVEVO"; ObjectID = "13q-j5-exZ"; */
+"13q-j5-exZ.text" = "TroyeSivanVEVO";
+
+/* Class = "UIBarButtonItem"; title = "닫기"; ObjectID = "2DP-Z6-ZKJ"; */
+"2DP-Z6-ZKJ.title" = "關閉";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "59r-rs-8Ww"; */
+"59r-rs-8Ww.text" = "Title";
+
+/* Class = "UILabel"; text = "새로운 폴더를 추가해 보세요."; ObjectID = "5oE-RY-qT1"; */
+"5oE-RY-qT1.text" = "添加新的文件夾吧。";
+
+/* Class = "UILabel"; text = "Search Result"; ObjectID = "GdQ-fr-4OY"; */
+"GdQ-fr-4OY.text" = "Search Result";
+
+/* Class = "UILabel"; text = "Imagine Time (Feat. Suran) (Prod. PEEJAY) - Beenzino"; ObjectID = "IJl-9b-YkT"; */
+"IJl-9b-YkT.text" = "Imagine Time (Feat. Suran) (Prod. PEEJAY) - Beenzino";
+
+/* Class = "UILabel"; text = "13:24:40"; ObjectID = "IVx-dO-I3T"; */
+"IVx-dO-I3T.text" = "13:24:40";
+
+/* Class = "UITextField"; placeholder = "e.x ) 위잉위잉"; ObjectID = "Wfb-i4-8hM"; */
+"Wfb-i4-8hM.placeholder" = "ex) Jazzyfact - Sunday Move";
+
+/* Class = "UIButton"; normalTitle = "Add"; ObjectID = "XGB-nV-Fnp"; */
+"XGB-nV-Fnp.normalTitle" = "Add";
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "XMa-qe-Kgh"; */
+"XMa-qe-Kgh.normalTitle" = "Cancel";
+
+/* Class = "UILabel"; text = "새로운 비디오를 검색/추가해 보세요."; ObjectID = "Y9q-Bc-fZm"; */
+"Y9q-Bc-fZm.text" = "試試查詢/添加新視頻吧";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "avk-X9-zrX"; */
+"avk-X9-zrX.title" = "Item";
+
+/* Class = "UILabel"; text = "TroyeSivanVEVO"; ObjectID = "flU-hV-Tbu"; */
+"flU-hV-Tbu.text" = "TroyeSivanVEVO";
+
+/* Class = "UILabel"; text = "0:00:00 / 0:00:00"; ObjectID = "j2D-B6-Z0R"; */
+"j2D-B6-Z0R.text" = "0:00:00 / 0:00:00";
+
+/* Class = "UILabel"; text = "Troye Sivan - YOUTH"; ObjectID = "k8X-VG-Ei0"; */
+"k8X-VG-Ei0.text" = "Troye Sivan - YOUTH";
+
+/* Class = "UILabel"; text = "13:24:40"; ObjectID = "r4n-rL-vSz"; */
+"r4n-rL-vSz.text" = "13:24:40";
+
+/* Class = "UILabel"; text = "플레이리스트 폴더 추가하기"; ObjectID = "t4q-4P-F1V"; */
+"t4q-4P-F1V.text" = "添加播放列表文件夾";
+
+/* Class = "UILabel"; text = "Troye Sivan - YOUTH"; ObjectID = "tm1-iQ-rOr"; */
+"tm1-iQ-rOr.text" = "Troye Sivan - YOUTH";
+
+/* Class = "UILabel"; text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry."; ObjectID = "y8S-vR-KWn"; */
+"y8S-vR-KWn.text" = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
