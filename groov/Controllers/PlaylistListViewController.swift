@@ -24,7 +24,7 @@ class PlaylistListViewController: BaseViewController, UITableViewDelegate, UITab
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Folder List"
+        self.navigationItem.title = NSLocalizedString("FolderList", comment: "")
         self.initComponents()
         self.loadPlaylists()
     }
@@ -141,7 +141,7 @@ extension PlaylistListViewController {
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let deleteAction: UITableViewRowAction = UITableViewRowAction.init(style: .normal, title: "삭제하기") { (action, indexPath) in
+        let deleteAction: UITableViewRowAction = UITableViewRowAction.init(style: .normal, title: NSLocalizedString("Delete", comment: "")) { (action, indexPath) in
             self.tableView(self.playlistTableView, commit: .delete, forRowAt: indexPath)
         }
         deleteAction.backgroundColor = GRVColor.tableviewRowDeleteColor
