@@ -510,6 +510,7 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
+                        <outlet property="addFolderButton" destination="WIt-Au-sSm" id="Kil-pq-jS8"/>
                         <outlet property="blankView" destination="9d5-G0-ftv" id="oAj-07-ZNV"/>
                         <outlet property="footerView" destination="CXr-fX-qPX" id="hJA-Q8-hN6"/>
                         <outlet property="playlistTableView" destination="b2b-Cb-kac" id="7fL-vA-V0Y"/>
@@ -944,6 +945,7 @@
                         <outlet property="progressBackgroundView" destination="hfR-jU-w6B" id="kJu-b7-DeO"/>
                         <outlet property="progressImageView" destination="1cE-UL-GBZ" id="3oD-by-7tX"/>
                         <outlet property="runningTimeLabel" destination="j2D-B6-Z0R" id="zYw-DV-bgc"/>
+                        <outlet property="searchVideoButton" destination="sYl-5j-auP" id="bgu-eg-40y"/>
                         <outlet property="videoControlView" destination="Z0O-of-mbO" id="GJ9-Lj-axa"/>
                         <outlet property="videoPlayerView" destination="Jdn-M7-Mky" id="5sE-oH-7ht"/>
                         <outlet property="videoPlayerViewTopConstraint" destination="rra-Ee-COR" id="2ti-Zs-GwE"/>
