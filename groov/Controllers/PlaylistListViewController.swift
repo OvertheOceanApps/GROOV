@@ -16,6 +16,7 @@ class PlaylistListViewController: BaseViewController, UITableViewDelegate, UITab
     @IBOutlet var blankView: UIView!
     @IBOutlet var footerView: UIView!
     @IBOutlet var addFolderButton: UIButton!
+    @IBOutlet var blankAddFolderButton: UIButton!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -42,6 +43,7 @@ class PlaylistListViewController: BaseViewController, UITableViewDelegate, UITab
         
         // init button for localization
         addFolderButton.setImage(UIImage(named: NSLocalizedString("ImgAddFolder", comment: "")), for: .normal)
+        blankAddFolderButton.setImage(UIImage(named: NSLocalizedString("ImgAddFolder", comment: "")), for: .normal)
     }
 }
 
@@ -78,6 +80,8 @@ extension PlaylistListViewController {
         try! realm.write {
             realm.add(p)
         }
+        
+        TrackUtil.sendPlaylistAddedEvent(title: title)
         
         self.playlistArray.append(p)
         self.setBlankViewHidden()

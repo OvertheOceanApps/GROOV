@@ -299,6 +299,7 @@
                         <outlet property="alertView" destination="4gB-Kt-Ehk" id="I2H-Ie-DNu"/>
                         <outlet property="alertViewTop" destination="0x2-vt-vP2" id="xWb-K6-WdC"/>
                         <outlet property="backgroundView" destination="0De-92-iYQ" id="xcp-1o-KVg"/>
+                        <outlet property="cancelButton" destination="XMa-qe-Kgh" id="0i7-F7-jGD"/>
                         <outlet property="descriptionLabel" destination="t4q-4P-F1V" id="6Rj-QB-RGg"/>
                         <outlet property="titleTextField" destination="Wfb-i4-8hM" id="NnO-Pz-aQQ"/>
                     </connections>
@@ -511,6 +512,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="addFolderButton" destination="WIt-Au-sSm" id="Kil-pq-jS8"/>
+                        <outlet property="blankAddFolderButton" destination="dXd-cs-B7N" id="Vc2-JI-KE1"/>
                         <outlet property="blankView" destination="9d5-G0-ftv" id="oAj-07-ZNV"/>
                         <outlet property="footerView" destination="CXr-fX-qPX" id="hJA-Q8-hN6"/>
                         <outlet property="playlistTableView" destination="b2b-Cb-kac" id="7fL-vA-V0Y"/>

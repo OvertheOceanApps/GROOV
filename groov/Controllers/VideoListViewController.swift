@@ -164,6 +164,8 @@ extension VideoListViewController {
             realm.add(video)
             playlist.recentVideo = video.title
             
+            TrackUtil.sendVideoAddedEvent(title: video.title)
+            
             let warning = MessageView.viewFromNib(layout: .cardView)
             warning.configureTheme(.success)
             warning.configureDropShadow()

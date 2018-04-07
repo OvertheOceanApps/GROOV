@@ -16,6 +16,7 @@ class GRAlertViewController: UIViewController {
     @IBOutlet var titleTextField: UITextField!
     @IBOutlet var descriptionLabel: UILabel!
     @IBOutlet var addButton: UIButton!
+    @IBOutlet var cancelButton: UIButton!
     @IBOutlet var backgroundView: UIView!
     @IBOutlet var alertView: UIView!
     @IBOutlet var alertViewTop: NSLayoutConstraint!
@@ -34,8 +35,12 @@ class GRAlertViewController: UIViewController {
     
     func initViews() {
         // patternize views
-        self.descriptionLabel.textColor = UIColor.init(patternImage: #imageLiteral(resourceName: "loading_gradation_middle"))
-        self.addButton.setTitleColor(UIColor.init(patternImage: #imageLiteral(resourceName: "loading_gradation_short")), for: .normal)
+        descriptionLabel.textColor = UIColor.init(patternImage: #imageLiteral(resourceName: "loading_gradation_middle"))
+        addButton.setTitleColor(UIColor.init(patternImage: #imageLiteral(resourceName: "loading_gradation_short")), for: .normal)
+        
+        addButton.setTitle(NSLocalizedString("Add", comment: ""), for: .normal)
+        cancelButton.setTitle(NSLocalizedString("Cancel", comment: ""), for: .normal)
+        
         
         // notification
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame), name: .UIKeyboardWillChangeFrame, object: nil)
