@@ -176,7 +176,7 @@ extension VideoListViewController {
             
             var warningConfig = SwiftMessages.defaultConfig
             warningConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
-            warningConfig.duration = .seconds(seconds: 0.2)
+            warningConfig.duration = .seconds(seconds: 0.3)
             
             SwiftMessages.show(config: warningConfig, view: warning)
         }

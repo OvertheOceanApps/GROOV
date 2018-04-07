@@ -54,7 +54,7 @@ extension SettingsViewController {
             warning.configureDropShadow()
             
             warning.configureTheme(backgroundColor: UIColor.init(netHex: 0x292b30), foregroundColor: UIColor.white)
-            warning.configureContent(body: NSLocalizedString("ImageCacheRemoved", comment: ""))
+            warning.configureContent(title: "", body: NSLocalizedString("ImageCacheRemoved", comment: ""))
             warning.button?.isHidden = true
             
             var warningConfig = SwiftMessages.defaultConfig
@@ -76,7 +76,7 @@ extension SettingsViewController {
             warning.configureDropShadow()
             
             warning.configureTheme(backgroundColor: UIColor.init(netHex: 0x292b30), foregroundColor: UIColor.white)
-            warning.configureContent(body: NSLocalizedString("FolderVideoRemoved", comment: ""))
+            warning.configureContent(title: "", body: NSLocalizedString("FolderVideoRemoved", comment: ""))
             warning.button?.isHidden = true
             
             var warningConfig = SwiftMessages.defaultConfig
