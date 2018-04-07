@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1F0D31A72077D2CC00F50FE0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1F0D31A92077D2CC00F50FE0 /* Localizable.strings */; };
+		1F0D31AF207936D000F50FE0 /* TrackUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0D31AE207936D000F50FE0 /* TrackUtil.swift */; };
 		1F21B9431D2D61A2001F1722 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F21B9421D2D61A2001F1722 /* Extensions.swift */; };
 		1F2783BC205EA8C00001DFEB /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2783BB205EA8C00001DFEB /* BaseViewController.swift */; };
 		1F376200205FFFBC001ED5BB /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3761FE205FFFBC001ED5BB /* Playlist.swift */; };
@@ -72,6 +73,7 @@
 		1F0D31AB2077D2CF00F50FE0 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1F0D31AC2077D2CF00F50FE0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		1F0D31AD2077D2D100F50FE0 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		1F0D31AE207936D000F50FE0 /* TrackUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackUtil.swift; sourceTree = "<group>"; };
 		1F21B9421D2D61A2001F1722 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		1F2783BB205EA8C00001DFEB /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		1F3761FE205FFFBC001ED5BB /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 			children = (
 				1F21B9421D2D61A2001F1722 /* Extensions.swift */,
 				C61C0BC71D38C2C90067D389 /* Constants.swift */,
+				1F0D31AE207936D000F50FE0 /* TrackUtil.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 				C66ED4C21D2CA73E0055F441 /* Resources */,
 				14D25137692F0D91D9E70B75 /* [CP] Embed Pods Frameworks */,
 				D7D9B582A6891A43BFD297E3 /* [CP] Copy Pods Resources */,
+				1F0D31B020793C5100F50FE0 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -455,9 +459,11 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-groov/Pods-groov-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AssistantKit/AssistantKit.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/KDCircularProgress/KDCircularProgress.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SWXMLHash/SWXMLHash.framework",
@@ -468,9 +474,11 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AssistantKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KDCircularProgress.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SWXMLHash.framework",
@@ -481,6 +489,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-groov/Pods-groov-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		1F0D31B020793C5100F50FE0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\"";
 		};
 		4BC8F7AD5ECE40600C7FF82F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -541,6 +562,7 @@
 				1F37621220600075001ED5BB /* LibraryViewController.swift in Sources */,
 				1F376221206000D1001ED5BB /* VideoListTableViewCell.swift in Sources */,
 				1F21B9431D2D61A2001F1722 /* Extensions.swift in Sources */,
+				1F0D31AF207936D000F50FE0 /* TrackUtil.swift in Sources */,
 				1F376208205FFFD0001ED5BB /* YTPlayerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
