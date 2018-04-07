@@ -93,3 +93,9 @@ groov.xcodeproj/
 /*.gcno
 
 # End of https://www.gitignore.io/api/swift,xcode,cocoapods
+
+groov스토어이미지/
+
+groov앱아이콘/
+
+groov\.xcworkspace/xcshareddata/
