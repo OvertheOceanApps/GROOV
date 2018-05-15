@@ -47,6 +47,7 @@ class GRSearchBar: UISearchBar {
             searchField.clearButtonMode = .whileEditing
             searchField.autocorrectionType = .no
             searchField.autocapitalizationType = .none
+            searchField.spellCheckingType = .no
         }
     }
 }
