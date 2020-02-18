@@ -1,54 +1,124 @@
 PODS:
-  - Alamofire (4.7.0)
-  - AssistantKit (0.4.1)
+  - Alamofire (4.9.1)
+  - AssistantKit (0.6.1)
   - Crashlytics (3.9.3):
     - Fabric (~> 1.7.2)
-  - Fabric (1.7.5)
-  - Firebase/Core (4.10.1):
-    - FirebaseAnalytics (= 4.1.0)
-    - FirebaseCore (= 4.0.17)
-  - Firebase/Performance (4.10.1):
-    - Firebase/Core
-    - FirebasePerformance (= 1.1.2)
-  - FirebaseAnalytics (4.1.0):
-    - FirebaseCore (~> 4.0)
-    - FirebaseInstanceID (~> 2.0)
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-    - nanopb (~> 0.3)
-  - FirebaseCore (4.0.17):
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-  - FirebaseInstanceID (2.0.9):
-    - FirebaseCore (~> 4.0)
-  - FirebasePerformance (1.1.2):
-    - FirebaseAnalytics (~> 4.1)
-    - FirebaseInstanceID (~> 2.0)
-    - FirebaseSwizzlingUtilities (~> 1.0)
+  - Fabric (1.7.13)
+  - Firebase/Core (6.17.0):
+    - Firebase/CoreOnly
+    - FirebaseAnalytics (= 6.2.2)
+  - Firebase/CoreOnly (6.17.0):
+    - FirebaseCore (= 6.6.2)
+  - Firebase/Performance (6.17.0):
+    - Firebase/CoreOnly
+    - FirebasePerformance (~> 3.1.10)
+  - FirebaseABTesting (3.1.2):
+    - FirebaseAnalyticsInterop (~> 1.3)
+    - FirebaseCore (~> 6.1)
+    - Protobuf (>= 3.9.2, ~> 3.9)
+  - FirebaseAnalytics (6.2.2):
+    - FirebaseCore (~> 6.6)
+    - FirebaseInstanceID (~> 4.3)
+    - GoogleAppMeasurement (= 6.2.2)
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
+    - GoogleUtilities/MethodSwizzler (~> 6.0)
+    - GoogleUtilities/Network (~> 6.0)
+    - "GoogleUtilities/NSData+zlib (~> 6.0)"
+    - nanopb (= 0.3.9011)
+  - FirebaseAnalyticsInterop (1.5.0)
+  - FirebaseCore (6.6.2):
+    - FirebaseCoreDiagnostics (~> 1.2)
+    - FirebaseCoreDiagnosticsInterop (~> 1.2)
+    - GoogleUtilities/Environment (~> 6.5)
+    - GoogleUtilities/Logger (~> 6.5)
+  - FirebaseCoreDiagnostics (1.2.0):
+    - FirebaseCoreDiagnosticsInterop (~> 1.2)
+    - GoogleDataTransportCCTSupport (~> 1.3)
+    - GoogleUtilities/Environment (~> 6.5)
+    - GoogleUtilities/Logger (~> 6.5)
+    - nanopb (~> 0.3.901)
+  - FirebaseCoreDiagnosticsInterop (1.2.0)
+  - FirebaseInstallations (1.1.0):
+    - FirebaseCore (~> 6.6)
+    - GoogleUtilities/UserDefaults (~> 6.5)
+    - PromisesObjC (~> 1.2)
+  - FirebaseInstanceID (4.3.1):
+    - FirebaseCore (~> 6.6)
+    - FirebaseInstallations (~> 1.0)
+    - GoogleUtilities/Environment (~> 6.5)
+    - GoogleUtilities/UserDefaults (~> 6.5)
+  - FirebasePerformance (3.1.10):
+    - FirebaseCore (~> 6.6)
+    - FirebaseInstanceID (~> 4.3)
+    - FirebaseRemoteConfig (~> 4.4)
     - GoogleToolboxForMac/Logger (~> 2.1)
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
+    - GoogleUtilities/Environment (~> 6.2)
+    - GoogleUtilities/ISASwizzler (~> 6.2)
+    - GoogleUtilities/MethodSwizzler (~> 6.2)
     - GTMSessionFetcher/Core (~> 1.1)
-    - Protobuf (~> 3.5)
-  - FirebaseSwizzlingUtilities (1.0.0)
-  - GoogleToolboxForMac/Defines (2.1.3)
-  - GoogleToolboxForMac/Logger (2.1.3):
-    - GoogleToolboxForMac/Defines (= 2.1.3)
-  - GoogleToolboxForMac/NSData+zlib (2.1.3):
-    - GoogleToolboxForMac/Defines (= 2.1.3)
-  - GTMSessionFetcher/Core (1.1.14)
-  - KDCircularProgress (1.5.2)
-  - Kingfisher (4.6.3)
-  - nanopb (0.3.8):
-    - nanopb/decode (= 0.3.8)
-    - nanopb/encode (= 0.3.8)
-  - nanopb/decode (0.3.8)
-  - nanopb/encode (0.3.8)
-  - Protobuf (3.5.0)
-  - Realm (3.2.0):
-    - Realm/Headers (= 3.2.0)
-  - Realm/Headers (3.2.0)
-  - RealmSwift (3.2.0):
-    - Realm (= 3.2.0)
-  - SwiftMessages (4.1.0)
-  - SWXMLHash (4.0.0)
+    - Protobuf (~> 3.9)
+  - FirebaseRemoteConfig (4.4.7):
+    - FirebaseABTesting (~> 3.1)
+    - FirebaseAnalyticsInterop (~> 1.4)
+    - FirebaseCore (~> 6.2)
+    - FirebaseInstanceID (~> 4.2)
+    - GoogleUtilities/Environment (~> 6.2)
+    - "GoogleUtilities/NSData+zlib (~> 6.2)"
+    - Protobuf (>= 3.9.2, ~> 3.9)
+  - GoogleAppMeasurement (6.2.2):
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
+    - GoogleUtilities/MethodSwizzler (~> 6.0)
+    - GoogleUtilities/Network (~> 6.0)
+    - "GoogleUtilities/NSData+zlib (~> 6.0)"
+    - nanopb (= 0.3.9011)
+  - GoogleDataTransport (4.0.0)
+  - GoogleDataTransportCCTSupport (1.4.0):
+    - GoogleDataTransport (~> 4.0)
+    - nanopb (~> 0.3.901)
+  - GoogleToolboxForMac/Defines (2.2.2)
+  - GoogleToolboxForMac/Logger (2.2.2):
+    - GoogleToolboxForMac/Defines (= 2.2.2)
+  - "GoogleToolboxForMac/NSData+zlib (2.2.2)":
+    - GoogleToolboxForMac/Defines (= 2.2.2)
+  - GoogleUtilities/AppDelegateSwizzler (6.5.1):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (6.5.1)
+  - GoogleUtilities/ISASwizzler (6.5.1)
+  - GoogleUtilities/Logger (6.5.1):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/MethodSwizzler (6.5.1):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/Network (6.5.1):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (6.5.1)"
+  - GoogleUtilities/Reachability (6.5.1):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (6.5.1):
+    - GoogleUtilities/Logger
+  - GTMSessionFetcher/Core (1.3.1)
+  - KDCircularProgress (1.5.4)
+  - Kingfisher (4.10.1)
+  - nanopb (0.3.9011):
+    - nanopb/decode (= 0.3.9011)
+    - nanopb/encode (= 0.3.9011)
+  - nanopb/decode (0.3.9011)
+  - nanopb/encode (0.3.9011)
+  - PromisesObjC (1.2.8)
+  - Protobuf (3.11.4)
+  - Realm (4.3.2):
+    - Realm/Headers (= 4.3.2)
+  - Realm/Headers (4.3.2)
+  - RealmSwift (4.3.2):
+    - Realm (= 4.3.2)
+  - SwiftMessages (7.0.1):
+    - SwiftMessages/App (= 7.0.1)
+  - SwiftMessages/App (7.0.1)
+  - SWXMLHash (5.0.1)
 
 DEPENDENCIES:
   - Alamofire (~> 4.4)
@@ -57,34 +127,85 @@ DEPENDENCIES:
   - Fabric (~> 1.7.2)
   - Firebase/Core
   - Firebase/Performance
-  - KDCircularProgress
+  - KDCircularProgress (from `https://github.com/kaandedeoglu/KDCircularProgress.git`)
   - Kingfisher (~> 4.0)
   - RealmSwift
-  - SwiftMessages
-  - SWXMLHash (~> 4.0.0)
+  - SwiftMessages (~> 7.0.0)
+  - SWXMLHash (~> 5.0.0)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - AssistantKit
+    - Crashlytics
+    - Fabric
+    - Firebase
+    - FirebaseABTesting
+    - FirebaseAnalytics
+    - FirebaseAnalyticsInterop
+    - FirebaseCore
+    - FirebaseCoreDiagnostics
+    - FirebaseCoreDiagnosticsInterop
+    - FirebaseInstallations
+    - FirebaseInstanceID
+    - FirebasePerformance
+    - FirebaseRemoteConfig
+    - GoogleAppMeasurement
+    - GoogleDataTransport
+    - GoogleDataTransportCCTSupport
+    - GoogleToolboxForMac
+    - GoogleUtilities
+    - GTMSessionFetcher
+    - Kingfisher
+    - nanopb
+    - PromisesObjC
+    - Protobuf
+    - Realm
+    - RealmSwift
+    - SwiftMessages
+    - SWXMLHash
+
+EXTERNAL SOURCES:
+  KDCircularProgress:
+    :git: https://github.com/kaandedeoglu/KDCircularProgress.git
+
+CHECKOUT OPTIONS:
+  KDCircularProgress:
+    :commit: 05d7ea54b71c257f258f485dbbefecbf59382b0d
+    :git: https://github.com/kaandedeoglu/KDCircularProgress.git
 
 SPEC CHECKSUMS:
-  Alamofire: 907e0a98eb68cdb7f9d1f541a563d6ac5dc77b25
-  AssistantKit: 9ee71039dffa9dc050de945258e50e3e6bb20d5c
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  AssistantKit: 7dd40c019e9a06e93555ed58498a2d212fcb408d
   Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
-  Fabric: ae7146a5f505ea370a1e44820b4b1dc8890e2890
-  Firebase: 92c6ba593e32db0defde464a9adc981d5cb49f97
-  FirebaseAnalytics: 3dfae28d4a5e06f86c4fae830efc2ad3fadb19bc
-  FirebaseCore: 872307b001bbefda1dfa0dbfffa50a6919023d4a
-  FirebaseInstanceID: d2058a35e9bebda1b6dd42486b84917bde552a9d
-  FirebasePerformance: 96c831a9eaf8d2ddf8bb37a4a6f6dd1b4bfe929f
-  FirebaseSwizzlingUtilities: f1c49a5a372ac852c853722a5891a0a5e2344a6c
-  GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
-  GTMSessionFetcher: 390ea358e5a0d0133153806f744662dad933d06b
-  KDCircularProgress: 12f677b2deb02409ab48c6cae1898d146b8ad549
-  Kingfisher: 98e6d5b5e807645743e8ed5ececd25d688d38452
-  nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
-  Protobuf: 8a9838fba8dae3389230e1b7f8c104aa32389c03
-  Realm: ae552b9b9eca3a12374a589fa842f220e286a80a
-  RealmSwift: 05727129547dcab3fe828bd87bc30be903736b9c
-  SwiftMessages: 1bacc783c8f10bdfdc57c14860cae8a1f1fa6591
-  SWXMLHash: 6bbc0bf72975a18ceda469fb7d6a886a26d81694
+  Fabric: 25d0963b691fc97be566392243ff0ecef5a68338
+  Firebase: 2672e5636b42f977177716317e68346ae5e9de25
+  FirebaseABTesting: 0d10f3cdc3fa00f3f175b5b56c1003c8e888299f
+  FirebaseAnalytics: cf95d3aab897612783020fbd98401d5366f135ee
+  FirebaseAnalyticsInterop: 3f86269c38ae41f47afeb43ebf32a001f58fcdae
+  FirebaseCore: a1dd9dd6355a8356dd30a8f076839e242285a81c
+  FirebaseCoreDiagnostics: 5e78803ab276bc5b50340e3c539c06c3de35c649
+  FirebaseCoreDiagnosticsInterop: 296e2c5f5314500a850ad0b83e9e7c10b011a850
+  FirebaseInstallations: 575cd32f2aec0feeb0e44f5d0110a09e5e60b47b
+  FirebaseInstanceID: 031d7d0c8e7b5c030bbeb4d2a690550375e83fec
+  FirebasePerformance: a9b0985f80d2a5cf780cf9bd4db920b45c200507
+  FirebaseRemoteConfig: 4890e58b0e33c8328b8c5e8b7a5a237b9d851d8e
+  GoogleAppMeasurement: d0560d915abf15e692e8538ba1d58442217b6aff
+  GoogleDataTransport: 47fe3b8e1673e5187dfd615656a3c5034f150d69
+  GoogleDataTransportCCTSupport: 36f69887fd212db6d7ef4dd45ba44523717a434e
+  GoogleToolboxForMac: 800648f8b3127618c1b59c7f97684427630c5ea3
+  GoogleUtilities: 06eb53bb579efe7099152735900dd04bf09e7275
+  GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
+  KDCircularProgress: 98200c6b8e85d22bc04eb644721d3b1e12b0686b
+  Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
+  nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
+  PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
+  Protobuf: 176220c526ad8bd09ab1fb40a978eac3fef665f7
+  Realm: 5e92902e2875dff4bb0fd02f67bb737c3d5db2bc
+  RealmSwift: 9a360fc7bae04fc2e308a34fbd899d5faa2d6b22
+  SwiftMessages: b577dc7043be8b299857ab35bb663dbff6483bd0
+  SWXMLHash: 9cc0c2e4807926c74377724aa8722ee5707a0485
 
-PODFILE CHECKSUM: 8c0c272aeca9dcd18890752dc16ae752bdf10efc
+PODFILE CHECKSUM: c9dbbff8a03a20d11f069ce21afb0a494de8ff9a
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.8.4
