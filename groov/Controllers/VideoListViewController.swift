@@ -175,7 +175,7 @@ extension VideoListViewController {
             warning.button?.isHidden = true
             
             var warningConfig = SwiftMessages.defaultConfig
-            warningConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
+            warningConfig.presentationContext = .window(windowLevel: .statusBar)
             warningConfig.duration = .seconds(seconds: 0.3)
             
             SwiftMessages.show(config: warningConfig, view: warning)
@@ -321,7 +321,7 @@ extension VideoListViewController {
         return [deleteAction]
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let parentId = self.playlist.id
             let targetId = self.videoArray[indexPath.row].id
