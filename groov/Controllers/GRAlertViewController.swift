@@ -43,7 +43,7 @@ class GRAlertViewController: UIViewController {
         
         
         // notification
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame), name: .UIKeyboardWillChangeFrame, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
 }
 
@@ -51,7 +51,7 @@ class GRAlertViewController: UIViewController {
 extension GRAlertViewController {
     
     @objc func keyboardWillChangeFrame(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             alertViewTop.constant = (keyboardSize.origin.y - alertView.height) / 2
             self.view.layoutIfNeeded()
         }
