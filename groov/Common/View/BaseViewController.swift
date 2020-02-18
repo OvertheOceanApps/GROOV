@@ -18,8 +18,8 @@ class BaseViewController: UIViewController {
     private func initNavigationBarStyle() {
         // set navigation title text font
         self.navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedStringKey.font: UIFont.systemFont(ofSize: 15),
-            NSAttributedStringKey.foregroundColor: UIColor.white
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15),
+            NSAttributedString.Key.foregroundColor: UIColor.white
         ]
         
     }
