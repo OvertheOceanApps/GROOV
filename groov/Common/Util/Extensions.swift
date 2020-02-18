@@ -170,8 +170,8 @@ extension String {
         let components = formattedDuration.components(separatedBy: ":")
         var duration = ""
         for component in components {
-            duration = duration.characters.count > 0 ? duration + ":" : duration
-            if component.characters.count < 2 {
+            duration = duration.count > 0 ? duration + ":" : duration
+            if component.count < 2 {
                 duration += "0" + component
                 continue
             }
@@ -199,7 +199,7 @@ extension UITextField {
             return self.placeHolderColor
         }
         set {
-            self.attributedPlaceholder = NSAttributedString(string:self.placeholder != nil ? self.placeholder! : "", attributes:[NSAttributedStringKey.foregroundColor: newValue!])
+            self.attributedPlaceholder = NSAttributedString(string:self.placeholder != nil ? self.placeholder! : "", attributes:[NSAttributedString.Key.foregroundColor: newValue!])
         }
     }
 }
@@ -209,8 +209,8 @@ extension UIViewController {
         DispatchQueue.main.async {
             let transition = CATransition.init()
             transition.duration = 0.3
-            transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-            transition.type = kCATransitionFade
+            transition.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+            transition.type = .fade
             self.view.window?.layer.add(transition, forKey: nil)
             targetVC.modalPresentationStyle = .overCurrentContext
             self.present(targetVC, animated: false, completion: nil)
@@ -220,8 +220,8 @@ extension UIViewController {
     func dismissWithFade() {
         let transition = CATransition.init()
         transition.duration = 0.3
-        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.type = kCATransitionFade
+        transition.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+        transition.type = .fade
         self.view.window?.layer.add(transition, forKey: nil)
         self.dismiss(animated: false, completion: nil)
     }

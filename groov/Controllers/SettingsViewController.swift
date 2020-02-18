@@ -38,7 +38,7 @@ class SettingsViewController: BaseViewController, UITableViewDelegate, UITableVi
     
     func initComponents() {
         self.mainTableView.backgroundColor = GRVColor.backgroundColor
-        self.dismissBarButton.setTitleTextAttributes([NSAttributedStringKey.foregroundColor : GRVColor.mainTextColor, NSAttributedStringKey.font : UIFont.systemFont(ofSize: 15)], for: .normal)
+        self.dismissBarButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : GRVColor.mainTextColor, NSAttributedString.Key.font : UIFont.systemFont(ofSize: 15)], for: .normal)
     }
 }
 
@@ -58,7 +58,7 @@ extension SettingsViewController {
             warning.button?.isHidden = true
             
             var warningConfig = SwiftMessages.defaultConfig
-            warningConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
+            warningConfig.presentationContext = .window(windowLevel: .statusBar)
             warningConfig.duration = .seconds(seconds: 0.5)
             
             SwiftMessages.show(config: warningConfig, view: warning)
@@ -80,7 +80,7 @@ extension SettingsViewController {
             warning.button?.isHidden = true
             
             var warningConfig = SwiftMessages.defaultConfig
-            warningConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
+            warningConfig.presentationContext = .window(windowLevel: .statusBar)
             warningConfig.duration = .seconds(seconds: 0.5)
             
             SwiftMessages.show(config: warningConfig, view: warning)
