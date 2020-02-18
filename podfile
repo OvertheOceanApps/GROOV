@@ -8,7 +8,7 @@ target 'groov' do
   pod 'RealmSwift'
   pod 'Kingfisher', 	          '~> 4.0'
   pod 'Alamofire', 	            '~> 4.4'
-  pod 'KDCircularProgress',     :git => 'https://github.com/kaandedeoglu/KDCircularProgress.git'
+  pod 'KDCircularProgress',     '~> 1.5.4'
   pod 'AssistantKit'
   pod 'SWXMLHash',	            '~> 5.0.0'
   pod 'Firebase/Core'

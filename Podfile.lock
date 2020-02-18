@@ -127,7 +127,7 @@ DEPENDENCIES:
   - Fabric (~> 1.7.2)
   - Firebase/Core
   - Firebase/Performance
-  - KDCircularProgress (from `https://github.com/kaandedeoglu/KDCircularProgress.git`)
+  - KDCircularProgress (~> 1.5.4)
   - Kingfisher (~> 4.0)
   - RealmSwift
   - SwiftMessages (~> 7.0.0)
@@ -156,6 +156,7 @@ SPEC REPOS:
     - GoogleToolboxForMac
     - GoogleUtilities
     - GTMSessionFetcher
+    - KDCircularProgress
     - Kingfisher
     - nanopb
     - PromisesObjC
@@ -164,15 +165,6 @@ SPEC REPOS:
     - RealmSwift
     - SwiftMessages
     - SWXMLHash
-
-EXTERNAL SOURCES:
-  KDCircularProgress:
-    :git: https://github.com/kaandedeoglu/KDCircularProgress.git
-
-CHECKOUT OPTIONS:
-  KDCircularProgress:
-    :commit: 05d7ea54b71c257f258f485dbbefecbf59382b0d
-    :git: https://github.com/kaandedeoglu/KDCircularProgress.git
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
@@ -206,6 +198,6 @@ SPEC CHECKSUMS:
   SwiftMessages: b577dc7043be8b299857ab35bb663dbff6483bd0
   SWXMLHash: 9cc0c2e4807926c74377724aa8722ee5707a0485
 
-PODFILE CHECKSUM: c9dbbff8a03a20d11f069ce21afb0a494de8ff9a
+PODFILE CHECKSUM: 6380adbe2338d99b77eb95a9456ccb55d84588e1
 
 COCOAPODS: 1.8.4
