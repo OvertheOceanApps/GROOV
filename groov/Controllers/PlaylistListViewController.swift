@@ -157,7 +157,7 @@ extension PlaylistListViewController {
         return [deleteAction]
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let playlist = self.playlistArray[indexPath.row]
             let targetId = playlist.id
