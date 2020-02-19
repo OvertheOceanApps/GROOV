@@ -28,20 +28,17 @@ class SearchViewController: BaseViewController, UISearchBarDelegate, UITableView
     var videoResults: Array<Video> = []
     var recentVideos: Array<Video> = []
     var delegate: SearchViewControllerDelegate!
-    var keyboardHeight: CGFloat = 0
     
+    deinit {
+        removeKeyboardNotification()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.setNavigationBarBackgroundColor()
         self.initComponents()
         self.getRecentAddedVideos()
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-    }
-    
-    @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            self.keyboardHeight = keyboardSize.height
-        }
+        self.addKeyboardNotification()
     }
     
     func initComponents() {
@@ -50,6 +47,32 @@ class SearchViewController: BaseViewController, UISearchBarDelegate, UITableView
         
         self.view.backgroundColor = GRVColor.backgroundColor
         self.resultTableView.backgroundColor = GRVColor.backgroundColor
+    }
+}
+
+// MARK: Keyboard Notification
+extension SearchViewController {
+    private func addKeyboardNotification() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(receiveKeyboardNotification(_:)),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(receiveKeyboardNotification(_:)),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
+    }
+    
+    private func removeKeyboardNotification() {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func receiveKeyboardNotification(_ notification: Notification) {
+        guard let keyboardInfo = KeyboardNotification(notification) else { return }
+        let keyboardHeight = keyboardInfo.isShowing ? keyboardInfo.endFrame.height : 0
+        var newInset = UIEdgeInsets.zero
+        newInset.bottom = keyboardHeight
+        resultTableView.contentInset = newInset
     }
 }
 
@@ -148,40 +171,29 @@ extension SearchViewController {
             }
         }
         
-        var width = self.view.width
-        switch Device.screen {
-        case .inches_4_0:
-            width = self.view.width - 98
-        case .inches_4_7:
-            width = self.view.width - 98
-        case .inches_5_5:
-            width = self.view.width - 108
-        default:
-            break
+        if let textField = firstSubview(of: UITextField.self, in: searchBar), let label = firstSubview(of: UILabel.self, in: searchBar) {
+            underLineView = UIImageView(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
+            underLineView.translatesAutoresizingMaskIntoConstraints = false
+            underLineView.image = #imageLiteral(resourceName: "search_under_line")
+            underLineView.clipsToBounds = true
+            underLineView.contentMode = .scaleToFill
+            textField.addSubview(underLineView)
+            
+            underLineView.leadingAnchor.constraint(equalTo: textField.leadingAnchor, constant: label.frame.minX).isActive = true
+            let trailingConstraints = underLineView.trailingAnchor.constraint(equalTo: textField.trailingAnchor)
+            trailingConstraints.priority = .defaultHigh
+            trailingConstraints.isActive = true
+            underLineView.bottomAnchor.constraint(equalTo: textField.bottomAnchor).isActive = true
+            underLineView.heightAnchor.constraint(equalToConstant: 1.0).isActive = true
         }
-        
-        underLineView = UIImageView(frame: CGRect(x: 28, y: self.searchBar.height-10, width: width, height: 1))
-        underLineView.image = #imageLiteral(resourceName: "search_under_line")
-        underLineView.clipsToBounds = true
-        underLineView.contentMode = .scaleToFill
-        self.searchBar.addSubview(underLineView)
     }
     
-    func indexOfSearchFieldInSubviews() -> Int! {
-        var index: Int!
-        let searchBarView = self.searchBar.subviews[0] as UIView
-        for i in 0..<searchBarView.subviews.count {
-            if searchBarView.subviews[i].isKind(of: UITextField.self) {
-                index = i
-                break
-            }
-        }
-        return index
+    func firstSubview<T>(of type: T.Type, in view: UIView) -> T? {
+        return view.subviews.compactMap { $0 as? T ?? firstSubview(of: T.self, in: $0) }.first
     }
     
     func initSearchBarTextField() {
-        if let index = self.indexOfSearchFieldInSubviews() {
-            let searchField: UITextField = self.searchBar.subviews[0].subviews[index] as! UITextField
+        if let searchField = firstSubview(of: UITextField.self, in: searchBar) {
             searchField.textColor = .white
             searchField.tintColor = .white
             searchField.backgroundColor = .clear
@@ -236,21 +248,11 @@ extension SearchViewController {
         return 0
     }
     
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.width, height: self.keyboardHeight))
-        footerView.backgroundColor = GRVColor.backgroundColor
-        return footerView
-    }
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if self.isSearching {
             return 44
         }
         return 110
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return self.keyboardHeight
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
