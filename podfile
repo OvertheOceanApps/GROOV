@@ -6,8 +6,8 @@ target 'groov' do
   # Pods for groov
 
   pod 'RealmSwift'
-  pod 'Kingfisher', 	          '~> 4.0'
-  pod 'Alamofire', 	            '~> 4.4'
+  pod 'Kingfisher', 	          '~> 5.0'
+  pod 'Moya',                   '~> 14.0'
   pod 'KDCircularProgress',     '~> 1.5.4'
   pod 'AssistantKit'
   pod 'SWXMLHash',	            '~> 5.0.0'
