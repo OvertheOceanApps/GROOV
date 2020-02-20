@@ -28,20 +28,17 @@ class SearchViewController: BaseViewController, UISearchBarDelegate, UITableView
     var videoResults: Array<Video> = []
     var recentVideos: Array<Video> = []
     var delegate: SearchViewControllerDelegate!
-    var keyboardHeight: CGFloat = 0
     
+    deinit {
+        removeKeyboardNotification()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.setNavigationBarBackgroundColor()
         self.initComponents()
         self.getRecentAddedVideos()
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-    }
-    
-    @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            self.keyboardHeight = keyboardSize.height
-        }
+        self.addKeyboardNotification()
     }
     
     func initComponents() {
@@ -53,9 +50,34 @@ class SearchViewController: BaseViewController, UISearchBarDelegate, UITableView
     }
 }
 
+// MARK: Keyboard Notification
+extension SearchViewController {
+    private func addKeyboardNotification() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(receiveKeyboardNotification(_:)),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(receiveKeyboardNotification(_:)),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
+    }
+    
+    private func removeKeyboardNotification() {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func receiveKeyboardNotification(_ notification: Notification) {
+        guard let keyboardInfo = KeyboardNotification(notification) else { return }
+        let keyboardHeight = keyboardInfo.isShowing ? keyboardInfo.endFrame.height : 0
+        var newInset = UIEdgeInsets.zero
+        newInset.bottom = keyboardHeight
+        resultTableView.contentInset = newInset
+    }
+}
+
 // MARK: Search Result, Recent Result, Auto Complete
 extension SearchViewController {
-    
     func getRecentAddedVideos() {
         let realm = try! Realm()
         self.recentVideos = Array(realm.objects(Video.self).sorted(byKeyPath: "createdAt", ascending: false))
@@ -64,59 +86,29 @@ extension SearchViewController {
     func getSuggestResult(keyword: String) {
         self.isSearching = true
         
-        var kw = keyword.replacingOccurrences(of: " ", with: "+")
-        kw = kw.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-        let urlString = "http://google.com/complete/search?output=toolbar&ds=yt&hl=en&q=\(kw)"
-        
-        var results: Array<String> = []
-        Alamofire.request(urlString, method: .get).response { (response) in
-            if let str = String.init(data: response.data!, encoding: .utf8) {
-                let dt = str.data(using: .utf8)
-                let xml = SWXMLHash.parse(dt!)
-                for result in xml["toplevel"]["CompleteSuggestion"].all {
-                    if let element = result["suggestion"].element {
-                        if let data = element.attribute(by: "data") {
-                            results.append(data.text)
-                        }
-                    }
-                }
-                self.suggestResults = results
+        SearchAPIHandler().requestSuggestion(of: keyword) { [weak self] suggestions in
+            guard let self = self else { return }
+            self.suggestResults = suggestions
+            
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
                 self.resultTableView.reloadData()
             }
         }
     }
     
     func getVideoResult(_ searchText: String) {
-        let kAPIKeyYoutube: String = Bundle.main.object(forInfoDictionaryKey: "YoutubeAPIKey") as! String
-        let urlString = "https://www.googleapis.com/youtube/v3/search"
-        let param: Dictionary<String, Any> = ["q": searchText, "part": "id", "type": "video", "maxResults": 10, "key": kAPIKeyYoutube]
-        
         self.isSearching = false
         self.shouldShowRecentVideo = false
-        Alamofire.request(urlString, method: .get, parameters: param).responseJSON { (response) in
-            print(response)
-            if let json = response.result.value as? [String: Any] {
-                var ids: Array<String> = []
-                for item in json["items"] as! Array<Dictionary<String, AnyObject>> {
-                    if let vid = item["id"] as? Dictionary<String, AnyObject> {
-                        ids.append(vid["videoId"] as! String)
-                    }
-                }
-                
-                let urlString = "https://www.googleapis.com/youtube/v3/videos"
-                let idString = ids.joined(separator: ",")
-                let param: Dictionary<String, Any> = ["part": "snippet,contentDetails", "id": idString, "type": "video", "maxResults": 10, "key": kAPIKeyYoutube]
-                Alamofire.request(urlString, method: .get, parameters: param).responseJSON { (response2) in
-                    if let json2 = response2.result.value as? [String: Any] {
-                        self.videoResults.removeAll()
-                        for item in json2["items"] as! Array<Dictionary<String, AnyObject>> {
-                            let v = Video()
-                            v.parseDictionaryToModel(item)
-                            self.videoResults.append(v)
-                        }
-                        self.resultTableView.reloadData()
-                    }
-                }
+
+        SearchAPIHandler().requestVideos(of: searchText) { [weak self] videos in
+            guard let self = self else { return }
+            self.videoResults.removeAll()
+            self.videoResults.append(contentsOf: videos)
+            
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.resultTableView.reloadData()
             }
         }
     }
@@ -148,40 +140,29 @@ extension SearchViewController {
             }
         }
         
-        var width = self.view.width
-        switch Device.screen {
-        case .inches_4_0:
-            width = self.view.width - 98
-        case .inches_4_7:
-            width = self.view.width - 98
-        case .inches_5_5:
-            width = self.view.width - 108
-        default:
-            break
+        if let textField = firstSubview(of: UITextField.self, in: searchBar), let label = firstSubview(of: UILabel.self, in: searchBar) {
+            underLineView = UIImageView(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
+            underLineView.translatesAutoresizingMaskIntoConstraints = false
+            underLineView.image = #imageLiteral(resourceName: "search_under_line")
+            underLineView.clipsToBounds = true
+            underLineView.contentMode = .scaleToFill
+            textField.addSubview(underLineView)
+            
+            underLineView.leadingAnchor.constraint(equalTo: textField.leadingAnchor, constant: label.frame.minX).isActive = true
+            let trailingConstraints = underLineView.trailingAnchor.constraint(equalTo: textField.trailingAnchor)
+            trailingConstraints.priority = .defaultHigh
+            trailingConstraints.isActive = true
+            underLineView.bottomAnchor.constraint(equalTo: textField.bottomAnchor).isActive = true
+            underLineView.heightAnchor.constraint(equalToConstant: 1.0).isActive = true
         }
-        
-        underLineView = UIImageView(frame: CGRect(x: 28, y: self.searchBar.height-10, width: width, height: 1))
-        underLineView.image = #imageLiteral(resourceName: "search_under_line")
-        underLineView.clipsToBounds = true
-        underLineView.contentMode = .scaleToFill
-        self.searchBar.addSubview(underLineView)
     }
     
-    func indexOfSearchFieldInSubviews() -> Int! {
-        var index: Int!
-        let searchBarView = self.searchBar.subviews[0] as UIView
-        for i in 0..<searchBarView.subviews.count {
-            if searchBarView.subviews[i].isKind(of: UITextField.self) {
-                index = i
-                break
-            }
-        }
-        return index
+    func firstSubview<T>(of type: T.Type, in view: UIView) -> T? {
+        return view.subviews.compactMap { $0 as? T ?? firstSubview(of: T.self, in: $0) }.first
     }
     
     func initSearchBarTextField() {
-        if let index = self.indexOfSearchFieldInSubviews() {
-            let searchField: UITextField = self.searchBar.subviews[0].subviews[index] as! UITextField
+        if let searchField = firstSubview(of: UITextField.self, in: searchBar) {
             searchField.textColor = .white
             searchField.tintColor = .white
             searchField.backgroundColor = .clear
@@ -236,21 +217,11 @@ extension SearchViewController {
         return 0
     }
     
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.width, height: self.keyboardHeight))
-        footerView.backgroundColor = GRVColor.backgroundColor
-        return footerView
-    }
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if self.isSearching {
             return 44
         }
         return 110
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return self.keyboardHeight
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

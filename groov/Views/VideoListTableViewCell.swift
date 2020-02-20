@@ -32,8 +32,12 @@ class VideoListTableViewCell: UITableViewCell {
         self.titleLabel.text = video.title
         self.channelLabel.text = video.channelTitle
         self.durationLabel.text = video.durationString()
-        let imageUrl = "\(kYoutubeImageUrl)/\(video.videoId)/\(kYoutubeThumbnail).jpg"
-        self.thumbnailImageView.kf.setImage(with: URL(string: imageUrl)!, placeholder: nil, options: [.transition(.fade(0.3))], progressBlock: nil, completionHandler: nil)
+        
+        let imageUrlString = "\(kYoutubeImageUrl)/\(video.videoId)/\(kYoutubeThumbnail).jpg"
+        if let url = URL(string: imageUrlString) {
+            thumbnailImageView.kf.setImage(with: url, options: [.transition(.fade(0.3))])
+        }
+        
         self.hideProgress()
         self.progressRingView.set(colors: GRVColor.gradationFirstColor, GRVColor.gradationSecondColor, GRVColor.gradationThirdColor, GRVColor.gradationFourthColor)
     }
