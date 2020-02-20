@@ -78,7 +78,6 @@ extension SearchViewController {
 
 // MARK: Search Result, Recent Result, Auto Complete
 extension SearchViewController {
-    
     func getRecentAddedVideos() {
         let realm = try! Realm()
         self.recentVideos = Array(realm.objects(Video.self).sorted(byKeyPath: "createdAt", ascending: false))
@@ -87,59 +86,29 @@ extension SearchViewController {
     func getSuggestResult(keyword: String) {
         self.isSearching = true
         
-        var kw = keyword.replacingOccurrences(of: " ", with: "+")
-        kw = kw.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-        let urlString = "http://google.com/complete/search?output=toolbar&ds=yt&hl=en&q=\(kw)"
-        
-        var results: Array<String> = []
-        Alamofire.request(urlString, method: .get).response { (response) in
-            if let str = String.init(data: response.data!, encoding: .utf8) {
-                let dt = str.data(using: .utf8)
-                let xml = SWXMLHash.parse(dt!)
-                for result in xml["toplevel"]["CompleteSuggestion"].all {
-                    if let element = result["suggestion"].element {
-                        if let data = element.attribute(by: "data") {
-                            results.append(data.text)
-                        }
-                    }
-                }
-                self.suggestResults = results
+        SearchAPIHandler().requestSuggestion(of: keyword) { [weak self] suggestions in
+            guard let self = self else { return }
+            self.suggestResults = suggestions
+            
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
                 self.resultTableView.reloadData()
             }
         }
     }
     
     func getVideoResult(_ searchText: String) {
-        let kAPIKeyYoutube: String = Bundle.main.object(forInfoDictionaryKey: "YoutubeAPIKey") as! String
-        let urlString = "https://www.googleapis.com/youtube/v3/search"
-        let param: Dictionary<String, Any> = ["q": searchText, "part": "id", "type": "video", "maxResults": 10, "key": kAPIKeyYoutube]
-        
         self.isSearching = false
         self.shouldShowRecentVideo = false
-        Alamofire.request(urlString, method: .get, parameters: param).responseJSON { (response) in
-            print(response)
-            if let json = response.result.value as? [String: Any] {
-                var ids: Array<String> = []
-                for item in json["items"] as! Array<Dictionary<String, AnyObject>> {
-                    if let vid = item["id"] as? Dictionary<String, AnyObject> {
-                        ids.append(vid["videoId"] as! String)
-                    }
-                }
-                
-                let urlString = "https://www.googleapis.com/youtube/v3/videos"
-                let idString = ids.joined(separator: ",")
-                let param: Dictionary<String, Any> = ["part": "snippet,contentDetails", "id": idString, "type": "video", "maxResults": 10, "key": kAPIKeyYoutube]
-                Alamofire.request(urlString, method: .get, parameters: param).responseJSON { (response2) in
-                    if let json2 = response2.result.value as? [String: Any] {
-                        self.videoResults.removeAll()
-                        for item in json2["items"] as! Array<Dictionary<String, AnyObject>> {
-                            let v = Video()
-                            v.parseDictionaryToModel(item)
-                            self.videoResults.append(v)
-                        }
-                        self.resultTableView.reloadData()
-                    }
-                }
+
+        SearchAPIHandler().requestVideos(of: searchText) { [weak self] videos in
+            guard let self = self else { return }
+            self.videoResults.removeAll()
+            self.videoResults.append(contentsOf: videos)
+            
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.resultTableView.reloadData()
             }
         }
     }

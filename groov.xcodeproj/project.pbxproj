@@ -34,6 +34,8 @@
 		C61C0BC81D38C2C90067D389 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61C0BC71D38C2C90067D389 /* Constants.swift */; };
 		C61D9B4223FD6DC100B4E0AD /* KeyboardNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61D9B4123FD6DC100B4E0AD /* KeyboardNotification.swift */; };
 		C62533AA1D46F4A5006E43F8 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C62533A91D46F4A5006E43F8 /* MessageUI.framework */; };
+		C64FCE2D23FED1BE00790DA5 /* SearchAPIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64FCE2C23FED1BE00790DA5 /* SearchAPIHandler.swift */; };
+		C64FCE2F23FED70200790DA5 /* YoutubeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64FCE2E23FED70200790DA5 /* YoutubeAPI.swift */; };
 		C66ED4C81D2CA73E0055F441 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66ED4C71D2CA73E0055F441 /* AppDelegate.swift */; };
 		C66ED4CD1D2CA73E0055F441 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C66ED4CB1D2CA73E0055F441 /* Main.storyboard */; };
 		C66ED4D21D2CA73E0055F441 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C66ED4D01D2CA73E0055F441 /* LaunchScreen.storyboard */; };
@@ -105,6 +107,8 @@
 		C61C0BC71D38C2C90067D389 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C61D9B4123FD6DC100B4E0AD /* KeyboardNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardNotification.swift; sourceTree = "<group>"; };
 		C62533A91D46F4A5006E43F8 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		C64FCE2C23FED1BE00790DA5 /* SearchAPIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAPIHandler.swift; sourceTree = "<group>"; };
+		C64FCE2E23FED70200790DA5 /* YoutubeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeAPI.swift; sourceTree = "<group>"; };
 		C66ED4C41D2CA73E0055F441 /* groov.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = groov.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C66ED4C71D2CA73E0055F441 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C66ED4CC1D2CA73E0055F441 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -251,6 +255,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		C64FCE2B23FED19600790DA5 /* SearchHelper */ = {
+			isa = PBXGroup;
+			children = (
+				C64FCE2E23FED70200790DA5 /* YoutubeAPI.swift */,
+				C64FCE2C23FED1BE00790DA5 /* SearchAPIHandler.swift */,
+			);
+			path = SearchHelper;
+			sourceTree = "<group>";
+		};
 		C66ED4BB1D2CA73E0055F441 = {
 			isa = PBXGroup;
 			children = (
@@ -278,6 +291,7 @@
 			children = (
 				1F376217206000D1001ED5BB /* Views */,
 				1F37620A20600075001ED5BB /* Controllers */,
+				C64FCE2B23FED19600790DA5 /* SearchHelper */,
 				1F2783B9205EA8C00001DFEB /* Common */,
 				C66ED4CB1D2CA73E0055F441 /* Main.storyboard */,
 				C66ED4C71D2CA73E0055F441 /* AppDelegate.swift */,
@@ -467,6 +481,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/KDCircularProgress/KDCircularProgress.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
@@ -484,6 +499,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KDCircularProgress.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
@@ -548,11 +564,13 @@
 				1F376225206000D1001ED5BB /* SearchVideoTableViewCell.swift in Sources */,
 				C66ED4C81D2CA73E0055F441 /* AppDelegate.swift in Sources */,
 				1F376200205FFFBC001ED5BB /* Playlist.swift in Sources */,
+				C64FCE2F23FED70200790DA5 /* YoutubeAPI.swift in Sources */,
 				1F37621520600076001ED5BB /* PlaylistListViewController.swift in Sources */,
 				1F2783BC205EA8C00001DFEB /* BaseViewController.swift in Sources */,
 				1F376201205FFFBC001ED5BB /* Video.swift in Sources */,
 				1F37621320600075001ED5BB /* GRAlertViewController.swift in Sources */,
 				1F37621220600075001ED5BB /* LibraryViewController.swift in Sources */,
+				C64FCE2D23FED1BE00790DA5 /* SearchAPIHandler.swift in Sources */,
 				1F376221206000D1001ED5BB /* VideoListTableViewCell.swift in Sources */,
 				1F21B9431D2D61A2001F1722 /* Extensions.swift in Sources */,
 				1F0D31AF207936D000F50FE0 /* TrackUtil.swift in Sources */,
