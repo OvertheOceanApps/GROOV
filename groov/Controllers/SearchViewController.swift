@@ -37,19 +37,7 @@ class SearchViewController: BaseViewController {
     var delegate: SearchViewControllerDelegate!
     
     private let debouncer: Debouncer = Debouncer(interval: 0.3)
-    
-    private var nextPageToken: String? {
-        didSet {
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                if self.nextPageToken == nil {
-                    self.resultTableView.tableFooterView = nil
-                } else {
-                    self.resultTableView.tableFooterView = LoadingIndicatorView()
-                }
-            }
-        }
-    }
+    private var nextPageToken: String?
     
     deinit {
         removeKeyboardNotification()
@@ -145,6 +133,42 @@ extension SearchViewController {
             
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
+                
+                if self.nextPageToken == nil {
+                    self.resultTableView.tableFooterView = nil
+                } else {
+                    self.resultTableView.tableFooterView = LoadingIndicatorView()
+                }
+                
+                self.resultTableView.reloadData()
+            }
+        }
+    }
+    
+    private func getNextPageVideos(_ suggestion: String, token: String) {
+        SearchAPIHandler().requestVideos(of: suggestion, token: token) { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let data):
+                var newVideos = self.videoResults
+                newVideos.append(contentsOf: data.videos)
+                self.videoResults = newVideos
+                self.nextPageToken = data.token
+                
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+            
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                
+                if self.nextPageToken == nil {
+                    self.resultTableView.tableFooterView = nil
+                } else {
+                    self.resultTableView.tableFooterView = LoadingIndicatorView()
+                }
+                
                 self.resultTableView.reloadData()
             }
         }
@@ -298,8 +322,9 @@ extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if cell is SearchVideoTableViewCell {
             let isLastCell = indexPath.row == (videoResults.count - 1)
-            if isLastCell, let token = nextPageToken {
-                print("pagination!!!")
+            if isLastCell, let suggestion = searchBar.text, let token = nextPageToken {
+                nextPageToken = nil
+                getNextPageVideos(suggestion, token: token)
             }
         }
     }
