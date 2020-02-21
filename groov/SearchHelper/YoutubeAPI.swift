@@ -74,7 +74,7 @@ extension YoutubeAPI: TargetType {
             return .requestPlain
             
         case .pagination(let suggestion, let token):
-            let encodable = YoutubeSearchParameter(q: suggestion, key: YoutubeAPI.key, paginationToken: token)
+            let encodable = YoutubeSearchParameter(q: suggestion, key: YoutubeAPI.key, pageToken: token)
             if let dictionary = encodable.dictionary {
                 return .requestParameters(parameters: dictionary, encoding: URLEncoding.default)
             }
@@ -99,7 +99,7 @@ private struct YoutubeSearchParameter: Encodable {
     let maxResults: Int = 10
     let q: String
     let key: String
-    var paginationToken: String?
+    var pageToken: String?
 }
 
 private struct YoutubeVideosParameter: Encodable {
