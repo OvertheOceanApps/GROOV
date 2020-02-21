@@ -16,6 +16,13 @@ protocol SearchViewControllerDelegate {
     func videoAdded(_ video: Video)
 }
 
+extension Constants.Layout {
+    enum SearchList {
+        static let heightForSuggest: CGFloat = 44
+        static let heightForVideo: CGFloat = 110
+    }
+}
+
 class SearchViewController: BaseViewController {
 
     @IBOutlet var resultTableView: UITableView!
@@ -29,7 +36,20 @@ class SearchViewController: BaseViewController {
     var recentVideos: Array<Video> = []
     var delegate: SearchViewControllerDelegate!
     
-    private var nextPageToken: String?
+    private let debouncer: Debouncer = Debouncer(interval: 0.3)
+    
+    private var nextPageToken: String? {
+        didSet {
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                if self.nextPageToken == nil {
+                    self.resultTableView.tableFooterView = nil
+                } else {
+                    self.resultTableView.tableFooterView = LoadingIndicatorView()
+                }
+            }
+        }
+    }
     
     deinit {
         removeKeyboardNotification()
@@ -207,9 +227,13 @@ extension SearchViewController: UISearchBarDelegate {
             self.isSearching = false
             self.getRecentAddedVideos()
             self.resultTableView.reloadData()
-            return
+        } else {
+            debouncer.call {
+                self.getSuggestResult(keyword: searchText)
+            }
         }
-        self.getSuggestResult(keyword: searchText)
+
+        resultTableView.tableFooterView = nil
     }
 }
 
@@ -255,7 +279,7 @@ extension SearchViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return isSearching ? 44 : 110
+        return isSearching ? Constants.Layout.SearchList.heightForSuggest : Constants.Layout.SearchList.heightForVideo
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -272,6 +296,11 @@ extension SearchViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
+        if cell is SearchVideoTableViewCell {
+            let isLastCell = indexPath.row == (videoResults.count - 1)
+            if isLastCell, let token = nextPageToken {
+                print("pagination!!!")
+            }
+        }
     }
 }

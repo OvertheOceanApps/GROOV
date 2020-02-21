@@ -43,3 +43,8 @@ struct StoryboardId {
     static let Library = "SBIdLibrary"
 }
 
+struct Constants {
+    enum Layout {
+        
+    }
+}
