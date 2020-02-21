@@ -16,7 +16,7 @@ protocol SearchViewControllerDelegate {
     func videoAdded(_ video: Video)
 }
 
-class SearchViewController: BaseViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
+class SearchViewController: BaseViewController {
 
     @IBOutlet var resultTableView: UITableView!
     
@@ -28,6 +28,8 @@ class SearchViewController: BaseViewController, UISearchBarDelegate, UITableView
     var videoResults: Array<Video> = []
     var recentVideos: Array<Video> = []
     var delegate: SearchViewControllerDelegate!
+    
+    private var nextPageToken: String?
     
     deinit {
         removeKeyboardNotification()
@@ -50,7 +52,7 @@ class SearchViewController: BaseViewController, UISearchBarDelegate, UITableView
     }
 }
 
-// MARK: Keyboard Notification
+// MARK: - Keyboard Notification
 extension SearchViewController {
     private func addKeyboardNotification() {
         NotificationCenter.default.addObserver(self,
@@ -76,7 +78,7 @@ extension SearchViewController {
     }
 }
 
-// MARK: Search Result, Recent Result, Auto Complete
+// MARK: - Search Result, Recent Result, Auto Complete
 extension SearchViewController {
     func getRecentAddedVideos() {
         let realm = try! Realm()
@@ -86,9 +88,16 @@ extension SearchViewController {
     func getSuggestResult(keyword: String) {
         self.isSearching = true
         
-        SearchAPIHandler().requestSuggestion(of: keyword) { [weak self] suggestions in
+        SearchAPIHandler().requestSuggestion(of: keyword) { [weak self] result in
             guard let self = self else { return }
-            self.suggestResults = suggestions
+            
+            switch result {
+            case .success(let suggestions):
+                self.suggestResults = suggestions
+                
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
             
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
@@ -101,10 +110,18 @@ extension SearchViewController {
         self.isSearching = false
         self.shouldShowRecentVideo = false
 
-        SearchAPIHandler().requestVideos(of: searchText) { [weak self] videos in
+        SearchAPIHandler().requestVideos(of: searchText) { [weak self] result in
             guard let self = self else { return }
-            self.videoResults.removeAll()
-            self.videoResults.append(contentsOf: videos)
+            
+            switch result {
+            case .success(let data):
+                self.videoResults.removeAll()
+                self.videoResults.append(contentsOf: data.videos)
+                self.nextPageToken = data.token
+                
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
             
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
@@ -114,7 +131,7 @@ extension SearchViewController {
     }
 }
 
-// MARK: Init Search Bar
+// MARK: - Init Search Bar
 extension SearchViewController {
     
     func initSearchBar() {
@@ -173,8 +190,8 @@ extension SearchViewController {
     }
 }
 
-// MARK: Search Bar Delegate
-extension SearchViewController {
+// MARK: - UISearchBarDelegate
+extension SearchViewController: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         self.dismiss(animated: true, completion: nil)
@@ -196,9 +213,8 @@ extension SearchViewController {
     }
 }
 
-// MARK: Table View Datasource, Delegate
-extension SearchViewController {
-    
+// MARK: - UITableViewDataSource
+extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.isSearching == false {
             self.resultTableView.separatorStyle = .singleLine
@@ -211,17 +227,6 @@ extension SearchViewController {
         
         self.resultTableView.separatorStyle = .none
         return self.suggestResults.count
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if self.isSearching {
-            return 44
-        }
-        return 110
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -241,31 +246,32 @@ extension SearchViewController {
         }
         return cell
     }
+}
+
+// MARK: - UITableViewDelegate
+extension SearchViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return isSearching ? 44 : 110
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if isSearching == true {
-            if let cell:SearchSuggestTableViewCell = tableView.cellForRow(at: indexPath) as? SearchSuggestTableViewCell {
-                self.searchBar.text = cell.keyword
-                self.getVideoResult(cell.keyword)
-            }
+        
+        if isSearching {
+            let keyword = suggestResults[indexPath.row]
+            searchBar.text = keyword
+            getVideoResult(keyword)
         } else {
-            let targetVideo: Video = self.shouldShowRecentVideo ? self.recentVideos[indexPath.row] : self.videoResults[indexPath.row]
+            let targetVideo = shouldShowRecentVideo ? recentVideos[indexPath.row] : videoResults[indexPath.row]
             delegate.videoAdded(targetVideo)
         }
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
