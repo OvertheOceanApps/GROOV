@@ -24,7 +24,7 @@ final class Debouncer {
         }
     }
     
-    private func resetTimer() {
+    func resetTimer() {
         if timer != nil {
             timer?.invalidate()
             timer = nil
