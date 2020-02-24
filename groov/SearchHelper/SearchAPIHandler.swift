@@ -11,17 +11,17 @@ import Moya
 import SWXMLHash
 
 final class SearchAPIHandler {
-    typealias GetVideoSuccessResult = (videos: [Video], token: String?)
+    typealias GetVideoIdsSuccessResult = (ids: [String], token: String?)
     
     typealias SuggestionCompletionHandler = (Result<[String], Error>) -> ()
-    typealias GetVideosCompletionHandler = (Result<GetVideoSuccessResult, Error>) -> ()
+    typealias GetVideoIdsCompletionHandler = (Result<GetVideoIdsSuccessResult, Error>) -> ()
+    typealias GetVideosCompletionHandler = (Result<[Video], Error>) -> ()
 
     private let provider = MoyaProvider<YoutubeAPI>(plugins: [NetworkLoggerPlugin()])
     
     // MARK: - Function
-    func requestSuggestion(of keyword: String, completionHandler: @escaping SuggestionCompletionHandler) {
-        provider.request(.suggestion(keyword: keyword)) { result in
-            
+    func requestSuggestion(of keyword: String, completionHandler: @escaping SuggestionCompletionHandler) -> Cancellable {
+        return provider.request(.suggestion(keyword: keyword)) { result in
             switch result {
             case .success(let response):
                 var suggestions: [String] = []
@@ -39,7 +39,7 @@ final class SearchAPIHandler {
         }
     }
     
-    func requestVideos(of suggestion: String, token: String? = nil, completionHandler: @escaping GetVideosCompletionHandler) {
+    func requestVideoIds(of suggestion: String, token: String?, completionHandler: @escaping GetVideoIdsCompletionHandler) -> Cancellable {
         var api: YoutubeAPI {
             if let token = token {
                 return .pagination(suggestion: suggestion, token: token)
@@ -47,7 +47,7 @@ final class SearchAPIHandler {
             return .videoId(suggestion: suggestion)
         }
         
-        provider.request(api) { result in
+        return provider.request(api) { result in
             switch result {
             case .success(let response):
                 do {
@@ -65,7 +65,7 @@ final class SearchAPIHandler {
                         nextPageToken = json["nextPageToken"] as? String
                     }
                     
-                    self.requestVideos(with: ids, token: nextPageToken, completionHandler: completionHandler)
+                    completionHandler(.success((ids, nextPageToken)))
                 } catch {
                     completionHandler(.failure(error))
                 }
@@ -76,8 +76,8 @@ final class SearchAPIHandler {
         }
     }
     
-    private func requestVideos(with ids: [String], token: String?, completionHandler: @escaping GetVideosCompletionHandler) {
-        provider.request(.videoList(ids: ids)) { result in
+    func requestVideos(with ids: [String], completionHandler: @escaping GetVideosCompletionHandler) -> Cancellable {
+        return provider.request(.videoList(ids: ids)) { result in
             switch result {
             case .success(let response):
                 do {
@@ -91,8 +91,7 @@ final class SearchAPIHandler {
                         }
                     }
                     
-                    let result = (videos, token)
-                    completionHandler(.success(result))
+                    completionHandler(.success(videos))
                 } catch {
                     completionHandler(.failure(error))
                 }

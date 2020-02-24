@@ -1133,10 +1133,15 @@
                                     <outlet property="delegate" destination="Aqn-tB-DsG" id="7le-8o-geE"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="2y7-Wz-NeB">
+                                <rect key="frame" x="177.5" y="301.5" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.11764705882352941" green="0.12941176470588234" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="2y7-Wz-NeB" firstAttribute="centerX" secondItem="Nvp-PC-wLH" secondAttribute="centerX" id="HAE-Zc-msT"/>
                             <constraint firstItem="Nvp-PC-wLH" firstAttribute="centerX" secondItem="bsA-rN-W2z" secondAttribute="centerX" id="Wfa-1F-9KQ"/>
+                            <constraint firstItem="2y7-Wz-NeB" firstAttribute="centerY" secondItem="Nvp-PC-wLH" secondAttribute="centerY" id="igz-od-aE6"/>
                             <constraint firstItem="Nvp-PC-wLH" firstAttribute="height" secondItem="bsA-rN-W2z" secondAttribute="height" id="k6X-ld-8gM"/>
                             <constraint firstItem="Nvp-PC-wLH" firstAttribute="width" secondItem="bsA-rN-W2z" secondAttribute="width" id="qPm-eM-h73"/>
                             <constraint firstItem="Nvp-PC-wLH" firstAttribute="centerY" secondItem="bsA-rN-W2z" secondAttribute="centerY" id="uNB-PM-u2e"/>
@@ -1144,6 +1149,7 @@
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
+                        <outlet property="activityIndicatorView" destination="2y7-Wz-NeB" id="ObR-Gm-WrV"/>
                         <outlet property="resultTableView" destination="Nvp-PC-wLH" id="4pL-bM-8bo"/>
                     </connections>
                 </viewController>
