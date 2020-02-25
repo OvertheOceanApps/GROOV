@@ -18,7 +18,22 @@ default_platform(:ios)
 platform :ios do
   desc "Push a new beta build to TestFlight"
   lane :beta do
-    build_app(workspace: "groov.xcworkspace", scheme: "groov")
-    upload_to_testflight
+    ask_version_bump_type()
+    gym(
+      workspace: "groov.xcworkspace",
+      scheme: "groov",
+      export_options: { method: "app-store" }
+    )
+    testflight(skip_waiting_for_build_processing: true)
   end
+
+  def ask_version_bump_type()
+    if UI.interactive?
+      bump_type = UI.select "Select Bump Type", %w{major minor patch none}
+      if bump_type != "none"
+        increment_version_number(bump_type: bump_type)
+      end
+    end
+  end
+
 end
