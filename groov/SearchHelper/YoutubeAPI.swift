@@ -11,17 +11,20 @@ import Moya
 
 enum YoutubeAPI {
     case suggestion(keyword: String)
-    case search(suggestion: String, apiKey: String)
-    case videos(ids: [String], apiKey: String)
+    case videoId(suggestion: String)
+    case videoList(ids: [String])
+    case pagination(suggestion: String, token: String)
 }
 
 extension YoutubeAPI: TargetType {
+    static let key = Bundle.main.object(forInfoDictionaryKey: "YoutubeAPIKey") as! String
+    
     var baseURL: URL {
         switch self {
         case .suggestion:
             return URL(string: "http://google.com")!
             
-        case .search, .videos:
+        case .videoId, .videoList, .pagination:
             return URL(string: "https://www.googleapis.com")!
         }
     }
@@ -31,10 +34,10 @@ extension YoutubeAPI: TargetType {
         case .suggestion:
             return "/complete/search"
             
-        case .search:
+        case .videoId, .pagination:
             return "/youtube/v3/search"
             
-        case .videos:
+        case .videoList:
             return "/youtube/v3/videos"
         }
     }
@@ -56,15 +59,22 @@ extension YoutubeAPI: TargetType {
             }
             return .requestPlain
             
-        case .search(let suggestion, let apiKey):
-            let encodable = YoutubeSearchParameter(q: suggestion, key: apiKey)
+        case .videoId(let suggestion):
+            let encodable = YoutubeSearchParameter(q: suggestion, key: YoutubeAPI.key)
             if let dictionary = encodable.dictionary {
                 return .requestParameters(parameters: dictionary, encoding: URLEncoding.default)
             }
             return .requestPlain
 
-        case .videos(let ids, let apiKey):
-            let encodable = YoutubeVideosParameter(ids: ids, apiKey: apiKey)
+        case .videoList(let ids):
+            let encodable = YoutubeVideosParameter(ids: ids, apiKey: YoutubeAPI.key)
+            if let dictionary = encodable.dictionary {
+                return .requestParameters(parameters: dictionary, encoding: URLEncoding.default)
+            }
+            return .requestPlain
+            
+        case .pagination(let suggestion, let token):
+            let encodable = YoutubeSearchParameter(q: suggestion, key: YoutubeAPI.key, pageToken: token)
             if let dictionary = encodable.dictionary {
                 return .requestParameters(parameters: dictionary, encoding: URLEncoding.default)
             }
@@ -89,6 +99,7 @@ private struct YoutubeSearchParameter: Encodable {
     let maxResults: Int = 10
     let q: String
     let key: String
+    var pageToken: String?
 }
 
 private struct YoutubeVideosParameter: Encodable {
