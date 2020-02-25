@@ -777,6 +777,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited) -D DEBUG";
 				PODS_PODFILE_DIR_PATH = "${SRCROOT}/.";
 				PRODUCT_BUNDLE_IDENTIFIER = com.feelg.groov;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -800,6 +801,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PODS_PODFILE_DIR_PATH = "${SRCROOT}/.";
 				PRODUCT_BUNDLE_IDENTIFIER = com.feelg.groov;
 				PRODUCT_NAME = "$(TARGET_NAME)";
