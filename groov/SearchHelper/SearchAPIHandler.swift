@@ -17,7 +17,11 @@ final class SearchAPIHandler {
     typealias GetVideoIdsCompletionHandler = (Result<GetVideoIdsSuccessResult, Error>) -> ()
     typealias GetVideosCompletionHandler = (Result<[Video], Error>) -> ()
 
+    #if DEBUG
     private let provider = MoyaProvider<YoutubeAPI>(plugins: [NetworkLoggerPlugin()])
+    #else
+    private let provider = MoyaProvider<YoutubeAPI>()
+    #endif
     
     // MARK: - Function
     func requestSuggestion(of keyword: String, completionHandler: @escaping SuggestionCompletionHandler) -> Cancellable {
