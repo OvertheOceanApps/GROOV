@@ -1,0 +1,8 @@
+app_identifier("com.feelg.groov") # The bundle identifier of your app
+apple_id("rlavlfrnjs12@naver.com") # Your Apple email address
+
+itc_team_id("1101200") # App Store Connect Team ID
+team_id("68L248M44U") # Developer Portal Team ID
+
+# For more information about the Appfile, see:
+#     https://docs.fastlane.tools/advanced/#appfile
