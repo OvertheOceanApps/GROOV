@@ -19,6 +19,8 @@ platform :ios do
   desc "Push a new beta build to TestFlight"
   lane :beta do
     ask_version_bump_type()
+    match(type: "development")
+    match(type: "appstore")
     gym(
       workspace: "groov.xcworkspace",
       scheme: "groov",
