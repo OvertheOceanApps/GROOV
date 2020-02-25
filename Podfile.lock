@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (5.0.0)
+  - Alamofire (5.0.2)
   - AssistantKit (0.6.1)
   - Crashlytics (3.9.3):
     - Fabric (~> 1.7.2)
@@ -174,7 +174,7 @@ SPEC REPOS:
     - SWXMLHash
 
 SPEC CHECKSUMS:
-  Alamofire: 58ff2bfb8daaacaa233d5c36e37b10a5248f59b1
+  Alamofire: 3ba7a4db18b4f62c4a1c0e1cb39d7f3d52e10ada
   AssistantKit: 7dd40c019e9a06e93555ed58498a2d212fcb408d
   Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
   Fabric: 25d0963b691fc97be566392243ff0ecef5a68338

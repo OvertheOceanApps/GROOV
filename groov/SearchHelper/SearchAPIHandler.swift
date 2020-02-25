@@ -11,50 +11,50 @@ import Moya
 import SWXMLHash
 
 final class SearchAPIHandler {
-    typealias SuggestionCompletionHandler = ([String]) -> ()
-    typealias GetVideosCompletionHandler = ([Video]) -> ()
+    typealias GetVideoIdsSuccessResult = (ids: [String], token: String?)
     
-    private let kAPIKeyYoutube: String = Bundle.main.object(forInfoDictionaryKey: "YoutubeAPIKey") as! String
+    typealias SuggestionCompletionHandler = (Result<[String], Error>) -> ()
+    typealias GetVideoIdsCompletionHandler = (Result<GetVideoIdsSuccessResult, Error>) -> ()
+    typealias GetVideosCompletionHandler = (Result<[Video], Error>) -> ()
+
     private let provider = MoyaProvider<YoutubeAPI>(plugins: [NetworkLoggerPlugin()])
     
-    private var latestSuggestion: String? {
-        didSet {
-            if oldValue != latestSuggestion {
-                nextPageToken = nil
-            }
-        }
-    }
-    // TODO: pageToken & Pagination
-    private var nextPageToken: String?
-    
     // MARK: - Function
-    func requestSuggestion(of keyword: String, completionHandler: @escaping SuggestionCompletionHandler) {
-        provider.request(.suggestion(keyword: keyword)) { result in
-            var suggestions: [String] = []
-            
+    func requestSuggestion(of keyword: String, completionHandler: @escaping SuggestionCompletionHandler) -> Cancellable {
+        return provider.request(.suggestion(keyword: keyword)) { result in
             switch result {
             case .success(let response):
+                var suggestions: [String] = []
+                
                 SWXMLHash.parse(response.data)["toplevel"]["CompleteSuggestion"].all.forEach {
                     guard let element = $0["suggestion"].element, let data = element.attribute(by: "data") else { return }
                     suggestions.append(data.text)
                 }
                 
+                completionHandler(.success(suggestions))
+                
             case .failure(let error):
-                print(error.localizedDescription)
+                completionHandler(.failure(error))
             }
-            
-            completionHandler(suggestions)
         }
     }
     
-    func requestVideos(of suggestion: String, completionHandler: @escaping GetVideosCompletionHandler) {
-        provider.request(.search(suggestion: suggestion, apiKey: kAPIKeyYoutube)) { result in
+    func requestVideoIds(of suggestion: String, token: String?, completionHandler: @escaping GetVideoIdsCompletionHandler) -> Cancellable {
+        var api: YoutubeAPI {
+            if let token = token {
+                return .pagination(suggestion: suggestion, token: token)
+            }
+            return .videoId(suggestion: suggestion)
+        }
+        
+        return provider.request(api) { result in
             switch result {
             case .success(let response):
                 do {
+                    var nextPageToken: String?
+                    var ids: [String] = []
+
                     if let json = try response.mapJSON() as? [String: Any] {
-                        var ids: [String] = []
-                        
                         if let items = json["items"] as? [[String: AnyObject]] {
                             items.forEach {
                                 if let videoId = $0["id"] as? [String: AnyObject], let id = videoId["videoId"] as? String {
@@ -62,29 +62,27 @@ final class SearchAPIHandler {
                                 }
                             }
                         }
-                        
-                        self.requestVideos(of: ids, completionHandler: completionHandler)
-                        return
+                        nextPageToken = json["nextPageToken"] as? String
                     }
-                } catch let error as NSError {
-                    print(error.localizedDescription)
+                    
+                    completionHandler(.success((ids, nextPageToken)))
+                } catch {
+                    completionHandler(.failure(error))
                 }
                 
             case .failure(let error):
-                print(error.localizedDescription)
+                completionHandler(.failure(error))
             }
-            
-            completionHandler([])
         }
     }
     
-    private func requestVideos(of videoIds: [String], completionHandler: @escaping GetVideosCompletionHandler) {
-        provider.request(.videos(ids: videoIds, apiKey: kAPIKeyYoutube)) { result in
-            var videos: [Video] = []
-            
+    func requestVideos(with ids: [String], completionHandler: @escaping GetVideosCompletionHandler) -> Cancellable {
+        return provider.request(.videoList(ids: ids)) { result in
             switch result {
             case .success(let response):
                 do {
+                    var videos: [Video] = []
+                    
                     if let json = try response.mapJSON() as? [String: Any] {
                         if let items = json["items"] as? [[String: AnyObject]] {
                             items.forEach {
@@ -93,17 +91,14 @@ final class SearchAPIHandler {
                         }
                     }
                     
-                    completionHandler(videos)
-                    return
-                } catch let error as NSError {
-                    print(error.localizedDescription)
+                    completionHandler(.success(videos))
+                } catch {
+                    completionHandler(.failure(error))
                 }
                 
             case .failure(let error):
-                print(error.localizedDescription)
+                completionHandler(.failure(error))
             }
-            
-            completionHandler(videos)
         }
     }
 }
