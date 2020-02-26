@@ -50,10 +50,10 @@ final class SearchViewController: BaseViewController {
         super.viewDidLoad()
         
         dataManager.delegate = self
+        addKeyboardNotification()
         
         setNavigationBarBackgroundColor()
         initComponents()
-        addKeyboardNotification()
     }
     
     func initComponents() {
@@ -262,6 +262,7 @@ extension SearchViewController: UITableViewDelegate {
         case .suggest:
             let keyword = dataManager.suggestions[indexPath.row]
             searchBar.text = keyword
+            searchBar.resignFirstResponder()
             activityIndicatorView.startAnimating()
             dataManager.requestVideos(suggestion: keyword)
             

@@ -19,25 +19,35 @@ protocol SearchViewDataManagerDelegate: class {
 final class SearchViewDataManager {
     // MARK: - Value
     // MARK: Public
-    var suggestions: [String] = [] {
-        didSet {
-            if oldValue != suggestions {
-                delegate?.suggestionsUpdated()
-            }
+    private(set) var suggestions: [String] {
+        get { return _suggestions }
+        set {
+            _suggestions = newValue
+            _searchedVideos = []
+            
+            delegate?.suggestionsUpdated()
         }
     }
-    var recentlyAddedVideos: [Video] = []
-    var searchedVideos: [Video] = [] {
-        didSet {
-            if oldValue != searchedVideos {
-                delegate?.videoListUpdated(canRequestNextPage: nextPageToken != nil)
-            }
+    private(set) var recentlyAddedVideos: [Video] {
+        get { return _recentlyAddedVideos }
+        set { _recentlyAddedVideos = newValue }
+    }
+    private(set) var searchedVideos: [Video] {
+        get { return _searchedVideos }
+        set {
+            _searchedVideos = newValue
+            
+            delegate?.videoListUpdated(canRequestNextPage: nextPageToken != nil)
         }
     }
     
     weak var delegate: SearchViewDataManagerDelegate?
     
     // MARK: Private
+    private var _suggestions: [String] = []
+    private var _recentlyAddedVideos: [Video] = []
+    private var _searchedVideos: [Video] = []
+    
     private let debouncer: Debouncer = Debouncer(interval: 0.3)
     private var nextPageToken: String?
     
@@ -60,17 +70,16 @@ final class SearchViewDataManager {
     
     func updateRecentlyAddedVideos() {
         let realm = try! Realm()
-        recentlyAddedVideos = Array(realm.objects(Video.self).sorted(byKeyPath: "createdAt", ascending: false))
+        _recentlyAddedVideos = Array(realm.objects(Video.self).sorted(byKeyPath: "createdAt", ascending: false))
     }
     
     func requestSuggestionList(keyword: String) {
         cancelAllRequest()
         nextPageToken = nil
-        suggestions = []
-        searchedVideos = []
         
         let trimmedString = keyword.trimmingCharacters(in: .whitespaces)
         guard trimmedString.isEmpty == false else {
+            suggestions = []
             debouncer.resetTimer()
             return
         }
