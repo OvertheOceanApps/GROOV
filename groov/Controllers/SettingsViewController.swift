@@ -94,6 +94,7 @@ extension SettingsViewController {
     
     func sendMail() {
         let mailVC = MFMailComposeViewController()
+        mailVC.modalPresentationStyle = .fullScreen
         mailVC.mailComposeDelegate = self
         mailVC.setToRecipients(["rlavlfrnjs12@gmail.com"])
         mailVC.setSubject("Service feedback for groov")
