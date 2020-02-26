@@ -98,6 +98,7 @@ extension SearchViewController {
                 cancelButton.setTitleColor(GRVColor.mainTextColor, for: .normal)
             }
         }
+        searchBar.layoutIfNeeded() // Layout을 안해주면 TextField가 그려지기 전이라, Underline을 붙일 수 없음.
         
         if let textField = firstSubview(of: UITextField.self, in: searchBar), let label = firstSubview(of: UILabel.self, in: searchBar) {
             underLineView.translatesAutoresizingMaskIntoConstraints = false
