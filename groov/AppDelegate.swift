@@ -15,7 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
         
@@ -28,6 +27,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     }
                 }
         })
+        
+        let env = ProcessInfo.processInfo.environment
+        if let uiTests = env["XCUITEST"], uiTests == "1" {
+            let realm = try! Realm()
+            try! realm.write {
+                realm.deleteAll()
+            }
+        }
         
         return true
     }
