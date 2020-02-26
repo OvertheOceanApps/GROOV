@@ -20,9 +20,7 @@ final class SearchViewDataManager {
     // MARK: - Value
     // MARK: Public
     private(set) var suggestions: [String] {
-        get {
-            return _suggestions
-        }
+        get { return _suggestions }
         set {
             _suggestions = newValue
             _searchedVideos = []
@@ -31,17 +29,11 @@ final class SearchViewDataManager {
         }
     }
     private(set) var recentlyAddedVideos: [Video] {
-        get {
-            return _recentlyAddedVideos
-        }
-        set {
-            _recentlyAddedVideos = newValue
-        }
+        get { return _recentlyAddedVideos }
+        set { _recentlyAddedVideos = newValue }
     }
     private(set) var searchedVideos: [Video] {
-        get {
-            return _searchedVideos
-        }
+        get { return _searchedVideos }
         set {
             _searchedVideos = newValue
             
