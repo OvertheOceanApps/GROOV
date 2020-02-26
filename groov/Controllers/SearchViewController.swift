@@ -194,7 +194,7 @@ extension SearchViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         activityIndicatorView.startAnimating()
-        dataManager.requestSuggestionList(keyword: searchBar.text!)
+        dataManager.requestVideos(suggestion: searchBar.text!)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
