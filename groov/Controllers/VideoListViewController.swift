@@ -355,6 +355,7 @@ extension VideoListViewController {
         let searchVC = self.storyboard?.instantiateViewController(withIdentifier: StoryboardId.Search) as! SearchViewController
         searchVC.delegate = self
         let navController = UINavigationController(rootViewController: searchVC)
+        navController.modalPresentationStyle = .fullScreen
         self.present(navController, animated: true, completion: nil)
     }
     
