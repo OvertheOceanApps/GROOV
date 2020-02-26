@@ -29,6 +29,8 @@
 		1F376224206000D1001ED5BB /* GRSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F37621D206000D1001ED5BB /* GRSearchBar.swift */; };
 		1F376225206000D1001ED5BB /* SearchVideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F37621E206000D1001ED5BB /* SearchVideoTableViewCell.swift */; };
 		1FAE89861FAA551000CF900D /* license.html in Resources */ = {isa = PBXBuildFile; fileRef = 1FAE89841FAA551000CF900D /* license.html */; };
+		1FDA2D3424062E2100523739 /* groovSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDA2D3324062E2100523739 /* groovSnapshot.swift */; };
+		1FDA2D3C24062E3000523739 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDA2D3B24062E3000523739 /* SnapshotHelper.swift */; };
 		31251DBFEDF78548A1A2A767 /* Pods_groov.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABDD6A5EDEFF369926A285F5 /* Pods_groov.framework */; };
 		C6172ECD2400380B00F2B5C1 /* LoadingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6172ECC2400380B00F2B5C1 /* LoadingIndicatorView.swift */; };
 		C6172ECF240044A900F2B5C1 /* Debouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6172ECE240044A900F2B5C1 /* Debouncer.swift */; };
@@ -42,20 +44,11 @@
 		C66ED4C81D2CA73E0055F441 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66ED4C71D2CA73E0055F441 /* AppDelegate.swift */; };
 		C66ED4CD1D2CA73E0055F441 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C66ED4CB1D2CA73E0055F441 /* Main.storyboard */; };
 		C66ED4D21D2CA73E0055F441 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C66ED4D01D2CA73E0055F441 /* LaunchScreen.storyboard */; };
-		C66ED4DD1D2CA73E0055F441 /* groovTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66ED4DC1D2CA73E0055F441 /* groovTests.swift */; };
-		C66ED4E81D2CA73E0055F441 /* groovUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66ED4E71D2CA73E0055F441 /* groovUITests.swift */; };
 		C683238E1E89120E00B0F623 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C683238D1E89120E00B0F623 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		C66ED4D91D2CA73E0055F441 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C66ED4BC1D2CA73E0055F441 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C66ED4C31D2CA73E0055F441;
-			remoteInfo = groov;
-		};
-		C66ED4E41D2CA73E0055F441 /* PBXContainerItemProxy */ = {
+		1FDA2D3624062E2100523739 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C66ED4BC1D2CA73E0055F441 /* Project object */;
 			proxyType = 1;
@@ -102,6 +95,10 @@
 		1F37621E206000D1001ED5BB /* SearchVideoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVideoTableViewCell.swift; sourceTree = "<group>"; };
 		1F6C43301D32A05A00F53FA9 /* groov-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "groov-Bridging-Header.h"; sourceTree = "<group>"; };
 		1FAE89841FAA551000CF900D /* license.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = license.html; sourceTree = SOURCE_ROOT; };
+		1FDA2D3124062E2100523739 /* groovSnapshot.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = groovSnapshot.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FDA2D3324062E2100523739 /* groovSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = groovSnapshot.swift; sourceTree = "<group>"; };
+		1FDA2D3524062E2100523739 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1FDA2D3B24062E3000523739 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		4C40722D096E3B0085A2B780 /* Pods-groov.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-groov.debug.xcconfig"; path = "Pods/Target Support Files/Pods-groov/Pods-groov.debug.xcconfig"; sourceTree = "<group>"; };
 		97596A9D467582EEF5030BE1 /* Pods-groov.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-groov.release.xcconfig"; path = "Pods/Target Support Files/Pods-groov/Pods-groov.release.xcconfig"; sourceTree = "<group>"; };
 		A82A0158A517718A8183ABD2 /* Pods_groovTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_groovTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,37 +117,24 @@
 		C66ED4CC1D2CA73E0055F441 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C66ED4D11D2CA73E0055F441 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C66ED4D31D2CA73E0055F441 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C66ED4D81D2CA73E0055F441 /* groovTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = groovTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C66ED4DC1D2CA73E0055F441 /* groovTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = groovTests.swift; sourceTree = "<group>"; };
-		C66ED4DE1D2CA73E0055F441 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C66ED4E31D2CA73E0055F441 /* groovUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = groovUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C66ED4E71D2CA73E0055F441 /* groovUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = groovUITests.swift; sourceTree = "<group>"; };
-		C66ED4E91D2CA73E0055F441 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C683238D1E89120E00B0F623 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C8ABA509D130F72F0EBCBA43 /* Pods_groovUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_groovUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1FDA2D2E24062E2100523739 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C66ED4C11D2CA73E0055F441 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				C62533AA1D46F4A5006E43F8 /* MessageUI.framework in Frameworks */,
 				31251DBFEDF78548A1A2A767 /* Pods_groov.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C66ED4D51D2CA73E0055F441 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C66ED4E01D2CA73E0055F441 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,6 +227,16 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		1FDA2D3224062E2100523739 /* groovSnapshot */ = {
+			isa = PBXGroup;
+			children = (
+				1FDA2D3B24062E3000523739 /* SnapshotHelper.swift */,
+				1FDA2D3324062E2100523739 /* groovSnapshot.swift */,
+				1FDA2D3524062E2100523739 /* Info.plist */,
+			);
+			path = groovSnapshot;
+			sourceTree = "<group>";
+		};
 		8163F3A8224503FE11C038C0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -277,8 +271,7 @@
 			isa = PBXGroup;
 			children = (
 				C66ED4C61D2CA73E0055F441 /* groov */,
-				C66ED4DB1D2CA73E0055F441 /* groovTests */,
-				C66ED4E61D2CA73E0055F441 /* groovUITests */,
+				1FDA2D3224062E2100523739 /* groovSnapshot */,
 				C66ED4C51D2CA73E0055F441 /* Products */,
 				8E6D4F9944C0632238763D07 /* Pods */,
 				8163F3A8224503FE11C038C0 /* Frameworks */,
@@ -289,8 +282,7 @@
 			isa = PBXGroup;
 			children = (
 				C66ED4C41D2CA73E0055F441 /* groov.app */,
-				C66ED4D81D2CA73E0055F441 /* groovTests.xctest */,
-				C66ED4E31D2CA73E0055F441 /* groovUITests.xctest */,
+				1FDA2D3124062E2100523739 /* groovSnapshot.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -315,27 +307,27 @@
 			path = groov;
 			sourceTree = "<group>";
 		};
-		C66ED4DB1D2CA73E0055F441 /* groovTests */ = {
-			isa = PBXGroup;
-			children = (
-				C66ED4DC1D2CA73E0055F441 /* groovTests.swift */,
-				C66ED4DE1D2CA73E0055F441 /* Info.plist */,
-			);
-			path = groovTests;
-			sourceTree = "<group>";
-		};
-		C66ED4E61D2CA73E0055F441 /* groovUITests */ = {
-			isa = PBXGroup;
-			children = (
-				C66ED4E71D2CA73E0055F441 /* groovUITests.swift */,
-				C66ED4E91D2CA73E0055F441 /* Info.plist */,
-			);
-			path = groovUITests;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		1FDA2D3024062E2100523739 /* groovSnapshot */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1FDA2D3824062E2100523739 /* Build configuration list for PBXNativeTarget "groovSnapshot" */;
+			buildPhases = (
+				1FDA2D2D24062E2100523739 /* Sources */,
+				1FDA2D2E24062E2100523739 /* Frameworks */,
+				1FDA2D2F24062E2100523739 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1FDA2D3724062E2100523739 /* PBXTargetDependency */,
+			);
+			name = groovSnapshot;
+			productName = groovSnapshot;
+			productReference = 1FDA2D3124062E2100523739 /* groovSnapshot.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		C66ED4C31D2CA73E0055F441 /* groov */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C66ED4EC1D2CA73E0055F441 /* Build configuration list for PBXNativeTarget "groov" */;
@@ -356,67 +348,27 @@
 			productReference = C66ED4C41D2CA73E0055F441 /* groov.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C66ED4D71D2CA73E0055F441 /* groovTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C66ED4EF1D2CA73E0055F441 /* Build configuration list for PBXNativeTarget "groovTests" */;
-			buildPhases = (
-				C66ED4D41D2CA73E0055F441 /* Sources */,
-				C66ED4D51D2CA73E0055F441 /* Frameworks */,
-				C66ED4D61D2CA73E0055F441 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C66ED4DA1D2CA73E0055F441 /* PBXTargetDependency */,
-			);
-			name = groovTests;
-			productName = groovTests;
-			productReference = C66ED4D81D2CA73E0055F441 /* groovTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		C66ED4E21D2CA73E0055F441 /* groovUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C66ED4F21D2CA73E0055F441 /* Build configuration list for PBXNativeTarget "groovUITests" */;
-			buildPhases = (
-				C66ED4DF1D2CA73E0055F441 /* Sources */,
-				C66ED4E01D2CA73E0055F441 /* Frameworks */,
-				C66ED4E11D2CA73E0055F441 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C66ED4E51D2CA73E0055F441 /* PBXTargetDependency */,
-			);
-			name = groovUITests;
-			productName = groovUITests;
-			productReference = C66ED4E31D2CA73E0055F441 /* groovUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		C66ED4BC1D2CA73E0055F441 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0730;
+				LastSwiftUpdateCheck = 1120;
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = PilGwonKim;
 				TargetAttributes = {
+					1FDA2D3024062E2100523739 = {
+						CreatedOnToolsVersion = 11.2.1;
+						DevelopmentTeam = 68L248M44U;
+						ProvisioningStyle = Automatic;
+						TestTargetID = C66ED4C31D2CA73E0055F441;
+					};
 					C66ED4C31D2CA73E0055F441 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = 68L248M44U;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Manual;
-					};
-					C66ED4D71D2CA73E0055F441 = {
-						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = 0900;
-						TestTargetID = C66ED4C31D2CA73E0055F441;
-					};
-					C66ED4E21D2CA73E0055F441 = {
-						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = 0900;
-						TestTargetID = C66ED4C31D2CA73E0055F441;
 					};
 				};
 			};
@@ -439,13 +391,19 @@
 			projectRoot = "";
 			targets = (
 				C66ED4C31D2CA73E0055F441 /* groov */,
-				C66ED4D71D2CA73E0055F441 /* groovTests */,
-				C66ED4E21D2CA73E0055F441 /* groovUITests */,
+				1FDA2D3024062E2100523739 /* groovSnapshot */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		1FDA2D2F24062E2100523739 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C66ED4C21D2CA73E0055F441 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -457,20 +415,6 @@
 				1FAE89861FAA551000CF900D /* license.html in Resources */,
 				C61B73DB1E9C69D4003AE091 /* Assets.xcassets in Resources */,
 				C683238E1E89120E00B0F623 /* GoogleService-Info.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C66ED4D61D2CA73E0055F441 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C66ED4E11D2CA73E0055F441 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -557,6 +501,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		1FDA2D2D24062E2100523739 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1FDA2D3424062E2100523739 /* groovSnapshot.swift in Sources */,
+				1FDA2D3C24062E3000523739 /* SnapshotHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C66ED4C01D2CA73E0055F441 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -591,34 +544,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C66ED4D41D2CA73E0055F441 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C66ED4DD1D2CA73E0055F441 /* groovTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C66ED4DF1D2CA73E0055F441 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C66ED4E81D2CA73E0055F441 /* groovUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		C66ED4DA1D2CA73E0055F441 /* PBXTargetDependency */ = {
+		1FDA2D3724062E2100523739 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C66ED4C31D2CA73E0055F441 /* groov */;
-			targetProxy = C66ED4D91D2CA73E0055F441 /* PBXContainerItemProxy */;
-		};
-		C66ED4E51D2CA73E0055F441 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C66ED4C31D2CA73E0055F441 /* groov */;
-			targetProxy = C66ED4E41D2CA73E0055F441 /* PBXContainerItemProxy */;
+			targetProxy = 1FDA2D3624062E2100523739 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -663,6 +595,58 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		1FDA2D3924062E2100523739 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 68L248M44U;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = groovSnapshot/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = app.overtheocean.groovSnapshot;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = groov;
+			};
+			name = Debug;
+		};
+		1FDA2D3A24062E2100523739 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 68L248M44U;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = groovSnapshot/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = app.overtheocean.groovSnapshot;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = groov;
+			};
+			name = Release;
+		};
 		C66ED4EA1D2CA73E0055F441 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -814,63 +798,18 @@
 			};
 			name = Release;
 		};
-		C66ED4F01D2CA73E0055F441 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = groovTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.feelg.groovTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/groov.app/groov";
-			};
-			name = Debug;
-		};
-		C66ED4F11D2CA73E0055F441 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = groovTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.feelg.groovTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/groov.app/groov";
-			};
-			name = Release;
-		};
-		C66ED4F31D2CA73E0055F441 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = groovUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.feelg.groovUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
-				TEST_TARGET_NAME = groov;
-			};
-			name = Debug;
-		};
-		C66ED4F41D2CA73E0055F441 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = groovUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.feelg.groovUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
-				TEST_TARGET_NAME = groov;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1FDA2D3824062E2100523739 /* Build configuration list for PBXNativeTarget "groovSnapshot" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1FDA2D3924062E2100523739 /* Debug */,
+				1FDA2D3A24062E2100523739 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C66ED4BF1D2CA73E0055F441 /* Build configuration list for PBXProject "groov" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -885,24 +824,6 @@
 			buildConfigurations = (
 				C66ED4ED1D2CA73E0055F441 /* Debug */,
 				C66ED4EE1D2CA73E0055F441 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C66ED4EF1D2CA73E0055F441 /* Build configuration list for PBXNativeTarget "groovTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C66ED4F01D2CA73E0055F441 /* Debug */,
-				C66ED4F11D2CA73E0055F441 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C66ED4F21D2CA73E0055F441 /* Build configuration list for PBXNativeTarget "groovUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C66ED4F31D2CA73E0055F441 /* Debug */,
-				C66ED4F41D2CA73E0055F441 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
