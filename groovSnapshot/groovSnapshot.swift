@@ -20,7 +20,5 @@ class groovSnapshot: XCTestCase {
     }
     
     func testSnapshot() {
-        
-        
     }
 }

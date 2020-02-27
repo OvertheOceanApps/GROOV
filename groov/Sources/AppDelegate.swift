@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Realm.Configuration.defaultConfiguration = Realm.Configuration(
             schemaVersion: 1,
             migrationBlock: { migration, oldSchemaVersion in
-                migration.enumerateObjects(ofType: Video.className()) { oldObject, newObject in
+                migration.enumerateObjects(ofType: Video.className()) { _, newObject in
                     if oldSchemaVersion < 1 {
                         newObject!["duration"] = ""
                     }
@@ -63,6 +63,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
 }
-
