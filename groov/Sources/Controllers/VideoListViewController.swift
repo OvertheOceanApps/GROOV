@@ -45,7 +45,7 @@ class VideoListViewController: BaseViewController, UITableViewDelegate, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = NSLocalizedString("VideoList", comment: "")
+        self.navigationItem.title = L10n.videoList
         self.loadVideos()
         self.initComponents()
     }
@@ -71,7 +71,7 @@ class VideoListViewController: BaseViewController, UITableViewDelegate, UITableV
     func initComponents() {
         self.videoPlayerView.delegate = self
         self.progressImageView.setWidth(self.view.width)
-        self.searchVideoButton.setImage(UIImage(named: NSLocalizedString("ImgSearchVideo", comment: "")), for: .normal)
+        self.searchVideoButton.setImage(UIImage(named: L10n.imgSearchVideo), for: .normal)
         
         // design change under iOS 11
         if UIDevice().userInterfaceIdiom == .phone
@@ -171,7 +171,7 @@ extension VideoListViewController {
             warning.configureDropShadow()
             
             warning.configureTheme(backgroundColor: UIColor.init(netHex: 0x292b30), foregroundColor: UIColor.white)
-            warning.configureContent(title: NSLocalizedString("VideoAddComplete", comment: ""), body: "\(video.title)")
+            warning.configureContent(title: L10n.videoAddComplete, body: "\(video.title)")
             warning.button?.isHidden = true
             
             var warningConfig = SwiftMessages.defaultConfig
@@ -313,7 +313,7 @@ extension VideoListViewController {
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let deleteAction: UITableViewRowAction = UITableViewRowAction.init(style: .normal, title: NSLocalizedString("Delete", comment: "")) { (action, indexPath) in
+        let deleteAction: UITableViewRowAction = UITableViewRowAction.init(style: .normal, title: L10n.delete) { (_, indexPath) in
             self.tableView(self.videoTableView, commit: .delete, forRowAt: indexPath)
         }
         deleteAction.backgroundColor = GRVColor.tableviewRowDeleteColor
