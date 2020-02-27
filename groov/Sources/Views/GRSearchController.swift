@@ -8,14 +8,14 @@
 
 import UIKit
 
-protocol GRSearchControllerDelegate {
+protocol GRSearchControllerDelegate: class {
     func didTapOnSearchButton()
     func didTapOnCancelButton()
 }
 
 class GRSearchController: UISearchController, UISearchBarDelegate {
     var aSearchBar: GRSearchBar!
-    var aDelegate: GRSearchControllerDelegate!
+    weak var aDelegate: GRSearchControllerDelegate?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -39,11 +39,11 @@ extension GRSearchController {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.aSearchBar.resignFirstResponder()
-        self.aDelegate.didTapOnSearchButton()
+        self.aDelegate?.didTapOnSearchButton()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         self.aSearchBar.resignFirstResponder()
-        self.aDelegate.didTapOnCancelButton()
+        self.aDelegate?.didTapOnCancelButton()
     }
 }

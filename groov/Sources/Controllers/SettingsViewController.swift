@@ -38,7 +38,7 @@ class SettingsViewController: BaseViewController, UITableViewDelegate, UITableVi
     
     func initComponents() {
         self.mainTableView.backgroundColor = GRVColor.backgroundColor
-        self.dismissBarButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : GRVColor.mainTextColor, NSAttributedString.Key.font : UIFont.systemFont(ofSize: 15)], for: .normal)
+        self.dismissBarButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: GRVColor.mainTextColor, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15)], for: .normal)
     }
 }
 
@@ -221,7 +221,3 @@ extension SettingsViewController {
         self.dismiss(animated: true, completion: nil)
     }
 }
-
-
-
-

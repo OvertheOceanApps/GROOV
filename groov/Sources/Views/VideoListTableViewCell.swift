@@ -91,7 +91,7 @@ extension VideoListTableViewCell {
         
         let ti: Double = 0.1
         if #available(iOS 10.0, *) {
-            self.circleTimer = Timer.scheduledTimer(withTimeInterval: ti, repeats: true, block: { (timer) in
+            self.circleTimer = Timer.scheduledTimer(withTimeInterval: ti, repeats: true, block: { _ in
                 self.circulateProgress()
             })
         } else {

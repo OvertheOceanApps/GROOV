@@ -9,7 +9,7 @@
 import UIKit
 
 extension Date {
-    func getRelativeTime(_ toTime: Date) -> String{
+    func getRelativeTime(_ toTime: Date) -> String {
         var seconds: Int = Int(self.timeIntervalSince(toTime))
         var timeSuffix: String = ""
         
@@ -46,70 +46,70 @@ extension Date {
 }
 
 extension UIView {
-    var width:      CGFloat { return self.frame.size.width }
-    var height:     CGFloat { return self.frame.size.height }
-    var size:       CGSize  { return self.frame.size}
+    var width: CGFloat { return self.frame.size.width }
+    var height: CGFloat { return self.frame.size.height }
+    var size: CGSize { return self.frame.size}
     
-    var origin:     CGPoint { return self.frame.origin }
-    var x:          CGFloat { return self.frame.origin.x }
-    var y:          CGFloat { return self.frame.origin.y }
-    var centerX:    CGFloat { return self.center.x }
-    var centerY:    CGFloat { return self.center.y }
+    var origin: CGPoint { return self.frame.origin }
+    var x: CGFloat { return self.frame.origin.x }
+    var y: CGFloat { return self.frame.origin.y }
+    var centerX: CGFloat { return self.center.x }
+    var centerY: CGFloat { return self.center.y }
     
-    var left:       CGFloat { return self.frame.origin.x }
-    var right:      CGFloat { return self.frame.origin.x + self.frame.size.width }
-    var top:        CGFloat { return self.frame.origin.y }
-    var bottom:     CGFloat { return self.frame.origin.y + self.frame.size.height }
+    var left: CGFloat { return self.frame.origin.x }
+    var right: CGFloat { return self.frame.origin.x + self.frame.size.width }
+    var top: CGFloat { return self.frame.origin.y }
+    var bottom: CGFloat { return self.frame.origin.y + self.frame.size.height }
     
-    func setWidth(_ width:CGFloat) {
+    func setWidth(_ width: CGFloat) {
         self.frame.size.width = width
     }
     
-    func setHeight(_ height:CGFloat) {
+    func setHeight(_ height: CGFloat) {
         self.frame.size.height = height
     }
     
-    func setSize(_ size:CGSize) {
+    func setSize(_ size: CGSize) {
         self.frame.size = size
     }
     
-    func setOrigin(_ point:CGPoint) {
+    func setOrigin(_ point: CGPoint) {
         self.frame.origin = point
     }
     
-    func setX(_ x:CGFloat) {
+    func setX(_ x: CGFloat) {
         self.frame.origin = CGPoint(x: x, y: self.frame.origin.y)
     }
     
-    func setY(_ y:CGFloat) {
+    func setY(_ y: CGFloat) {
         self.frame.origin = CGPoint(x: self.frame.origin.x, y: y)
     }
     
-    func setCenterX(_ x:CGFloat) {
+    func setCenterX(_ x: CGFloat) {
         self.center = CGPoint(x: x, y: self.center.y)
     }
     
-    func setCenterY(_ y:CGFloat) {
+    func setCenterY(_ y: CGFloat) {
         self.center = CGPoint(x: self.center.x, y: y)
     }
     
-    func setTop(_ top:CGFloat) {
+    func setTop(_ top: CGFloat) {
         self.frame.origin.y = top
     }
     
-    func setLeft(_ left:CGFloat) {
+    func setLeft(_ left: CGFloat) {
         self.frame.origin.x = left
     }
     
-    func setRight(_ right:CGFloat) {
+    func setRight(_ right: CGFloat) {
         self.frame.origin.x = right - self.frame.size.width
     }
     
-    func setBottom(_ bottom:CGFloat) {
+    func setBottom(_ bottom: CGFloat) {
         self.frame.origin.y = bottom - self.frame.size.height
     }
     
-    func roundCorner(_ radius:CGFloat) {
+    func roundCorner(_ radius: CGFloat) {
         self.layer.cornerRadius = radius
         self.layer.masksToBounds = true
     }
@@ -121,15 +121,7 @@ extension UIView {
         self.layer.masksToBounds = true
     }
     
-    
     func layerGradient() {
-//        let layer : CAGradientLayer = CAGradientLayer()
-//        layer.frame.size = self.frame.size
-//        layer.frame.origin = CGPoint.zero
-//        
-//        layer.colors = [GRVColor.gradationFirstColor, GRVColor.gradationSecondColor, GRVColor.gradationThirdColor, GRVColor.gradationFourthColor]
-//        self.layer.insertSublayer(layer, at: 0)
-        
         let gradient: CAGradientLayer = CAGradientLayer()
         gradient.frame.size = self.frame.size
         gradient.colors = [GRVColor.gradationFirstColor.cgColor, GRVColor.gradationFourthColor.cgColor]
@@ -158,14 +150,14 @@ extension UIColor {
         self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
     }
     
-    convenience init(netHex:Int) {
-        self.init(red:(netHex >> 16) & 0xff, green:(netHex >> 8) & 0xff, blue:netHex & 0xff)
+    convenience init(netHex: Int) {
+        self.init(red: (netHex >> 16) & 0xff, green: (netHex >> 8) & 0xff, blue: netHex & 0xff)
     }
 }
 
 extension String {
     func getYoutubeFormattedDuration() -> String {
-        let formattedDuration = self.replacingOccurrences(of: "PT", with: "").replacingOccurrences(of: "H", with:":").replacingOccurrences(of: "M", with: ":").replacingOccurrences(of: "S", with: "")
+        let formattedDuration = self.replacingOccurrences(of: "PT", with: "").replacingOccurrences(of: "H", with: ":").replacingOccurrences(of: "M", with: ":").replacingOccurrences(of: "S", with: "")
         
         let components = formattedDuration.components(separatedBy: ":")
         var duration = ""
@@ -199,7 +191,7 @@ extension UITextField {
             return self.placeHolderColor
         }
         set {
-            self.attributedPlaceholder = NSAttributedString(string:self.placeholder != nil ? self.placeholder! : "", attributes:[NSAttributedString.Key.foregroundColor: newValue!])
+            self.attributedPlaceholder = NSAttributedString(string: self.placeholder != nil ? self.placeholder! : "", attributes: [NSAttributedString.Key.foregroundColor: newValue!])
         }
     }
 }
