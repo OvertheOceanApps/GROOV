@@ -12,7 +12,7 @@ import AssistantKit
 import SwiftMessages
 import StoreKit
 
-protocol VideoListViewControllerDelegate {
+protocol VideoListViewControllerDelegate: class {
     func recentVideoChanged(_ playlist: Playlist)
 }
 
@@ -32,7 +32,7 @@ class VideoListViewController: BaseViewController, UITableViewDelegate, UITableV
     @IBOutlet var videoPlayerViewTopConstraint: NSLayoutConstraint!
     @IBOutlet var searchVideoButton: UIButton!
     
-    var delegate: VideoListViewControllerDelegate!
+    weak var delegate: VideoListViewControllerDelegate?
     var playlist: Playlist! = nil
     var videoArray: Array<Video> = []
     var currentVideo: Video! = nil
@@ -98,7 +98,7 @@ extension VideoListViewController {
         
         let ti: Double = 0.5
         if #available(iOS 10.0, *) {
-            self.durationTimer = Timer.scheduledTimer(withTimeInterval: ti, repeats: true, block: { (timer) in
+            self.durationTimer = Timer.scheduledTimer(withTimeInterval: ti, repeats: true, block: { _ in
                 self.checkVideoCurrentTime()
             })
         } else {
@@ -195,7 +195,7 @@ extension VideoListViewController {
             }
         }
         
-        delegate.recentVideoChanged(playlist)
+        delegate?.recentVideoChanged(playlist)
     }
     
     func setBlankViewHidden() {
@@ -262,7 +262,7 @@ extension VideoListViewController {
     }
     
     func playerView(_ playerView: YTPlayerView, didChangeTo state: YTPlayerState) {
-        switch(state) {
+        switch state {
         case YTPlayerState.playing:
             print("Video playing")
         case YTPlayerState.paused:
@@ -304,7 +304,7 @@ extension VideoListViewController {
                 self.videoPlayed()
             }
         } else { // else -> play
-            self.videoSelected(indexPath.row, play:true)
+            self.videoSelected(indexPath.row, play: true)
         }
     }
     
@@ -433,4 +433,3 @@ extension VideoListViewController {
         }
     }
 }
-

@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol GRAlertViewControllerDelegate {
+protocol GRAlertViewControllerDelegate: class {
     func alertViewAddButtonTouched(title: String)
 }
 
@@ -21,7 +21,7 @@ class GRAlertViewController: UIViewController {
     @IBOutlet var alertView: UIView!
     @IBOutlet var alertViewTop: NSLayoutConstraint!
     
-    var delegate: GRAlertViewControllerDelegate!
+    weak var delegate: GRAlertViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,7 +68,7 @@ extension GRAlertViewController {
         if let text = self.titleTextField.text {
             if text != "" {
                 self.titleTextField.resignFirstResponder()
-                delegate.alertViewAddButtonTouched(title: text)
+                delegate?.alertViewAddButtonTouched(title: text)
                 self.dismissWithFade()
             }
         }
