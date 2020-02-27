@@ -1,9 +1,7 @@
-platform :ios, '10.0'
+platform :ios, '12.0'
 
 target 'groov' do
   use_frameworks!
-
-  # Pods for groov
 
   pod 'RealmSwift'
   pod 'Kingfisher', 	          '~> 5.0'
