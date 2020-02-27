@@ -1,6 +1,8 @@
 
 groov/Info.plist
+groov/Resources/Info.plist
 groov/GoogleService-Info.plist
+groov/Resources/GoogleService-Info.plist
 groov스토어이미지/
 groov앱아이콘/
 LocalizationIcons/
