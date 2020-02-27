@@ -48,12 +48,12 @@ extension VideoListTableViewCell {
     
     func videoPlayed() {
         self.startTimer()
-        self.playPauseButton.setImage(#imageLiteral(resourceName: "video_list_cell_pause"), for: .normal)
+        self.playPauseButton.setImage(Asset.videoListCellPause.image, for: .normal)
     }
     
     func videoPaused() {
         self.stopTimer()
-        self.playPauseButton.setImage(#imageLiteral(resourceName: "video_list_cell_play"), for: .normal)
+        self.playPauseButton.setImage(Asset.videoListCellPlay.image, for: .normal)
     }
 }
 
@@ -91,7 +91,7 @@ extension VideoListTableViewCell {
         
         let ti: Double = 0.1
         if #available(iOS 10.0, *) {
-            self.circleTimer = Timer.scheduledTimer(withTimeInterval: ti, repeats: true, block: { (timer) in
+            self.circleTimer = Timer.scheduledTimer(withTimeInterval: ti, repeats: true, block: { _ in
                 self.circulateProgress()
             })
         } else {

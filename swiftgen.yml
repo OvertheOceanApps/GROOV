@@ -1,0 +1,14 @@
+strings:
+  inputs: groov/Resources/en.lproj/Localizable.strings
+  outputs:
+    templateName: structured-swift4
+    output: groov/Generated/L10n.swift
+
+xcassets:
+  inputs:
+    - groov/Resources/Assets.xcassets
+  outputs:
+    - templateName: swift4
+      output: groov/Generated/Assets.swift
+      params:
+        forceProvidesNamespaces: true

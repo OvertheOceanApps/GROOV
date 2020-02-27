@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		1F0D31A72077D2CC00F50FE0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1F0D31A92077D2CC00F50FE0 /* Localizable.strings */; };
 		1F0D31AF207936D000F50FE0 /* TrackUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0D31AE207936D000F50FE0 /* TrackUtil.swift */; };
+		1F1A051B24075A9900B14D47 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F1A051924075A9900B14D47 /* GoogleService-Info.plist */; };
+		1F1A051F24075C6C00B14D47 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C66ED4D01D2CA73E0055F441 /* LaunchScreen.storyboard */; };
+		1F1A052224075E0800B14D47 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1A052024075E0800B14D47 /* Assets.swift */; };
+		1F1A052324075E0800B14D47 /* L10n.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1A052124075E0800B14D47 /* L10n.swift */; };
 		1F21B9431D2D61A2001F1722 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F21B9421D2D61A2001F1722 /* Extensions.swift */; };
 		1F2783BC205EA8C00001DFEB /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2783BB205EA8C00001DFEB /* BaseViewController.swift */; };
 		1F376200205FFFBC001ED5BB /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3761FE205FFFBC001ED5BB /* Playlist.swift */; };
@@ -43,8 +47,6 @@
 		C64FCE2F23FED70200790DA5 /* YoutubeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64FCE2E23FED70200790DA5 /* YoutubeAPI.swift */; };
 		C66ED4C81D2CA73E0055F441 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66ED4C71D2CA73E0055F441 /* AppDelegate.swift */; };
 		C66ED4CD1D2CA73E0055F441 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C66ED4CB1D2CA73E0055F441 /* Main.storyboard */; };
-		C66ED4D21D2CA73E0055F441 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C66ED4D01D2CA73E0055F441 /* LaunchScreen.storyboard */; };
-		C683238E1E89120E00B0F623 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C683238D1E89120E00B0F623 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +75,10 @@
 		1F0D31AC2077D2CF00F50FE0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		1F0D31AD2077D2D100F50FE0 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		1F0D31AE207936D000F50FE0 /* TrackUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackUtil.swift; sourceTree = "<group>"; };
+		1F1A051924075A9900B14D47 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1F1A051A24075A9900B14D47 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1F1A052024075E0800B14D47 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
+		1F1A052124075E0800B14D47 /* L10n.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = L10n.swift; sourceTree = "<group>"; };
 		1F21B9421D2D61A2001F1722 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		1F2783BB205EA8C00001DFEB /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		1F3761FE205FFFBC001ED5BB /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
@@ -94,7 +100,7 @@
 		1F37621D206000D1001ED5BB /* GRSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRSearchBar.swift; sourceTree = "<group>"; };
 		1F37621E206000D1001ED5BB /* SearchVideoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVideoTableViewCell.swift; sourceTree = "<group>"; };
 		1F6C43301D32A05A00F53FA9 /* groov-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "groov-Bridging-Header.h"; sourceTree = "<group>"; };
-		1FAE89841FAA551000CF900D /* license.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = license.html; sourceTree = SOURCE_ROOT; };
+		1FAE89841FAA551000CF900D /* license.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = license.html; path = groov/Resources/license.html; sourceTree = SOURCE_ROOT; };
 		1FDA2D3124062E2100523739 /* groovSnapshot.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = groovSnapshot.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FDA2D3324062E2100523739 /* groovSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = groovSnapshot.swift; sourceTree = "<group>"; };
 		1FDA2D3524062E2100523739 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -116,8 +122,6 @@
 		C66ED4C71D2CA73E0055F441 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C66ED4CC1D2CA73E0055F441 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C66ED4D11D2CA73E0055F441 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		C66ED4D31D2CA73E0055F441 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C683238D1E89120E00B0F623 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C8ABA509D130F72F0EBCBA43 /* Pods_groovUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_groovUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -141,6 +145,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F1A051624075A2E00B14D47 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				1F6C43301D32A05A00F53FA9 /* groov-Bridging-Header.h */,
+				C66ED4C71D2CA73E0055F441 /* AppDelegate.swift */,
+				1F376217206000D1001ED5BB /* Views */,
+				1F37620A20600075001ED5BB /* Controllers */,
+				C64FCE2B23FED19600790DA5 /* SearchHelper */,
+				1F2783B9205EA8C00001DFEB /* Common */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		1F1A051724075A3300B14D47 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1F1A051924075A9900B14D47 /* GoogleService-Info.plist */,
+				1F1A051A24075A9900B14D47 /* Info.plist */,
+				C66ED4CB1D2CA73E0055F441 /* Main.storyboard */,
+				C61B73DA1E9C69D4003AE091 /* Assets.xcassets */,
+				C66ED4D01D2CA73E0055F441 /* LaunchScreen.storyboard */,
+				1FAE89841FAA551000CF900D /* license.html */,
+				1F0D31A92077D2CC00F50FE0 /* Localizable.strings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		1F1A051824075A3A00B14D47 /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				1F1A052024075E0800B14D47 /* Assets.swift */,
+				1F1A052124075E0800B14D47 /* L10n.swift */,
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
 		1F2783B9205EA8C00001DFEB /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -290,19 +330,9 @@
 		C66ED4C61D2CA73E0055F441 /* groov */ = {
 			isa = PBXGroup;
 			children = (
-				1F376217206000D1001ED5BB /* Views */,
-				1F37620A20600075001ED5BB /* Controllers */,
-				C64FCE2B23FED19600790DA5 /* SearchHelper */,
-				1F2783B9205EA8C00001DFEB /* Common */,
-				C66ED4CB1D2CA73E0055F441 /* Main.storyboard */,
-				C66ED4C71D2CA73E0055F441 /* AppDelegate.swift */,
-				1F6C43301D32A05A00F53FA9 /* groov-Bridging-Header.h */,
-				C61B73DA1E9C69D4003AE091 /* Assets.xcassets */,
-				C66ED4D01D2CA73E0055F441 /* LaunchScreen.storyboard */,
-				C683238D1E89120E00B0F623 /* GoogleService-Info.plist */,
-				C66ED4D31D2CA73E0055F441 /* Info.plist */,
-				1FAE89841FAA551000CF900D /* license.html */,
-				1F0D31A92077D2CC00F50FE0 /* Localizable.strings */,
+				1F1A051824075A3A00B14D47 /* Generated */,
+				1F1A051724075A3300B14D47 /* Resources */,
+				1F1A051624075A2E00B14D47 /* Sources */,
 			);
 			path = groov;
 			sourceTree = "<group>";
@@ -337,7 +367,9 @@
 				C66ED4C11D2CA73E0055F441 /* Frameworks */,
 				C66ED4C21D2CA73E0055F441 /* Resources */,
 				14D25137692F0D91D9E70B75 /* [CP] Embed Pods Frameworks */,
-				1F0D31B020793C5100F50FE0 /* ShellScript */,
+				1F0D31B020793C5100F50FE0 /* Fabric Run Script */,
+				1F1A051D24075BAC00B14D47 /* SwiftGen */,
+				1F1A051E24075BBE00B14D47 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -355,7 +387,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1120;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = PilGwonKim;
 				TargetAttributes = {
 					1FDA2D3024062E2100523739 = {
@@ -408,13 +440,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C66ED4D21D2CA73E0055F441 /* LaunchScreen.storyboard in Resources */,
+				1F1A051F24075C6C00B14D47 /* LaunchScreen.storyboard in Resources */,
 				C66ED4CD1D2CA73E0055F441 /* Main.storyboard in Resources */,
 				1F376207205FFFD0001ED5BB /* Assets.bundle in Resources */,
 				1F0D31A72077D2CC00F50FE0 /* Localizable.strings in Resources */,
 				1FAE89861FAA551000CF900D /* license.html in Resources */,
 				C61B73DB1E9C69D4003AE091 /* Assets.xcassets in Resources */,
-				C683238E1E89120E00B0F623 /* GoogleService-Info.plist in Resources */,
+				1F1A051B24075A9900B14D47 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,18 +499,55 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-groov/Pods-groov-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		1F0D31B020793C5100F50FE0 /* ShellScript */ = {
+		1F0D31B020793C5100F50FE0 /* Fabric Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Fabric Run Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\"\n";
+		};
+		1F1A051D24075BAC00B14D47 /* SwiftGen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftGen;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n(cd $PROJECT_DIR/Scripts && ./swiftgen.sh)\n\n";
+		};
+		1F1A051E24075BBE00B14D47 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		4BC8F7AD5ECE40600C7FF82F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -529,6 +598,7 @@
 				C66ED4C81D2CA73E0055F441 /* AppDelegate.swift in Sources */,
 				1F376200205FFFBC001ED5BB /* Playlist.swift in Sources */,
 				C64FCE2F23FED70200790DA5 /* YoutubeAPI.swift in Sources */,
+				1F1A052324075E0800B14D47 /* L10n.swift in Sources */,
 				1F37621520600076001ED5BB /* PlaylistListViewController.swift in Sources */,
 				1F2783BC205EA8C00001DFEB /* BaseViewController.swift in Sources */,
 				C6172ED224040D3300F2B5C1 /* SearchViewDataManager.swift in Sources */,
@@ -536,6 +606,7 @@
 				1F37621320600075001ED5BB /* GRAlertViewController.swift in Sources */,
 				1F37621220600075001ED5BB /* LibraryViewController.swift in Sources */,
 				C64FCE2D23FED1BE00790DA5 /* SearchAPIHandler.swift in Sources */,
+				1F1A052224075E0800B14D47 /* Assets.swift in Sources */,
 				1F376221206000D1001ED5BB /* VideoListTableViewCell.swift in Sources */,
 				1F21B9431D2D61A2001F1722 /* Extensions.swift in Sources */,
 				C6172ECF240044A900F2B5C1 /* Debouncer.swift in Sources */,
@@ -663,12 +734,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -717,12 +790,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -759,9 +834,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 68L248M44U;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = groov/Info.plist;
+				INFOPLIST_FILE = groov/Resources/info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -770,7 +846,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.feelg.groov;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.feelg.groov";
-				SWIFT_OBJC_BRIDGING_HEADER = "groov/groov-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "groov/Sources/groov-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
@@ -787,7 +863,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 68L248M44U;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = groov/Info.plist;
+				INFOPLIST_FILE = groov/Resources/info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -796,7 +872,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.feelg.groov;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.feelg.groov";
-				SWIFT_OBJC_BRIDGING_HEADER = "groov/groov-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "groov/Sources/groov-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
 			};
