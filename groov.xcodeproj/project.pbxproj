@@ -834,6 +834,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 68L248M44U;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = groov/Resources/info.plist;
