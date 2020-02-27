@@ -110,3 +110,5 @@ groov앱아이콘/
 groov\.xcworkspace/xcshareddata/
 
 .DS_Store
+
+groov/Resources/checksum.md5
