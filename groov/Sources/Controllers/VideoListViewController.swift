@@ -235,7 +235,7 @@ extension VideoListViewController {
     
     func videoPlayed() {
         self.currentPlayState = PlayState.Play
-        self.playPauseButton.setImage(#imageLiteral(resourceName: "video_control_pause"), for: .normal)
+        self.playPauseButton.setImage(Asset.videoControlPause.image, for: .normal)
         if self.currentSelectedCell != nil {
             self.currentSelectedCell.videoPlayed()
         }
@@ -243,7 +243,7 @@ extension VideoListViewController {
     
     func videoPaused() {
         self.currentPlayState = PlayState.Pause
-        self.playPauseButton.setImage(#imageLiteral(resourceName: "video_control_play"), for: .normal)
+        self.playPauseButton.setImage(Asset.videoControlPlay.image, for: .normal)
         if self.currentSelectedCell != nil {
             self.currentSelectedCell.videoPaused()
         }
