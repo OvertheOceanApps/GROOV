@@ -83,7 +83,11 @@ extension YoutubeAPI: TargetType {
     }
     
     var validationType: ValidationType { return .none }
-    var headers: [String: String]? { return nil }
+    var headers: [String: String]? {
+        return [
+            "X-Ios-Bundle-Identifier": Bundle.main.bundleIdentifier ?? ""
+        ]
+    }
 }
 
 private struct YoutubeSuggestionParameter: Encodable {
