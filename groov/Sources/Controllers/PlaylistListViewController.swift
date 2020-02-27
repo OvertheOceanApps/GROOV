@@ -26,7 +26,7 @@ class PlaylistListViewController: BaseViewController, UITableViewDelegate, UITab
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = NSLocalizedString("FolderList", comment: "")
+        self.navigationItem.title = L10n.folderList
         self.initComponents()
         self.loadPlaylists()
     }
@@ -42,8 +42,8 @@ class PlaylistListViewController: BaseViewController, UITableViewDelegate, UITab
         footerView.backgroundColor = GRVColor.backgroundColor
         
         // init button for localization
-        addFolderButton.setImage(UIImage(named: NSLocalizedString("ImgAddFolder", comment: "")), for: .normal)
-        blankAddFolderButton.setImage(UIImage(named: NSLocalizedString("ImgAddFolder", comment: "")), for: .normal)
+        addFolderButton.setImage(UIImage(named: L10n.imgAddFolder), for: .normal)
+        blankAddFolderButton.setImage(UIImage(named: L10n.imgAddFolder), for: .normal)
     }
 }
 
@@ -150,7 +150,7 @@ extension PlaylistListViewController {
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let deleteAction: UITableViewRowAction = UITableViewRowAction.init(style: .normal, title: NSLocalizedString("Delete", comment: "")) { (action, indexPath) in
+        let deleteAction: UITableViewRowAction = UITableViewRowAction.init(style: .normal, title: L10n.delete) { (_, indexPath) in
             self.tableView(self.playlistTableView, commit: .delete, forRowAt: indexPath)
         }
         deleteAction.backgroundColor = GRVColor.tableviewRowDeleteColor

@@ -38,9 +38,8 @@ class GRAlertViewController: UIViewController {
         descriptionLabel.textColor = UIColor.init(patternImage: #imageLiteral(resourceName: "loading_gradation_middle"))
         addButton.setTitleColor(UIColor.init(patternImage: #imageLiteral(resourceName: "loading_gradation_short")), for: .normal)
         
-        addButton.setTitle(NSLocalizedString("Add", comment: ""), for: .normal)
-        cancelButton.setTitle(NSLocalizedString("Cancel", comment: ""), for: .normal)
-        
+        addButton.setTitle(L10n.add, for: .normal)
+        cancelButton.setTitle(L10n.cancel, for: .normal)
         
         // notification
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
