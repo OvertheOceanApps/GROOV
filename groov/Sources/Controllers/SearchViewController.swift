@@ -80,8 +80,8 @@ extension SearchViewController {
         searchBar.delegate = self
         searchBar.placeholder = L10n.searchVideo
         searchBar.showsCancelButton = true
-        searchBar.setImage(#imageLiteral(resourceName: "search_favicon"), for: .search, state: .normal)
-        searchBar.setImage(#imageLiteral(resourceName: "search_close"), for: .clear, state: .normal)
+        searchBar.setImage(Asset.searchFavicon.image, for: .search, state: .normal)
+        searchBar.setImage(Asset.searchClose.image, for: .clear, state: .normal)
         searchBar.searchBarStyle = .default
         searchBar.barTintColor = .white
         searchBar.sizeToFit()

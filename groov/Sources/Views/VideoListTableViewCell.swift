@@ -48,12 +48,12 @@ extension VideoListTableViewCell {
     
     func videoPlayed() {
         self.startTimer()
-        self.playPauseButton.setImage(#imageLiteral(resourceName: "video_list_cell_pause"), for: .normal)
+        self.playPauseButton.setImage(Asset.videoListCellPause.image, for: .normal)
     }
     
     func videoPaused() {
         self.stopTimer()
-        self.playPauseButton.setImage(#imageLiteral(resourceName: "video_list_cell_play"), for: .normal)
+        self.playPauseButton.setImage(Asset.videoListCellPlay.image, for: .normal)
     }
 }
 
