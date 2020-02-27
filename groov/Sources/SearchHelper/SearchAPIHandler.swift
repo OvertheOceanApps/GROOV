@@ -13,9 +13,9 @@ import SWXMLHash
 final class SearchAPIHandler {
     typealias GetVideoIdsSuccessResult = (ids: [String], token: String?)
     
-    typealias SuggestionCompletionHandler = (Result<[String], Error>) -> ()
-    typealias GetVideoIdsCompletionHandler = (Result<GetVideoIdsSuccessResult, Error>) -> ()
-    typealias GetVideosCompletionHandler = (Result<[Video], Error>) -> ()
+    typealias SuggestionCompletionHandler = (Result<[String], Error>) -> Void
+    typealias GetVideoIdsCompletionHandler = (Result<GetVideoIdsSuccessResult, Error>) -> Void
+    typealias GetVideosCompletionHandler = (Result<[Video], Error>) -> Void
 
     #if DEBUG
     private let provider = MoyaProvider<YoutubeAPI>(plugins: [NetworkLoggerPlugin()])
