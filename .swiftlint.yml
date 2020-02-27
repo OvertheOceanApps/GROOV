@@ -1,0 +1,27 @@
+disabled_rules:
+    - explicit_type_interface
+    - function_body_length
+    - line_length
+    - identifier_name
+    - nesting
+    - cyclomatic_complexity
+    - discarded_notification_center_observer
+    - notification_center_detachment
+    - file_length
+    - type_body_length
+    - large_tuple
+    - force_cast
+    - force_try
+    - type_name
+    - todo
+    - closure_parameter_position
+    - syntactic_sugar
+    - function_parameter_count
+    - compiler_protocol_init
+    - trailing_whitespace
+    - shorthand_operator
+
+excluded:
+    - Carthage
+    - fastlane
+    - Pods
