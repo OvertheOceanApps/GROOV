@@ -842,7 +842,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited) -D DEBUG";
-				PODS_PODFILE_DIR_PATH = "${SRCROOT}/.";
+				PODS_PODFILE_DIR_PATH = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.feelg.groov;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.feelg.groov";
@@ -868,7 +868,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PODS_PODFILE_DIR_PATH = "${SRCROOT}/.";
+				PODS_PODFILE_DIR_PATH = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.feelg.groov;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.feelg.groov";
