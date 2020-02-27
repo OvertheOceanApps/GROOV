@@ -31,7 +31,7 @@ class SettingsViewController: BaseViewController, UITableViewDelegate, UITableVi
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = NSLocalizedString("Settings", comment: "")
+        self.title = L10n.settings
         self.setNavigationBarBackgroundColor()
         self.initComponents()
     }
@@ -54,7 +54,7 @@ extension SettingsViewController {
             warning.configureDropShadow()
             
             warning.configureTheme(backgroundColor: UIColor.init(netHex: 0x292b30), foregroundColor: UIColor.white)
-            warning.configureContent(title: "", body: NSLocalizedString("ImageCacheRemoved", comment: ""))
+            warning.configureContent(title: "", body: L10n.imageCacheRemoved)
             warning.button?.isHidden = true
             
             var warningConfig = SwiftMessages.defaultConfig
@@ -76,7 +76,7 @@ extension SettingsViewController {
             warning.configureDropShadow()
             
             warning.configureTheme(backgroundColor: UIColor.init(netHex: 0x292b30), foregroundColor: UIColor.white)
-            warning.configureContent(title: "", body: NSLocalizedString("FolderVideoRemoved", comment: ""))
+            warning.configureContent(title: "", body: L10n.folderVideoRemoved)
             warning.button?.isHidden = true
             
             var warningConfig = SwiftMessages.defaultConfig
@@ -140,9 +140,9 @@ extension SettingsViewController {
         let titleLabel = UILabel(frame: CGRect(x: 20, y: 30, width: tableView.width-40, height: 15))
         switch section {
         case 0:
-            titleLabel.text = NSLocalizedString("Data", comment: "")
+            titleLabel.text = L10n.data
         default:
-            titleLabel.text = NSLocalizedString("AppInfo", comment: "")
+            titleLabel.text = L10n.appInfo
         }
         titleLabel.font = UIFont.systemFont(ofSize: 12)
         titleLabel.textColor = GRVColor.mainTextColor
@@ -163,24 +163,24 @@ extension SettingsViewController {
             cell.accessoryType = .none
             switch indexPath.row {
             case 0: // Sections.Data.RemoveCache
-                cell.textLabel?.text = NSLocalizedString("RemoveImageCache", comment: "")
+                cell.textLabel?.text = L10n.removeImageCache
             default: // Sections.Data.RemoveRealm
-                cell.textLabel?.text = NSLocalizedString("RemoveFolderVideo", comment: "")
+                cell.textLabel?.text = L10n.removeFolderVideo
             }
         default: // Sections.Info
             cell.accessoryType = .disclosureIndicator
             switch indexPath.row {
             case 0: // Sections.Info.Version
-                cell.textLabel?.text = "\(NSLocalizedString("CurrentVersion", comment: "")) \(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String)"
+                cell.textLabel?.text = L10n.currentVersion + " " + (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String)
                 cell.accessoryType = .none
             case 1: // Sections.Info.SendMail
-                cell.textLabel?.text = NSLocalizedString("SendMail", comment: "")
+                cell.textLabel?.text = L10n.sendMail
                 cell.accessoryType = .disclosureIndicator
             case 2: // Sections.Info.Facebook
-                cell.textLabel?.text = NSLocalizedString("VisitFacebook", comment: "")
+                cell.textLabel?.text = L10n.visitFacebook
                 cell.accessoryType = .disclosureIndicator
             default:
-                cell.textLabel?.text = NSLocalizedString("OpenSourceLibrary", comment: "")
+                cell.textLabel?.text = L10n.openSourceLibrary
                 cell.accessoryType = .disclosureIndicator
             }
         }
