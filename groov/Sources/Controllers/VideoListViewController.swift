@@ -306,9 +306,9 @@ extension VideoListViewController {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let parentId = self.playlist.id
-            let targetId = self.videoArray[indexPath.row].id
-            self.videoArray.remove(at: indexPath.row)
+            let parentId = playlist.id
+            let targetId = videoArray[indexPath.row].id
+            videoArray.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             
             // db work in background
@@ -325,8 +325,8 @@ extension VideoListViewController {
                     v.order = idx
                 }
             }
-            self.videoArray = Array(realm.objects(Video.self).filter("playlistId = %@", parentId).sorted(byKeyPath: "order"))
-            self.setBlankViewHidden()
+            videoArray = Array(realm.objects(Video.self).filter("playlistId = %@", parentId).sorted(byKeyPath: "order"))
+            setBlankViewHidden()
         }
     }
 }
@@ -334,42 +334,37 @@ extension VideoListViewController {
 // MARK: IBActions
 extension VideoListViewController {
     @IBAction func searchVideoButtonClicked() {
-        let searchVC = self.storyboard?.instantiateViewController(withIdentifier: StoryboardId.Search) as! SearchViewController
+        let searchVC = storyboard?.instantiateViewController(withIdentifier: StoryboardId.Search) as! SearchViewController
         searchVC.delegate = self
         let navController = UINavigationController(rootViewController: searchVC)
         navController.modalPresentationStyle = .fullScreen
-        self.present(navController, animated: true, completion: nil)
+        present(navController, animated: true, completion: nil)
     }
     
     @IBAction func toggleControlView() {
-        if self.controlView.alpha == 1 {
-            UIView.animate(withDuration: 0.4, animations: {
-                self.controlView.alpha = 0
-            })
-        } else {
-            UIView.animate(withDuration: 0.4, animations: {
-                self.controlView.alpha = 1
-            })
-        }
+        UIView.animate(withDuration: 0.4, animations: { [weak self] in
+            guard let self = self else { return }
+            self.controlView.alpha = self.controlView.alpha == 1 ? 0 : 1
+        })
     }
     
     @IBAction func previousButtonClicked() {
-        self.videoSelected(self.getPreviousVideoIndex(), play: true)
-        self.videoPlayed()
+        videoSelected(getPreviousVideoIndex(), play: true)
+        videoPlayed()
     }
     
     @IBAction func nextButtonClicked() {
-        self.videoSelected(self.getNextVideoIndex(), play: true)
-        self.videoPlayed()
+        videoSelected(getNextVideoIndex(), play: true)
+        videoPlayed()
     }
     
     @IBAction func playPauseButtonClicked() {
         if currentPlayState == PlayState.Pause {
-            self.videoPlayerView.playVideo()
-            self.videoPlayed()
+            videoPlayerView.playVideo()
+            videoPlayed()
         } else {
-            self.videoPlayerView.pauseVideo()
-            self.videoPaused()
+            videoPlayerView.pauseVideo()
+            videoPaused()
         }
     }
 }
@@ -377,22 +372,23 @@ extension VideoListViewController {
 // MARK: Ask App Store Review and Star Rate
 extension VideoListViewController {
     @objc func checkVideoCurrentTime() {
-        if self.videoPlayerView.playerState() == .playing {
-            let currentTime: Int = Int(self.videoPlayerView.currentTime())
-            let totalDuration: Int = Int(self.videoPlayerView.duration())
+        if videoPlayerView.playerState() == .playing {
+            let currentTime: Int = Int(videoPlayerView.currentTime())
+            let totalDuration: Int = Int(videoPlayerView.duration())
             
             let currentTimeString: String = String.init(hms: currentTime.secToHMS())
             let totalDurationString: String = String.init(hms: totalDuration.secToHMS())
             runningTimeLabel.text = "\(currentTimeString) / \(totalDurationString)"
             
             let progress: CGFloat = CGFloat(currentTime) / CGFloat(totalDuration)
-            UIView.animate(withDuration: 0.5, animations: {
+            UIView.animate(withDuration: 0.5, animations: { [weak self] in
+                guard let self = self else { return }
                 self.progressBackgroundView.setWidth(self.durationWrapperView.width * progress)
             })
             
             totalPlayTime += 0.5
             if totalPlayTime >= 10 {
-                self.askReview()
+                askReview()
             }
         }
     }
