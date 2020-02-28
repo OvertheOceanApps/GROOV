@@ -8,7 +8,6 @@
 
 import UIKit
 import RealmSwift
-import AssistantKit
 import SwiftMessages
 import StoreKit
 
@@ -72,13 +71,6 @@ class VideoListViewController: BaseViewController, UITableViewDelegate, UITableV
         self.videoPlayerView.delegate = self
         self.progressImageView.setWidth(self.view.width)
         self.searchVideoButton.setImage(UIImage(named: L10n.imgSearchVideo), for: .normal)
-        
-        // design change under iOS 11
-        if UIDevice().userInterfaceIdiom == .phone
-            && Device.osVersion < Device.os11 { // iOS 10
-            videoPlayerViewTopConstraint.constant = -64
-            self.view.layoutIfNeeded()
-        }
     }
     
     func initProgress() {

@@ -38,7 +38,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C66ED4C31D2CA73E0055F441"
-            BuildableName = "groov.app"
+            BuildableName = "GROOV..app"
             BlueprintName = "groov"
             ReferencedContainer = "container:groov.xcodeproj">
          </BuildableReference>
