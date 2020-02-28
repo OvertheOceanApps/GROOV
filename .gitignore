@@ -1,12 +1,3 @@
-
-groov/Info.plist
-groov/Resources/Info.plist
-groov/GoogleService-Info.plist
-groov/Resources/GoogleService-Info.plist
-groov스토어이미지/
-groov앱아이콘/
-LocalizationIcons/
-
 # Created by https://www.gitignore.io/api/swift,xcode,cocoapods
 
 ### CocoaPods ###
@@ -106,11 +97,13 @@ groov.xcodeproj/
 # End of https://www.gitignore.io/api/swift,xcode,cocoapods
 
 groov스토어이미지/
-
 groov앱아이콘/
+LocalizationIcons/
 
 groov\.xcworkspace/xcshareddata/
 
 .DS_Store
 
 groov/Resources/checksum.md5
+
+*.xcconfig
