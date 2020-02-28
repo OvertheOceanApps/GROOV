@@ -13,12 +13,12 @@ class PlaylistTableViewCell: UITableViewCell {
     @IBOutlet var videoTitleLabel: UILabel!
     
     func initCell(_ playlist: Playlist) {
-        self.backgroundColor = GRVColor.backgroundColor
-        self.titleLabel.text = playlist.title
+        backgroundColor = GRVColor.backgroundColor
+        titleLabel.text = playlist.title
         if playlist.recentVideo == "" {
-            self.videoTitleLabel.text = "No Recent Video"
+            videoTitleLabel.text = "No Recent Video"
         } else {
-            self.videoTitleLabel.text = playlist.recentVideo
+            videoTitleLabel.text = playlist.recentVideo
         }
     }
 }

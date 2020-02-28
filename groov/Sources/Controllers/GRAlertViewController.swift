@@ -25,12 +25,12 @@ class GRAlertViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.initViews()
+        initViews()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.titleTextField.becomeFirstResponder()
+        titleTextField.becomeFirstResponder()
     }
     
     func initViews() {
@@ -48,28 +48,26 @@ class GRAlertViewController: UIViewController {
 
 // MARK: Notification Center
 extension GRAlertViewController {
-    
     @objc func keyboardWillChangeFrame(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             alertViewTop.constant = (keyboardSize.origin.y - alertView.height) / 2
-            self.view.layoutIfNeeded()
+            view.layoutIfNeeded()
         }
     }
 }
 
 // MARK: IBActions
 extension GRAlertViewController {
-    
     @IBAction func cancelButtonClicked() {
-        self.dismissWithFade()
+        dismissWithFade()
     }
     
     @IBAction func addButtonClicked() {
-        if let text = self.titleTextField.text {
+        if let text = titleTextField.text {
             if text != "" {
-                self.titleTextField.resignFirstResponder()
+                titleTextField.resignFirstResponder()
                 delegate?.alertViewAddButtonTouched(title: text)
-                self.dismissWithFade()
+                dismissWithFade()
             }
         }
     }

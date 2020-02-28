@@ -44,7 +44,6 @@ class SettingsViewController: BaseViewController, UITableViewDelegate, UITableVi
 
 // MARK: Functions
 extension SettingsViewController {
-    
     func clearCache() {
         let cache = KingfisherManager.shared.cache
         cache.clearMemoryCache()
@@ -120,7 +119,6 @@ extension SettingsViewController {
 
 // MARK: Table View Datasource, Delegate
 extension SettingsViewController {
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
@@ -216,7 +214,6 @@ extension SettingsViewController {
 
 // MARK: IBActions
 extension SettingsViewController {
-    
     @IBAction func dismissVC() {
         self.dismiss(animated: true, completion: nil)
     }

@@ -10,7 +10,6 @@ import UIKit
 import Kingfisher
 
 class SearchVideoTableViewCell: UITableViewCell {
-    
     @IBOutlet var thumbnailImageView: UIImageView!
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var channelLabel: UILabel!
@@ -23,11 +22,11 @@ class SearchVideoTableViewCell: UITableViewCell {
     // https://i.ytimg.com/vi/mzYM9QKKWSg/default.jpg
     
     func initCell(_ video: Video) {
-        self.backgroundColor = GRVColor.backgroundColor
+        backgroundColor = GRVColor.backgroundColor
         self.video = video
-        self.titleLabel.text = video.title
-        self.channelLabel.text = video.channelTitle
-        self.durationLabel.text = video.durationString()
+        titleLabel.text = video.title
+        channelLabel.text = video.channelTitle
+        durationLabel.text = video.durationString()
         
         let imageUrlString = "\(kYoutubeImageUrl)/\(video.videoId)/\(kYoutubeThumbnail).jpg"
         if let url = URL(string: imageUrlString) {

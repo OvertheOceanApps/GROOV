@@ -10,7 +10,6 @@ import UIKit
 import RealmSwift
 
 class PlaylistListViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource, VideoListViewControllerDelegate, GRAlertViewControllerDelegate {
-    
     var playlistArray: Array<Playlist> = []
     @IBOutlet var playlistTableView: UITableView!
     @IBOutlet var blankView: UIView!
@@ -49,7 +48,6 @@ class PlaylistListViewController: BaseViewController, UITableViewDelegate, UITab
 
 // MARK: GR Alert View Controller Delegate
 extension PlaylistListViewController {
-    
     func alertViewAddButtonTouched(title: String) {
         self.addPlaylist(title)
     }
@@ -57,7 +55,6 @@ extension PlaylistListViewController {
 
 // MARK: Load Playlist
 extension PlaylistListViewController {
-    
     @objc func loadPlaylists() {
         let realm = try! Realm()
         self.playlistArray = Array(realm.objects(Playlist.self).sorted(byKeyPath: "order"))
@@ -104,7 +101,6 @@ extension PlaylistListViewController {
 
 // MARK: IBActions
 extension PlaylistListViewController {
-    
     @IBAction func addButtonClicked() {
         let alertVC = self.storyboard?.instantiateViewController(withIdentifier: StoryboardId.GRAlert) as! GRAlertViewController
         alertVC.delegate = self
@@ -121,7 +117,6 @@ extension PlaylistListViewController {
 
 // MARK: Table View Datasource, Delegate
 extension PlaylistListViewController {
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

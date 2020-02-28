@@ -10,7 +10,6 @@ import UIKit
 import FirebaseAnalytics
 
 class TrackUtil: NSObject {
-    
     class func sendPlaylistAddedEvent(title: String) {
         Analytics.logEvent("playlist_added", parameters: [
             AnalyticsParameterItemName: title as NSObject,
@@ -24,5 +23,4 @@ class TrackUtil: NSObject {
             AnalyticsParameterContentType: "video" as NSObject
             ])
     }
-    
 }

@@ -27,57 +27,56 @@ class VideoListTableViewCell: UITableViewCell {
     // https://i.ytimg.com/vi/mzYM9QKKWSg/default.jpg
     
     func initCell(_ video: Video) {
-        self.backgroundColor = GRVColor.backgroundColor
+        backgroundColor = GRVColor.backgroundColor
         self.video = video
-        self.titleLabel.text = video.title
-        self.channelLabel.text = video.channelTitle
-        self.durationLabel.text = video.durationString()
+        titleLabel.text = video.title
+        channelLabel.text = video.channelTitle
+        durationLabel.text = video.durationString()
         
         let imageUrlString = "\(kYoutubeImageUrl)/\(video.videoId)/\(kYoutubeThumbnail).jpg"
         if let url = URL(string: imageUrlString) {
             thumbnailImageView.kf.setImage(with: url, options: [.transition(.fade(0.3))])
         }
         
-        self.hideProgress()
-        self.progressRingView.set(colors: GRVColor.gradationFirstColor, GRVColor.gradationSecondColor, GRVColor.gradationThirdColor, GRVColor.gradationFourthColor)
+        hideProgress()
+        progressRingView.set(colors: GRVColor.gradationFirstColor, GRVColor.gradationSecondColor, GRVColor.gradationThirdColor, GRVColor.gradationFourthColor)
     }
 }
 
 // MARK: Video Methods
 extension VideoListTableViewCell {
-    
     func videoPlayed() {
-        self.startTimer()
-        self.playPauseButton.setImage(Asset.videoListCellPause.image, for: .normal)
+        startTimer()
+        playPauseButton.setImage(Asset.videoListCellPause.image, for: .normal)
     }
     
     func videoPaused() {
-        self.stopTimer()
-        self.playPauseButton.setImage(Asset.videoListCellPlay.image, for: .normal)
+        stopTimer()
+        playPauseButton.setImage(Asset.videoListCellPlay.image, for: .normal)
     }
 }
 
 // MARK: Progress Methods
 extension VideoListTableViewCell {
-    
     func progressChanged(p: Float) {
-        self.showProgress()
+        showProgress()
         
         let angle = p * Float(360)
-        self.progressRingView.animate(toAngle: Double(angle), duration: 0.1, completion: nil)
+        progressRingView.animate(toAngle: Double(angle), duration: 0.1, completion: nil)
         progress = p
     }
     
     func showProgress() {
-        self.progressRingView.isHidden = false
+        progressRingView.isHidden = false
     }
     
     func hideProgress() {
-        self.progressRingView.isHidden = true
+        progressRingView.isHidden = true
     }
     
     @objc func circulateProgress() {
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: 0.5) { [weak self] in
+            guard let self = self else { return }
             self.progressRingView.transform = self.progressRingView.transform.rotated(by: CGFloat(Double.pi/4))
         }
     }
@@ -85,23 +84,19 @@ extension VideoListTableViewCell {
 
 // MARK: Timer Methods
 extension VideoListTableViewCell {
-    
     func startTimer() {
-        guard self.circleTimer == nil else { return }
+        guard circleTimer == nil else { return }
         
         let ti: Double = 0.1
-        if #available(iOS 10.0, *) {
-            self.circleTimer = Timer.scheduledTimer(withTimeInterval: ti, repeats: true, block: { _ in
-                self.circulateProgress()
-            })
-        } else {
-            self.circleTimer = Timer.scheduledTimer(timeInterval: ti, target: self, selector: #selector(circulateProgress), userInfo: nil, repeats: true)
-        }
+        circleTimer = Timer.scheduledTimer(withTimeInterval: ti, repeats: true, block: { [weak self] _ in
+            guard let self = self else { return }
+            self.circulateProgress()
+        })
     }
     
     func stopTimer() {
-        guard self.circleTimer != nil else { return }
-        self.circleTimer.invalidate()
-        self.circleTimer = nil
+        guard circleTimer != nil else { return }
+        circleTimer.invalidate()
+        circleTimer = nil
     }
 }

@@ -54,5 +54,4 @@ class BaseViewController: UIViewController {
     @objc func popVC() {
         _ = self.navigationController?.popViewController(animated: true)
     }
-
 }
