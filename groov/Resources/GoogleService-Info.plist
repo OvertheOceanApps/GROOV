@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>543683791356-m7s1satoqhjf12khucdi28i2uppjq85b.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.543683791356-m7s1satoqhjf12khucdi28i2uppjq85b</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAPOlhebm4C4vdkHcqzfXl__JGvVthBmNc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>543683791356</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.feelg.groov</string>
+	<key>PROJECT_ID</key>
+	<string>groovapp-cdef0</string>
+	<key>STORAGE_BUCKET</key>
+	<string>groovapp-cdef0.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:543683791356:ios:aa2a048b8ca7f3b2</string>
+	<key>DATABASE_URL</key>
+	<string>https://groovapp-cdef0.firebaseio.com</string>
+</dict>
+</plist>
