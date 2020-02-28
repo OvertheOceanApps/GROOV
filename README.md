@@ -21,6 +21,3 @@ CONTACT: facebook.com/AppGROOV
 [1.1.0]
 새로운 디자인을 입은 GROOV.를 만나보세요.
 
-
-
-
