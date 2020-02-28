@@ -101,6 +101,7 @@
 		1F37621E206000D1001ED5BB /* SearchVideoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVideoTableViewCell.swift; sourceTree = "<group>"; };
 		1F6C43301D32A05A00F53FA9 /* groov-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "groov-Bridging-Header.h"; sourceTree = "<group>"; };
 		1FAE89841FAA551000CF900D /* license.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = license.html; path = groov/Resources/license.html; sourceTree = SOURCE_ROOT; };
+		1FC7D44E2408D839003F52E5 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		1FDA2D3124062E2100523739 /* groovSnapshot.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = groovSnapshot.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FDA2D3324062E2100523739 /* groovSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = groovSnapshot.swift; sourceTree = "<group>"; };
 		1FDA2D3524062E2100523739 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -118,7 +119,7 @@
 		C62533A91D46F4A5006E43F8 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		C64FCE2C23FED1BE00790DA5 /* SearchAPIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAPIHandler.swift; sourceTree = "<group>"; };
 		C64FCE2E23FED70200790DA5 /* YoutubeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeAPI.swift; sourceTree = "<group>"; };
-		C66ED4C41D2CA73E0055F441 /* groov.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = groov.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C66ED4C41D2CA73E0055F441 /* GROOV..app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GROOV..app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C66ED4C71D2CA73E0055F441 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C66ED4CC1D2CA73E0055F441 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C66ED4D11D2CA73E0055F441 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -161,6 +162,7 @@
 		1F1A051724075A3300B14D47 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1FC7D44D2408D806003F52E5 /* Configs */,
 				1F1A051924075A9900B14D47 /* GoogleService-Info.plist */,
 				1F1A051A24075A9900B14D47 /* Info.plist */,
 				C66ED4CB1D2CA73E0055F441 /* Main.storyboard */,
@@ -267,6 +269,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		1FC7D44D2408D806003F52E5 /* Configs */ = {
+			isa = PBXGroup;
+			children = (
+				1FC7D44E2408D839003F52E5 /* Config.xcconfig */,
+			);
+			path = Configs;
+			sourceTree = "<group>";
+		};
 		1FDA2D3224062E2100523739 /* groovSnapshot */ = {
 			isa = PBXGroup;
 			children = (
@@ -321,7 +331,7 @@
 		C66ED4C51D2CA73E0055F441 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C66ED4C41D2CA73E0055F441 /* groov.app */,
+				C66ED4C41D2CA73E0055F441 /* GROOV..app */,
 				1FDA2D3124062E2100523739 /* groovSnapshot.xctest */,
 			);
 			name = Products;
@@ -377,7 +387,7 @@
 			);
 			name = groov;
 			productName = groov;
-			productReference = C66ED4C41D2CA73E0055F441 /* groov.app */;
+			productReference = C66ED4C41D2CA73E0055F441 /* GROOV..app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -722,6 +732,7 @@
 		};
 		C66ED4EA1D2CA73E0055F441 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1FC7D44E2408D839003F52E5 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -778,6 +789,7 @@
 		};
 		C66ED4EB1D2CA73E0055F441 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1FC7D44E2408D839003F52E5 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -844,7 +856,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) -D DEBUG";
 				PODS_PODFILE_DIR_PATH = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.feelg.groov;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = GROOV.;
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.feelg.groov";
 				SWIFT_OBJC_BRIDGING_HEADER = "groov/Sources/groov-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -870,7 +882,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PODS_PODFILE_DIR_PATH = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.feelg.groov;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = GROOV.;
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.feelg.groov";
 				SWIFT_OBJC_BRIDGING_HEADER = "groov/Sources/groov-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
