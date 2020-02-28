@@ -23,27 +23,26 @@ class GRSearchController: UISearchController, UISearchBarDelegate {
     
     init(searchResultsController: UIViewController!, frame: CGRect, font: UIFont, textColor: UIColor, tintColor: UIColor) {
         super.init(searchResultsController: searchResultsController)
-        self.configureSearchBar(frame, font: font, textColor: textColor, bgColor: tintColor)
+        configureSearchBar(frame, font: font, textColor: textColor, bgColor: tintColor)
     }
     
     func configureSearchBar(_ frame: CGRect, font: UIFont, textColor: UIColor, bgColor: UIColor) {
-        self.aSearchBar = GRSearchBar(frame: frame, font: font, textColor: textColor)
-        self.aSearchBar.barTintColor = bgColor
-        self.aSearchBar.tintColor = UIColor.white
-        self.aSearchBar.delegate = self
+        aSearchBar = GRSearchBar(frame: frame, font: font, textColor: textColor)
+        aSearchBar.barTintColor = bgColor
+        aSearchBar.tintColor = UIColor.white
+        aSearchBar.delegate = self
     }
 }
 
 // MARK: Search Bar Delegate
 extension GRSearchController {
-    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        self.aSearchBar.resignFirstResponder()
-        self.aDelegate?.didTapOnSearchButton()
+        aSearchBar.resignFirstResponder()
+        aDelegate?.didTapOnSearchButton()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        self.aSearchBar.resignFirstResponder()
-        self.aDelegate?.didTapOnCancelButton()
+        aSearchBar.resignFirstResponder()
+        aDelegate?.didTapOnCancelButton()
     }
 }

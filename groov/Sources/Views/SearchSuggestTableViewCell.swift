@@ -13,8 +13,7 @@ class SearchSuggestTableViewCell: UITableViewCell {
     var keyword: String!
     
     func initCell(_ kw: String) {
-        self.keyword = kw
-        self.keywordLabel.text = kw
+        keyword = kw
+        keywordLabel.text = kw
     }
-
 }

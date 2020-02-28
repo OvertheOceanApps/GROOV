@@ -10,7 +10,7 @@ import UIKit
 
 extension Date {
     func getRelativeTime(_ toTime: Date) -> String {
-        var seconds: Int = Int(self.timeIntervalSince(toTime))
+        var seconds: Int = Int(timeIntervalSince(toTime))
         var timeSuffix: String = ""
         
         if seconds >= 0 { // self가 toTime보다 미래
@@ -46,93 +46,93 @@ extension Date {
 }
 
 extension UIView {
-    var width: CGFloat { return self.frame.size.width }
-    var height: CGFloat { return self.frame.size.height }
-    var size: CGSize { return self.frame.size}
+    var width: CGFloat { return frame.size.width }
+    var height: CGFloat { return frame.size.height }
+    var size: CGSize { return frame.size}
     
-    var origin: CGPoint { return self.frame.origin }
-    var x: CGFloat { return self.frame.origin.x }
-    var y: CGFloat { return self.frame.origin.y }
-    var centerX: CGFloat { return self.center.x }
-    var centerY: CGFloat { return self.center.y }
+    var origin: CGPoint { return frame.origin }
+    var x: CGFloat { return frame.origin.x }
+    var y: CGFloat { return frame.origin.y }
+    var centerX: CGFloat { return center.x }
+    var centerY: CGFloat { return center.y }
     
-    var left: CGFloat { return self.frame.origin.x }
-    var right: CGFloat { return self.frame.origin.x + self.frame.size.width }
-    var top: CGFloat { return self.frame.origin.y }
-    var bottom: CGFloat { return self.frame.origin.y + self.frame.size.height }
+    var left: CGFloat { return frame.origin.x }
+    var right: CGFloat { return frame.origin.x + frame.size.width }
+    var top: CGFloat { return frame.origin.y }
+    var bottom: CGFloat { return frame.origin.y + frame.size.height }
     
     func setWidth(_ width: CGFloat) {
-        self.frame.size.width = width
+        frame.size.width = width
     }
     
     func setHeight(_ height: CGFloat) {
-        self.frame.size.height = height
+        frame.size.height = height
     }
     
     func setSize(_ size: CGSize) {
-        self.frame.size = size
+        frame.size = size
     }
     
     func setOrigin(_ point: CGPoint) {
-        self.frame.origin = point
+        frame.origin = point
     }
     
     func setX(_ x: CGFloat) {
-        self.frame.origin = CGPoint(x: x, y: self.frame.origin.y)
+        frame.origin = CGPoint(x: x, y: frame.origin.y)
     }
     
     func setY(_ y: CGFloat) {
-        self.frame.origin = CGPoint(x: self.frame.origin.x, y: y)
+        frame.origin = CGPoint(x: frame.origin.x, y: y)
     }
     
     func setCenterX(_ x: CGFloat) {
-        self.center = CGPoint(x: x, y: self.center.y)
+        center = CGPoint(x: x, y: center.y)
     }
     
     func setCenterY(_ y: CGFloat) {
-        self.center = CGPoint(x: self.center.x, y: y)
+        center = CGPoint(x: center.x, y: y)
     }
     
     func setTop(_ top: CGFloat) {
-        self.frame.origin.y = top
+        frame.origin.y = top
     }
     
     func setLeft(_ left: CGFloat) {
-        self.frame.origin.x = left
+        frame.origin.x = left
     }
     
     func setRight(_ right: CGFloat) {
-        self.frame.origin.x = right - self.frame.size.width
+        frame.origin.x = right - frame.size.width
     }
     
     func setBottom(_ bottom: CGFloat) {
-        self.frame.origin.y = bottom - self.frame.size.height
+        frame.origin.y = bottom - frame.size.height
     }
     
     func roundCorner(_ radius: CGFloat) {
-        self.layer.cornerRadius = radius
-        self.layer.masksToBounds = true
+        layer.cornerRadius = radius
+        layer.masksToBounds = true
     }
     
     func border(_ radius: CGFloat, color: UIColor, width: CGFloat) {
-        self.layer.cornerRadius = radius
-        self.layer.borderColor = color.cgColor
-        self.layer.borderWidth = width
-        self.layer.masksToBounds = true
+        layer.cornerRadius = radius
+        layer.borderColor = color.cgColor
+        layer.borderWidth = width
+        layer.masksToBounds = true
     }
     
     func layerGradient() {
         let gradient: CAGradientLayer = CAGradientLayer()
-        gradient.frame.size = self.frame.size
+        gradient.frame.size = frame.size
         gradient.colors = [GRVColor.gradationFirstColor.cgColor, GRVColor.gradationFourthColor.cgColor]
         gradient.locations = [0.0, 1.0]
-        self.layer.addSublayer(gradient)
+        layer.addSublayer(gradient)
     }
 }
 
 extension Array {
     func find(_ includedElement: (Element) -> Bool) -> Int? {
-        for (idx, element) in self.enumerated() {
+        for (idx, element) in enumerated() {
             if includedElement(element) {
                 return idx
             }
@@ -157,7 +157,7 @@ extension UIColor {
 
 extension String {
     func getYoutubeFormattedDuration() -> String {
-        let formattedDuration = self.replacingOccurrences(of: "PT", with: "").replacingOccurrences(of: "H", with: ":").replacingOccurrences(of: "M", with: ":").replacingOccurrences(of: "S", with: "")
+        let formattedDuration = replacingOccurrences(of: "PT", with: "").replacingOccurrences(of: "H", with: ":").replacingOccurrences(of: "M", with: ":").replacingOccurrences(of: "S", with: "")
         
         let components = formattedDuration.components(separatedBy: ":")
         var duration = ""
@@ -198,7 +198,9 @@ extension UITextField {
 
 extension UIViewController {
     func presentWithFade(targetVC: UIViewController) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            
             let transition = CATransition.init()
             transition.duration = 0.3
             transition.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
@@ -214,7 +216,7 @@ extension UIViewController {
         transition.duration = 0.3
         transition.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
         transition.type = .fade
-        self.view.window?.layer.add(transition, forKey: nil)
-        self.dismiss(animated: false, completion: nil)
+        view.window?.layer.add(transition, forKey: nil)
+        dismiss(animated: false, completion: nil)
     }
 }

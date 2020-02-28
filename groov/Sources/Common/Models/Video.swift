@@ -34,12 +34,12 @@ class Video: Object {
     func publishedAtFormatted() -> String {
         let dateFormatter: DateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-        let date: Date = dateFormatter.date(from: self.publishedAt)!
+        let date: Date = dateFormatter.date(from: publishedAt)!
         return Date().getRelativeTime(date)
     }
     
     func createdAtFormatted() -> String {
-        return Date().getRelativeTime(self.createdAt)
+        return Date().getRelativeTime(createdAt)
     }
     
     func parseDictionaryToModel(_ dict: Dictionary<String, AnyObject>) {
@@ -98,13 +98,10 @@ class Video: Object {
     
     convenience init(dict: Dictionary<String, AnyObject>) {
         self.init()
-        self.parseDictionaryToModel(dict)
+        parseDictionaryToModel(dict)
     }
     
     func durationString() -> String {
-        if self.duration != "" {
-            return self.duration
-        }
-        return "--:--"
+        return duration != "" ? "--:--" : duration
     }
 }

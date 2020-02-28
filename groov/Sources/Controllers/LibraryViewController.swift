@@ -9,25 +9,23 @@
 import UIKit
 
 class LibraryViewController: BaseViewController {
-    
     @IBOutlet weak var webView: UIWebView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "GROOV."
+        title = "GROOV."
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.setNavigationBarBackgroundColor()
-        self.setNavigationBackButton()
-        self.initWebView()
+        setNavigationBarBackgroundColor()
+        setNavigationBackButton()
+        initWebView()
     }
 }
 
 // MARK: WebView
 extension LibraryViewController {
-    
     func initWebView() {
         let htmlFile = Bundle.main.path(forResource: "license", ofType: "html")
         let html = try? String(contentsOfFile: htmlFile!, encoding: String.Encoding.utf8)

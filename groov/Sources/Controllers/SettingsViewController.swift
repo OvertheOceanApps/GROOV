@@ -31,20 +31,19 @@ class SettingsViewController: BaseViewController, UITableViewDelegate, UITableVi
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = L10n.settings
-        self.setNavigationBarBackgroundColor()
-        self.initComponents()
+        title = L10n.settings
+        setNavigationBarBackgroundColor()
+        initComponents()
     }
     
     func initComponents() {
-        self.mainTableView.backgroundColor = GRVColor.backgroundColor
-        self.dismissBarButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: GRVColor.mainTextColor, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15)], for: .normal)
+        mainTableView.backgroundColor = GRVColor.backgroundColor
+        dismissBarButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: GRVColor.mainTextColor, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15)], for: .normal)
     }
 }
 
 // MARK: Functions
 extension SettingsViewController {
-    
     func clearCache() {
         let cache = KingfisherManager.shared.cache
         cache.clearMemoryCache()
@@ -88,8 +87,8 @@ extension SettingsViewController {
     }
     
     func goLibrariesVC() {
-        let libraryVC = self.storyboard?.instantiateViewController(withIdentifier: StoryboardId.Library) as! LibraryViewController
-        self.navigationController?.pushViewController(libraryVC, animated: true)
+        let libraryVC = storyboard?.instantiateViewController(withIdentifier: StoryboardId.Library) as! LibraryViewController
+        navigationController?.pushViewController(libraryVC, animated: true)
     }
     
     func sendMail() {
@@ -100,11 +99,11 @@ extension SettingsViewController {
         mailVC.setSubject("Service feedback for groov")
         
         if MFMailComposeViewController.canSendMail() {
-            self.present(mailVC, animated: true, completion: nil)
+            present(mailVC, animated: true, completion: nil)
         } else {
             let alertController = UIAlertController(title: "Error Occurred", message: "Cannot send mail", preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alertController, animated: true, completion: nil)
+            present(alertController, animated: true, completion: nil)
         }
     }
     
@@ -120,7 +119,6 @@ extension SettingsViewController {
 
 // MARK: Table View Datasource, Delegate
 extension SettingsViewController {
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
@@ -195,20 +193,20 @@ extension SettingsViewController {
         case 0: // Sections.Data
             switch indexPath.row {
             case 0: // Sections.Data.RemoveCache
-                self.clearCache()
+                clearCache()
             default: // Sections.Data.RemoveRealm
-                self.clearRealm()
+                clearRealm()
             }
         default: // Sections.Info
             switch indexPath.row {
             case 0: // Sections.Info.Version
                 break
             case 1: // Sections.Info.SendMail
-                self.sendMail()
+                sendMail()
             case 2: // Sections.Info.Facebook
-                self.goFacebookPage()
+                goFacebookPage()
             default:
-                self.goLibrariesVC()
+                goLibrariesVC()
             }
         }
     }
@@ -216,8 +214,7 @@ extension SettingsViewController {
 
 // MARK: IBActions
 extension SettingsViewController {
-    
     @IBAction func dismissVC() {
-        self.dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 }

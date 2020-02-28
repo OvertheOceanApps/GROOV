@@ -19,10 +19,10 @@ class GRSearchBar: UISearchBar {
     init(frame: CGRect, font: UIFont, textColor: UIColor) {
         super.init(frame: frame)
         self.frame = frame
-        self.preferredFont = font
-        self.preferredTextColor = textColor
-        self.searchBarStyle = .prominent
-        self.isTranslucent = false
+        preferredFont = font
+        preferredTextColor = textColor
+        searchBarStyle = .prominent
+        isTranslucent = false
     }
     
     func indexOfSearchFieldInSubviews() -> Int! {
@@ -38,11 +38,11 @@ class GRSearchBar: UISearchBar {
     }
     
     override func draw(_ rect: CGRect) {
-        if let index = self.indexOfSearchFieldInSubviews() {
+        if let index = indexOfSearchFieldInSubviews() {
             let searchField: UITextField = subviews[0].subviews[index] as! UITextField
-            searchField.font = self.preferredFont
-            searchField.textColor = self.preferredTextColor
-            searchField.tintColor = self.preferredTextColor
+            searchField.font = preferredFont
+            searchField.textColor = preferredTextColor
+            searchField.tintColor = preferredTextColor
             searchField.backgroundColor = UIColor.white
             searchField.clearButtonMode = .whileEditing
             searchField.autocorrectionType = .no
