@@ -7,7 +7,6 @@ target 'groov' do
   pod 'Kingfisher', 	          '~> 5.0'
   pod 'Moya',                   '~> 14.0'
   pod 'KDCircularProgress',     '~> 1.5.4'
-  pod 'AssistantKit'
   pod 'SWXMLHash',	            '~> 5.0.0'
   pod 'Firebase/Core'
   pod 'Firebase/Performance'

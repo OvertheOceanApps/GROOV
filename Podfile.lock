@@ -1,6 +1,5 @@
 PODS:
   - Alamofire (5.0.2)
-  - AssistantKit (0.6.1)
   - Crashlytics (3.9.3):
     - Fabric (~> 1.7.2)
   - Fabric (1.7.13)
@@ -127,7 +126,6 @@ PODS:
   - SWXMLHash (5.0.1)
 
 DEPENDENCIES:
-  - AssistantKit
   - Crashlytics (~> 3.9.3)
   - Fabric (~> 1.7.2)
   - Firebase/Core
@@ -142,7 +140,6 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
-    - AssistantKit
     - Crashlytics
     - Fabric
     - Firebase
@@ -175,7 +172,6 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 3ba7a4db18b4f62c4a1c0e1cb39d7f3d52e10ada
-  AssistantKit: 7dd40c019e9a06e93555ed58498a2d212fcb408d
   Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
   Fabric: 25d0963b691fc97be566392243ff0ecef5a68338
   Firebase: 0490eca762a72e4f1582319539153897f1508dee
@@ -206,6 +202,6 @@ SPEC CHECKSUMS:
   SwiftMessages: b577dc7043be8b299857ab35bb663dbff6483bd0
   SWXMLHash: 9cc0c2e4807926c74377724aa8722ee5707a0485
 
-PODFILE CHECKSUM: 682b68b6b249088b1d9cfbfd8b6bd2f2ce19bc9a
+PODFILE CHECKSUM: 4f68db9fbcf3ee79c3861007ed21ebaf7e92089d
 
 COCOAPODS: 1.8.4
