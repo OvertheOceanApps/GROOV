@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import SnapKit
 
 protocol SearchViewControllerDelegate: class {
     func videoAdded(_ video: Video)
@@ -24,8 +26,8 @@ final class SearchViewController: BaseViewController {
         case suggest, recently, searched
     }
     
-    @IBOutlet var resultTableView: UITableView!
-    @IBOutlet var activityIndicatorView: UIActivityIndicatorView!
+    private let resultTableView: UITableView = UITableView()
+    private let activityIndicatorView: UIActivityIndicatorView = UIActivityIndicatorView(style: .whiteLarge)
 
     weak var delegate: SearchViewControllerDelegate?
     
@@ -50,25 +52,50 @@ final class SearchViewController: BaseViewController {
         removeKeyboardNotification()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func addSubviews() {
+        super.addSubviews()
         
-        dataManager.delegate = self
-        addKeyboardNotification()
+        view.addSubview(resultTableView)
+        view.addSubview(activityIndicatorView)
         
         resultTableView.register(SearchSuggestTableViewCell.self, forCellReuseIdentifier: searchSuggestCellIdentifier)
         resultTableView.register(SearchVideoTableViewCell.self, forCellReuseIdentifier: searchVideoCellIdentifier)
+    }
+        
+    override func layout() {
+        super.layout()
+        
+        resultTableView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        activityIndicatorView.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.size.equalTo(40)
+        }
+    }
+        
+    override func style() {
+        super.style()
         
         setNavigationBarBackgroundColor()
-        initComponents()
-    }
-    
-    func initComponents() {
-        initSearchBar()
-        initSearchBarTextField()
         
         view.backgroundColor = GRVColor.backgroundColor
         resultTableView.backgroundColor = GRVColor.backgroundColor
+        
+        initSearchBar()
+        initSearchBarTextField()
+    }
+        
+    override func behavior() {
+        super.behavior()
+        
+        addKeyboardNotification()
+        
+        dataManager.delegate = self
+        
+        resultTableView.delegate = self
+        resultTableView.dataSource = self
     }
     
     private func reloadTableView() {

@@ -583,52 +583,6 @@
             </objects>
             <point key="canvasLocation" x="1029" y="491"/>
         </scene>
-        <!--Search View Controller-->
-        <scene sceneID="UaB-PL-Qxk">
-            <objects>
-                <viewController storyboardIdentifier="SBIdSearch" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Aqn-tB-DsG" customClass="SearchViewController" customModule="GROOV_" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="C5r-9a-H1A"/>
-                        <viewControllerLayoutGuide type="bottom" id="4cI-WQ-taa"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="bsA-rN-W2z">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Nvp-PC-wLH">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
-                                <color key="backgroundColor" red="0.11764705882352941" green="0.12941176470588234" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="separatorColor" red="0.082352941176470587" green="0.098039215686274508" blue="0.10980392156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="Aqn-tB-DsG" id="xgL-IM-mWA"/>
-                                    <outlet property="delegate" destination="Aqn-tB-DsG" id="7le-8o-geE"/>
-                                </connections>
-                            </tableView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="2y7-Wz-NeB">
-                                <rect key="frame" x="177.5" y="301.5" width="20" height="20"/>
-                            </activityIndicatorView>
-                        </subviews>
-                        <color key="backgroundColor" red="0.11764705882352941" green="0.12941176470588234" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="2y7-Wz-NeB" firstAttribute="centerX" secondItem="Nvp-PC-wLH" secondAttribute="centerX" id="HAE-Zc-msT"/>
-                            <constraint firstItem="Nvp-PC-wLH" firstAttribute="centerX" secondItem="bsA-rN-W2z" secondAttribute="centerX" id="Wfa-1F-9KQ"/>
-                            <constraint firstItem="2y7-Wz-NeB" firstAttribute="centerY" secondItem="Nvp-PC-wLH" secondAttribute="centerY" id="igz-od-aE6"/>
-                            <constraint firstItem="Nvp-PC-wLH" firstAttribute="height" secondItem="bsA-rN-W2z" secondAttribute="height" id="k6X-ld-8gM"/>
-                            <constraint firstItem="Nvp-PC-wLH" firstAttribute="width" secondItem="bsA-rN-W2z" secondAttribute="width" id="qPm-eM-h73"/>
-                            <constraint firstItem="Nvp-PC-wLH" firstAttribute="centerY" secondItem="bsA-rN-W2z" secondAttribute="centerY" id="uNB-PM-u2e"/>
-                        </constraints>
-                    </view>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <connections>
-                        <outlet property="activityIndicatorView" destination="2y7-Wz-NeB" id="ObR-Gm-WrV"/>
-                        <outlet property="resultTableView" destination="Nvp-PC-wLH" id="4pL-bM-8bo"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9pp-Iu-ino" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1721.7391304347827" y="490.76086956521743"/>
-        </scene>
     </scenes>
     <resources>
         <image name="add_folder_2" width="168" height="35"/>

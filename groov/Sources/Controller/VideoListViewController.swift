@@ -337,11 +337,11 @@ extension VideoListViewController: UITableViewDelegate, UITableViewDataSource {
 // MARK: IBActions
 extension VideoListViewController {
     @IBAction func searchVideoButtonClicked() {
-        let searchVC = storyboard?.instantiateViewController(withIdentifier: StoryboardId.Search) as! SearchViewController
-        searchVC.delegate = self
-        let navController = UINavigationController(rootViewController: searchVC)
-        navController.modalPresentationStyle = .fullScreen
-        present(navController, animated: true, completion: nil)
+        let vc: SearchViewController = SearchViewController()
+        vc.delegate = self
+        let nav = UINavigationController(rootViewController: vc)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true, completion: nil)
     }
     
     @IBAction func toggleControlView() {
