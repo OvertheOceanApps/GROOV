@@ -15,5 +15,7 @@ target 'groov' do
   pod 'Crashlytics',            '~> 3.9.3'
   pod 'RxSwift', '~> 5'
   pod 'RxCocoa', '~> 5'
+  pod 'SnapKit', '~> 5.0.0'
+
 end
 
