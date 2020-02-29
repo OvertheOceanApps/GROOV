@@ -7,15 +7,17 @@
 //
 
 import UIKit
+import RxSwift
+import SnapKit
 import RealmSwift
 
-class PlaylistListViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource, VideoListViewControllerDelegate, GRAlertViewControllerDelegate {
+class PlaylistListViewController: BaseViewController {
     var playlistArray: Array<Playlist> = []
-    @IBOutlet var playlistTableView: UITableView!
-    @IBOutlet var blankView: UIView!
-    @IBOutlet var footerView: UIView!
-    @IBOutlet var addFolderButton: UIButton!
-    @IBOutlet var blankAddFolderButton: UIButton!
+    private let playlistTableView: UITableView = UITableView()
+    private let footerView: PlaylistFooterView = PlaylistFooterView()
+    private let blankView: BlankView = BlankView(.playlist)
+    
+    private let cellIdentifier: String = "PlaylistCellIdentifier"
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -23,31 +25,70 @@ class PlaylistListViewController: BaseViewController, UITableViewDelegate, UITab
         setNavigationBarBackgroundColor()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        navigationItem.title = L10n.folderList
-        initComponents()
-        loadPlaylists()
-    }
-    
-    func initComponents() {
-        // init Table View
-        playlistTableView.backgroundColor = GRVColor.backgroundColor
+    override func addSubviews() {
+        super.addSubviews()
         
-        // notification
+        view.addSubview(blankView)
+        view.addSubview(playlistTableView)
+        
+        playlistTableView.register(PlaylistTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+    }
+        
+    override func layout() {
+        super.layout()
+        
+        blankView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        playlistTableView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+    }
+        
+    override func style() {
+        super.style()
+        
+        navigationItem.title = L10n.folderList
+        
+        playlistTableView.backgroundColor = GRVColor.backgroundColor
+    }
+        
+    override func behavior() {
+        super.behavior()
+        
+        playlistTableView.delegate = self
+        playlistTableView.dataSource = self
+        
+        loadPlaylists()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(loadPlaylists), name: NSNotification.Name(rawValue: "clear_realm"), object: nil)
         
-        // init footer view
-        footerView.backgroundColor = GRVColor.backgroundColor
+        footerView.addFolderButton.rx.tap
+            .subscribe { [weak self] _ in
+                guard let self = self else { return }
+                self.showGRAlertVC()
+            }
+            .disposed(by: disposeBag)
         
-        // init button for localization
-        addFolderButton.setImage(UIImage(named: L10n.imgAddFolder), for: .normal)
-        blankAddFolderButton.setImage(UIImage(named: L10n.imgAddFolder), for: .normal)
+        blankView.addButton.rx.tap
+            .subscribe { [weak self] _ in
+                guard let self = self else { return }
+                self.showGRAlertVC()
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    func showGRAlertVC() {
+        let vc: GRAlertViewController = GRAlertViewController()
+        vc.delegate = self
+        vc.modalPresentationStyle = .overCurrentContext
+        self.presentWithFade(targetVC: vc)
     }
 }
 
 // MARK: GR Alert View Controller Delegate
-extension PlaylistListViewController {
+extension PlaylistListViewController: GRAlertViewControllerDelegate {
     func alertViewAddButtonTouched(title: String) {
         addPlaylist(title)
     }
@@ -63,12 +104,8 @@ extension PlaylistListViewController {
     }
     
     func setBlankViewHidden() {
-        var hidden: Bool = true
-        if playlistArray.count == 0 {
-            hidden = false
-        }
-        blankView.isHidden = hidden
-        playlistTableView.isHidden = !hidden
+        blankView.isHidden = !(playlistArray.count == 0)
+        playlistTableView.isHidden = playlistArray.count == 0
     }
     
     func addPlaylist(_ title: String) {
@@ -87,7 +124,10 @@ extension PlaylistListViewController {
         playlistTableView.insertRows(at: [indexPath], with: .automatic)
         playlistTableView.endUpdates()
     }
-    
+}
+
+// MARK: VideoListViewControllerDelegate
+extension PlaylistListViewController: VideoListViewControllerDelegate {
     func recentVideoChanged(_ playlist: Playlist) {
         if let index = playlistArray.find({$0 == playlist}) {
             playlistArray[index] = playlist
@@ -101,39 +141,45 @@ extension PlaylistListViewController {
 
 // MARK: IBActions
 extension PlaylistListViewController {
-    @IBAction func addButtonClicked() {
-        let alertVC = storyboard?.instantiateViewController(withIdentifier: StoryboardId.GRAlert) as! GRAlertViewController
-        alertVC.delegate = self
-        presentWithFade(targetVC: alertVC)
-    }
-    
     @IBAction func showSettingsVC() {
-        let settingsVC = storyboard?.instantiateViewController(withIdentifier: StoryboardId.Settings) as! SettingsViewController
-        let navController = UINavigationController.init(rootViewController: settingsVC)
-        navController.modalPresentationStyle = .fullScreen
-        present(navController, animated: true, completion: nil)
+        let vc: SettingsViewController = SettingsViewController()
+        let nav = UINavigationController.init(rootViewController: vc)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true, completion: nil)
     }
 }
 
 // MARK: Table View Datasource, Delegate
-extension PlaylistListViewController {
+extension PlaylistListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return playlistArray.count
     }
     
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 90
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return footerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 90
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PlaylistCellIdentifier", for: indexPath) as! PlaylistTableViewCell
-        cell.initCell(playlistArray[indexPath.row])
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! PlaylistTableViewCell
+        cell.updatePlaylist(playlistArray[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let videoListVC = storyboard?.instantiateViewController(withIdentifier: StoryboardId.VideoList) as! VideoListViewController
-        videoListVC.playlist = playlistArray[indexPath.row]
-        videoListVC.delegate = self
-        navigationController?.pushViewController(videoListVC, animated: true)
+        let vc: VideoListViewController = VideoListViewController()
+        vc.playlist = playlistArray[indexPath.row]
+        vc.delegate = self
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

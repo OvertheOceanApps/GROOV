@@ -7,11 +7,35 @@
 //
 
 import UIKit
+import RxSwift
+import SnapKit
 
 class BaseViewController: UIViewController {
+    let disposeBag: DisposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
+    }
+
+    func setupView() {
+        addSubviews()
+        layout()
+        style()
+        behavior()
+    }
+    
+    func addSubviews() {
+    }
+    
+    func layout() {
+    }
+    
+    func style() {
+        view.backgroundColor = UIColor.white
+    }
+    
+    func behavior() {
         automaticallyAdjustsScrollViewInsets = false
     }
     

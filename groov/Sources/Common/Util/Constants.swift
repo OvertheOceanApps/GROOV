@@ -25,6 +25,7 @@ struct GRVColor {
     
     static let backgroundColor = UIColor.init(netHex: 0x1E2124)
     static let separatorColor = UIColor.init(netHex: 0x15191C)
+    static let alertViewSeparatorColor = UIColor(netHex: 0xAAAAAA)
     
     static let tableviewRowDeleteColor = UIColor.init(netHex: 0xFF204F)
     

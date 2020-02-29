@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class LoadingIndicatorView: UIView {
+final class LoadingIndicatorView: BaseView {
     private let activityIndicatorView = UIActivityIndicatorView(style: .white)
     
     override init(frame: CGRect) {
@@ -16,29 +16,27 @@ final class LoadingIndicatorView: UIView {
         let height = Constants.Layout.SearchList.heightForSuggest
         
         super.init(frame: CGRect(x: 0, y: 0, width: width, height: height))
-        initialize()
     }
     
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        initialize()
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
     
-    func initialize() {
-        addSubview()
-        layout()
-        style()
-    }
-    
-    func addSubview() {
+    override func addSubviews() {
+        super.addSubviews()
+        
         addSubview(activityIndicatorView)
     }
-    
-    func layout() {
+        
+    override func layout() {
+        super.layout()
+        
         activityIndicatorView.center = center
     }
-    
-    func style() {
+        
+    override func style() {
+        super.style()
+        
         backgroundColor = GRVColor.backgroundColor
         
         activityIndicatorView.startAnimating()

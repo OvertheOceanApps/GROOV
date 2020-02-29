@@ -102,6 +102,13 @@ class Video: Object {
     }
     
     func durationString() -> String {
-        return duration != "" ? "--:--" : duration
+        return duration == "" ? "--:--" : duration
+    }
+    
+    func getThumbnailUrl() -> String {
+        // https://i.ytimg.com/vi/mzYM9QKKWSg/default.jpg
+        let kYoutubeThumbnail = "mqdefault"
+        let kYoutubeImageUrl = "https://i.ytimg.com/vi"
+        return "\(kYoutubeImageUrl)/\(videoId)/\(kYoutubeThumbnail).jpg"
     }
 }
