@@ -131,7 +131,7 @@ extension PlaylistListViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! PlaylistTableViewCell
-        cell.initCell(playlistArray[indexPath.row])
+        cell.updatePlaylist(playlistArray[indexPath.row])
         return cell
     }
     

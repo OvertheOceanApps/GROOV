@@ -65,7 +65,7 @@ class PlaylistTableViewCell: BaseTableViewCell {
         super.behavior()
     }
     
-    func initCell(_ playlist: Playlist) {
+    func updatePlaylist(_ playlist: Playlist) {
         titleLabel.text = playlist.title
         videoTitleLabel.text = playlist.recentVideo.isEmpty ? L10n.noRecentVideo : playlist.recentVideo
     }
