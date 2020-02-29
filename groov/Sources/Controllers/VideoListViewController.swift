@@ -15,7 +15,7 @@ protocol VideoListViewControllerDelegate: class {
     func recentVideoChanged(_ playlist: Playlist)
 }
 
-class VideoListViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource, YTPlayerViewDelegate, SearchViewControllerDelegate {
+class VideoListViewController: BaseViewController {
     @IBOutlet var videoPlayerView: YTPlayerView!
     @IBOutlet var videoTableView: UITableView!
     @IBOutlet var blankView: UIView!
@@ -141,7 +141,10 @@ extension VideoListViewController {
         currentVideo = video
         navigationItem.title = video.title
     }
-    
+}
+
+// MARK: SearchViewControllerDelegate
+extension VideoListViewController: SearchViewControllerDelegate {
     func videoAdded(_ video: Video) {
         let realm = try! Realm()
         try! realm.write { [weak self] in
@@ -239,7 +242,7 @@ extension VideoListViewController {
 }
 
 // MARK: YT Player View Delegate
-extension VideoListViewController {
+extension VideoListViewController: YTPlayerViewDelegate {
     func playerViewDidBecomeReady(_ playerView: YTPlayerView) {
         if autoPlay {
             videoPlayerView.playVideo()
@@ -258,7 +261,7 @@ extension VideoListViewController {
 }
 
 // MARK: Table View Datasource, Delegate
-extension VideoListViewController {
+extension VideoListViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

@@ -12,7 +12,7 @@ protocol GRAlertViewControllerDelegate: class {
     func alertViewAddButtonTouched(title: String)
 }
 
-class GRAlertViewController: UIViewController {
+class GRAlertViewController: BaseViewController {
     @IBOutlet var titleTextField: UITextField!
     @IBOutlet var descriptionLabel: UILabel!
     @IBOutlet var addButton: UIButton!

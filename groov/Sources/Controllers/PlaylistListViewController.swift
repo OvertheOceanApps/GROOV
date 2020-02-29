@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class PlaylistListViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource, VideoListViewControllerDelegate, GRAlertViewControllerDelegate {
+class PlaylistListViewController: BaseViewController {
     var playlistArray: Array<Playlist> = []
     @IBOutlet var playlistTableView: UITableView!
     @IBOutlet var blankView: UIView!
@@ -47,7 +47,7 @@ class PlaylistListViewController: BaseViewController, UITableViewDelegate, UITab
 }
 
 // MARK: GR Alert View Controller Delegate
-extension PlaylistListViewController {
+extension PlaylistListViewController: GRAlertViewControllerDelegate {
     func alertViewAddButtonTouched(title: String) {
         addPlaylist(title)
     }
@@ -87,7 +87,10 @@ extension PlaylistListViewController {
         playlistTableView.insertRows(at: [indexPath], with: .automatic)
         playlistTableView.endUpdates()
     }
-    
+}
+
+// MARK: VideoListViewControllerDelegate
+extension PlaylistListViewController: VideoListViewControllerDelegate {
     func recentVideoChanged(_ playlist: Playlist) {
         if let index = playlistArray.find({$0 == playlist}) {
             playlistArray[index] = playlist
@@ -116,7 +119,7 @@ extension PlaylistListViewController {
 }
 
 // MARK: Table View Datasource, Delegate
-extension PlaylistListViewController {
+extension PlaylistListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return playlistArray.count
     }

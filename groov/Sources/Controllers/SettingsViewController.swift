@@ -25,7 +25,7 @@ struct Sections {
     }
 }
 
-class SettingsViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate {
+class SettingsViewController: BaseViewController {
     @IBOutlet var dismissBarButton: UIBarButtonItem!
     @IBOutlet var mainTableView: UITableView!
 
@@ -43,7 +43,7 @@ class SettingsViewController: BaseViewController, UITableViewDelegate, UITableVi
 }
 
 // MARK: Functions
-extension SettingsViewController {
+extension SettingsViewController: MFMailComposeViewControllerDelegate {
     func clearCache() {
         let cache = KingfisherManager.shared.cache
         cache.clearMemoryCache()
@@ -113,7 +113,7 @@ extension SettingsViewController {
 }
 
 // MARK: Table View Datasource, Delegate
-extension SettingsViewController {
+extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
