@@ -86,11 +86,6 @@ extension SettingsViewController {
         }
     }
     
-    func goLibrariesVC() {
-        let libraryVC = storyboard?.instantiateViewController(withIdentifier: StoryboardId.Library) as! LibraryViewController
-        navigationController?.pushViewController(libraryVC, animated: true)
-    }
-    
     func sendMail() {
         let mailVC = MFMailComposeViewController()
         mailVC.modalPresentationStyle = .fullScreen
@@ -124,7 +119,7 @@ extension SettingsViewController {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 0 ? 2 : 4
+        return section == 0 ? 2 : 3
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -162,8 +157,9 @@ extension SettingsViewController {
             switch indexPath.row {
             case 0: // Sections.Data.RemoveCache
                 cell.textLabel?.text = L10n.removeImageCache
-            default: // Sections.Data.RemoveRealm
+            case 1: // Sections.Data.RemoveRealm
                 cell.textLabel?.text = L10n.removeFolderVideo
+            default: break
             }
         default: // Sections.Info
             cell.accessoryType = .disclosureIndicator
@@ -177,9 +173,7 @@ extension SettingsViewController {
             case 2: // Sections.Info.Facebook
                 cell.textLabel?.text = L10n.visitFacebook
                 cell.accessoryType = .disclosureIndicator
-            default:
-                cell.textLabel?.text = L10n.openSourceLibrary
-                cell.accessoryType = .disclosureIndicator
+            default: break
             }
         }
         
@@ -194,8 +188,9 @@ extension SettingsViewController {
             switch indexPath.row {
             case 0: // Sections.Data.RemoveCache
                 clearCache()
-            default: // Sections.Data.RemoveRealm
+            case 1: // Sections.Data.RemoveRealm
                 clearRealm()
+            default: break
             }
         default: // Sections.Info
             switch indexPath.row {
@@ -205,8 +200,7 @@ extension SettingsViewController {
                 sendMail()
             case 2: // Sections.Info.Facebook
                 goFacebookPage()
-            default:
-                goLibrariesVC()
+            default: break
             }
         }
     }
