@@ -32,10 +32,12 @@ class VideoListViewController: BaseViewController {
     @IBOutlet var videoPlayerViewTopConstraint: NSLayoutConstraint!
     @IBOutlet var searchVideoButton: UIButton!
     
-    let videoPlayer: YTSwiftyPlayer = YTSwiftyPlayer()
-    var playerParameters: [VideoEmbedParameter] = [] {
-        didSet { videoPlayer.setPlayerParameters(playerParameters) }
-    }
+    let videoPlayer: YTSwiftyPlayer = YTSwiftyPlayer(playerVars: [.showControls(.hidden),
+                                                                  .showModestbranding(true),
+                                                                  .playsInline(true),
+                                                                  .showInfo(false),
+                                                                  .showFullScreenButton(false),
+                                                                  .showRelatedVideo(false)])
     
     weak var delegate: VideoListViewControllerDelegate?
     var playlist: Playlist! = nil
@@ -72,13 +74,6 @@ class VideoListViewController: BaseViewController {
     
     func initComponents() {
         videoPlayerContainerView.addSubview(videoPlayer)
-        
-        playerParameters = [.showControls(.hidden),
-                            .showModestbranding(true),
-                            .playsInline(true),
-                            .showInfo(false),
-                            .showFullScreenButton(false),
-                            .showRelatedVideo(false)]
         
         videoPlayer.delegate = self
         videoPlayer.translatesAutoresizingMaskIntoConstraints = false
