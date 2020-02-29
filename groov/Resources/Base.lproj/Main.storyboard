@@ -334,7 +334,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                                 <color key="backgroundColor" red="0.11764705882352941" green="0.12941176470588234" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="CXr-fX-qPX">
-                                    <rect key="frame" x="0.0" y="146" width="375" height="90"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WIt-Au-sSm">
@@ -355,90 +355,6 @@
                                         <constraint firstItem="WIt-Au-sSm" firstAttribute="centerY" secondItem="CXr-fX-qPX" secondAttribute="centerY" id="d0O-F5-6PO"/>
                                     </constraints>
                                 </view>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PlaylistCellIdentifier" rowHeight="90" id="m38-8Q-Kv6" customClass="PlaylistTableViewCell" customModule="GROOV_" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="90"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m38-8Q-Kv6" id="LBN-ys-1ng">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem Ipsum is simply dummy text of the printing and typesetting industry." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y8S-vR-KWn">
-                                                    <rect key="frame" x="22" y="28" width="336" height="20"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="45" id="NN3-gO-zZS"/>
-                                                        <constraint firstAttribute="height" constant="20" id="fPd-yz-8eu"/>
-                                                        <constraint firstAttribute="height" constant="44" id="n5r-Mf-bNL"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" red="0.50196078431372548" green="0.51372549019607838" blue="0.55686274509803924" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="NN3-gO-zZS"/>
-                                                            <exclude reference="n5r-Mf-bNL"/>
-                                                        </mask>
-                                                    </variation>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Imagine Time (Feat. Suran) (Prod. PEEJAY) - Beenzino" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IJl-9b-YkT">
-                                                    <rect key="frame" x="22" y="53" width="336" height="15"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="18" id="5Yi-up-2fH"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" red="0.50196078431372548" green="0.51372549019607838" blue="0.55686274509803924" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="5Yi-up-2fH"/>
-                                                        </mask>
-                                                    </variation>
-                                                </label>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vOe-vB-2By">
-                                                    <rect key="frame" x="15" y="89" width="360" height="1"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                    <color key="backgroundColor" red="0.082352941176470587" green="0.098039215686274508" blue="0.10980392156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </view>
-                                            </subviews>
-                                            <color key="backgroundColor" red="0.11764705882352941" green="0.12941176470588234" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="IJl-9b-YkT" secondAttribute="bottom" constant="30" id="43f-Ge-nNb"/>
-                                                <constraint firstItem="IJl-9b-YkT" firstAttribute="top" secondItem="LBN-ys-1ng" secondAttribute="topMargin" constant="47" id="9Wv-oQ-cOh"/>
-                                                <constraint firstItem="y8S-vR-KWn" firstAttribute="top" secondItem="LBN-ys-1ng" secondAttribute="topMargin" constant="17" id="ET4-Xo-Hki"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="IJl-9b-YkT" secondAttribute="trailing" constant="2" id="PJ0-PZ-p0l"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="y8S-vR-KWn" secondAttribute="trailing" constant="2" id="QsI-Y7-zht"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="IJl-9b-YkT" secondAttribute="trailing" constant="2" id="UKr-mk-Pbq"/>
-                                                <constraint firstItem="y8S-vR-KWn" firstAttribute="top" secondItem="LBN-ys-1ng" secondAttribute="topMargin" constant="9" id="V7i-NW-lQ1"/>
-                                                <constraint firstItem="IJl-9b-YkT" firstAttribute="leading" secondItem="LBN-ys-1ng" secondAttribute="leadingMargin" constant="7" id="ebe-qM-EeL"/>
-                                                <constraint firstItem="IJl-9b-YkT" firstAttribute="top" secondItem="LBN-ys-1ng" secondAttribute="topMargin" constant="42" id="ek8-jn-PTb"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="y8S-vR-KWn" secondAttribute="bottom" constant="51" id="fk7-yk-lUg"/>
-                                                <constraint firstItem="y8S-vR-KWn" firstAttribute="centerX" secondItem="LBN-ys-1ng" secondAttribute="centerX" id="kHu-C1-Q6D"/>
-                                                <constraint firstItem="y8S-vR-KWn" firstAttribute="leading" secondItem="LBN-ys-1ng" secondAttribute="leadingMargin" constant="7" id="n2b-X7-wpm"/>
-                                                <constraint firstItem="IJl-9b-YkT" firstAttribute="top" secondItem="LBN-ys-1ng" secondAttribute="topMargin" constant="56" id="p8j-ez-Nvq"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="y8S-vR-KWn" secondAttribute="trailing" constant="2" id="uqc-bd-Ysh"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="y8S-vR-KWn" secondAttribute="bottom" constant="21" id="yDP-UD-17E"/>
-                                            </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="QsI-Y7-zht"/>
-                                                    <exclude reference="V7i-NW-lQ1"/>
-                                                    <exclude reference="fk7-yk-lUg"/>
-                                                    <exclude reference="kHu-C1-Q6D"/>
-                                                    <exclude reference="yDP-UD-17E"/>
-                                                    <exclude reference="43f-Ge-nNb"/>
-                                                    <exclude reference="9Wv-oQ-cOh"/>
-                                                    <exclude reference="UKr-mk-Pbq"/>
-                                                    <exclude reference="p8j-ez-Nvq"/>
-                                                </mask>
-                                            </variation>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.11764705882352941" green="0.12941176470588234" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <connections>
-                                            <outlet property="titleLabel" destination="y8S-vR-KWn" id="vpF-VX-aLz"/>
-                                            <outlet property="videoTitleLabel" destination="IJl-9b-YkT" id="4th-dN-Aem"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="Qf9-3t-XiX" id="LsN-5o-Vna"/>
                                     <outlet property="delegate" destination="Qf9-3t-XiX" id="xEs-HI-nfN"/>

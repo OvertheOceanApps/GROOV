@@ -17,6 +17,8 @@ class PlaylistListViewController: BaseViewController {
     @IBOutlet var addFolderButton: UIButton!
     @IBOutlet var blankAddFolderButton: UIButton!
     
+    private let cellIdentifier: String = "PlaylistCellIdentifier"
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: false)
@@ -26,6 +28,9 @@ class PlaylistListViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = L10n.folderList
+        
+        playlistTableView.register(PlaylistTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+        
         initComponents()
         loadPlaylists()
     }
@@ -125,7 +130,7 @@ extension PlaylistListViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PlaylistCellIdentifier", for: indexPath) as! PlaylistTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! PlaylistTableViewCell
         cell.initCell(playlistArray[indexPath.row])
         return cell
     }
