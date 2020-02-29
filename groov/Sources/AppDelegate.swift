@@ -38,6 +38,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Thread.sleep(forTimeInterval: 2.0)
         
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        let vc: PlaylistListViewController = PlaylistListViewController()
+        let nav: UINavigationController = UINavigationController(rootViewController: vc)
+
+        self.window?.rootViewController = nav
+        self.window?.makeKeyAndVisible()
+        
         return true
     }
 

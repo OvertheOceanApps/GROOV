@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="4D4-8e-nOY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -7,23 +7,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
-        <scene sceneID="A4s-j5-Cnv">
-            <objects>
-                <navigationController storyboardIdentifier="MainNavigationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4D4-8e-nOY" sceneMemberID="viewController">
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="8B1-mJ-MJl">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="Qf9-3t-XiX" kind="relationship" relationship="rootViewController" id="KO1-cI-FmH"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3xb-bY-GAf" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-462" y="491"/>
-        </scene>
         <!--Alert View Controller-->
         <scene sceneID="fJZ-XU-FpA">
             <objects>
@@ -193,136 +176,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sw6-Oe-VqH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1028" y="1183.3583208395803"/>
-        </scene>
-        <!--Playlist List View Controller-->
-        <scene sceneID="qlM-KW-AO6">
-            <objects>
-                <viewController storyboardIdentifier="SBIdPlaylistList" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Qf9-3t-XiX" customClass="PlaylistListViewController" customModule="GROOV_" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="t14-es-Nfb"/>
-                        <viewControllerLayoutGuide type="bottom" id="rU5-Ny-hUa"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="NfW-ub-dwg">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9d5-G0-ftv">
-                                <rect key="frame" x="0.0" y="-64" width="375" height="687"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RlD-9t-kaD">
-                                        <rect key="frame" x="0.0" y="306" width="375" height="75"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="새로운 폴더를 추가해 보세요." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5oE-RY-qT1">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="25"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="25" id="3nC-fd-ZHV"/>
-                                                    <constraint firstAttribute="width" constant="375" id="XmU-v2-MZf"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <color key="textColor" red="0.50196078430000002" green="0.51372549020000002" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dXd-cs-B7N">
-                                                <rect key="frame" x="103" y="39" width="169" height="36"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="169" id="Vdj-mb-wA6"/>
-                                                    <constraint firstAttribute="height" constant="36" id="lZS-4x-O9E"/>
-                                                </constraints>
-                                                <state key="normal" image="add_folder_2">
-                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="addButtonClicked" destination="Qf9-3t-XiX" eventType="touchUpInside" id="NI0-OK-HE2"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="dXd-cs-B7N" secondAttribute="bottom" id="18c-9B-eTh"/>
-                                            <constraint firstItem="5oE-RY-qT1" firstAttribute="centerX" secondItem="RlD-9t-kaD" secondAttribute="centerX" id="7IT-Uj-K8F"/>
-                                            <constraint firstItem="dXd-cs-B7N" firstAttribute="centerX" secondItem="RlD-9t-kaD" secondAttribute="centerX" id="P30-dI-YMt"/>
-                                            <constraint firstAttribute="height" constant="75" id="d6h-w0-WbB"/>
-                                            <constraint firstItem="5oE-RY-qT1" firstAttribute="top" secondItem="RlD-9t-kaD" secondAttribute="top" id="zZs-C6-ad4"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" red="0.11764704436063766" green="0.12941178679466248" blue="0.14117643237113953" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstItem="RlD-9t-kaD" firstAttribute="centerX" secondItem="9d5-G0-ftv" secondAttribute="centerX" id="LoM-a6-TSJ"/>
-                                    <constraint firstItem="RlD-9t-kaD" firstAttribute="centerY" secondItem="9d5-G0-ftv" secondAttribute="centerY" id="c4X-T5-khm"/>
-                                    <constraint firstItem="RlD-9t-kaD" firstAttribute="width" secondItem="9d5-G0-ftv" secondAttribute="width" id="d1D-nS-xAZ"/>
-                                </constraints>
-                            </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="90" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="b2b-Cb-kac">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
-                                <color key="backgroundColor" red="0.11764705882352941" green="0.12941176470588234" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
-                                <view key="tableFooterView" contentMode="scaleToFill" id="CXr-fX-qPX">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WIt-Au-sSm">
-                                            <rect key="frame" x="103" y="27" width="169" height="36"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="36" id="aZh-iM-McZ"/>
-                                                <constraint firstAttribute="width" constant="169" id="rFd-LI-0ZL"/>
-                                            </constraints>
-                                            <state key="normal" image="add_folder_2"/>
-                                            <connections>
-                                                <action selector="addButtonClicked" destination="Qf9-3t-XiX" eventType="touchUpInside" id="r2p-1K-tTH"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                    <color key="backgroundColor" red="0.11764705882352941" green="0.12941176470588234" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <constraints>
-                                        <constraint firstItem="WIt-Au-sSm" firstAttribute="centerX" secondItem="CXr-fX-qPX" secondAttribute="centerX" id="Oxz-PG-UeJ"/>
-                                        <constraint firstItem="WIt-Au-sSm" firstAttribute="centerY" secondItem="CXr-fX-qPX" secondAttribute="centerY" id="d0O-F5-6PO"/>
-                                    </constraints>
-                                </view>
-                                <connections>
-                                    <outlet property="dataSource" destination="Qf9-3t-XiX" id="LsN-5o-Vna"/>
-                                    <outlet property="delegate" destination="Qf9-3t-XiX" id="xEs-HI-nfN"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" red="0.11764705882352941" green="0.12941176470588234" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="9d5-G0-ftv" firstAttribute="top" secondItem="t14-es-Nfb" secondAttribute="bottom" constant="-64" id="0Xn-Df-Y3G"/>
-                            <constraint firstAttribute="bottom" secondItem="b2b-Cb-kac" secondAttribute="bottom" id="GSD-hu-b9D"/>
-                            <constraint firstItem="9d5-G0-ftv" firstAttribute="width" secondItem="NfW-ub-dwg" secondAttribute="width" id="KN3-YE-mdk"/>
-                            <constraint firstItem="rU5-Ny-hUa" firstAttribute="top" secondItem="9d5-G0-ftv" secondAttribute="bottom" id="ZYC-EQ-RTe"/>
-                            <constraint firstItem="9d5-G0-ftv" firstAttribute="centerX" secondItem="NfW-ub-dwg" secondAttribute="centerX" id="b8O-SB-14U"/>
-                            <constraint firstItem="b2b-Cb-kac" firstAttribute="width" secondItem="NfW-ub-dwg" secondAttribute="width" id="pVZ-n5-QFM"/>
-                            <constraint firstItem="b2b-Cb-kac" firstAttribute="centerX" secondItem="NfW-ub-dwg" secondAttribute="centerX" id="uJe-Qo-Nul"/>
-                            <constraint firstItem="b2b-Cb-kac" firstAttribute="top" secondItem="t14-es-Nfb" secondAttribute="bottom" id="zab-cz-CEo"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="bhk-lM-lt1">
-                        <barButtonItem key="leftBarButtonItem" image="navigation_setting" id="2Ru-hS-x4h">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="showSettingsVC" destination="Qf9-3t-XiX" id="cQx-Yc-E0r"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="navigation_add" style="plain" id="xAb-41-xdO">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="addButtonClicked" destination="Qf9-3t-XiX" id="KsN-1u-9fD"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <connections>
-                        <outlet property="addFolderButton" destination="WIt-Au-sSm" id="Kil-pq-jS8"/>
-                        <outlet property="blankAddFolderButton" destination="dXd-cs-B7N" id="Vc2-JI-KE1"/>
-                        <outlet property="blankView" destination="9d5-G0-ftv" id="oAj-07-ZNV"/>
-                        <outlet property="footerView" destination="CXr-fX-qPX" id="hJA-Q8-hN6"/>
-                        <outlet property="playlistTableView" destination="b2b-Cb-kac" id="7fL-vA-V0Y"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LLi-8O-3sZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="288.80000000000001" y="491.60419790104953"/>
         </scene>
         <!--Video List View Controller-->
         <scene sceneID="wlU-9y-8dG">
@@ -585,12 +438,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="add_folder_2" width="168" height="35"/>
         <image name="add_folder_thumbnail" width="50" height="45"/>
         <image name="loading_gradation" width="375" height="200"/>
-        <image name="navigation_add" width="17.5" height="17.5"/>
         <image name="navigation_search" width="19" height="18.5"/>
-        <image name="navigation_setting" width="20" height="20"/>
         <image name="video_control_background" width="414" height="300"/>
         <image name="video_control_forward" width="28.5" height="31.5"/>
         <image name="video_control_play" width="28" height="31.5"/>
