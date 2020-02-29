@@ -116,10 +116,10 @@ extension PlaylistListViewController {
     }
     
     @IBAction func showSettingsVC() {
-        let settingsVC = storyboard?.instantiateViewController(withIdentifier: StoryboardId.Settings) as! SettingsViewController
-        let navController = UINavigationController.init(rootViewController: settingsVC)
-        navController.modalPresentationStyle = .fullScreen
-        present(navController, animated: true, completion: nil)
+        let vc: SettingsViewController = SettingsViewController()
+        let nav = UINavigationController.init(rootViewController: vc)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true, completion: nil)
     }
 }
 
