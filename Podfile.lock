@@ -120,6 +120,12 @@ PODS:
   - Realm/Headers (4.3.2)
   - RealmSwift (4.3.2):
     - Realm (= 4.3.2)
+  - RxCocoa (5.0.1):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxRelay (5.0.1):
+    - RxSwift (~> 5)
+  - RxSwift (5.0.1)
   - SwiftMessages (7.0.1):
     - SwiftMessages/App (= 7.0.1)
   - SwiftMessages/App (7.0.1)
@@ -134,6 +140,8 @@ DEPENDENCIES:
   - Kingfisher (~> 5.0)
   - Moya (~> 14.0)
   - RealmSwift
+  - RxCocoa (~> 5)
+  - RxSwift (~> 5)
   - SwiftMessages (~> 7.0.0)
   - SWXMLHash (~> 5.0.0)
 
@@ -167,6 +175,9 @@ SPEC REPOS:
     - Protobuf
     - Realm
     - RealmSwift
+    - RxCocoa
+    - RxRelay
+    - RxSwift
     - SwiftMessages
     - SWXMLHash
 
@@ -199,9 +210,12 @@ SPEC CHECKSUMS:
   Protobuf: 176220c526ad8bd09ab1fb40a978eac3fef665f7
   Realm: 5e92902e2875dff4bb0fd02f67bb737c3d5db2bc
   RealmSwift: 9a360fc7bae04fc2e308a34fbd899d5faa2d6b22
+  RxCocoa: e741b9749968e8a143e2b787f1dfbff2b63d0a5c
+  RxRelay: 89d54507f4fd4d969e6ec1d4bd7f3673640b4640
+  RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
   SwiftMessages: b577dc7043be8b299857ab35bb663dbff6483bd0
   SWXMLHash: 9cc0c2e4807926c74377724aa8722ee5707a0485
 
-PODFILE CHECKSUM: 4f68db9fbcf3ee79c3861007ed21ebaf7e92089d
+PODFILE CHECKSUM: 739d39b671ece0ce59fe2f70be6291a5556b38e8
 
 COCOAPODS: 1.8.4
