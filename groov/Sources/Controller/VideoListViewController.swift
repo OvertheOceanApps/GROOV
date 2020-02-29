@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import SnapKit
 import RealmSwift
 import SwiftMessages
 import StoreKit
@@ -16,20 +18,21 @@ protocol VideoListViewControllerDelegate: class {
 }
 
 class VideoListViewController: BaseViewController {
-    @IBOutlet var videoPlayerView: YTPlayerView!
-    @IBOutlet var videoTableView: UITableView!
-    @IBOutlet var blankView: UIView!
-    @IBOutlet var durationWrapperView: UIView!
-    @IBOutlet var videoControlView: UIView!
-    @IBOutlet var controlView: UIView!
-    @IBOutlet var runningTimeLabel: UILabel!
-    @IBOutlet var previousButton: UIButton!
-    @IBOutlet var forwardButton: UIButton!
-    @IBOutlet var playPauseButton: UIButton!
-    @IBOutlet var progressImageView: UIImageView!
-    @IBOutlet var progressBackgroundView: UIView!
-    @IBOutlet var videoPlayerViewTopConstraint: NSLayoutConstraint!
-    @IBOutlet var searchVideoButton: UIButton!
+    private let searchBarButton: UIBarButtonItem = UIBarButtonItem(image: Asset.searchFavicon.image, style: .plain, target: nil, action: nil)
+    private let blankView: BlankView = BlankView(.video)
+    private let videoPlayerView: YTPlayerView = YTPlayerView()
+    private let videoTableView: UITableView = UITableView()
+    private let durationView: UIView = UIView()
+    private let videoControlView: UIControl = UIControl()
+    private let videoControlContentView: UIControl = UIControl()
+    private let runningTimeLabel: UILabel = UILabel()
+    private let previousButton: UIButton = UIButton(type: .system)
+    private let forwardButton: UIButton = UIButton(type: .system)
+    private let playPauseButton: UIButton = UIButton(type: .system)
+    private let progressImageView: UIImageView = UIImageView()
+    private let controlMaskImageView: UIImageView = UIImageView()
+    
+    var progressImageViewWidth: Constraint?
     
     weak var delegate: VideoListViewControllerDelegate?
     var playlist: Playlist! = nil
@@ -44,19 +47,212 @@ class VideoListViewController: BaseViewController {
     
     private let cellIdentifier: String = "VideoListCellIdentifier"
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        navigationItem.title = L10n.videoList
+    override func addSubviews() {
+        super.addSubviews()
+        
+        navigationItem.rightBarButtonItem = searchBarButton
+        
+        view.addSubview(blankView)
+        view.addSubview(videoPlayerView)
+        view.addSubview(videoTableView)
+        view.addSubview(durationView)
+        view.addSubview(videoControlView)
+        
+        durationView.addSubview(runningTimeLabel)
+        durationView.addSubview(progressImageView)
+        
+        videoControlView.addSubview(videoControlContentView)
+        videoControlContentView.addSubview(controlMaskImageView)
+        videoControlContentView.addSubview(previousButton)
+        videoControlContentView.addSubview(forwardButton)
+        videoControlContentView.addSubview(playPauseButton)
         
         videoTableView.register(VideoListTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+    }
+        
+    override func layout() {
+        super.layout()
+        
+        blankView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        videoPlayerView.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+            $0.height.equalTo(view.snp.width).multipliedBy(9.0/16.0)
+        }
+        
+        videoTableView.snp.makeConstraints {
+            $0.top.equalTo(videoPlayerView.snp.bottom)
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        durationView.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+            $0.height.equalTo(view.snp.width).multipliedBy(9.0/16.0)
+        }
+        
+        videoControlView.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+            $0.height.equalTo(view.snp.width).multipliedBy(9.0/16.0)
+        }
+        
+        videoControlContentView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        progressImageView.snp.makeConstraints {
+            $0.leading.bottom.equalToSuperview()
+            progressImageViewWidth = $0.width.equalTo(0).constraint
+            $0.height.equalTo(1)
+        }
+        
+        runningTimeLabel.snp.makeConstraints {
+            $0.trailing.equalToSuperview().inset(15)
+            $0.bottom.equalToSuperview().inset(6)
+            $0.width.equalTo(100)
+            $0.height.equalTo(15)
+        }
+        
+        controlMaskImageView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        previousButton.snp.makeConstraints {
+            $0.leading.equalToSuperview().inset(50)
+            $0.centerY.equalToSuperview()
+            $0.size.equalTo(44)
+        }
+        
+        forwardButton.snp.makeConstraints {
+            $0.trailing.equalToSuperview().inset(50)
+            $0.centerY.equalToSuperview()
+            $0.size.equalTo(44)
+        }
+        
+        playPauseButton.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.size.equalTo(44)
+        }
+    }
+        
+    override func style() {
+        super.style()
+        
+        navigationItem.title = L10n.videoList
+        
+        view.backgroundColor = GRVColor.backgroundColor
+        
+        searchBarButton.tintColor = UIColor.white
+        
+        videoTableView.backgroundColor = GRVColor.backgroundColor
+        
+        progressImageView.contentMode = .scaleAspectFill
+        progressImageView.clipsToBounds = true
+        progressImageView.image = Asset.loadingGradation.image
+        
+        runningTimeLabel.text = "0:00:00 / 0:00:00"
+        runningTimeLabel.textAlignment = .right
+        runningTimeLabel.textColor = UIColor(netHex: 0xCCCCCC)
+        runningTimeLabel.font = UIFont.systemFont(ofSize: 9)
+        
+        controlMaskImageView.contentMode = .scaleAspectFill
+        controlMaskImageView.clipsToBounds = true
+        controlMaskImageView.image = Asset.videoControlBackground.image
+        
+        previousButton.setImage(Asset.videoControlPrevious.image, for: .normal)
+        previousButton.tintColor = UIColor.white
+        
+        forwardButton.setImage(Asset.videoControlForward.image, for: .normal)
+        forwardButton.tintColor = UIColor.white
+        
+        playPauseButton.setImage(Asset.videoControlPlay.image, for: .normal)
+        playPauseButton.tintColor = UIColor.white
+    }
+        
+    override func behavior() {
+        super.behavior()
+        
+        videoPlayerView.delegate = self
+        
+        videoTableView.delegate = self
+        videoTableView.dataSource = self
         
         loadVideos()
-        initComponents()
+        
+        searchBarButton.rx.tap
+            .subscribe { [weak self] _ in
+                guard let self = self else { return }
+                self.showSearchVC()
+            }
+            .disposed(by: disposeBag)
+            
+        blankView.addButton.rx.tap
+            .subscribe { [weak self] _ in
+                guard let self = self else { return }
+                self.showSearchVC()
+            }
+            .disposed(by: disposeBag)
+        
+        videoControlView.rx.controlEvent(.touchUpInside)
+            .subscribe { [weak self] _ in
+                guard let self = self else { return }
+                UIView.animate(withDuration: 0.4, animations: {
+                    self.videoControlContentView.alpha = 1 - self.videoControlContentView.alpha
+                })
+            }
+            .disposed(by: disposeBag)
+            
+        videoControlContentView.rx.controlEvent(.touchUpInside)
+            .subscribe { [weak self] _ in
+                guard let self = self else { return }
+                UIView.animate(withDuration: 0.4, animations: {
+                    self.videoControlContentView.alpha = 1 - self.videoControlContentView.alpha
+                })
+            }
+            .disposed(by: disposeBag)
+        
+        previousButton.rx.tap
+            .subscribe { [weak self] _ in
+                guard let self = self else { return }
+                self.videoSelected(self.getPreviousVideoIndex(), play: true)
+                self.videoPlayed()
+            }
+            .disposed(by: disposeBag)
+        
+        forwardButton.rx.tap
+            .subscribe { [weak self] _ in
+                guard let self = self else { return }
+                self.videoSelected(self.getNextVideoIndex(), play: true)
+                self.videoPlayed()
+            }
+            .disposed(by: disposeBag)
+        
+        playPauseButton.rx.tap
+            .subscribe { [weak self] _ in
+                guard let self = self else { return }
+                if self.currentPlayState == PlayState.Pause {
+                    self.videoPlayerView.playVideo()
+                    self.videoPlayed()
+                } else {
+                    self.videoPlayerView.pauseVideo()
+                    self.videoPaused()
+                }
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    func showSearchVC() {
+        let vc: SearchViewController = SearchViewController()
+        vc.delegate = self
+        let nav = UINavigationController(rootViewController: vc)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true, completion: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setNavigationBarClear()
+        setNavigationBarBackgroundColor()
         setNavigationBackButton()
         startTimer()
     }
@@ -72,18 +268,11 @@ class VideoListViewController: BaseViewController {
         videoPaused()
     }
     
-    func initComponents() {
-        videoPlayerView.delegate = self
-        progressImageView.setWidth(view.width)
-        searchVideoButton.setImage(UIImage(named: L10n.imgSearchVideo), for: .normal)
-    }
-    
-    func initProgress() {
+    func resetProgress() {
         let totalDuration: Int = Int(videoPlayerView.duration())
         let totalDurationString: String = String.init(hms: totalDuration.secToHMS())
         runningTimeLabel.text = "0:00:00 / \(totalDurationString)"
-        
-        progressBackgroundView.setWidth(0)
+        progressImageViewWidth?.update(offset: 0)
     }
 }
 
@@ -196,7 +385,7 @@ extension VideoListViewController: SearchViewControllerDelegate {
             hidden = false
         }
         blankView.isHidden = hidden
-        durationWrapperView.isHidden = !hidden
+        durationView.isHidden = !hidden
         videoControlView.isHidden = !hidden
         videoPlayerView.isHidden = !hidden
         videoTableView.isHidden = !hidden
@@ -248,7 +437,7 @@ extension VideoListViewController: YTPlayerViewDelegate {
             videoPlayerView.playVideo()
             videoPlayed()
         }
-        initProgress()
+        resetProgress()
     }
     
     func playerView(_ playerView: YTPlayerView, didChangeTo state: YTPlayerState) {
@@ -268,6 +457,10 @@ extension VideoListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return videoArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 110
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -334,44 +527,6 @@ extension VideoListViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-// MARK: IBActions
-extension VideoListViewController {
-    @IBAction func searchVideoButtonClicked() {
-        let vc: SearchViewController = SearchViewController()
-        vc.delegate = self
-        let nav = UINavigationController(rootViewController: vc)
-        nav.modalPresentationStyle = .fullScreen
-        present(nav, animated: true, completion: nil)
-    }
-    
-    @IBAction func toggleControlView() {
-        UIView.animate(withDuration: 0.4, animations: { [weak self] in
-            guard let self = self else { return }
-            self.controlView.alpha = self.controlView.alpha == 1 ? 0 : 1
-        })
-    }
-    
-    @IBAction func previousButtonClicked() {
-        videoSelected(getPreviousVideoIndex(), play: true)
-        videoPlayed()
-    }
-    
-    @IBAction func nextButtonClicked() {
-        videoSelected(getNextVideoIndex(), play: true)
-        videoPlayed()
-    }
-    
-    @IBAction func playPauseButtonClicked() {
-        if currentPlayState == PlayState.Pause {
-            videoPlayerView.playVideo()
-            videoPlayed()
-        } else {
-            videoPlayerView.pauseVideo()
-            videoPaused()
-        }
-    }
-}
-
 // MARK: Ask App Store Review and Star Rate
 extension VideoListViewController {
     @objc func checkVideoCurrentTime() {
@@ -384,9 +539,10 @@ extension VideoListViewController {
             runningTimeLabel.text = "\(currentTimeString) / \(totalDurationString)"
             
             let progress: CGFloat = CGFloat(currentTime) / CGFloat(totalDuration)
+            progressImageViewWidth?.update(offset: progress * view.bounds.width)
             UIView.animate(withDuration: 0.5, animations: { [weak self] in
                 guard let self = self else { return }
-                self.progressBackgroundView.setWidth(self.durationWrapperView.width * progress)
+                self.durationView.layoutIfNeeded()
             })
             
             totalPlayTime += 0.5
@@ -401,9 +557,7 @@ extension VideoListViewController {
             reviewAsked = true
             
             let ver = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
-            if UserDefaults.standard.object(forKey: ver) != nil {
-                return
-            }
+            guard UserDefaults.standard.object(forKey: ver) == nil else { return }
             
             SKStoreReviewController.requestReview()
             UserDefaults.standard.set("Y", forKey: ver)

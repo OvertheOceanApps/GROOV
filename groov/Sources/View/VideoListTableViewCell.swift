@@ -106,12 +106,6 @@ class VideoListTableViewCell: BaseTableViewCell {
         progressRingView.trackThickness = 0
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        
-        progressRingView.isHidden = true
-    }
-    
     func updateVideo(_ video: Video) {
         self.video = video
         titleLabel.text = video.title
@@ -129,12 +123,10 @@ extension VideoListTableViewCell {
             titleLabel.textColor = UIColor.white
             channelLabel.textColor = UIColor.white
             durationLabel.textColor = GRVColor.mainTextColor
-            progressRingView.isHidden = false
         } else {
             titleLabel.textColor = GRVColor.mainTextColor
             channelLabel.textColor = GRVColor.mainTextColor
             durationLabel.textColor = GRVColor.subTextColor
-            progressRingView.isHidden = true
         }
     }
 }
@@ -155,8 +147,6 @@ extension VideoListTableViewCell {
 // MARK: Progress Methods
 extension VideoListTableViewCell {
     func progressChanged(p: Float) {
-        progressRingView.isHidden = false
-        
         let angle = p * Float(360)
         progressRingView.animate(toAngle: Double(angle), duration: 0.1, completion: nil)
         progress = p

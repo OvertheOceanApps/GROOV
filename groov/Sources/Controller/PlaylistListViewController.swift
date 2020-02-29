@@ -15,7 +15,7 @@ class PlaylistListViewController: BaseViewController {
     var playlistArray: Array<Playlist> = []
     private let playlistTableView: UITableView = UITableView()
     private let footerView: PlaylistFooterView = PlaylistFooterView()
-    private let blankView: PlaylistBlankView = PlaylistBlankView()
+    private let blankView: BlankView = BlankView(.playlist)
     
     private let cellIdentifier: String = "PlaylistCellIdentifier"
     
@@ -71,7 +71,7 @@ class PlaylistListViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-        blankView.addFolderButton.rx.tap
+        blankView.addButton.rx.tap
             .subscribe { [weak self] _ in
                 guard let self = self else { return }
                 self.showGRAlertVC()
@@ -163,6 +163,10 @@ extension PlaylistListViewController: UITableViewDelegate, UITableViewDataSource
         return footerView
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 90
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! PlaylistTableViewCell
         cell.updatePlaylist(playlistArray[indexPath.row])
@@ -172,10 +176,10 @@ extension PlaylistListViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let videoListVC = storyboard?.instantiateViewController(withIdentifier: StoryboardId.VideoList) as! VideoListViewController
-        videoListVC.playlist = playlistArray[indexPath.row]
-        videoListVC.delegate = self
-        navigationController?.pushViewController(videoListVC, animated: true)
+        let vc: VideoListViewController = VideoListViewController()
+        vc.playlist = playlistArray[indexPath.row]
+        vc.delegate = self
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

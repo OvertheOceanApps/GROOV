@@ -1,5 +1,5 @@
 //
-//  PlaylistBlankView.swift
+//  BlankView.swift
 //  groov
 //
 //  Created by PilGwonKim on 2020/03/01.
@@ -8,10 +8,15 @@
 
 import UIKit
 
-class PlaylistBlankView: BaseView {
+enum BlankViewType {
+    case playlist
+    case video
+}
+
+class BlankView: BaseView {
     private let wrapperView: UIView = UIView()
     private let descriptionLabel: UILabel = UILabel()
-    let addFolderButton: UIButton = UIButton()
+    let addButton: UIButton = UIButton()
     
     override func addSubviews() {
         super.addSubviews()
@@ -19,7 +24,7 @@ class PlaylistBlankView: BaseView {
         addSubview(wrapperView)
         
         wrapperView.addSubview(descriptionLabel)
-        wrapperView.addSubview(addFolderButton)
+        wrapperView.addSubview(addButton)
     }
         
     override func layout() {
@@ -37,7 +42,7 @@ class PlaylistBlankView: BaseView {
             $0.height.equalTo(25)
         }
         
-        addFolderButton.snp.makeConstraints {
+        addButton.snp.makeConstraints {
             $0.top.equalTo(descriptionLabel.snp.bottom).offset(14)
             $0.centerX.equalToSuperview()
             $0.width.equalTo(169)
@@ -50,15 +55,25 @@ class PlaylistBlankView: BaseView {
         
         backgroundColor = GRVColor.backgroundColor
         
-        descriptionLabel.text = L10n.msgAddNewFolder
         descriptionLabel.textColor = GRVColor.mainTextColor
         descriptionLabel.font = UIFont.systemFont(ofSize: 15)
         descriptionLabel.textAlignment = .center
-        
-        addFolderButton.setImage(UIImage(named: L10n.imgAddFolder), for: .normal)
     }
+    
+    init(_ viewType: BlankViewType) {
+        super.init(frame: .zero)
         
-    override func behavior() {
-        super.behavior()
+        switch viewType {
+        case .playlist:
+            descriptionLabel.text = L10n.msgAddNewFolder
+            addButton.setImage(UIImage(named: L10n.imgAddFolder), for: .normal)
+        case .video:
+            descriptionLabel.text = L10n.msgAddNewVideo
+            addButton.setImage(UIImage(named: L10n.imgSearchVideo), for: .normal)
+        }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
