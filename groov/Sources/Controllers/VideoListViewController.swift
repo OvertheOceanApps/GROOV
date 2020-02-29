@@ -10,13 +10,14 @@ import UIKit
 import RealmSwift
 import SwiftMessages
 import StoreKit
+import YoutubeKit
 
 protocol VideoListViewControllerDelegate: class {
     func recentVideoChanged(_ playlist: Playlist)
 }
 
-class VideoListViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource, YTPlayerViewDelegate, SearchViewControllerDelegate {
-    @IBOutlet var videoPlayerView: YTPlayerView!
+class VideoListViewController: BaseViewController {
+    @IBOutlet var videoPlayerContainerView: UIView!
     @IBOutlet var videoTableView: UITableView!
     @IBOutlet var blankView: UIView!
     @IBOutlet var durationWrapperView: UIView!
@@ -31,6 +32,11 @@ class VideoListViewController: BaseViewController, UITableViewDelegate, UITableV
     @IBOutlet var videoPlayerViewTopConstraint: NSLayoutConstraint!
     @IBOutlet var searchVideoButton: UIButton!
     
+    let videoPlayer: YTSwiftyPlayer = YTSwiftyPlayer()
+    var playerParameters: [VideoEmbedParameter] = [] {
+        didSet { videoPlayer.setPlayerParameters(playerParameters) }
+    }
+    
     weak var delegate: VideoListViewControllerDelegate?
     var playlist: Playlist! = nil
     var videoArray: Array<Video> = []
@@ -38,77 +44,70 @@ class VideoListViewController: BaseViewController, UITableViewDelegate, UITableV
     var autoPlay: Bool = false
     var currentPlayState: String! = PlayState.Pause
     var currentSelectedCell: VideoListTableViewCell!
-    var durationTimer: Timer! = nil
     var totalPlayTime: Float = 0 // for review. review time > 10s -> review request
     var reviewAsked: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = L10n.videoList
-        loadVideos()
-        initComponents()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        if isMovingToParent {
+            initComponents()
+            loadVideos()
+        }
+        
         setNavigationBarClear()
         setNavigationBackButton()
-        startTimer()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        stopTimer()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        videoPlayerView.pauseVideo()
+        videoPlayer.pauseVideo()
         videoPaused()
     }
     
     func initComponents() {
-        videoPlayerView.delegate = self
+        videoPlayerContainerView.addSubview(videoPlayer)
+        
+        playerParameters = [.showControls(.hidden),
+                            .showModestbranding(true),
+                            .playsInline(true),
+                            .showInfo(false),
+                            .showFullScreenButton(false),
+                            .showRelatedVideo(false)]
+        
+        videoPlayer.delegate = self
+        videoPlayer.translatesAutoresizingMaskIntoConstraints = false
+        videoPlayer.leadingAnchor.constraint(equalTo: videoPlayerContainerView.leadingAnchor).isActive = true
+        videoPlayer.trailingAnchor.constraint(equalTo: videoPlayerContainerView.trailingAnchor).isActive = true
+        videoPlayer.topAnchor.constraint(equalTo: videoPlayerContainerView.topAnchor).isActive = true
+        videoPlayer.bottomAnchor.constraint(equalTo: videoPlayerContainerView.bottomAnchor).isActive = true
+        videoPlayer.loadPlayer()
+        
         progressImageView.setWidth(view.width)
         searchVideoButton.setImage(UIImage(named: L10n.imgSearchVideo), for: .normal)
     }
     
     func initProgress() {
-        let totalDuration: Int = Int(videoPlayerView.duration())
-        let totalDurationString: String = String.init(hms: totalDuration.secToHMS())
+        let totalDuration: Int = Int(videoPlayer.duration ?? 0)
+        let totalDurationString: String = String(hms: totalDuration.secToHMS())
         runningTimeLabel.text = "0:00:00 / \(totalDurationString)"
         
         progressBackgroundView.setWidth(0)
     }
 }
 
-// MARK: Timer Control
-extension VideoListViewController {
-    func startTimer() {
-        guard durationTimer == nil else { return }
-        
-        let ti: Double = 0.5
-        durationTimer = Timer.scheduledTimer(withTimeInterval: ti, repeats: true, block: { [weak self] _ in
-            guard let self = self else { return }
-            self.checkVideoCurrentTime()
-        })
-    }
-    
-    func stopTimer() {
-        guard durationTimer != nil else { return }
-        durationTimer.invalidate()
-        durationTimer = nil
-    }
-}
-
-// MARK: Video List Data
+// MARK: - Video List Data
 extension VideoListViewController {
     func loadVideos() {
         let realm = try! Realm()
         videoArray = Array(realm.objects(Video.self).filter("playlistId = %@", playlist.id).sorted(byKeyPath: "order"))
         if videoArray.count > 0 {
             videoTableView.reloadData()
-            videoSelected(0, play: false)
         }
         setBlankViewHidden()
     }
@@ -132,16 +131,35 @@ extension VideoListViewController {
             currentSelectedCell = selectedCell
         }
         
-        updateCurrentVideoInfo(videoArray[index], play: play)
-        loadVideoById(currentVideo.videoId)
+        updateCurrentVideoInfo(videoArray[index])
+        if play {
+            loadVideoById(currentVideo.videoId)
+        } else {
+            videoPlayer.cueVideo(videoID: currentVideo.videoId)
+        }
         videoTableView.scrollToRow(at: IndexPath(row: index, section: 0), at: .middle, animated: true)
     }
     
-    func updateCurrentVideoInfo(_ video: Video, play: Bool) {
+    func updateCurrentVideoInfo(_ video: Video) {
         currentVideo = video
         navigationItem.title = video.title
     }
     
+    func setBlankViewHidden() {
+        var hidden: Bool = true
+        if videoArray.count == 0 {
+            hidden = false
+        }
+        blankView.isHidden = hidden
+        durationWrapperView.isHidden = !hidden
+        videoControlView.isHidden = !hidden
+        videoPlayer.isHidden = !hidden
+        videoTableView.isHidden = !hidden
+    }
+}
+
+// MARK: - SearchViewControllerDelegate
+extension VideoListViewController: SearchViewControllerDelegate {
     func videoAdded(_ video: Video) {
         let realm = try! Realm()
         try! realm.write { [weak self] in
@@ -186,25 +204,12 @@ extension VideoListViewController {
         
         delegate?.recentVideoChanged(playlist)
     }
-    
-    func setBlankViewHidden() {
-        var hidden: Bool = true
-        if videoArray.count == 0 {
-            hidden = false
-        }
-        blankView.isHidden = hidden
-        durationWrapperView.isHidden = !hidden
-        videoControlView.isHidden = !hidden
-        videoPlayerView.isHidden = !hidden
-        videoTableView.isHidden = !hidden
-    }
 }
 
-// MARK: Player Methods
+// MARK: - Player Methods
 extension VideoListViewController {
     func loadVideoById(_ vId: String) {
-        let vars = ["playsinline": 1, "controls": 0, "showinfo": 0, "modestbranding": 1, "rel": 0, "fs": 0]
-        videoPlayerView.load(withVideoId: vId, playerVars: vars)
+        videoPlayer.loadVideo(videoID: vId)
     }
     
     func getNextVideoIndex() -> Int {
@@ -238,27 +243,40 @@ extension VideoListViewController {
     }
 }
 
-// MARK: YT Player View Delegate
-extension VideoListViewController {
-    func playerViewDidBecomeReady(_ playerView: YTPlayerView) {
+// MARK: - YTSwiftyPlayerDelegate
+extension VideoListViewController: YTSwiftyPlayerDelegate {
+    func playerReady(_ player: YTSwiftyPlayer) {
+        if videoArray.isEmpty == false {
+            videoSelected(0, play: false)
+        }
+        
         if autoPlay {
-            videoPlayerView.playVideo()
+            videoPlayer.playVideo()
             videoPlayed()
         }
         initProgress()
     }
     
-    func playerView(_ playerView: YTPlayerView, didChangeTo state: YTPlayerState) {
+    func player(_ player: YTSwiftyPlayer, didChangeState state: YTSwiftyPlayerState) {
         switch state {
         case .ended:
             videoSelected(getNextVideoIndex(), play: true)
-        default: break
+        default:
+            break
         }
+    }
+    
+    func player(_ player: YTSwiftyPlayer, didUpdateCurrentTime currentTime: Double) {
+        updateProgress(by: currentTime)
+    }
+    
+    func player(_ player: YTSwiftyPlayer, didReceiveError error: YTSwiftyPlayerError) {
+        print(#function, error)
     }
 }
 
-// MARK: Table View Datasource, Delegate
-extension VideoListViewController {
+// MARK: - Table View Datasource, Delegate
+extension VideoListViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -279,10 +297,10 @@ extension VideoListViewController {
         if currentSelectedCell != nil && selectedCell == currentSelectedCell {
             // user selected current playing cell
             if currentPlayState == PlayState.Play { // play -> pause
-                videoPlayerView.pauseVideo()
+                videoPlayer.pauseVideo()
                 videoPaused()
             } else { // pause -> play
-                videoPlayerView.playVideo()
+                videoPlayer.playVideo()
                 videoPlayed()
             }
         } else { // else -> play
@@ -331,7 +349,7 @@ extension VideoListViewController {
     }
 }
 
-// MARK: IBActions
+// MARK: - IBActions
 extension VideoListViewController {
     @IBAction func searchVideoButtonClicked() {
         let searchVC = storyboard?.instantiateViewController(withIdentifier: StoryboardId.Search) as! SearchViewController
@@ -360,36 +378,35 @@ extension VideoListViewController {
     
     @IBAction func playPauseButtonClicked() {
         if currentPlayState == PlayState.Pause {
-            videoPlayerView.playVideo()
+            videoPlayer.playVideo()
             videoPlayed()
         } else {
-            videoPlayerView.pauseVideo()
+            videoPlayer.pauseVideo()
             videoPaused()
         }
     }
 }
 
-// MARK: Ask App Store Review and Star Rate
+// MARK: - Ask App Store Review and Star Rate
 extension VideoListViewController {
-    @objc func checkVideoCurrentTime() {
-        if videoPlayerView.playerState() == .playing {
-            let currentTime: Int = Int(videoPlayerView.currentTime())
-            let totalDuration: Int = Int(videoPlayerView.duration())
-            
-            let currentTimeString: String = String.init(hms: currentTime.secToHMS())
-            let totalDurationString: String = String.init(hms: totalDuration.secToHMS())
-            runningTimeLabel.text = "\(currentTimeString) / \(totalDurationString)"
-            
-            let progress: CGFloat = CGFloat(currentTime) / CGFloat(totalDuration)
-            UIView.animate(withDuration: 0.5, animations: { [weak self] in
-                guard let self = self else { return }
-                self.progressBackgroundView.setWidth(self.durationWrapperView.width * progress)
-            })
-            
-            totalPlayTime += 0.5
-            if totalPlayTime >= 10 {
-                askReview()
-            }
+    func updateProgress(by currentTime: Double) {
+        guard videoPlayer.playerState == .playing, let duration = videoPlayer.duration else { return }
+        let currentTime: Int = Int(currentTime)
+        let totalDuration: Int = Int(duration)
+        
+        let currentTimeString: String = String(hms: currentTime.secToHMS())
+        let totalDurationString: String = String(hms: totalDuration.secToHMS())
+        runningTimeLabel.text = "\(currentTimeString) / \(totalDurationString)"
+        
+        let progress: CGFloat = CGFloat(currentTime) / CGFloat(totalDuration)
+        UIView.animate(withDuration: 0.3, animations: { [weak self] in
+            guard let self = self else { return }
+            self.progressBackgroundView.setWidth(self.durationWrapperView.width * progress)
+        })
+        
+        totalPlayTime += 0.5
+        if totalPlayTime >= 10 {
+            askReview()
         }
     }
     

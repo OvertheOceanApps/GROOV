@@ -124,6 +124,7 @@ PODS:
     - SwiftMessages/App (= 7.0.1)
   - SwiftMessages/App (7.0.1)
   - SWXMLHash (5.0.1)
+  - YoutubeKit (0.4.0)
 
 DEPENDENCIES:
   - Crashlytics (~> 3.9.3)
@@ -136,6 +137,7 @@ DEPENDENCIES:
   - RealmSwift
   - SwiftMessages (~> 7.0.0)
   - SWXMLHash (~> 5.0.0)
+  - YoutubeKit (from `https://github.com/getogrand/YoutubeKit.git`, branch `remove-message-handler`)
 
 SPEC REPOS:
   trunk:
@@ -170,6 +172,16 @@ SPEC REPOS:
     - SwiftMessages
     - SWXMLHash
 
+EXTERNAL SOURCES:
+  YoutubeKit:
+    :branch: remove-message-handler
+    :git: https://github.com/getogrand/YoutubeKit.git
+
+CHECKOUT OPTIONS:
+  YoutubeKit:
+    :commit: 7885a4cf4c9263568565e6072d73936df2318ffd
+    :git: https://github.com/getogrand/YoutubeKit.git
+
 SPEC CHECKSUMS:
   Alamofire: 3ba7a4db18b4f62c4a1c0e1cb39d7f3d52e10ada
   Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
@@ -201,7 +213,8 @@ SPEC CHECKSUMS:
   RealmSwift: 9a360fc7bae04fc2e308a34fbd899d5faa2d6b22
   SwiftMessages: b577dc7043be8b299857ab35bb663dbff6483bd0
   SWXMLHash: 9cc0c2e4807926c74377724aa8722ee5707a0485
+  YoutubeKit: 10c74151790b570001b19403d2c60b2fb540a1fe
 
-PODFILE CHECKSUM: 4f68db9fbcf3ee79c3861007ed21ebaf7e92089d
+PODFILE CHECKSUM: 684a2a7a15bb523df6c01cb316eb08904d939e08
 
 COCOAPODS: 1.8.4

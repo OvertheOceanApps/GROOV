@@ -17,8 +17,6 @@
 		1F2783BC205EA8C00001DFEB /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2783BB205EA8C00001DFEB /* BaseViewController.swift */; };
 		1F376200205FFFBC001ED5BB /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3761FE205FFFBC001ED5BB /* Playlist.swift */; };
 		1F376201205FFFBC001ED5BB /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3761FF205FFFBC001ED5BB /* Video.swift */; };
-		1F376207205FFFD0001ED5BB /* Assets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1F376205205FFFD0001ED5BB /* Assets.bundle */; };
-		1F376208205FFFD0001ED5BB /* YTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F376206205FFFD0001ED5BB /* YTPlayerView.m */; };
 		1F37621120600075001ED5BB /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F37620B20600075001ED5BB /* SearchViewController.swift */; };
 		1F37621220600075001ED5BB /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F37620C20600075001ED5BB /* LibraryViewController.swift */; };
 		1F37621320600075001ED5BB /* GRAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F37620D20600075001ED5BB /* GRAlertViewController.swift */; };
@@ -84,9 +82,6 @@
 		1F2783BB205EA8C00001DFEB /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		1F3761FE205FFFBC001ED5BB /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		1F3761FF205FFFBC001ED5BB /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
-		1F376204205FFFD0001ED5BB /* YTPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTPlayerView.h; sourceTree = "<group>"; };
-		1F376205205FFFD0001ED5BB /* Assets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Assets.bundle; sourceTree = "<group>"; };
-		1F376206205FFFD0001ED5BB /* YTPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTPlayerView.m; sourceTree = "<group>"; };
 		1F37620B20600075001ED5BB /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		1F37620C20600075001ED5BB /* LibraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
 		1F37620D20600075001ED5BB /* GRAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRAlertViewController.swift; sourceTree = "<group>"; };
@@ -215,19 +210,8 @@
 		1F376202205FFFD0001ED5BB /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				1F376203205FFFD0001ED5BB /* YTPlayerView */,
 			);
 			path = Libraries;
-			sourceTree = "<group>";
-		};
-		1F376203205FFFD0001ED5BB /* YTPlayerView */ = {
-			isa = PBXGroup;
-			children = (
-				1F376204205FFFD0001ED5BB /* YTPlayerView.h */,
-				1F376205205FFFD0001ED5BB /* Assets.bundle */,
-				1F376206205FFFD0001ED5BB /* YTPlayerView.m */,
-			);
-			path = YTPlayerView;
 			sourceTree = "<group>";
 		};
 		1F376209205FFFF7001ED5BB /* Util */ = {
@@ -453,7 +437,6 @@
 			files = (
 				1F1A051F24075C6C00B14D47 /* LaunchScreen.storyboard in Resources */,
 				C66ED4CD1D2CA73E0055F441 /* Main.storyboard in Resources */,
-				1F376207205FFFD0001ED5BB /* Assets.bundle in Resources */,
 				1F0D31A72077D2CC00F50FE0 /* Localizable.strings in Resources */,
 				1F9648A424099143002D9FDA /* Config.xcconfig in Resources */,
 				1FAE89861FAA551000CF900D /* license.html in Resources */,
@@ -485,6 +468,7 @@
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SWXMLHash/SWXMLHash.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftMessages/SwiftMessages.framework",
+				"${BUILT_PRODUCTS_DIR}/YoutubeKit/YoutubeKit.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -502,6 +486,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SWXMLHash.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftMessages.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YoutubeKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -621,7 +606,6 @@
 				1F21B9431D2D61A2001F1722 /* Extensions.swift in Sources */,
 				C6172ECF240044A900F2B5C1 /* Debouncer.swift in Sources */,
 				1F0D31AF207936D000F50FE0 /* TrackUtil.swift in Sources */,
-				1F376208205FFFD0001ED5BB /* YTPlayerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,6 +13,7 @@ target 'groov' do
   pod 'SwiftMessages',          '~> 7.0.0'
   pod 'Fabric',                 '~> 1.7.2'
   pod 'Crashlytics',            '~> 3.9.3'
+  pod 'YoutubeKit', :git => 'https://github.com/getogrand/YoutubeKit.git', :branch => 'remove-message-handler'
 
 end
 
