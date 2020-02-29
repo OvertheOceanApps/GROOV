@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="4D4-8e-nOY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="4D4-8e-nOY">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -27,7 +27,7 @@
         <!--Settings View Controller-->
         <scene sceneID="knD-cn-3Sx">
             <objects>
-                <viewController storyboardIdentifier="SBIdSettings" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fia-JJ-Eab" customClass="SettingsViewController" customModule="groov" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SBIdSettings" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fia-JJ-Eab" customClass="SettingsViewController" customModule="GROOV_" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="w9A-mU-caq"/>
                         <viewControllerLayoutGuide type="bottom" id="PJ4-Xi-49w"/>
@@ -47,7 +47,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsCellIdentifier" textLabel="59r-rs-8Ww" style="IBUITableViewCellStyleDefault" id="eKc-Zy-DL3" customClass="SearchSuggestTableViewCell" customModule="groov" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsCellIdentifier" textLabel="59r-rs-8Ww" style="IBUITableViewCellStyleDefault" id="eKc-Zy-DL3" customClass="SearchSuggestTableViewCell" customModule="GROOV_" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eKc-Zy-DL3" id="K8c-pb-dpn">
@@ -100,44 +100,10 @@
             </objects>
             <point key="canvasLocation" x="-462" y="1185"/>
         </scene>
-        <!--Library View Controller-->
-        <scene sceneID="HMC-3S-Sfj">
-            <objects>
-                <viewController storyboardIdentifier="SBIdLibrary" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oVS-8W-hlq" customClass="LibraryViewController" customModule="groov" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="qdh-Uu-in4"/>
-                        <viewControllerLayoutGuide type="bottom" id="hxs-Ze-RVa"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="tLW-h3-HAJ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="36M-Sl-Tg0">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </webView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="36M-Sl-Tg0" firstAttribute="centerX" secondItem="tLW-h3-HAJ" secondAttribute="centerX" id="O2C-Nc-18H"/>
-                            <constraint firstItem="36M-Sl-Tg0" firstAttribute="width" secondItem="tLW-h3-HAJ" secondAttribute="width" id="YR7-eS-fIt"/>
-                            <constraint firstItem="36M-Sl-Tg0" firstAttribute="height" secondItem="tLW-h3-HAJ" secondAttribute="height" id="mey-J4-LUn"/>
-                            <constraint firstItem="36M-Sl-Tg0" firstAttribute="centerY" secondItem="tLW-h3-HAJ" secondAttribute="centerY" id="vqP-eK-mre"/>
-                        </constraints>
-                    </view>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <connections>
-                        <outlet property="webView" destination="36M-Sl-Tg0" id="k5e-V7-B5m"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Je6-Nq-sHL" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="288.5" y="1182.5"/>
-        </scene>
         <!--Alert View Controller-->
         <scene sceneID="fJZ-XU-FpA">
             <objects>
-                <viewController storyboardIdentifier="SBIdGRAlert" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bug-co-eK7" customClass="GRAlertViewController" customModule="groov" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SBIdGRAlert" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bug-co-eK7" customClass="GRAlertViewController" customModule="GROOV_" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2OU-Ew-tJ7"/>
                         <viewControllerLayoutGuide type="bottom" id="Wqr-FP-QCC"/>
@@ -153,7 +119,7 @@
                                     <action selector="cancelButtonClicked" destination="bug-co-eK7" eventType="touchUpInside" id="NPg-e0-M56"/>
                                 </connections>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4gB-Kt-Ehk" customClass="GRAlertView" customModule="groov" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4gB-Kt-Ehk" customClass="GRAlertView" customModule="GROOV_" customModuleProvider="target">
                                 <rect key="frame" x="37.5" y="208" width="300" height="250"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add_folder_thumbnail" translatesAutoresizingMaskIntoConstraints="NO" id="gp4-Zp-jaN">
@@ -307,7 +273,7 @@
         <!--Playlist List View Controller-->
         <scene sceneID="qlM-KW-AO6">
             <objects>
-                <viewController storyboardIdentifier="SBIdPlaylistList" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Qf9-3t-XiX" customClass="PlaylistListViewController" customModule="groov" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SBIdPlaylistList" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Qf9-3t-XiX" customClass="PlaylistListViewController" customModule="GROOV_" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="t14-es-Nfb"/>
                         <viewControllerLayoutGuide type="bottom" id="rU5-Ny-hUa"/>
@@ -390,7 +356,7 @@
                                     </constraints>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PlaylistCellIdentifier" rowHeight="90" id="m38-8Q-Kv6" customClass="PlaylistTableViewCell" customModule="groov" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PlaylistCellIdentifier" rowHeight="90" id="m38-8Q-Kv6" customClass="PlaylistTableViewCell" customModule="GROOV_" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m38-8Q-Kv6" id="LBN-ys-1ng">
@@ -521,7 +487,7 @@
         <!--Video List View Controller-->
         <scene sceneID="wlU-9y-8dG">
             <objects>
-                <viewController storyboardIdentifier="SBIdVideoList" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="d6F-Va-joS" customClass="VideoListViewController" customModule="groov" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SBIdVideoList" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="d6F-Va-joS" customClass="VideoListViewController" customModule="GROOV_" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="X6O-tv-Qj8"/>
                         <viewControllerLayoutGuide type="bottom" id="SV8-yg-DwX"/>
@@ -699,7 +665,7 @@
                                 <color key="backgroundColor" red="0.11764705882352941" green="0.12941176470588234" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="separatorColor" red="0.082352941176470587" green="0.098039215686274508" blue="0.10980392156862745" alpha="1" colorSpace="deviceRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="VideoListCellIdentifier" rowHeight="110" id="38H-tT-9vr" customClass="VideoListTableViewCell" customModule="groov" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="VideoListCellIdentifier" rowHeight="110" id="38H-tT-9vr" customClass="VideoListTableViewCell" customModule="GROOV_" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="38H-tT-9vr" id="4TD-NZ-jpI">
@@ -957,7 +923,7 @@
         <!--Search View Controller-->
         <scene sceneID="UaB-PL-Qxk">
             <objects>
-                <viewController storyboardIdentifier="SBIdSearch" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Aqn-tB-DsG" customClass="SearchViewController" customModule="groov" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SBIdSearch" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Aqn-tB-DsG" customClass="SearchViewController" customModule="GROOV_" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="C5r-9a-H1A"/>
                         <viewControllerLayoutGuide type="bottom" id="4cI-WQ-taa"/>
@@ -972,7 +938,7 @@
                                 <color key="separatorColor" red="0.082352941176470587" green="0.098039215686274508" blue="0.10980392156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchSuggestCellIdentifier" id="3yw-SN-CsK" customClass="SearchSuggestTableViewCell" customModule="groov" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchSuggestCellIdentifier" id="3yw-SN-CsK" customClass="SearchSuggestTableViewCell" customModule="GROOV_" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3yw-SN-CsK" id="Okw-YU-raE">
@@ -1001,7 +967,7 @@
                                             <outlet property="keywordLabel" destination="GdQ-fr-4OY" id="vp8-yt-nDd"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchVideoCellIdentifier" rowHeight="110" id="XC1-by-KuS" customClass="SearchVideoTableViewCell" customModule="groov" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchVideoCellIdentifier" rowHeight="110" id="XC1-by-KuS" customClass="SearchVideoTableViewCell" customModule="GROOV_" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="72" width="375" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XC1-by-KuS" id="leI-pW-Qqo">

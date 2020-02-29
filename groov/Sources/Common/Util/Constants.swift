@@ -40,11 +40,9 @@ struct StoryboardId {
     static let VideoList = "SBIdVideoList"
     static let Search = "SBIdSearch"
     static let Settings = "SBIdSettings"
-    static let Library = "SBIdLibrary"
 }
 
 struct Constants {
     enum Layout {
-        
     }
 }
