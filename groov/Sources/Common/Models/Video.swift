@@ -102,6 +102,6 @@ class Video: Object {
     }
     
     func durationString() -> String {
-        return duration != "" ? "--:--" : duration
+        return duration == "" ? "--:--" : duration
     }
 }

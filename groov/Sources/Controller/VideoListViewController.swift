@@ -42,9 +42,14 @@ class VideoListViewController: BaseViewController {
     var totalPlayTime: Float = 0 // for review. review time > 10s -> review request
     var reviewAsked: Bool = false
     
+    private let cellIdentifier: String = "VideoListCellIdentifier"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = L10n.videoList
+        
+        videoTableView.register(VideoListTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+        
         loadVideos()
         initComponents()
     }
@@ -117,16 +122,11 @@ extension VideoListViewController {
         autoPlay = play
         
         if let selectedCell = videoTableView.cellForRow(at: IndexPath(row: index, section: 0)) as? VideoListTableViewCell {
-            selectedCell.titleLabel.textColor = UIColor.white
-            selectedCell.channelLabel.textColor = UIColor.white
-            selectedCell.durationLabel.textColor = GRVColor.mainTextColor
-            selectedCell.showProgress()
+            selectedCell.cellSelected(true)
             
             if currentSelectedCell != nil && currentSelectedCell != selectedCell {
                 videoPaused()
-                currentSelectedCell.titleLabel.textColor = GRVColor.mainTextColor
-                currentSelectedCell.channelLabel.textColor = GRVColor.mainTextColor
-                currentSelectedCell.hideProgress()
+                currentSelectedCell.cellSelected(false)
             }
             
             currentSelectedCell = selectedCell
@@ -271,8 +271,8 @@ extension VideoListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "VideoListCellIdentifier", for: indexPath) as! VideoListTableViewCell
-        cell.initCell(videoArray[indexPath.row])
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! VideoListTableViewCell
+        cell.updateVideo(videoArray[indexPath.row])
         return cell
     }
     
