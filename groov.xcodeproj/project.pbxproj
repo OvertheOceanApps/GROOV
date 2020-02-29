@@ -27,7 +27,6 @@
 		1F37621F206000D1001ED5BB /* GRSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F376218206000D1001ED5BB /* GRSearchController.swift */; };
 		1F376220206000D1001ED5BB /* PlaylistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F376219206000D1001ED5BB /* PlaylistTableViewCell.swift */; };
 		1F376221206000D1001ED5BB /* VideoListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F37621A206000D1001ED5BB /* VideoListTableViewCell.swift */; };
-		1F376222206000D1001ED5BB /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F37621B206000D1001ED5BB /* MenuTableViewCell.swift */; };
 		1F376223206000D1001ED5BB /* SearchSuggestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F37621C206000D1001ED5BB /* SearchSuggestTableViewCell.swift */; };
 		1F376224206000D1001ED5BB /* GRSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F37621D206000D1001ED5BB /* GRSearchBar.swift */; };
 		1F376225206000D1001ED5BB /* SearchVideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F37621E206000D1001ED5BB /* SearchVideoTableViewCell.swift */; };
@@ -95,7 +94,6 @@
 		1F376218206000D1001ED5BB /* GRSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRSearchController.swift; sourceTree = "<group>"; };
 		1F376219206000D1001ED5BB /* PlaylistTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistTableViewCell.swift; sourceTree = "<group>"; };
 		1F37621A206000D1001ED5BB /* VideoListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoListTableViewCell.swift; sourceTree = "<group>"; };
-		1F37621B206000D1001ED5BB /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		1F37621C206000D1001ED5BB /* SearchSuggestTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchSuggestTableViewCell.swift; sourceTree = "<group>"; };
 		1F37621D206000D1001ED5BB /* GRSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRSearchBar.swift; sourceTree = "<group>"; };
 		1F37621E206000D1001ED5BB /* SearchVideoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVideoTableViewCell.swift; sourceTree = "<group>"; };
@@ -261,7 +259,6 @@
 				1F376218206000D1001ED5BB /* GRSearchController.swift */,
 				1F376219206000D1001ED5BB /* PlaylistTableViewCell.swift */,
 				1F37621A206000D1001ED5BB /* VideoListTableViewCell.swift */,
-				1F37621B206000D1001ED5BB /* MenuTableViewCell.swift */,
 				1F37621C206000D1001ED5BB /* SearchSuggestTableViewCell.swift */,
 				1F37621D206000D1001ED5BB /* GRSearchBar.swift */,
 				1F37621E206000D1001ED5BB /* SearchVideoTableViewCell.swift */,
@@ -618,7 +615,6 @@
 				C6172ECD2400380B00F2B5C1 /* LoadingIndicatorView.swift in Sources */,
 				1F376223206000D1001ED5BB /* SearchSuggestTableViewCell.swift in Sources */,
 				1F37621620600076001ED5BB /* SettingsViewController.swift in Sources */,
-				1F376222206000D1001ED5BB /* MenuTableViewCell.swift in Sources */,
 				1F376220206000D1001ED5BB /* PlaylistTableViewCell.swift in Sources */,
 				1F376225206000D1001ED5BB /* SearchVideoTableViewCell.swift in Sources */,
 				C66ED4C81D2CA73E0055F441 /* AppDelegate.swift in Sources */,
