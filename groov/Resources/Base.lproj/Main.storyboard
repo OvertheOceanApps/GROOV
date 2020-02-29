@@ -676,37 +676,6 @@
                                 <color key="backgroundColor" red="0.11764705882352941" green="0.12941176470588234" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="separatorColor" red="0.082352941176470587" green="0.098039215686274508" blue="0.10980392156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchSuggestCellIdentifier" id="3yw-SN-CsK" customClass="SearchSuggestTableViewCell" customModule="GROOV_" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3yw-SN-CsK" id="Okw-YU-raE">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search Result" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GdQ-fr-4OY">
-                                                    <rect key="frame" x="47" y="13" width="312" height="18"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="18" id="d1e-qF-yfe"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" red="0.30980392156862746" green="0.32156862745098036" blue="0.36470588235294116" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" red="0.11764705882352941" green="0.12941176470588234" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="GdQ-fr-4OY" secondAttribute="trailing" constant="1" id="TIv-0E-YPX"/>
-                                                <constraint firstItem="GdQ-fr-4OY" firstAttribute="leading" secondItem="Okw-YU-raE" secondAttribute="leadingMargin" constant="32" id="UzU-Fg-EOM"/>
-                                                <constraint firstItem="GdQ-fr-4OY" firstAttribute="centerY" secondItem="Okw-YU-raE" secondAttribute="centerY" id="pLC-t1-bbC"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.11764705882352941" green="0.12941176470588234" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
-                                        <connections>
-                                            <outlet property="keywordLabel" destination="GdQ-fr-4OY" id="vp8-yt-nDd"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="Aqn-tB-DsG" id="xgL-IM-mWA"/>
                                     <outlet property="delegate" destination="Aqn-tB-DsG" id="7le-8o-geE"/>

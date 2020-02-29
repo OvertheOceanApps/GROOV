@@ -39,18 +39,21 @@ class SearchVideoTableViewCell: BaseTableViewCell {
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(29)
             $0.leading.equalTo(thumbnailImageView.snp.trailing).offset(14)
+            $0.trailing.equalToSuperview().inset(15)
             $0.height.equalTo(15)
         }
         
         channelLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom)
             $0.leading.equalTo(thumbnailImageView.snp.trailing).offset(14)
+            $0.trailing.equalToSuperview().inset(15)
             $0.height.equalTo(20)
         }
         
         durationLabel.snp.makeConstraints {
             $0.top.equalTo(channelLabel.snp.bottom).offset(7)
             $0.leading.equalTo(thumbnailImageView.snp.trailing).offset(14)
+            $0.trailing.equalToSuperview().inset(15)
             $0.height.equalTo(15)
         }
     }

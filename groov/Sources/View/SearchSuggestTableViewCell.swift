@@ -7,13 +7,39 @@
 //
 
 import UIKit
+import SnapKit
 
-class SearchSuggestTableViewCell: UITableViewCell {
-    @IBOutlet var keywordLabel: UILabel!
-    var keyword: String!
+class SearchSuggestTableViewCell: BaseTableViewCell {
+    private let keywordLabel: UILabel = UILabel()
     
-    func initCell(_ kw: String) {
-        keyword = kw
+    override func addSubviews() {
+        super.addSubviews()
+        
+        addSubview(keywordLabel)
+    }
+        
+    override func layout() {
+        super.layout()
+        
+        keywordLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(13)
+            $0.leading.equalToSuperview().inset(47)
+            $0.trailing.equalToSuperview().inset(16)
+            $0.height.equalTo(18)
+        }
+    }
+        
+    override func style() {
+        super.style()
+        
+        backgroundColor = GRVColor.backgroundColor
+        selectionStyle = .none
+        
+        keywordLabel.textColor = GRVColor.subTextColor
+        keywordLabel.font = UIFont.systemFont(ofSize: 14)
+    }
+    
+    func updateKeyword(_ kw: String) {
         keywordLabel.text = kw
     }
 }

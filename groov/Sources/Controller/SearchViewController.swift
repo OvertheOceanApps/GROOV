@@ -43,7 +43,8 @@ final class SearchViewController: BaseViewController {
         }
     }
     
-    private let searchVideoCellIdentifier = "SearchVideoCellIdentifier"
+    private let searchSuggestCellIdentifier: String = "SearchSuggestCellIdentifier"
+    private let searchVideoCellIdentifier: String = "SearchVideoCellIdentifier"
     
     deinit {
         removeKeyboardNotification()
@@ -55,6 +56,7 @@ final class SearchViewController: BaseViewController {
         dataManager.delegate = self
         addKeyboardNotification()
         
+        resultTableView.register(SearchSuggestTableViewCell.self, forCellReuseIdentifier: searchSuggestCellIdentifier)
         resultTableView.register(SearchVideoTableViewCell.self, forCellReuseIdentifier: searchVideoCellIdentifier)
         
         setNavigationBarBackgroundColor()
@@ -229,10 +231,9 @@ extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch showingCellType {
         case .suggest:
-            let reuseIdentifier = "SearchSuggestCellIdentifier"
-            let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: searchSuggestCellIdentifier, for: indexPath)
             if let suggestCell = cell as? SearchSuggestTableViewCell {
-                suggestCell.initCell(dataManager.suggestions[indexPath.row])
+                suggestCell.updateKeyword(dataManager.suggestions[indexPath.row])
             }
             return cell
             
