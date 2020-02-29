@@ -35,6 +35,8 @@ internal enum L10n {
   internal static let delete = L10n.tr("Localizable", "Delete")
   /// Folder List
   internal static let folderList = L10n.tr("Localizable", "FolderList")
+  /// ex) Jazzyfact - Sunday Move
+  internal static let folderTitleTextFieldPlaceHolder = L10n.tr("Localizable", "FolderTitleTextFieldPlaceHolder")
   /// Folder / Video Removed
   internal static let folderVideoRemoved = L10n.tr("Localizable", "FolderVideoRemoved")
   /// Add Video

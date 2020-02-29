@@ -80,9 +80,10 @@ class PlaylistListViewController: BaseViewController {
     }
     
     func showGRAlertVC() {
-        let alertVC = self.storyboard?.instantiateViewController(withIdentifier: StoryboardId.GRAlert) as! GRAlertViewController
-        alertVC.delegate = self
-        self.presentWithFade(targetVC: alertVC)
+        let vc: GRAlertViewController = GRAlertViewController()
+        vc.delegate = self
+        vc.modalPresentationStyle = .overCurrentContext
+        self.presentWithFade(targetVC: vc)
     }
 }
 
