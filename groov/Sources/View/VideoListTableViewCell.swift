@@ -23,10 +23,6 @@ class VideoListTableViewCell: BaseTableViewCell {
     var progress: Float = 0.0
     var circleTimer: Timer! = nil
     
-    let kYoutubeThumbnail = "mqdefault"
-    let kYoutubeImageUrl = "https://i.ytimg.com/vi"
-    // https://i.ytimg.com/vi/mzYM9QKKWSg/default.jpg
-    
     override func addSubviews() {
         super.addSubviews()
         
@@ -121,12 +117,7 @@ class VideoListTableViewCell: BaseTableViewCell {
         titleLabel.text = video.title
         channelLabel.text = video.channelTitle
         durationLabel.text = video.durationString()
-        updateThumnailImageView()
-    }
-    
-    func updateThumnailImageView() {
-        let imageUrlString = "\(kYoutubeImageUrl)/\(video.videoId)/\(kYoutubeThumbnail).jpg"
-        if let url = URL(string: imageUrlString) {
+        if let url = URL(string: video.getThumbnailUrl()) {
             thumbnailImageView.kf.setImage(with: url, options: [.transition(.fade(0.3))])
         }
     }

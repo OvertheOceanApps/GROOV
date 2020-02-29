@@ -43,14 +43,19 @@ final class SearchViewController: BaseViewController {
         }
     }
     
+    private let searchVideoCellIdentifier = "SearchVideoCellIdentifier"
+    
     deinit {
         removeKeyboardNotification()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         dataManager.delegate = self
         addKeyboardNotification()
+        
+        resultTableView.register(SearchVideoTableViewCell.self, forCellReuseIdentifier: searchVideoCellIdentifier)
         
         setNavigationBarBackgroundColor()
         initComponents()
@@ -232,10 +237,9 @@ extension SearchViewController: UITableViewDataSource {
             return cell
             
         case .recently, .searched:
-            let reuseIdentifier = "SearchVideoCellIdentifier"
-            let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: searchVideoCellIdentifier, for: indexPath)
             if let videoCell = cell as? SearchVideoTableViewCell, let video = dataManager.video(at: indexPath) {
-                videoCell.initCell(video)
+                videoCell.updateVideo(video)
             }
             return cell
         }
