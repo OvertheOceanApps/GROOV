@@ -24,6 +24,7 @@ internal enum Asset {
   internal static let addFolder2Simplified = ImageAsset(name: "add_folder_2_simplified")
   internal static let addFolder2Traditional = ImageAsset(name: "add_folder_2_traditional")
   internal static let addFolderThumbnail = ImageAsset(name: "add_folder_thumbnail")
+  internal static let launchScreenLogo = ImageAsset(name: "launch_screen_logo")
   internal static let loadingGradation = ImageAsset(name: "loading_gradation")
   internal static let loadingGradationMiddle = ImageAsset(name: "loading_gradation_middle")
   internal static let loadingGradationShort = ImageAsset(name: "loading_gradation_short")
