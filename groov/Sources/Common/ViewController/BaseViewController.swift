@@ -36,7 +36,6 @@ class BaseViewController: UIViewController {
     }
     
     func behavior() {
-        automaticallyAdjustsScrollViewInsets = false
     }
     
     private func initNavigationBarStyle() {
