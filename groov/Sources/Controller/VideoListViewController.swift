@@ -12,6 +12,7 @@ import SnapKit
 import RealmSwift
 import SwiftMessages
 import StoreKit
+import YoutubeKit
 
 protocol VideoListViewControllerDelegate: class {
     func recentVideoChanged(_ playlist: Playlist)
@@ -20,7 +21,7 @@ protocol VideoListViewControllerDelegate: class {
 class VideoListViewController: BaseViewController {
     private let searchBarButton: UIBarButtonItem = UIBarButtonItem(image: Asset.searchFavicon.image, style: .plain, target: nil, action: nil)
     private let blankView: BlankView = BlankView(.video)
-    private let videoPlayerView: YTPlayerView = YTPlayerView()
+    private let videoPlayer: YTSwiftyPlayer = YTSwiftyPlayer()
     private let videoTableView: UITableView = UITableView()
     private let durationView: UIView = UIView()
     private let videoControlView: UIControl = UIControl()
@@ -53,7 +54,7 @@ class VideoListViewController: BaseViewController {
         navigationItem.rightBarButtonItem = searchBarButton
         
         view.addSubview(blankView)
-        view.addSubview(videoPlayerView)
+        view.addSubview(videoPlayer)
         view.addSubview(videoTableView)
         view.addSubview(durationView)
         view.addSubview(videoControlView)
@@ -77,13 +78,13 @@ class VideoListViewController: BaseViewController {
             $0.edges.equalToSuperview()
         }
         
-        videoPlayerView.snp.makeConstraints {
+        videoPlayer.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
             $0.height.equalTo(view.snp.width).multipliedBy(9.0/16.0)
         }
         
         videoTableView.snp.makeConstraints {
-            $0.top.equalTo(videoPlayerView.snp.bottom)
+            $0.top.equalTo(videoPlayer.snp.bottom)
             $0.leading.trailing.bottom.equalToSuperview()
         }
         
@@ -173,7 +174,7 @@ class VideoListViewController: BaseViewController {
     override func behavior() {
         super.behavior()
         
-        videoPlayerView.delegate = self
+        videoPlayer.delegate = self
         
         videoTableView.delegate = self
         videoTableView.dataSource = self
@@ -232,10 +233,10 @@ class VideoListViewController: BaseViewController {
             .subscribe { [weak self] _ in
                 guard let self = self else { return }
                 if self.currentPlayState == PlayState.Pause {
-                    self.videoPlayerView.playVideo()
+                    self.videoPlayer.playVideo()
                     self.videoPlayed()
                 } else {
-                    self.videoPlayerView.pauseVideo()
+                    self.videoPlayer.pauseVideo()
                     self.videoPaused()
                 }
             }
@@ -264,12 +265,12 @@ class VideoListViewController: BaseViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        videoPlayerView.pauseVideo()
+        videoPlayer.pauseVideo()
         videoPaused()
     }
     
     func resetProgress() {
-        let totalDuration: Int = Int(videoPlayerView.duration())
+        let totalDuration: Int = Int(videoPlayer.duration ?? 0)
         let totalDurationString: String = String.init(hms: totalDuration.secToHMS())
         runningTimeLabel.text = "0:00:00 / \(totalDurationString)"
         progressImageViewWidth?.update(offset: 0)
@@ -387,7 +388,7 @@ extension VideoListViewController: SearchViewControllerDelegate {
         blankView.isHidden = hidden
         durationView.isHidden = !hidden
         videoControlView.isHidden = !hidden
-        videoPlayerView.isHidden = !hidden
+        videoPlayer.isHidden = !hidden
         videoTableView.isHidden = !hidden
     }
 }
@@ -395,8 +396,7 @@ extension VideoListViewController: SearchViewControllerDelegate {
 // MARK: Player Methods
 extension VideoListViewController {
     func loadVideoById(_ vId: String) {
-        let vars = ["playsinline": 1, "controls": 0, "showinfo": 0, "modestbranding": 1, "rel": 0, "fs": 0]
-        videoPlayerView.load(withVideoId: vId, playerVars: vars)
+        videoPlayer.loadVideo(videoID: vId)
     }
     
     func getNextVideoIndex() -> Int {
@@ -431,22 +431,22 @@ extension VideoListViewController {
 }
 
 // MARK: YT Player View Delegate
-extension VideoListViewController: YTPlayerViewDelegate {
-    func playerViewDidBecomeReady(_ playerView: YTPlayerView) {
-        if autoPlay {
-            videoPlayerView.playVideo()
-            videoPlayed()
-        }
-        resetProgress()
-    }
-    
-    func playerView(_ playerView: YTPlayerView, didChangeTo state: YTPlayerState) {
-        switch state {
-        case .ended:
-            videoSelected(getNextVideoIndex(), play: true)
-        default: break
-        }
-    }
+extension VideoListViewController: YTSwiftyPlayerDelegate {
+//    func playerViewDidBecomeReady(_ playerView: YTSwiftyPlayer) {
+//        if autoPlay {
+//            videoPlayerView.playVideo()
+//            videoPlayed()
+//        }
+//        resetProgress()
+//    }
+//
+//    func playerView(_ playerView: YTSwiftyPlayer, didChangeTo state: YTPlayerState) {
+//        switch state {
+//        case .ended:
+//            videoSelected(getNextVideoIndex(), play: true)
+//        default: break
+//        }
+//    }
 }
 
 // MARK: Table View Datasource, Delegate
@@ -475,10 +475,10 @@ extension VideoListViewController: UITableViewDelegate, UITableViewDataSource {
         if currentSelectedCell != nil && selectedCell == currentSelectedCell {
             // user selected current playing cell
             if currentPlayState == PlayState.Play { // play -> pause
-                videoPlayerView.pauseVideo()
+                videoPlayer.pauseVideo()
                 videoPaused()
             } else { // pause -> play
-                videoPlayerView.playVideo()
+                videoPlayer.playVideo()
                 videoPlayed()
             }
         } else { // else -> play
@@ -530,25 +530,24 @@ extension VideoListViewController: UITableViewDelegate, UITableViewDataSource {
 // MARK: Ask App Store Review and Star Rate
 extension VideoListViewController {
     @objc func checkVideoCurrentTime() {
-        if videoPlayerView.playerState() == .playing {
-            let currentTime: Int = Int(videoPlayerView.currentTime())
-            let totalDuration: Int = Int(videoPlayerView.duration())
-            
-            let currentTimeString: String = String.init(hms: currentTime.secToHMS())
-            let totalDurationString: String = String.init(hms: totalDuration.secToHMS())
-            runningTimeLabel.text = "\(currentTimeString) / \(totalDurationString)"
-            
-            let progress: CGFloat = CGFloat(currentTime) / CGFloat(totalDuration)
-            progressImageViewWidth?.update(offset: progress * view.bounds.width)
-            UIView.animate(withDuration: 0.5, animations: { [weak self] in
-                guard let self = self else { return }
-                self.durationView.layoutIfNeeded()
-            })
-            
-            totalPlayTime += 0.5
-            if totalPlayTime >= 10 {
-                askReview()
-            }
+        guard let duration = videoPlayer.duration, videoPlayer.playerState == .playing else { return }
+        let currentTime: Int = Int(videoPlayer.currentTime)
+        let totalDuration: Int = Int(duration)
+        
+        let currentTimeString: String = String.init(hms: currentTime.secToHMS())
+        let totalDurationString: String = String.init(hms: totalDuration.secToHMS())
+        runningTimeLabel.text = "\(currentTimeString) / \(totalDurationString)"
+        
+        let progress: CGFloat = CGFloat(currentTime) / CGFloat(totalDuration)
+        progressImageViewWidth?.update(offset: progress * view.bounds.width)
+        UIView.animate(withDuration: 0.5, animations: { [weak self] in
+            guard let self = self else { return }
+            self.durationView.layoutIfNeeded()
+        })
+        
+        totalPlayTime += 0.5
+        if totalPlayTime >= 10 {
+            askReview()
         }
     }
     
