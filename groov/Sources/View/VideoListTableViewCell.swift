@@ -21,7 +21,7 @@ class VideoListTableViewCell: BaseTableViewCell {
     
     var video: Video?
     var progress: Float = 0.0
-    var circleTimer: Timer! = nil
+    var circleTimer: Timer?
     
     override func addSubviews() {
         super.addSubviews()
@@ -174,7 +174,7 @@ extension VideoListTableViewCell {
     
     func stopTimer() {
         guard circleTimer != nil else { return }
-        circleTimer.invalidate()
+        circleTimer?.invalidate()
         circleTimer = nil
     }
 }
