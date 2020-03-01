@@ -35,6 +35,8 @@ internal enum L10n {
   internal static let delete = L10n.tr("Localizable", "Delete")
   /// Folder List
   internal static let folderList = L10n.tr("Localizable", "FolderList")
+  /// ex) Jazzyfact - Sunday Move
+  internal static let folderTitleTextFieldPlaceHolder = L10n.tr("Localizable", "FolderTitleTextFieldPlaceHolder")
   /// Folder / Video Removed
   internal static let folderVideoRemoved = L10n.tr("Localizable", "FolderVideoRemoved")
   /// Add Video
@@ -49,6 +51,8 @@ internal enum L10n {
   internal static let msgAddNewFolder = L10n.tr("Localizable", "MsgAddNewFolder")
   /// Search / Add New Video
   internal static let msgAddNewVideo = L10n.tr("Localizable", "MsgAddNewVideo")
+  /// No Recent Video
+  internal static let noRecentVideo = L10n.tr("Localizable", "NoRecentVideo")
   /// Open Source Library
   internal static let openSourceLibrary = L10n.tr("Localizable", "OpenSourceLibrary")
   /// Remove Folder/Video

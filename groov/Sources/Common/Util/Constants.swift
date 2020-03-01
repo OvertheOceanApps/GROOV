@@ -25,6 +25,7 @@ struct GRVColor {
     
     static let backgroundColor = UIColor.init(netHex: 0x1E2124)
     static let separatorColor = UIColor.init(netHex: 0x15191C)
+    static let alertViewSeparatorColor = UIColor(netHex: 0xAAAAAA)
     
     static let tableviewRowDeleteColor = UIColor.init(netHex: 0xFF204F)
     
@@ -40,11 +41,9 @@ struct StoryboardId {
     static let VideoList = "SBIdVideoList"
     static let Search = "SBIdSearch"
     static let Settings = "SBIdSettings"
-    static let Library = "SBIdLibrary"
 }
 
 struct Constants {
     enum Layout {
-        
     }
 }

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import SnapKit
 
 protocol SearchViewControllerDelegate: class {
     func videoAdded(_ video: Video)
@@ -24,8 +26,8 @@ final class SearchViewController: BaseViewController {
         case suggest, recently, searched
     }
     
-    @IBOutlet var resultTableView: UITableView!
-    @IBOutlet var activityIndicatorView: UIActivityIndicatorView!
+    private let resultTableView: UITableView = UITableView()
+    private let activityIndicatorView: UIActivityIndicatorView = UIActivityIndicatorView(style: .whiteLarge)
 
     weak var delegate: SearchViewControllerDelegate?
     
@@ -43,25 +45,57 @@ final class SearchViewController: BaseViewController {
         }
     }
     
+    private let searchSuggestCellIdentifier: String = "SearchSuggestCellIdentifier"
+    private let searchVideoCellIdentifier: String = "SearchVideoCellIdentifier"
+    
     deinit {
         removeKeyboardNotification()
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    
+    override func addSubviews() {
+        super.addSubviews()
         
-        dataManager.delegate = self
-        addKeyboardNotification()
+        view.addSubview(resultTableView)
+        view.addSubview(activityIndicatorView)
+        
+        resultTableView.register(SearchSuggestTableViewCell.self, forCellReuseIdentifier: searchSuggestCellIdentifier)
+        resultTableView.register(SearchVideoTableViewCell.self, forCellReuseIdentifier: searchVideoCellIdentifier)
+    }
+        
+    override func layout() {
+        super.layout()
+        
+        resultTableView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        activityIndicatorView.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.size.equalTo(40)
+        }
+    }
+        
+    override func style() {
+        super.style()
         
         setNavigationBarBackgroundColor()
-        initComponents()
-    }
-    
-    func initComponents() {
-        initSearchBar()
-        initSearchBarTextField()
         
         view.backgroundColor = GRVColor.backgroundColor
         resultTableView.backgroundColor = GRVColor.backgroundColor
+        
+        initSearchBar()
+        initSearchBarTextField()
+    }
+        
+    override func behavior() {
+        super.behavior()
+        
+        addKeyboardNotification()
+        
+        dataManager.delegate = self
+        
+        resultTableView.delegate = self
+        resultTableView.dataSource = self
     }
     
     private func reloadTableView() {
@@ -224,18 +258,16 @@ extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch showingCellType {
         case .suggest:
-            let reuseIdentifier = "SearchSuggestCellIdentifier"
-            let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: searchSuggestCellIdentifier, for: indexPath)
             if let suggestCell = cell as? SearchSuggestTableViewCell {
-                suggestCell.initCell(dataManager.suggestions[indexPath.row])
+                suggestCell.updateKeyword(dataManager.suggestions[indexPath.row])
             }
             return cell
             
         case .recently, .searched:
-            let reuseIdentifier = "SearchVideoCellIdentifier"
-            let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: searchVideoCellIdentifier, for: indexPath)
             if let videoCell = cell as? SearchVideoTableViewCell, let video = dataManager.video(at: indexPath) {
-                videoCell.initCell(video)
+                videoCell.updateVideo(video)
             }
             return cell
         }

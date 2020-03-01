@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
+import SnapKit
 import MessageUI
 import Kingfisher
 import RealmSwift
@@ -17,6 +20,7 @@ struct Sections {
         static let RemoveCache = "kDataRemoveCache"
         static let RemoveRealm = "kDataRemoveRealm"
     }
+    
     struct Info {
         static let Version = "kInfoVersion"
         static let License = "kInfoLicense"
@@ -25,25 +29,63 @@ struct Sections {
     }
 }
 
-class SettingsViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate {
-    @IBOutlet var dismissBarButton: UIBarButtonItem!
-    @IBOutlet var mainTableView: UITableView!
+class SettingsViewController: BaseViewController {
+    private let dismissBarButton: UIBarButtonItem = UIBarButtonItem(title: L10n.close, style: .plain, target: nil, action: nil)
+    private let mainTableView: UITableView = UITableView()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        title = L10n.settings
-        setNavigationBarBackgroundColor()
-        initComponents()
-    }
+    private let cellIdentifier = "SettingsCellIdentifier"
     
-    func initComponents() {
+    override func addSubviews() {
+        super.addSubviews()
+        
+        navigationItem.rightBarButtonItem = dismissBarButton
+        
+        view.addSubview(mainTableView)
+        
+        mainTableView.register(SettingsTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+    }
+        
+    override func layout() {
+        super.layout()
+        
+        mainTableView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+    }
+        
+    override func style() {
+        super.style()
+        
+        navigationItem.title = L10n.settings
+        setNavigationBarBackgroundColor()
+        
+        let dismissAttributes = [
+            NSAttributedString.Key.foregroundColor: GRVColor.mainTextColor,
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15)
+        ]
+        dismissBarButton.setTitleTextAttributes(dismissAttributes, for: .normal)
+        dismissBarButton.setTitleTextAttributes(dismissAttributes, for: .highlighted)
+        
         mainTableView.backgroundColor = GRVColor.backgroundColor
-        dismissBarButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: GRVColor.mainTextColor, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15)], for: .normal)
+    }
+        
+    override func behavior() {
+        super.behavior()
+        
+        mainTableView.delegate = self
+        mainTableView.dataSource = self
+        
+        dismissBarButton.rx.tap
+            .subscribe { [weak self] _ in
+                guard let self = self else { return }
+                self.dismiss(animated: true, completion: nil)
+            }
+            .disposed(by: disposeBag)
     }
 }
 
 // MARK: Functions
-extension SettingsViewController {
+extension SettingsViewController: MFMailComposeViewControllerDelegate {
     func clearCache() {
         let cache = KingfisherManager.shared.cache
         cache.clearMemoryCache()
@@ -86,11 +128,6 @@ extension SettingsViewController {
         }
     }
     
-    func goLibrariesVC() {
-        let libraryVC = storyboard?.instantiateViewController(withIdentifier: StoryboardId.Library) as! LibraryViewController
-        navigationController?.pushViewController(libraryVC, animated: true)
-    }
-    
     func sendMail() {
         let mailVC = MFMailComposeViewController()
         mailVC.modalPresentationStyle = .fullScreen
@@ -118,13 +155,13 @@ extension SettingsViewController {
 }
 
 // MARK: Table View Datasource, Delegate
-extension SettingsViewController {
+extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 0 ? 2 : 4
+        return section == 0 ? 2 : 3
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -149,38 +186,40 @@ extension SettingsViewController {
         return headerView
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "SettingsCellIdentifier"
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! SettingsTableViewCell
         
         cell.backgroundColor = GRVColor.backgroundColor
-        cell.contentView.backgroundColor = GRVColor.backgroundColor
         
         switch indexPath.section {
         case 0: // Sections.Data
             cell.accessoryType = .none
             switch indexPath.row {
             case 0: // Sections.Data.RemoveCache
-                cell.textLabel?.text = L10n.removeImageCache
-            default: // Sections.Data.RemoveRealm
-                cell.textLabel?.text = L10n.removeFolderVideo
+                cell.titleLabel.text = L10n.removeImageCache
+            case 1: // Sections.Data.RemoveRealm
+                cell.titleLabel.text = L10n.removeFolderVideo
+            default: break
             }
-        default: // Sections.Info
+        case 1: // Sections.Info
             cell.accessoryType = .disclosureIndicator
             switch indexPath.row {
             case 0: // Sections.Info.Version
-                cell.textLabel?.text = L10n.currentVersion + " " + (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String)
+                cell.titleLabel.text = L10n.currentVersion + " " + (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String)
                 cell.accessoryType = .none
             case 1: // Sections.Info.SendMail
-                cell.textLabel?.text = L10n.sendMail
+                cell.titleLabel.text = L10n.sendMail
                 cell.accessoryType = .disclosureIndicator
             case 2: // Sections.Info.Facebook
-                cell.textLabel?.text = L10n.visitFacebook
+                cell.titleLabel.text = L10n.visitFacebook
                 cell.accessoryType = .disclosureIndicator
-            default:
-                cell.textLabel?.text = L10n.openSourceLibrary
-                cell.accessoryType = .disclosureIndicator
+            default: break
             }
+        default: break
         }
         
         return cell
@@ -194,8 +233,9 @@ extension SettingsViewController {
             switch indexPath.row {
             case 0: // Sections.Data.RemoveCache
                 clearCache()
-            default: // Sections.Data.RemoveRealm
+            case 1: // Sections.Data.RemoveRealm
                 clearRealm()
+            default: break
             }
         default: // Sections.Info
             switch indexPath.row {
@@ -205,16 +245,8 @@ extension SettingsViewController {
                 sendMail()
             case 2: // Sections.Info.Facebook
                 goFacebookPage()
-            default:
-                goLibrariesVC()
+            default: break
             }
         }
-    }
-}
-
-// MARK: IBActions
-extension SettingsViewController {
-    @IBAction func dismissVC() {
-        dismiss(animated: true, completion: nil)
     }
 }
