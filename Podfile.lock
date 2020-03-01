@@ -101,9 +101,9 @@ PODS:
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.3.1)
   - KDCircularProgress (1.5.4)
-  - Kingfisher (5.13.1):
-    - Kingfisher/Core (= 5.13.1)
-  - Kingfisher/Core (5.13.1)
+  - Kingfisher (5.13.2):
+    - Kingfisher/Core (= 5.13.2)
+  - Kingfisher/Core (5.13.2)
   - Moya (14.0.0):
     - Moya/Core (= 14.0.0)
   - Moya/Core (14.0.0):
@@ -131,6 +131,7 @@ PODS:
     - SwiftMessages/App (= 7.0.1)
   - SwiftMessages/App (7.0.1)
   - SWXMLHash (5.0.1)
+  - YoutubeKit (0.4.0)
 
 DEPENDENCIES:
   - Crashlytics (~> 3.9.3)
@@ -146,6 +147,7 @@ DEPENDENCIES:
   - SnapKit (~> 5.0.0)
   - SwiftMessages (~> 7.0.0)
   - SWXMLHash (~> 5.0.0)
+  - YoutubeKit (from `https://github.com/mildwhale/YoutubeKit.git`, tag `0.4.1`)
 
 SPEC REPOS:
   trunk:
@@ -184,6 +186,16 @@ SPEC REPOS:
     - SwiftMessages
     - SWXMLHash
 
+EXTERNAL SOURCES:
+  YoutubeKit:
+    :git: https://github.com/mildwhale/YoutubeKit.git
+    :tag: 0.4.1
+
+CHECKOUT OPTIONS:
+  YoutubeKit:
+    :git: https://github.com/mildwhale/YoutubeKit.git
+    :tag: 0.4.1
+
 SPEC CHECKSUMS:
   Alamofire: 3ba7a4db18b4f62c4a1c0e1cb39d7f3d52e10ada
   Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
@@ -206,7 +218,7 @@ SPEC CHECKSUMS:
   GoogleUtilities: 06eb53bb579efe7099152735900dd04bf09e7275
   GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
   KDCircularProgress: 98200c6b8e85d22bc04eb644721d3b1e12b0686b
-  Kingfisher: f33a848445e33c543620812158dc5d47f6bf90df
+  Kingfisher: d342c8354c10c3d85a27d6d4c42c41285924b898
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
@@ -219,7 +231,8 @@ SPEC CHECKSUMS:
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftMessages: b577dc7043be8b299857ab35bb663dbff6483bd0
   SWXMLHash: 9cc0c2e4807926c74377724aa8722ee5707a0485
+  YoutubeKit: 10c74151790b570001b19403d2c60b2fb540a1fe
 
-PODFILE CHECKSUM: 755919683f3d1001d605420cfdec47fe5e5a0e45
+PODFILE CHECKSUM: 29fa978b6b2ed54e093d6b5af35c25e28220f03c
 
 COCOAPODS: 1.8.4

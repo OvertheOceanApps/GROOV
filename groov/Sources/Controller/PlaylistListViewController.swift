@@ -176,8 +176,8 @@ extension PlaylistListViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let vc: VideoListViewController = VideoListViewController()
-        vc.playlist = playlistArray[indexPath.row]
+        let playlist = playlistArray[indexPath.row]
+        let vc: VideoListViewController = VideoListViewController(playlist: playlist)
         vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
     }

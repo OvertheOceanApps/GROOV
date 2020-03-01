@@ -17,8 +17,6 @@
 		1F2783BC205EA8C00001DFEB /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2783BB205EA8C00001DFEB /* BaseViewController.swift */; };
 		1F376200205FFFBC001ED5BB /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3761FE205FFFBC001ED5BB /* Playlist.swift */; };
 		1F376201205FFFBC001ED5BB /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3761FF205FFFBC001ED5BB /* Video.swift */; };
-		1F376207205FFFD0001ED5BB /* Assets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1F376205205FFFD0001ED5BB /* Assets.bundle */; };
-		1F376208205FFFD0001ED5BB /* YTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F376206205FFFD0001ED5BB /* YTPlayerView.m */; };
 		1F37621120600075001ED5BB /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F37620B20600075001ED5BB /* SearchViewController.swift */; };
 		1F37621320600075001ED5BB /* GRAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F37620D20600075001ED5BB /* GRAlertViewController.swift */; };
 		1F37621420600076001ED5BB /* VideoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F37620E20600075001ED5BB /* VideoListViewController.swift */; };
@@ -80,9 +78,6 @@
 		1F2783BB205EA8C00001DFEB /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		1F3761FE205FFFBC001ED5BB /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		1F3761FF205FFFBC001ED5BB /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
-		1F376204205FFFD0001ED5BB /* YTPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTPlayerView.h; sourceTree = "<group>"; };
-		1F376205205FFFD0001ED5BB /* Assets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Assets.bundle; sourceTree = "<group>"; };
-		1F376206205FFFD0001ED5BB /* YTPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTPlayerView.m; sourceTree = "<group>"; };
 		1F37620B20600075001ED5BB /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		1F37620D20600075001ED5BB /* GRAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRAlertViewController.swift; sourceTree = "<group>"; };
 		1F37620E20600075001ED5BB /* VideoListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoListViewController.swift; sourceTree = "<group>"; };
@@ -94,7 +89,6 @@
 		1F37621C206000D1001ED5BB /* SearchSuggestTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchSuggestTableViewCell.swift; sourceTree = "<group>"; };
 		1F37621D206000D1001ED5BB /* GRSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRSearchBar.swift; sourceTree = "<group>"; };
 		1F37621E206000D1001ED5BB /* SearchVideoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVideoTableViewCell.swift; sourceTree = "<group>"; };
-		1F6C43301D32A05A00F53FA9 /* groov-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "groov-Bridging-Header.h"; sourceTree = "<group>"; };
 		1F9648A324099143002D9FDA /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		1F9648A9240AC9E9002D9FDA /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		1F9648AB240ACA0D002D9FDA /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
@@ -147,7 +141,6 @@
 		1F1A051624075A2E00B14D47 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				1F6C43301D32A05A00F53FA9 /* groov-Bridging-Header.h */,
 				C66ED4C71D2CA73E0055F441 /* AppDelegate.swift */,
 				1F376217206000D1001ED5BB /* View */,
 				1F37620A20600075001ED5BB /* Controller */,
@@ -212,19 +205,8 @@
 		1F376202205FFFD0001ED5BB /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				1F376203205FFFD0001ED5BB /* YTPlayerView */,
 			);
 			path = Libraries;
-			sourceTree = "<group>";
-		};
-		1F376203205FFFD0001ED5BB /* YTPlayerView */ = {
-			isa = PBXGroup;
-			children = (
-				1F376204205FFFD0001ED5BB /* YTPlayerView.h */,
-				1F376205205FFFD0001ED5BB /* Assets.bundle */,
-				1F376206205FFFD0001ED5BB /* YTPlayerView.m */,
-			);
-			path = YTPlayerView;
 			sourceTree = "<group>";
 		};
 		1F376209205FFFF7001ED5BB /* Util */ = {
@@ -458,7 +440,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F1A051F24075C6C00B14D47 /* LaunchScreen.storyboard in Resources */,
-				1F376207205FFFD0001ED5BB /* Assets.bundle in Resources */,
 				1F0D31A72077D2CC00F50FE0 /* Localizable.strings in Resources */,
 				1F9648A424099143002D9FDA /* Config.xcconfig in Resources */,
 				C61B73DB1E9C69D4003AE091 /* Assets.xcassets in Resources */,
@@ -493,6 +474,7 @@
 				"${BUILT_PRODUCTS_DIR}/SWXMLHash/SWXMLHash.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftMessages/SwiftMessages.framework",
+				"${BUILT_PRODUCTS_DIR}/YoutubeKit/YoutubeKit.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -514,6 +496,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SWXMLHash.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftMessages.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YoutubeKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -636,7 +619,6 @@
 				1F0D31AF207936D000F50FE0 /* TrackUtil.swift in Sources */,
 				1F9648B6240B144F002D9FDA /* BlankView.swift in Sources */,
 				1F9648AC240ACA0D002D9FDA /* BaseTableViewCell.swift in Sources */,
-				1F376208205FFFD0001ED5BB /* YTPlayerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -860,7 +842,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.feelg.groov;
 				PRODUCT_NAME = GROOV.;
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.feelg.groov";
-				SWIFT_OBJC_BRIDGING_HEADER = "groov/Sources/groov-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
@@ -886,7 +867,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.feelg.groov;
 				PRODUCT_NAME = GROOV.;
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.feelg.groov";
-				SWIFT_OBJC_BRIDGING_HEADER = "groov/Sources/groov-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
 			};

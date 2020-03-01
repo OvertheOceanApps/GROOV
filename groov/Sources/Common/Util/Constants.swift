@@ -14,9 +14,8 @@ import UIKit
 //    static let Shuffle = "play_style_shuffle"
 //}
 
-struct PlayState {
-    static let Play = "play"
-    static let Pause = "pause"
+enum PlayState: String {
+    case play, pause
 }
 
 struct GRVColor {

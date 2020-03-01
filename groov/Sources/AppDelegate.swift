@@ -36,7 +36,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
+        #if !DEBUG
         Thread.sleep(forTimeInterval: 2.0)
+        #endif
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let vc: PlaylistListViewController = PlaylistListViewController()
