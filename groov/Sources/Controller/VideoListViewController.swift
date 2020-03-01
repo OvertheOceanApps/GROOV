@@ -22,10 +22,12 @@ final class VideoListViewController: BaseViewController {
     // MARK: UI componenets
     private let searchBarButton: UIBarButtonItem = UIBarButtonItem(image: Asset.searchFavicon.image, style: .plain, target: nil, action: nil)
     private let blankView: BlankView = BlankView(.video)
+    private let contentStackView: UIStackView = UIStackView()
+    private let topWrapperView: UIView = UIView()
     private let videoPlayer: YTSwiftyPlayer = YTSwiftyPlayer()
-    private let videoTableView: UITableView = UITableView()
     private let durationView: UIView = UIView()
     private let videoControlView: UIControl = UIControl()
+    private let videoTableView: UITableView = UITableView()
     private let videoControlContentView: UIControl = UIControl()
     private let runningTimeLabel: UILabel = UILabel()
     private let previousButton: UIButton = UIButton(type: .system)
@@ -40,7 +42,12 @@ final class VideoListViewController: BaseViewController {
     
     // MARK: Private Properties
     private let playlist: Playlist
-    private var videos: [Video] = []
+    private var videos: [Video] = [] {
+        didSet {
+            blankView.isHidden = videos.isEmpty == false
+            contentStackView.isHidden = videos.isEmpty
+        }
+    }
     private var currentVideo: Video? {
         return currentSelectedCell?.video
     }
@@ -55,6 +62,14 @@ final class VideoListViewController: BaseViewController {
                 playPauseButton.setImage(Asset.videoControlPause.image, for: .normal)
                 currentSelectedCell?.videoPlayed()
             }
+            
+            let fromAlpha = videoControlContentView.alpha
+            let toAlpha: CGFloat = playState == .play ? 0 : 1
+            if fromAlpha != toAlpha {
+                UIView.animate(withDuration: 0.4, delay: 0.3, animations: {
+                    self.videoControlContentView.alpha = toAlpha
+                })
+            }
         }
     }
     private var currentSelectedCell: VideoListTableViewCell? {
@@ -63,7 +78,6 @@ final class VideoListViewController: BaseViewController {
         }
     }
     
-    private var autoPlay: Bool = false
     private var totalPlayTime: Float = 0 // for review. review time > 10s -> review request
     private var reviewAsked: Bool = false
     
@@ -93,10 +107,14 @@ final class VideoListViewController: BaseViewController {
         navigationItem.rightBarButtonItem = searchBarButton
         
         view.addSubview(blankView)
-        view.addSubview(videoPlayer)
-        view.addSubview(videoTableView)
-        view.addSubview(durationView)
-        view.addSubview(videoControlView)
+        view.addSubview(contentStackView)
+        
+        contentStackView.addArrangedSubview(topWrapperView)
+        contentStackView.addArrangedSubview(videoTableView)
+        
+        topWrapperView.addSubview(videoPlayer)
+        topWrapperView.addSubview(durationView)
+        topWrapperView.addSubview(videoControlView)
         
         durationView.addSubview(runningTimeLabel)
         durationView.addSubview(progressImageView)
@@ -117,24 +135,24 @@ final class VideoListViewController: BaseViewController {
             $0.edges.equalToSuperview()
         }
         
-        videoPlayer.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
+        contentStackView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        topWrapperView.snp.makeConstraints {
             $0.height.equalTo(view.snp.width).multipliedBy(9.0/16.0)
         }
         
-        videoTableView.snp.makeConstraints {
-            $0.top.equalTo(videoPlayer.snp.bottom)
-            $0.leading.trailing.bottom.equalToSuperview()
+        videoPlayer.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
         
         durationView.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
-            $0.height.equalTo(view.snp.width).multipliedBy(9.0/16.0)
+            $0.edges.equalToSuperview()
         }
         
         videoControlView.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
-            $0.height.equalTo(view.snp.width).multipliedBy(9.0/16.0)
+            $0.edges.equalToSuperview()
         }
         
         videoControlContentView.snp.makeConstraints {
@@ -184,6 +202,8 @@ final class VideoListViewController: BaseViewController {
         view.backgroundColor = GRVColor.backgroundColor
         
         searchBarButton.tintColor = UIColor.white
+        
+        contentStackView.axis = .vertical
         
         videoTableView.backgroundColor = GRVColor.backgroundColor
         
@@ -257,7 +277,6 @@ final class VideoListViewController: BaseViewController {
             .subscribe { [weak self] _ in
                 guard let self = self else { return }
                 self.videoSelected(self.getPreviousVideoIndex(), play: true)
-                self.playState = .play
             }
             .disposed(by: disposeBag)
         
@@ -265,7 +284,6 @@ final class VideoListViewController: BaseViewController {
             .subscribe { [weak self] _ in
                 guard let self = self else { return }
                 self.videoSelected(self.getNextVideoIndex(), play: true)
-                self.playState = .play
             }
             .disposed(by: disposeBag)
         
@@ -274,10 +292,8 @@ final class VideoListViewController: BaseViewController {
                 guard let self = self else { return }
                 if self.playState == .pause {
                     self.videoPlayer.playVideo()
-                    self.playState = .play
                 } else {
                     self.videoPlayer.pauseVideo()
-                    self.playState = .pause
                 }
             }
             .disposed(by: disposeBag)
@@ -292,7 +308,6 @@ final class VideoListViewController: BaseViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         videoPlayer.pauseVideo()
-        playState = .pause
     }
     
     private func presentSearchViewController() {
@@ -308,26 +323,22 @@ final class VideoListViewController: BaseViewController {
 extension VideoListViewController {
     private func loadVideos() {
         let realm = try! Realm()
-        videos = Array(
-            realm.objects(Video.self)
-                .filter("playlistId = %@", playlist.id)
-                .sorted(byKeyPath: "order")
-            )
+        videos = Array(realm.objects(Video.self)
+            .filter("playlistId = %@", playlist.id)
+            .sorted(byKeyPath: "order")
+        )
         
         if videos.isEmpty == false {
             videoTableView.reloadData()
         }
-        
-        setBlankViewHidden()
     }
     
-    func videoSelected(_ index: Int, play: Bool) {
-        autoPlay = play
-        
-        guard let selectedCell = videoTableView.cellForRow(at: IndexPath(row: index, section: 0)) as? VideoListTableViewCell else { return }
+    private func videoSelected(_ index: Int, play: Bool) {
+        let indexPath = IndexPath(row: index, section: 0)
+        guard let selectedCell = videoTableView.cellForRow(at: indexPath) as? VideoListTableViewCell else { return }
         
         if let previousSelectedCell = currentSelectedCell, previousSelectedCell != selectedCell {
-            playState = .pause
+            previousSelectedCell.videoPaused()
             previousSelectedCell.cellSelected(false)
         }
         
@@ -341,47 +352,23 @@ extension VideoListViewController {
                 videoPlayer.cueVideo(videoID: video.videoId)
             }
         }
-        videoTableView.scrollToRow(at: IndexPath(row: index, section: 0), at: .middle, animated: true)
+        videoTableView.scrollToRow(at: indexPath, at: .middle, animated: true)
     }
 }
 
 // MARK: - SearchViewControllerDelegate
 extension VideoListViewController: SearchViewControllerDelegate {
     func videoAdded(_ video: Video) {
-        let realm = try! Realm()
-        try! realm.write { [weak self] in
-            guard let self = self else { return }
-            
-            video.createdAt = NSDate() as Date
-            video.playlistId = playlist.id
-            video.order = self.videos.count
-            realm.add(video)
-            
-            playlist.recentVideo = video.title
-            TrackUtil.sendVideoAddedEvent(title: video.title)
-            
-            let warning = MessageView.viewFromNib(layout: .cardView)
-            warning.configureTheme(.success)
-            warning.configureDropShadow()
-            warning.configureTheme(backgroundColor: UIColor.init(netHex: 0x292b30), foregroundColor: UIColor.white)
-            warning.configureContent(title: L10n.videoAddComplete, body: "\(video.title)")
-            warning.button?.isHidden = true
-            
-            var warningConfig = SwiftMessages.defaultConfig
-            warningConfig.presentationContext = .window(windowLevel: .statusBar)
-            warningConfig.duration = .seconds(seconds: 0.3)
-            
-            SwiftMessages.show(config: warningConfig, view: warning)
-        }
-        
+        writeVideoToRealm(video)
         videos.append(video)
-        setBlankViewHidden()
         
-        videoTableView.beginUpdates()
         let indexPath = IndexPath(row: videos.count - 1, section: 0)
+        videoTableView.beginUpdates()
         videoTableView.insertRows(at: [indexPath], with: .automatic)
         videoTableView.endUpdates()
         
+        // TODO: 비디오가 추가되었을 때 처리를 개선 할 필요가 있다.
+        // https://github.com/pilgwon/GROOV/issues/41
         if let selectedCell = videoTableView.cellForRow(at: indexPath) as? VideoListTableViewCell {
             if currentSelectedCell == nil && videos.isEmpty == false {
                 currentSelectedCell = selectedCell
@@ -392,13 +379,36 @@ extension VideoListViewController: SearchViewControllerDelegate {
         delegate?.recentVideoChanged(playlist)
     }
     
-    func setBlankViewHidden() {
-        let isHidden: Bool = videos.isEmpty == false
-        blankView.isHidden = isHidden
-        durationView.isHidden = !isHidden
-        videoControlView.isHidden = !isHidden
-        videoPlayer.isHidden = !isHidden
-        videoTableView.isHidden = !isHidden
+    private func writeVideoToRealm(_ video: Video) {
+        let realm = try! Realm()
+        try! realm.write { [weak self] in
+            guard let self = self else { return }
+            
+            video.createdAt = Date()
+            video.playlistId = playlist.id
+            video.order = self.videos.count
+            realm.add(video)
+            
+            playlist.recentVideo = video.title
+            TrackUtil.sendVideoAddedEvent(title: video.title)
+            
+            showVideoAddedMessage(title: video.title)
+        }
+    }
+    
+    private func showVideoAddedMessage(title: String) {
+        let warning = MessageView.viewFromNib(layout: .cardView)
+        warning.configureTheme(.success)
+        warning.configureDropShadow()
+        warning.configureTheme(backgroundColor: UIColor.init(netHex: 0x292b30), foregroundColor: UIColor.white)
+        warning.configureContent(title: L10n.videoAddComplete, body: title)
+        warning.button?.isHidden = true
+        
+        var warningConfig = SwiftMessages.defaultConfig
+        warningConfig.presentationContext = .window(windowLevel: .statusBar)
+        warningConfig.duration = .seconds(seconds: 0.3)
+        
+        SwiftMessages.show(config: warningConfig, view: warning)
     }
 }
 
@@ -425,11 +435,6 @@ extension VideoListViewController: YTSwiftyPlayerDelegate {
         if videos.isEmpty == false {
             videoSelected(0, play: false)
         }
-
-        if autoPlay {
-            videoPlayer.playVideo()
-            playState = .pause
-        }
         resetProgress()
     }
     
@@ -449,10 +454,6 @@ extension VideoListViewController: YTSwiftyPlayerDelegate {
         case .cued:
             break
         }
-    }
-    
-    func player(_ player: YTSwiftyPlayer, didReceiveError error: YTSwiftyPlayerError) {
-        print(error)
     }
     
     func player(_ player: YTSwiftyPlayer, didUpdateCurrentTime currentTime: Double) {
@@ -487,15 +488,15 @@ extension VideoListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
         let selectedCell = videoTableView.cellForRow(at: IndexPath(row: indexPath.row, section: 0)) as? VideoListTableViewCell
-        if currentSelectedCell != nil && selectedCell == currentSelectedCell {
+        
+        if selectedCell == currentSelectedCell {
             // user selected current playing cell
             if playState == .play { // play -> pause
                 videoPlayer.pauseVideo()
-                playState = .pause
             } else { // pause -> play
                 videoPlayer.playVideo()
-                playState = .play
             }
         } else { // else -> play
             videoSelected(indexPath.row, play: true)
@@ -507,7 +508,7 @@ extension VideoListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let deleteAction: UITableViewRowAction = UITableViewRowAction.init(style: .normal, title: L10n.delete) { [weak self] (_, indexPath) in
+        let deleteAction = UITableViewRowAction(style: .normal, title: L10n.delete) { [weak self] (_, indexPath) in
             guard let self = self else { return }
             self.tableView(self.videoTableView, commit: .delete, forRowAt: indexPath)
         }
@@ -517,6 +518,8 @@ extension VideoListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        // TODO: 현재 선택 된 비디오가 삭제되었을 때, 다음 비디오가 선택되도록 하는 로직이 필요하다.
+        // https://github.com/pilgwon/GROOV/issues/41
         if editingStyle == .delete {
             let parentId = playlist.id
             let targetId = videos[indexPath.row].id
@@ -541,8 +544,6 @@ extension VideoListViewController: UITableViewDelegate {
                 }
             }
             videos = Array(realm.objects(Video.self).filter("playlistId = %@", parentId).sorted(byKeyPath: "order"))
-            
-            setBlankViewHidden()
         }
     }
 }
