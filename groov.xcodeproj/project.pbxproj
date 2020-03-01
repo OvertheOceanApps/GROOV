@@ -78,9 +78,6 @@
 		1F2783BB205EA8C00001DFEB /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		1F3761FE205FFFBC001ED5BB /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		1F3761FF205FFFBC001ED5BB /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
-		1F376204205FFFD0001ED5BB /* YTPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTPlayerView.h; sourceTree = "<group>"; };
-		1F376205205FFFD0001ED5BB /* Assets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Assets.bundle; sourceTree = "<group>"; };
-		1F376206205FFFD0001ED5BB /* YTPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTPlayerView.m; sourceTree = "<group>"; };
 		1F37620B20600075001ED5BB /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		1F37620D20600075001ED5BB /* GRAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRAlertViewController.swift; sourceTree = "<group>"; };
 		1F37620E20600075001ED5BB /* VideoListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoListViewController.swift; sourceTree = "<group>"; };
@@ -208,19 +205,8 @@
 		1F376202205FFFD0001ED5BB /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				1F376203205FFFD0001ED5BB /* YTPlayerView */,
 			);
 			path = Libraries;
-			sourceTree = "<group>";
-		};
-		1F376203205FFFD0001ED5BB /* YTPlayerView */ = {
-			isa = PBXGroup;
-			children = (
-				1F376204205FFFD0001ED5BB /* YTPlayerView.h */,
-				1F376205205FFFD0001ED5BB /* Assets.bundle */,
-				1F376206205FFFD0001ED5BB /* YTPlayerView.m */,
-			);
-			path = YTPlayerView;
 			sourceTree = "<group>";
 		};
 		1F376209205FFFF7001ED5BB /* Util */ = {
