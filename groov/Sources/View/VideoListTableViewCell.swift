@@ -19,7 +19,7 @@ class VideoListTableViewCell: BaseTableViewCell {
     private let playPauseButton: UIButton = UIButton()
     private let progressRingView: KDCircularProgress = KDCircularProgress()
     
-    var video: Video! = nil
+    var video: Video?
     var progress: Float = 0.0
     var circleTimer: Timer! = nil
     
@@ -46,18 +46,21 @@ class VideoListTableViewCell: BaseTableViewCell {
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(29)
             $0.leading.equalTo(thumbnailImageView.snp.trailing).offset(14)
+            $0.trailing.equalTo(progressRingView.snp.leading).offset(-9).priority(999)
             $0.height.equalTo(15)
         }
         
         channelLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom)
             $0.leading.equalTo(thumbnailImageView.snp.trailing).offset(14)
+            $0.trailing.equalTo(titleLabel.snp.trailing)
             $0.height.equalTo(20)
         }
         
         durationLabel.snp.makeConstraints {
             $0.top.equalTo(channelLabel.snp.bottom).offset(7)
             $0.leading.equalTo(thumbnailImageView.snp.trailing).offset(14)
+            $0.trailing.equalTo(titleLabel.snp.trailing)
             $0.height.equalTo(15)
         }
         
@@ -67,9 +70,6 @@ class VideoListTableViewCell: BaseTableViewCell {
         }
         
         progressRingView.snp.makeConstraints {
-            $0.leading.equalTo(titleLabel.snp.trailing).offset(9)
-            $0.leading.equalTo(channelLabel.snp.trailing).offset(9)
-            $0.leading.equalTo(durationLabel.snp.trailing).offset(9)
             $0.trailing.equalToSuperview().inset(23)
             $0.centerY.equalToSuperview()
             $0.size.equalTo(34)
