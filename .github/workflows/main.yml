@@ -1,10 +1,12 @@
-name: CI
+name: Test and Lint
 
 on: [push]
 
 jobs:
-  test:
+  build:
+
     runs-on: macOS-latest
+
     steps:
     - uses: actions/checkout@master
     - name: Switch XCode Version
@@ -17,3 +19,5 @@ jobs:
     - uses: ty0x2333/cocoapods-action@master
       with:
         additional_build_params: -destination 'platform=iOS Simulator,name=iPhone 11,OS=13.0'
+        workspace: groov.xcworkspace
+        scheme: groov
