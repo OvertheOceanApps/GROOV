@@ -11,6 +11,11 @@ import RxSwift
 import SnapKit
 
 class BaseViewController: UIViewController {
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
+    
     let disposeBag: DisposeBag = DisposeBag()
 
     override func viewDidLoad() {

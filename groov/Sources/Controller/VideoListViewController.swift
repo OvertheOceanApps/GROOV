@@ -19,10 +19,14 @@ protocol VideoListViewControllerDelegate: class {
 }
 
 final class VideoListViewController: BaseViewController {
+
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return [.portrait, .landscape]
+    }
+    
     // MARK: UI componenets
     private let searchBarButton: UIBarButtonItem = UIBarButtonItem(image: Asset.searchFavicon.image, style: .plain, target: nil, action: nil)
     private let blankView: BlankView = BlankView(.video)
-    private let contentStackView: UIStackView = UIStackView()
     private let topWrapperView: UIView = UIView()
     private let videoPlayer: YTSwiftyPlayer = YTSwiftyPlayer()
     private let durationView: UIView = UIView()
@@ -45,7 +49,8 @@ final class VideoListViewController: BaseViewController {
     private var videos: [Video] = [] {
         didSet {
             blankView.isHidden = videos.isEmpty == false
-            contentStackView.isHidden = videos.isEmpty
+            topWrapperView.isHidden = videos.isEmpty
+            videoTableView.isHidden = videos.isEmpty
         }
     }
     private var currentVideo: Video? {
@@ -107,10 +112,8 @@ final class VideoListViewController: BaseViewController {
         navigationItem.rightBarButtonItem = searchBarButton
         
         view.addSubview(blankView)
-        view.addSubview(contentStackView)
-        
-        contentStackView.addArrangedSubview(topWrapperView)
-        contentStackView.addArrangedSubview(videoTableView)
+        view.addSubview(topWrapperView)
+        view.addSubview(videoTableView)
         
         topWrapperView.addSubview(videoPlayer)
         topWrapperView.addSubview(durationView)
@@ -135,12 +138,14 @@ final class VideoListViewController: BaseViewController {
             $0.edges.equalToSuperview()
         }
         
-        contentStackView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+        topWrapperView.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+            $0.height.equalTo(view.snp.width).multipliedBy(9.0/16.0)
         }
         
-        topWrapperView.snp.makeConstraints {
-            $0.height.equalTo(view.snp.width).multipliedBy(9.0/16.0)
+        videoTableView.snp.makeConstraints {
+            $0.top.equalTo(topWrapperView.snp.bottom).priority(999)
+            $0.leading.trailing.bottom.equalToSuperview().priority(999)
         }
         
         videoPlayer.snp.makeConstraints {
@@ -202,8 +207,6 @@ final class VideoListViewController: BaseViewController {
         view.backgroundColor = GRVColor.backgroundColor
         
         searchBarButton.tintColor = UIColor.white
-        
-        contentStackView.axis = .vertical
         
         videoTableView.backgroundColor = GRVColor.backgroundColor
         
@@ -589,6 +592,37 @@ extension VideoListViewController {
             
             SKStoreReviewController.requestReview()
             UserDefaults.standard.set("Y", forKey: ver)
+        }
+    }
+}
+
+extension VideoListViewController {
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        if newCollection.verticalSizeClass == .compact {
+            // Landscape
+            navigationController?.setNavigationBarHidden(true, animated: false)
+            videoTableView.isHidden = true
+            
+            coordinator.animate(alongsideTransition: { [unowned self] _ in
+                self.view.backgroundColor = .black
+                self.topWrapperView.snp.remakeConstraints {
+                    $0.center.equalToSuperview()
+                    $0.width.equalTo(self.view.snp.height).multipliedBy(16.0 / 9.0)
+                    $0.height.equalTo(self.view.snp.height)
+                }
+            })
+        } else {
+            // Portrait
+            navigationController?.setNavigationBarHidden(false, animated: false)
+            videoTableView.isHidden = false
+            
+            coordinator.animate(alongsideTransition: { [unowned self] _ in
+                self.view.backgroundColor = GRVColor.backgroundColor
+                self.topWrapperView.snp.remakeConstraints {
+                    $0.top.leading.trailing.equalToSuperview()
+                    $0.height.equalTo(self.view.snp.width).multipliedBy(9.0 / 16.0)
+                }
+            })
         }
     }
 }
