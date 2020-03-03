@@ -131,7 +131,7 @@ PODS:
     - SwiftMessages/App (= 7.0.1)
   - SwiftMessages/App (7.0.1)
   - SWXMLHash (5.0.1)
-  - YoutubeKit (0.4.0)
+  - YoutubeKit (0.4.1)
 
 DEPENDENCIES:
   - Crashlytics (~> 3.9.3)
@@ -147,7 +147,7 @@ DEPENDENCIES:
   - SnapKit (~> 5.0.0)
   - SwiftMessages (~> 7.0.0)
   - SWXMLHash (~> 5.0.0)
-  - YoutubeKit (from `https://github.com/mildwhale/YoutubeKit.git`, tag `0.4.1`)
+  - YoutubeKit (from `https://github.com/mildwhale/YoutubeKit.git`, tag `0.4.2`)
 
 SPEC REPOS:
   trunk:
@@ -189,12 +189,12 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   YoutubeKit:
     :git: https://github.com/mildwhale/YoutubeKit.git
-    :tag: 0.4.1
+    :tag: 0.4.2
 
 CHECKOUT OPTIONS:
   YoutubeKit:
     :git: https://github.com/mildwhale/YoutubeKit.git
-    :tag: 0.4.1
+    :tag: 0.4.2
 
 SPEC CHECKSUMS:
   Alamofire: 3ba7a4db18b4f62c4a1c0e1cb39d7f3d52e10ada
@@ -231,8 +231,8 @@ SPEC CHECKSUMS:
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftMessages: b577dc7043be8b299857ab35bb663dbff6483bd0
   SWXMLHash: 9cc0c2e4807926c74377724aa8722ee5707a0485
-  YoutubeKit: 10c74151790b570001b19403d2c60b2fb540a1fe
+  YoutubeKit: d1f99c47f200ef500462352f516043bd7c08728f
 
-PODFILE CHECKSUM: 29fa978b6b2ed54e093d6b5af35c25e28220f03c
+PODFILE CHECKSUM: f622df62f4befaf46effac9570fe44f0f9c47c2c
 
 COCOAPODS: 1.8.4
