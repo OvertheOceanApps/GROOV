@@ -220,3 +220,9 @@ extension UIViewController {
         dismiss(animated: false, completion: nil)
     }
 }
+
+extension UINavigationController {
+    open override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return topViewController?.supportedInterfaceOrientations ?? .portrait
+    }
+}
