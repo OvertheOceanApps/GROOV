@@ -536,6 +536,8 @@ extension VideoListViewController: UITableViewDelegate {
                 currentSelectedCell = nil
                 if videos.count > currentIndex.row {
                     nextIndex = currentIndex.row
+                } else if !videos.isEmpty {
+                    nextIndex = currentIndex.row - 1
                 }
             }
             
