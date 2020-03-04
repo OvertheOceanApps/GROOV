@@ -136,7 +136,7 @@ extension SearchViewController {
         
         if let textField = firstSubview(of: UITextField.self, in: searchBar), let label = firstSubview(of: UILabel.self, in: searchBar) {
             underLineView.translatesAutoresizingMaskIntoConstraints = false
-            underLineView.image = #imageLiteral(resourceName: "search_under_line")
+            underLineView.image = Asset.searchUnderLine.image
             underLineView.clipsToBounds = true
             underLineView.contentMode = .scaleToFill
             textField.addSubview(underLineView)

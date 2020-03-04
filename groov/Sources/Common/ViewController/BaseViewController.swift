@@ -74,7 +74,7 @@ class BaseViewController: UIViewController {
     }
     
     func setNavigationBackButton() {
-        let backBarButton = UIBarButtonItem(image: #imageLiteral(resourceName: "navigation_back"), style: .plain, target: self, action: #selector(popVC))
+        let backBarButton = UIBarButtonItem(image: Asset.navigationBack.image, style: .plain, target: self, action: #selector(popVC))
         navigationItem.leftBarButtonItem = backBarButton
         navigationItem.leftBarButtonItem?.tintColor = UIColor.white
     }
