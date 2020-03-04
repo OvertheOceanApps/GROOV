@@ -534,6 +534,7 @@ extension VideoListViewController: UITableViewDelegate {
                 let currentIndex = tableView.indexPath(for: cell),
                 currentIndex == indexPath {
                 currentSelectedCell = nil
+                videoPlayer.stopVideo()
                 if videos.count > currentIndex.row {
                     nextIndex = currentIndex.row
                 } else if !videos.isEmpty {
@@ -579,7 +580,9 @@ extension VideoListViewController {
         let progress: CGFloat = CGFloat(currentTime) / CGFloat(videoDuration)
         
         runningTimeLabel.text = "\(currentTimeString) / \(videoDurationString)"
-        progressImageViewWidth?.update(offset: progress * view.bounds.width)
+        if progress != .nan {
+            progressImageViewWidth?.update(offset: progress * view.bounds.width)
+        }
         
         UIView.animate(withDuration: 0.5, animations: { [weak self] in
             guard let self = self else { return }
