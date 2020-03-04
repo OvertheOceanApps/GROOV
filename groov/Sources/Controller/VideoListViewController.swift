@@ -579,19 +579,17 @@ extension VideoListViewController {
         let videoDurationString: String = String(hms: videoDuration.secToHMS())
         let progress: CGFloat = CGFloat(currentTime) / CGFloat(videoDuration)
         
+        guard !progress.isNaN else { return }
+        
         runningTimeLabel.text = "\(currentTimeString) / \(videoDurationString)"
-        if progress != .nan {
-            progressImageViewWidth?.update(offset: progress * view.bounds.width)
-        }
+        progressImageViewWidth?.update(offset: progress * view.bounds.width)
         
         UIView.animate(withDuration: 0.5, animations: { [weak self] in
             guard let self = self else { return }
             self.durationView.layoutIfNeeded()
         })
         
-        // for ask Review
-        totalPlayTime += 0.5
-        if totalPlayTime >= 10 {
+        if currentTime >= 10 {
             askReview()
         }
     }
