@@ -528,6 +528,13 @@ extension VideoListViewController: UITableViewDelegate {
             let targetId = videos[indexPath.row].id
             videos.remove(at: indexPath.row)
             
+            if
+                let cell = currentSelectedCell,
+                let index = tableView.indexPath(for: cell),
+                index == indexPath {
+                currentSelectedCell = nil
+            }
+            
             tableView.beginUpdates()
             tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.endUpdates()
@@ -547,6 +554,10 @@ extension VideoListViewController: UITableViewDelegate {
                 }
             }
             videos = Array(realm.objects(Video.self).filter("playlistId = %@", parentId).sorted(byKeyPath: "order"))
+            
+            if videos.count > 0 && currentSelectedCell == nil {
+                videoSelected(0, play: false)
+            }
         }
     }
 }
