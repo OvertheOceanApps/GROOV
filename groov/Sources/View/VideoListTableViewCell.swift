@@ -114,6 +114,7 @@ class VideoListTableViewCell: BaseTableViewCell {
         if let url = URL(string: video.getThumbnailUrl()) {
             thumbnailImageView.kf.setImage(with: url, options: [.transition(.fade(0.3))])
         }
+        cellSelected(false)
     }
 }
 
