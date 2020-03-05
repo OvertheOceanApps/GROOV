@@ -34,15 +34,15 @@
 		1F9648AE240AE85E002D9FDA /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9648AD240AE85E002D9FDA /* SettingsTableViewCell.swift */; };
 		1F9648B0240AEE30002D9FDA /* PlaylistFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9648AF240AEE30002D9FDA /* PlaylistFooterView.swift */; };
 		1F9648B6240B144F002D9FDA /* BlankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9648B5240B144F002D9FDA /* BlankView.swift */; };
-		1FD8CAB0241026770085C18E /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 1FD8CAAF241026770085C18E /* SwiftPackageProductDependency */; };
-		1FD8CAB2241026770085C18E /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 1FD8CAB1241026770085C18E /* SwiftPackageProductDependency */; };
-		1FD8CAB5241026B00085C18E /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 1FD8CAB4241026B00085C18E /* SwiftPackageProductDependency */; };
-		1FD8CAB8241027180085C18E /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 1FD8CAB7241027180085C18E /* SwiftPackageProductDependency */; };
-		1FD8CABB241027410085C18E /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 1FD8CABA241027410085C18E /* SwiftPackageProductDependency */; };
-		1FD8CABE241027620085C18E /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 1FD8CABD241027620085C18E /* SwiftPackageProductDependency */; };
-		1FD8CAC1241028140085C18E /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 1FD8CAC0241028140085C18E /* SwiftPackageProductDependency */; };
-		1FD8CAC3241028140085C18E /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 1FD8CAC2241028140085C18E /* SwiftPackageProductDependency */; };
-		1FD8CAC6241028C10085C18E /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 1FD8CAC5241028C10085C18E /* SwiftPackageProductDependency */; };
+		1FD8CAB0241026770085C18E /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 1FD8CAAF241026770085C18E /* Realm */; };
+		1FD8CAB2241026770085C18E /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 1FD8CAB1241026770085C18E /* RealmSwift */; };
+		1FD8CAB5241026B00085C18E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1FD8CAB4241026B00085C18E /* Kingfisher */; };
+		1FD8CAB8241027180085C18E /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 1FD8CAB7241027180085C18E /* Moya */; };
+		1FD8CABB241027410085C18E /* KDCircularProgress in Frameworks */ = {isa = PBXBuildFile; productRef = 1FD8CABA241027410085C18E /* KDCircularProgress */; };
+		1FD8CABE241027620085C18E /* SWXMLHash in Frameworks */ = {isa = PBXBuildFile; productRef = 1FD8CABD241027620085C18E /* SWXMLHash */; };
+		1FD8CAC1241028140085C18E /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 1FD8CAC0241028140085C18E /* RxSwift */; };
+		1FD8CAC3241028140085C18E /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 1FD8CAC2241028140085C18E /* RxCocoa */; };
+		1FD8CAC6241028C10085C18E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1FD8CAC5241028C10085C18E /* SnapKit */; };
 		1FDA2D3424062E2100523739 /* groovSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDA2D3324062E2100523739 /* groovSnapshot.swift */; };
 		1FDA2D3C24062E3000523739 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDA2D3B24062E3000523739 /* SnapshotHelper.swift */; };
 		31251DBFEDF78548A1A2A767 /* Pods_groov.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABDD6A5EDEFF369926A285F5 /* Pods_groov.framework */; };
@@ -139,17 +139,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1FD8CAC1241028140085C18E /* BuildFile in Frameworks */,
-				1FD8CABE241027620085C18E /* BuildFile in Frameworks */,
-				1FD8CAC3241028140085C18E /* BuildFile in Frameworks */,
-				1FD8CAB2241026770085C18E /* BuildFile in Frameworks */,
-				1FD8CAB0241026770085C18E /* BuildFile in Frameworks */,
-				1FD8CAB8241027180085C18E /* BuildFile in Frameworks */,
-				1FD8CABB241027410085C18E /* BuildFile in Frameworks */,
+				1FD8CAC1241028140085C18E /* RxSwift in Frameworks */,
+				1FD8CABE241027620085C18E /* SWXMLHash in Frameworks */,
+				1FD8CAC3241028140085C18E /* RxCocoa in Frameworks */,
+				1FD8CAB2241026770085C18E /* RealmSwift in Frameworks */,
+				1FD8CAB0241026770085C18E /* Realm in Frameworks */,
+				1FD8CAB8241027180085C18E /* Moya in Frameworks */,
+				1FD8CABB241027410085C18E /* KDCircularProgress in Frameworks */,
 				C62533AA1D46F4A5006E43F8 /* MessageUI.framework in Frameworks */,
 				31251DBFEDF78548A1A2A767 /* Pods_groov.framework in Frameworks */,
-				1FD8CAB5241026B00085C18E /* BuildFile in Frameworks */,
-				1FD8CAC6241028C10085C18E /* BuildFile in Frameworks */,
+				1FD8CAB5241026B00085C18E /* Kingfisher in Frameworks */,
+				1FD8CAC6241028C10085C18E /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,15 +394,15 @@
 			);
 			name = groov;
 			packageProductDependencies = (
-				1FD8CAAF241026770085C18E /* SwiftPackageProductDependency */,
-				1FD8CAB1241026770085C18E /* SwiftPackageProductDependency */,
-				1FD8CAB4241026B00085C18E /* SwiftPackageProductDependency */,
-				1FD8CAB7241027180085C18E /* SwiftPackageProductDependency */,
-				1FD8CABA241027410085C18E /* SwiftPackageProductDependency */,
-				1FD8CABD241027620085C18E /* SwiftPackageProductDependency */,
-				1FD8CAC0241028140085C18E /* SwiftPackageProductDependency */,
-				1FD8CAC2241028140085C18E /* SwiftPackageProductDependency */,
-				1FD8CAC5241028C10085C18E /* SwiftPackageProductDependency */,
+				1FD8CAAF241026770085C18E /* Realm */,
+				1FD8CAB1241026770085C18E /* RealmSwift */,
+				1FD8CAB4241026B00085C18E /* Kingfisher */,
+				1FD8CAB7241027180085C18E /* Moya */,
+				1FD8CABA241027410085C18E /* KDCircularProgress */,
+				1FD8CABD241027620085C18E /* SWXMLHash */,
+				1FD8CAC0241028140085C18E /* RxSwift */,
+				1FD8CAC2241028140085C18E /* RxCocoa */,
+				1FD8CAC5241028C10085C18E /* SnapKit */,
 			);
 			productName = groov;
 			productReference = C66ED4C41D2CA73E0055F441 /* GROOV..app */;
@@ -447,13 +447,13 @@
 			);
 			mainGroup = C66ED4BB1D2CA73E0055F441;
 			packageReferences = (
-				1FD8CAAE241026770085C18E /* RemoteSwiftPackageReference */,
-				1FD8CAB3241026AF0085C18E /* RemoteSwiftPackageReference */,
-				1FD8CAB6241027180085C18E /* RemoteSwiftPackageReference */,
-				1FD8CAB9241027410085C18E /* RemoteSwiftPackageReference */,
-				1FD8CABC241027620085C18E /* RemoteSwiftPackageReference */,
-				1FD8CABF241028140085C18E /* RemoteSwiftPackageReference */,
-				1FD8CAC4241028C10085C18E /* RemoteSwiftPackageReference */,
+				1FD8CAAE241026770085C18E /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				1FD8CAB3241026AF0085C18E /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				1FD8CAB6241027180085C18E /* XCRemoteSwiftPackageReference "Moya" */,
+				1FD8CAB9241027410085C18E /* XCRemoteSwiftPackageReference "KDCircularProgress" */,
+				1FD8CABC241027620085C18E /* XCRemoteSwiftPackageReference "SWXMLHash" */,
+				1FD8CABF241028140085C18E /* XCRemoteSwiftPackageReference "RxSwift" */,
+				1FD8CAC4241028C10085C18E /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = C66ED4C51D2CA73E0055F441 /* Products */;
 			projectDirPath = "";
@@ -858,6 +858,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -885,6 +886,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.feelg.groov";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -921,7 +923,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		1FD8CAAE241026770085C18E /* RemoteSwiftPackageReference */ = {
+		1FD8CAAE241026770085C18E /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-cocoa";
 			requirement = {
@@ -929,7 +931,7 @@
 				minimumVersion = 4.3.2;
 			};
 		};
-		1FD8CAB3241026AF0085C18E /* RemoteSwiftPackageReference */ = {
+		1FD8CAB3241026AF0085C18E /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
 			requirement = {
@@ -937,7 +939,7 @@
 				minimumVersion = 5.13.2;
 			};
 		};
-		1FD8CAB6241027180085C18E /* RemoteSwiftPackageReference */ = {
+		1FD8CAB6241027180085C18E /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Moya/Moya";
 			requirement = {
@@ -945,7 +947,7 @@
 				minimumVersion = 14.0.0;
 			};
 		};
-		1FD8CAB9241027410085C18E /* RemoteSwiftPackageReference */ = {
+		1FD8CAB9241027410085C18E /* XCRemoteSwiftPackageReference "KDCircularProgress" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kaandedeoglu/KDCircularProgress";
 			requirement = {
@@ -953,7 +955,7 @@
 				minimumVersion = 1.5.4;
 			};
 		};
-		1FD8CABC241027620085C18E /* RemoteSwiftPackageReference */ = {
+		1FD8CABC241027620085C18E /* XCRemoteSwiftPackageReference "SWXMLHash" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/drmohundro/SWXMLHash";
 			requirement = {
@@ -961,7 +963,7 @@
 				minimumVersion = 5.0.1;
 			};
 		};
-		1FD8CABF241028140085C18E /* RemoteSwiftPackageReference */ = {
+		1FD8CABF241028140085C18E /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift";
 			requirement = {
@@ -969,7 +971,7 @@
 				minimumVersion = 5.1.0;
 			};
 		};
-		1FD8CAC4241028C10085C18E /* RemoteSwiftPackageReference */ = {
+		1FD8CAC4241028C10085C18E /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
 			requirement = {
@@ -980,49 +982,49 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1FD8CAAF241026770085C18E /* SwiftPackageProductDependency */ = {
+		1FD8CAAF241026770085C18E /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1FD8CAAE241026770085C18E /* RemoteSwiftPackageReference */;
+			package = 1FD8CAAE241026770085C18E /* XCRemoteSwiftPackageReference "realm-cocoa" */;
 			productName = Realm;
 		};
-		1FD8CAB1241026770085C18E /* SwiftPackageProductDependency */ = {
+		1FD8CAB1241026770085C18E /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1FD8CAAE241026770085C18E /* RemoteSwiftPackageReference */;
+			package = 1FD8CAAE241026770085C18E /* XCRemoteSwiftPackageReference "realm-cocoa" */;
 			productName = RealmSwift;
 		};
-		1FD8CAB4241026B00085C18E /* SwiftPackageProductDependency */ = {
+		1FD8CAB4241026B00085C18E /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1FD8CAB3241026AF0085C18E /* RemoteSwiftPackageReference */;
+			package = 1FD8CAB3241026AF0085C18E /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
 		};
-		1FD8CAB7241027180085C18E /* SwiftPackageProductDependency */ = {
+		1FD8CAB7241027180085C18E /* Moya */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1FD8CAB6241027180085C18E /* RemoteSwiftPackageReference */;
+			package = 1FD8CAB6241027180085C18E /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = Moya;
 		};
-		1FD8CABA241027410085C18E /* SwiftPackageProductDependency */ = {
+		1FD8CABA241027410085C18E /* KDCircularProgress */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1FD8CAB9241027410085C18E /* RemoteSwiftPackageReference */;
+			package = 1FD8CAB9241027410085C18E /* XCRemoteSwiftPackageReference "KDCircularProgress" */;
 			productName = KDCircularProgress;
 		};
-		1FD8CABD241027620085C18E /* SwiftPackageProductDependency */ = {
+		1FD8CABD241027620085C18E /* SWXMLHash */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1FD8CABC241027620085C18E /* RemoteSwiftPackageReference */;
+			package = 1FD8CABC241027620085C18E /* XCRemoteSwiftPackageReference "SWXMLHash" */;
 			productName = SWXMLHash;
 		};
-		1FD8CAC0241028140085C18E /* SwiftPackageProductDependency */ = {
+		1FD8CAC0241028140085C18E /* RxSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1FD8CABF241028140085C18E /* RemoteSwiftPackageReference */;
+			package = 1FD8CABF241028140085C18E /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
 		};
-		1FD8CAC2241028140085C18E /* SwiftPackageProductDependency */ = {
+		1FD8CAC2241028140085C18E /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1FD8CABF241028140085C18E /* RemoteSwiftPackageReference */;
+			package = 1FD8CABF241028140085C18E /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxCocoa;
 		};
-		1FD8CAC5241028C10085C18E /* SwiftPackageProductDependency */ = {
+		1FD8CAC5241028C10085C18E /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1FD8CAC4241028C10085C18E /* RemoteSwiftPackageReference */;
+			package = 1FD8CAC4241028C10085C18E /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
