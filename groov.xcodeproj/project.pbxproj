@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -34,6 +34,15 @@
 		1F9648AE240AE85E002D9FDA /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9648AD240AE85E002D9FDA /* SettingsTableViewCell.swift */; };
 		1F9648B0240AEE30002D9FDA /* PlaylistFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9648AF240AEE30002D9FDA /* PlaylistFooterView.swift */; };
 		1F9648B6240B144F002D9FDA /* BlankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9648B5240B144F002D9FDA /* BlankView.swift */; };
+		1FD8CAB0241026770085C18E /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 1FD8CAAF241026770085C18E /* Realm */; };
+		1FD8CAB2241026770085C18E /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 1FD8CAB1241026770085C18E /* RealmSwift */; };
+		1FD8CAB5241026B00085C18E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1FD8CAB4241026B00085C18E /* Kingfisher */; };
+		1FD8CAB8241027180085C18E /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 1FD8CAB7241027180085C18E /* Moya */; };
+		1FD8CABB241027410085C18E /* KDCircularProgress in Frameworks */ = {isa = PBXBuildFile; productRef = 1FD8CABA241027410085C18E /* KDCircularProgress */; };
+		1FD8CABE241027620085C18E /* SWXMLHash in Frameworks */ = {isa = PBXBuildFile; productRef = 1FD8CABD241027620085C18E /* SWXMLHash */; };
+		1FD8CAC1241028140085C18E /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 1FD8CAC0241028140085C18E /* RxSwift */; };
+		1FD8CAC3241028140085C18E /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 1FD8CAC2241028140085C18E /* RxCocoa */; };
+		1FD8CAC6241028C10085C18E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1FD8CAC5241028C10085C18E /* SnapKit */; };
 		1FDA2D3424062E2100523739 /* groovSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDA2D3324062E2100523739 /* groovSnapshot.swift */; };
 		1FDA2D3C24062E3000523739 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDA2D3B24062E3000523739 /* SnapshotHelper.swift */; };
 		31251DBFEDF78548A1A2A767 /* Pods_groov.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABDD6A5EDEFF369926A285F5 /* Pods_groov.framework */; };
@@ -130,8 +139,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FD8CAC1241028140085C18E /* RxSwift in Frameworks */,
+				1FD8CABE241027620085C18E /* SWXMLHash in Frameworks */,
+				1FD8CAC3241028140085C18E /* RxCocoa in Frameworks */,
+				1FD8CAB2241026770085C18E /* RealmSwift in Frameworks */,
+				1FD8CAB0241026770085C18E /* Realm in Frameworks */,
+				1FD8CAB8241027180085C18E /* Moya in Frameworks */,
+				1FD8CABB241027410085C18E /* KDCircularProgress in Frameworks */,
 				C62533AA1D46F4A5006E43F8 /* MessageUI.framework in Frameworks */,
 				31251DBFEDF78548A1A2A767 /* Pods_groov.framework in Frameworks */,
+				1FD8CAB5241026B00085C18E /* Kingfisher in Frameworks */,
+				1FD8CAC6241028C10085C18E /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,6 +393,17 @@
 			dependencies = (
 			);
 			name = groov;
+			packageProductDependencies = (
+				1FD8CAAF241026770085C18E /* Realm */,
+				1FD8CAB1241026770085C18E /* RealmSwift */,
+				1FD8CAB4241026B00085C18E /* Kingfisher */,
+				1FD8CAB7241027180085C18E /* Moya */,
+				1FD8CABA241027410085C18E /* KDCircularProgress */,
+				1FD8CABD241027620085C18E /* SWXMLHash */,
+				1FD8CAC0241028140085C18E /* RxSwift */,
+				1FD8CAC2241028140085C18E /* RxCocoa */,
+				1FD8CAC5241028C10085C18E /* SnapKit */,
+			);
 			productName = groov;
 			productReference = C66ED4C41D2CA73E0055F441 /* GROOV..app */;
 			productType = "com.apple.product-type.application";
@@ -417,6 +446,15 @@
 				"zh-Hant",
 			);
 			mainGroup = C66ED4BB1D2CA73E0055F441;
+			packageReferences = (
+				1FD8CAAE241026770085C18E /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				1FD8CAB3241026AF0085C18E /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				1FD8CAB6241027180085C18E /* XCRemoteSwiftPackageReference "Moya" */,
+				1FD8CAB9241027410085C18E /* XCRemoteSwiftPackageReference "KDCircularProgress" */,
+				1FD8CABC241027620085C18E /* XCRemoteSwiftPackageReference "SWXMLHash" */,
+				1FD8CABF241028140085C18E /* XCRemoteSwiftPackageReference "RxSwift" */,
+				1FD8CAC4241028C10085C18E /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = C66ED4C51D2CA73E0055F441 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -455,49 +493,12 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-groov/Pods-groov-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/KDCircularProgress/KDCircularProgress.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
-				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
-				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/SWXMLHash/SWXMLHash.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftMessages/SwiftMessages.framework",
-				"${BUILT_PRODUCTS_DIR}/YoutubeKit/YoutubeKit.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-groov/Pods-groov-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KDCircularProgress.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SWXMLHash.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftMessages.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YoutubeKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-groov/Pods-groov-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -675,7 +676,11 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = groovSnapshot/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = app.overtheocean.groovSnapshot;
@@ -703,7 +708,11 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = groovSnapshot/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = app.overtheocean.groovSnapshot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -817,7 +826,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -835,7 +845,10 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = groov/Resources/info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited) -D DEBUG";
 				PODS_PODFILE_DIR_PATH = "$(inherited)";
@@ -845,6 +858,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -860,7 +874,10 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = groov/Resources/info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PODS_PODFILE_DIR_PATH = "$(inherited)";
@@ -869,6 +886,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.feelg.groov";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -903,6 +921,113 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1FD8CAAE241026770085C18E /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.3.2;
+			};
+		};
+		1FD8CAB3241026AF0085C18E /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.13.2;
+			};
+		};
+		1FD8CAB6241027180085C18E /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 14.0.0;
+			};
+		};
+		1FD8CAB9241027410085C18E /* XCRemoteSwiftPackageReference "KDCircularProgress" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kaandedeoglu/KDCircularProgress";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.4;
+			};
+		};
+		1FD8CABC241027620085C18E /* XCRemoteSwiftPackageReference "SWXMLHash" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/drmohundro/SWXMLHash";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
+		1FD8CABF241028140085C18E /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.0;
+			};
+		};
+		1FD8CAC4241028C10085C18E /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1FD8CAAF241026770085C18E /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1FD8CAAE241026770085C18E /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
+		};
+		1FD8CAB1241026770085C18E /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1FD8CAAE241026770085C18E /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
+		};
+		1FD8CAB4241026B00085C18E /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1FD8CAB3241026AF0085C18E /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		1FD8CAB7241027180085C18E /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1FD8CAB6241027180085C18E /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+		1FD8CABA241027410085C18E /* KDCircularProgress */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1FD8CAB9241027410085C18E /* XCRemoteSwiftPackageReference "KDCircularProgress" */;
+			productName = KDCircularProgress;
+		};
+		1FD8CABD241027620085C18E /* SWXMLHash */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1FD8CABC241027620085C18E /* XCRemoteSwiftPackageReference "SWXMLHash" */;
+			productName = SWXMLHash;
+		};
+		1FD8CAC0241028140085C18E /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1FD8CABF241028140085C18E /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		1FD8CAC2241028140085C18E /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1FD8CABF241028140085C18E /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		1FD8CAC5241028C10085C18E /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1FD8CAC4241028C10085C18E /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C66ED4BC1D2CA73E0055F441 /* Project object */;
 }
